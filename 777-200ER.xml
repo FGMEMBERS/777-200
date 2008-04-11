@@ -1,9 +1,9 @@
-<!--777-200 yasim 
+<!--777-200 ER yasim 
 
 Specs:
-2 - 77,200 lb PW4077 turbofans
-or  77,000 lb GE90-77Bs
-or  76,000 lb Rolls-Royce Trent 877s
+2 - 90,000 lb PW4090 turbofans
+or  93,700 lb GE90-94Bs
+or  93,400 lb Rolls-Royce Trent 877s
 
 Typical Cruise = 0.84 Mach / 35000 ft
 Max Speed = 0.87 / 35000 ft
@@ -12,8 +12,8 @@ Length: 63.73 m
 Tail Height: 18.51m 
 Diameter : 6.19 m
 Wing Area: 427.8m2
-Max Fuel :31,000 US gal
-Max TO weight: 545,000 lbs
+Max Fuel :45,220 US gal
+Max TO weight: 656,000 lbs
 
 TO speed : 145 kt
 Landing speed : 131 kt
@@ -109,7 +109,7 @@ Leading edge MAC = -3.132
 		  min="1" max="-1"/>
 </vstab>
 
-<jet x="1.16" y="9.89"  z="-2.995" mass="13889" thrust="76000" spool-time="3"
+<jet x="1.16" y="9.89"  z="-2.995" mass="13889" thrust="93400" spool-time="3"
 egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
   <control-input axis="/controls/engines/engine[0]/mixture" control="MIXTURE"/>
@@ -119,7 +119,7 @@ egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
 <actionpt x="-2.7" y="9.89" z="-2.995"/>
 </jet>
 
-<jet x="1.16" y="-9.89"  z="-2.995" mass="13889" thrust="76000"  spool-time="3"
+<jet x="1.16" y="-9.89"  z="-2.995" mass="13889" thrust="93400"  spool-time="3"
 egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
   <control-input axis="/controls/engines/engine[0]/mixture" control="MIXTURE"/>
@@ -155,9 +155,9 @@ egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
 </gear>
 
 
-<tank x="-3" y="5" z="-1.5" jet="true" capacity="62300"/>
-<tank x="-5.0" y="0" z="-2.5" jet="true" capacity="83100"/>
-<tank x="-3" y="-5" z="-1.5" jet="true" capacity="62300"/>
+<tank x="-3" y="5" z="-1.5" jet="true" capacity="64000"/>
+<tank x="-5.0" y="0" z="-2.5" jet="true" capacity="174900"/>
+<tank x="-3" y="-5" z="-1.5" jet="true" capacity="64000"/>
 
 <weight x="22.0" y="0" z="0" mass-prop="/sim/weight[0]/weight-lb"/>
 <weight x="-6.5" y="0" z="0" mass-prop="/sim/weight[1]/weight-lb"/>

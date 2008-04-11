@@ -4,12 +4,12 @@
         <description>Boeing 777-200 (YASim)</description>
         <author>Justin Smithies / Syd Adams</author>
         <status>Development</status>
-        <aircraft-version>20060701</aircraft-version>
+        <aircraft-version>20080400</aircraft-version>
         <flight-model>yasim</flight-model>
-        <aero>777-200</aero>
+        <aero>777-200ER</aero>
         <fuel-fraction>0.75</fuel-fraction>
         <startup>
-            <splash-texture>Aircraft/777-200/Splash1.png</splash-texture>
+            <splash-texture>Aircraft/777-200/Splash.png</splash-texture>
         </startup>
 
         <model>
