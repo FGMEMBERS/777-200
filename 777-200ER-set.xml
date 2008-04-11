@@ -9,7 +9,7 @@
         <aero>777-200ER</aero>
         <fuel-fraction>0.75</fuel-fraction>
         <startup>
-            <splash-texture>Aircraft/777-200/Splash.png</splash-texture>
+            <splash-texture>Aircraft/777-200/splash.png</splash-texture>
         </startup>
 
         <model>
