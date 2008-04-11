@@ -193,9 +193,9 @@ setlistener("/sim/signals/reinit", func {
     Shutdown();
 });
 
-setlistener("/sim/current-view/view-number", func(vw){
-    var ViewNum= vw.getValue();
-    if(ViewNum ==0){
+setlistener("/sim/current-view/name", func(vw){
+    var ViewName= vw.getValue();
+    if(ViewName =="Pilot View" or ViewName =="CoPilot View"){
     SndOut.setDoubleValue(0.15);
     }else{
     SndOut.setDoubleValue(1.0);
