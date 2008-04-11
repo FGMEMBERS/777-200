@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>MFD Panel</name>
+<background>Aircraft/777-200/Panel/transparent-bg.rgb</background>
+<w>200</w>
+<h>128</h>
+
+<instruments>
+
+<!-- MFD -->
+    <instrument include="mfdtext.xml">
+        <name>MFD</name>
+        <x>100</x>
+        <y>64</y>
+        <w>180</w>
+        <h>115</h>
+    </instrument>
+
+<!-- MFD -->
+    <instrument include="radar.xml">
+        <name>RDR</name>
+        <x>100</x>
+        <y>64</y>
+        <w>180</w>
+        <h>115</h>
+    </instrument>
+</instruments>
+
+</PropertyList>

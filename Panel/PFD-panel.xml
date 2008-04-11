@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>PFD Panel</name>
+<background>Aircraft/777-200/Panel/transparent-bg.rgb</background>
+<w>256</w>
+<h>128</h>
+
+<instruments>
+<!-- PFD -->
+    <instrument include="pfdtext.xml">
+        <name>PFD</name>
+        <x>128</x>
+        <y>64</y>
+        <w>230</w>
+        <h>115</h>
+    </instrument>
+
+</instruments>
+
+</PropertyList>

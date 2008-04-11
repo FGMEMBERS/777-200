@@ -1,0 +1,216 @@
+<PropertyList>
+
+    <sim>
+        <description>Boeing 777-200 (YASim)</description>
+        <author>Justin Smithies / Syd Adams</author>
+        <status>Development</status>
+        <aircraft-version>20060701</aircraft-version>
+        <flight-model>yasim</flight-model>
+        <aero>777-200</aero>
+        <fuel-fraction>0.75</fuel-fraction>
+        <startup>
+            <splash-texture>Aircraft/777-200/Splash1.png</splash-texture>
+        </startup>
+
+        <model>
+            <path>Aircraft/777-200/Models/777-200.xml</path>
+        </model>
+
+        <view n="0">
+            <name>Pilot View</name>
+            <type>lookfrom</type>
+            <internal type="bool">true</internal>
+            <config>
+                <x-offset-m type="double">-0.55</x-offset-m>
+                <y-offset-m type="double">0.8</y-offset-m>
+                <z-offset-m type="double">-22.578</z-offset-m>
+                <pitch-offset-deg>-13.5</pitch-offset-deg>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            </config>
+        </view>
+
+    <view>
+        <name>CoPilot View</name>
+        <enabled type="bool" userarchive="y">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <default-pitch-deg type="double">0</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+            <x-offset-m type="double">0.55</x-offset-m>
+            <y-offset-m type="double">0.8</y-offset-m>
+            <z-offset-m type="double">-22.578</z-offset-m>
+            <pitch-offset-deg>-13.5</pitch-offset-deg>
+        </config>
+    </view>
+
+        <chase-distance-m>-80</chase-distance-m>
+
+        <flaps>
+            <setting>0.000</setting>  <!-- flaps up -->
+            <setting>0.033</setting>  <!-- flaps 1  -->
+            <setting>0.166</setting>  <!-- flaps 5  -->
+            <setting>0.500</setting>  <!-- flaps 15 --> 
+            <setting>0.666</setting>  <!-- flaps 20 -->
+            <setting>0.833</setting>  <!-- flaps 25 -->
+            <setting>1.000</setting>  <!-- flaps 30 -->
+        </flaps>
+
+        <systems>
+            <electrical>
+                <path></path>
+            </electrical>
+            <autopilot>
+                <path>Aircraft/777-200/777-autopilot.xml</path>
+            </autopilot>
+        </systems>
+
+        <instrumentation>
+            <path>Aircraft/777-200/instrumentation.xml</path>
+        </instrumentation>
+
+        <sound>
+            <path>Aircraft/777-200/Sounds/777-sound.xml</path>
+            <switch type = "bool">0</switch>
+        </sound>
+
+        <hud>
+            <enable3d>false</enable3d>
+        </hud>
+
+        <virtual-cockpit archive="y">true</virtual-cockpit>
+        <allow-toggle-cockpit>true</allow-toggle-cockpit>
+
+        <help>
+            <title>777-200</title>
+            <key>
+                <name>Delete</name>
+                <desc>toggle thrust reversers</desc>
+            </key>
+            <key>
+                <name>Ctrl-b</name>
+                <desc>toggle speed brakes</desc>
+            </key>
+        </help>
+
+        <menubar>
+            <default>
+                <menu n="100">
+                    <label>777-200</label>
+                    <enabled type="bool">true</enabled>
+                    <item>
+                        <label>Autostart</label>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>sim/model/start-idling</property>
+                        </binding>
+                    </item>
+                </menu>
+            </default>
+        </menubar>
+
+        <weight n="0">
+            <name>Crew</name>
+            <weight-lb>350</weight-lb> 
+            <max-lb>500</max-lb>
+            <min-lb>350</min-lb>
+        </weight>
+
+        <weight n="1">
+        <!--  328 pax max @ 180 lbs-->
+            <name>Pax</name>
+            <weight-lb>50000</weight-lb>
+            <max-lb>59000</max-lb>
+            <min-lb>0</min-lb>
+        </weight>
+
+
+    </sim>
+
+    <consumables>
+        <fuel>
+            <tank n="0"><name>LH Main</name></tank>
+            <tank n="1"><name>Center</name></tank>
+            <tank n="2"><name>RH Main</name></tank>
+        </fuel>
+    </consumables>
+
+    <engines>
+        <engine n="0">
+            <rpm>1000</rpm>
+        </engine>
+        <engine n="1">
+            <rpm>1000</rpm>
+        </engine>
+    </engines>
+
+    <input>
+        <keyboard>
+            <key n="127">
+                <name>Delete</name>
+                <desc>Toggle Reversers</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>controls/engines/engine[0]/reverser</property>
+                </binding>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>controls/engines/engine[1]/reverser</property>
+                </binding>
+            </key>
+        </keyboard>
+    </input>
+
+    <instrumentation>
+        <radar>
+            <switch type="string" archive="y">on</switch>
+            <mode-control type="int" archive="y">1</mode-control>
+            <display-controls>
+                <WX type="bool" archive="y">false</WX>
+                <pos type="bool" archive="y">true</pos>
+                <data type="bool" archive="y">true</data>
+                <symbol type="bool" archive="y">true</symbol>
+            </display-controls>
+            <serviceable type="bool">true</serviceable>
+            <range type="int" archive="y">10</range>
+            <reference-range-nm type="double" archive="y">320</reference-range-nm>
+            <mode type="string" archive="y">WX</mode>
+            <font type="string" archive="y">typewriter.txf</font>
+            <lightning type="bool" archive="y">true</lightning>
+            <display-mode type="string" archive="y">arc</display-mode>
+            <radar-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/od_wxradar.png</radar-texture-path>
+            <echo-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/wxecho.png</echo-texture-path>
+            <minimized type="bool" archive="y">false</minimized>
+            <heading-marker type="bool" archive="y">false</heading-marker>
+            <limit-deg type="int">640</limit-deg>
+        </radar>
+    </instrumentation>
+
+    <controls>
+        <gear>
+            <brake-parking type="bool">1</brake-parking>
+        </gear>
+    </controls>
+
+    <nasal>
+        <b777>
+            <file>Aircraft/777-200/Nasal/Electrical.nas</file>
+            <file>Aircraft/777-200/Nasal/flightdirector.nas</file>
+            <file>Aircraft/777-200/Nasal/systems.nas</file>
+        </b777>
+    </nasal>
+
+</PropertyList>

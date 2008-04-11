@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+    <name>MFD</name>
+    <w-base>120</w-base>
+    <h-base>120</h-base>
+
+    <layers>
+
+        <layer>
+        <name>WP ID</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>4</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.35</green>
+            <blue>0.5</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>text-value</type>
+                <property>autopilot/route-manager/wp/id</property>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>40</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>55</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+
+        <layer>
+        <name>WP ETA</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>4</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.8</green>
+            <blue>0.8</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>text-value</type>
+                <property>autopilot/route-manager/wp/eta</property>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>40</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>50</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+        <layer>
+        <name>WP DIST</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>4</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.8</green>
+            <blue>0.8</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>number-value</type>
+                <property>autopilot/route-manager/wp/dist</property>
+                <format>%3.1f</format>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>40</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>45</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+    <layer>
+        <name>GSPD</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>3</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.8</green>
+            <blue>0.8</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>literal</type>
+                <text>GS       TAS</text>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>-57</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>55</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+    <layer>
+        <name>GSPDtext</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>4</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.8</green>
+            <blue>0.8</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>number-value</type>
+                <property>velocities/groundspeed-kt</property>
+                <format>%3.0f</format>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>-50</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>55</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+    <layer>
+        <name>Wind</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>4</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.8</green>
+            <blue>0.8</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>number-value</type>
+                <property>environment/wind-from-heading-deg</property>
+                <format>%3.0f</format>
+            </chunk>
+            <chunk>
+                <type>literal</type>
+                <text>'/ </text>
+            </chunk>
+            <chunk>
+                <type>number-value</type>
+                <property>environment/wind-speed-kt</property>
+                <format>%3.0f</format>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>-57</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>50</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+    <layer>
+        <name>WXR</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>4</point-size>
+        <color>
+            <red>0.6</red>
+            <green>0.6</green>
+            <blue>0.8</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>text-value</type>
+                <property>instrumentation/radar/mode</property>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>-57</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>-25</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+    <layer>
+        <name>WXR range</name>
+        <type>text</type>
+        <font>arial_black</font>
+        <point-size>4</point-size>
+        <color>
+            <red>0.8</red>
+            <green>0.8</green>
+            <blue>0.8</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>number-value</type>
+                <property>instrumentation/radar/range</property>
+				<format>%3.0f</format>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>-57</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>-30</offset>
+            </transformation>
+        </transformations>
+    </layer>
+
+
+        <layer>
+            <name>radar data</name>
+            <emissive>true</emissive>
+            <w>100</w>
+            <h>100</h>
+            <texture>
+                <path>Aircraft/777-200/Models/Instruments/od_wxradar.png</path>
+                <x1>0.0</x1>
+                <y1>0.0</y1>
+                <x2>1.0</x2>
+                <y2>1.0</y2>
+            </texture>
+        </layer>
+
+    </layers>
+
+ <actions>
+        <action>
+            <name>outline</name>
+            <button>0</button>
+            <x>-60</x>
+            <y>-60</y>
+            <w>120</w>
+            <h>120</h>
+        </action>
+ </actions>
+
+</PropertyList>

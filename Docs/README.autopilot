@@ -1,0 +1,43 @@
+Functions using attached 777-200 Autopilot
+
+                    Keyboard
+                    binding                Notes
+
+Autopilot On        None    
+Autopilot Off       None   
+Altitude Hold       Ctl-A  
+Heading Select      Ctl-H      Can employ even from 180 deg out
+VOR Loc             Ctl-N      Can employ even from 180 deg out
+VOR Loc with ILS    Ctl-N      Captures VOR signal 2-5 dots out  
+APPR (Glideslope )  Ctl-G      Captures Glideslope 1-2 dots out 
+A/T Autothrottle    None   
+Speed Control On    Ctl-S      Holds speed pre-set with F11 dialog when
+                               when A/T not engaged or locks on current
+                               speed when A/T is engaged. Throttle keys
+                               lower or raise setting. 
+Speed Control Off   Ctl-S  
+Level Change On     None       Locks throttle.
+Level Change off    None
+Altitude set        F11        F11 Autopilot dialog
+Vertical Speed Set  None
+Pitch hold          Ctl-P      Keeps craft on current down or up slope
+
+Takeoff w autopilot Ctl-N      Set ILS frequency and turn VOR Loc on - helps to
+                               keep takeoff roll centered.  Particularly helpful
+                               in wind Turn off after liftoff.
+
+Landing w autopilot Ctl-N      Turn on VOR Loc (Ctl-N),
+                               APP (Glideslope "GS") Control (Ctl-G) and
+                               Speed control (Ctl-S). Set to approach/touchdown
+                               speed desired using throttles or F11 setting.
+
+                               Use spoilers (Ctl-B) and flaps to assist autopilot
+                               to come to pre-set speed.  Between the middle
+                               marker (1/2 mile out) and the inner marker
+                               (just over the threshold) disengage Glideslope
+                               control with Ctl-G.
+                               Before touchdown disengage speed control by
+                               Ctl-S and manually flare out to touchdown, 
+                               cut the throttle, and roll out.  VOR Loc will
+                               help hold center line in wind conditions.
+                               Disengage VOR Loc.

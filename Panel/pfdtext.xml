@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+    <name>PFD</name>
+    <w-base>120</w-base>
+    <h-base>120</h-base>
+
+    <layers>
+
+        <layer>
+            <name>SPD annun</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>3.5</point-size>
+            <color>
+                <red>0.3</red>
+                <green>0.7</green>
+                <blue>0.3</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>autopilot/locks/speed</property>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-40</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>51</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>ROLL annun</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>3.5</point-size>
+            <color>
+                <red>0.3</red>
+                <green>0.7</green>
+                <blue>0.3</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>autopilot/locks/heading</property>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-17</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>51</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>PITCH annun</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>3.5</point-size>
+            <color>
+                <red>0.3</red>
+                <green>0.7</green>
+                <blue>0.3</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>autopilot/locks/altitude</property>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>8</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>51</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+</layers>
+
+
+    <actions>
+        <action>
+            <name>outline</name>
+            <button>0</button>
+            <x>-60</x>
+            <y>-60</y>
+            <w>120</w>
+            <h>120</h>
+        </action>
+    </actions>
+
+</PropertyList>

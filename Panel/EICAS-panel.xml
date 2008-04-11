@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>EFIS Panel</name>
+<background>Aircraft/777-200/Panel/transparent-bg.rgb</background>
+<w>256</w>
+<h>256</h>
+
+</PropertyList>

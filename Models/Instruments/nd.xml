@@ -1,0 +1,156 @@
+<!--
+Syd Adams
+777-200 ND 
+-->
+
+<PropertyList>
+
+ <path>nd.ac</path>
+
+<animation>
+    <name>Alpha Sort</name>
+    <object-name>Radarscreen</object-name>
+    <object-name>NDhdg</object-name>
+    <object-name>mfdhdg</object-name>
+    <object-name>NDscreen</object-name>
+</animation>
+
+   <animation>
+   <type>texrotate</type>
+   <object-name>NDhdg</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <center>
+     <x>0.5</x>
+     <y>0.5</y>
+     <z>0.0</z>
+   </center>
+   <axis>
+     <x>0</x>
+     <y>0</y>
+     <z>-1</z>
+   </axis>
+ </animation>
+ 
+
+<animation>
+   <type>rotate</type>
+   <object-name>mfdhdg</object-name>
+   <property>/autopilot/internal/fdm-heading-bug-error-deg</property>
+   <interpolation>
+     <entry>
+       <ind> -180.0</ind>
+       <dep>-47.0</dep>
+     </entry>
+     <entry>
+       <ind>-47.0</ind>
+       <dep>-47.0</dep>
+     </entry>
+     <entry>
+       <ind> 0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>47.0</ind>
+       <dep>47.0</dep>
+     </entry>
+     <entry>
+       <ind>180.0</ind>
+       <dep>47.0</dep>
+     </entry>
+   </interpolation>
+   <axis>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+   <center>
+     <x-m>0.002</x-m>
+     <y-m>-0.002</y-m>
+     <z-m>-0.040</z-m>
+   </center>
+ </animation>
+
+<!--
+  <animation>
+   <type>textranslate</type>
+   <object-name>alttext</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.00001</factor>
+   <step>10000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>alttext.001</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.0001</factor>
+   <step>1000</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>alttext.002</object-name>
+   <property>/autopilot/settings/target-altitude-ft</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+
+
+-->
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext.001</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext.002</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+</PropertyList>

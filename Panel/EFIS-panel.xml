@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>EFIS Panel</name>
+<background>Aircraft/777-200/Panel/transparent-bg.rgb</background>
+<w>1024</w>
+<h>216</h>
+
+<instruments>
+<!-- PFD -->
+    <instrument include="pfd.xml">
+        <name>PFD</name>
+        <x>176</x>
+        <y>98</y>
+        <w>114</w>
+        <h>108</h>
+    </instrument>
+
+<!-- MFD -->
+    <instrument include="mfd.xml">
+        <name>MFD</name>
+        <x>312</x>
+        <y>98</y>
+        <w>114</w>
+        <h>108</h>
+    </instrument>
+
+<!-- ND -->
+    <instrument include="nd.xml">
+        <name>ND</name>
+        <x>511</x>
+        <y>98</y>
+        <w>114</w>
+        <h>108</h>
+    </instrument>
+
+<!-- MFD 2 -->
+    <instrument include="mfd.xml">
+        <name>MFD2</name>
+        <x>710</x>
+        <y>98</y>
+        <w>114</w>
+        <h>108</h>
+    </instrument>
+
+    <instrument include="pfd.xml">
+        <name>PFD 2</name>
+        <x>846</x>
+        <y>98</y>
+        <w>114</w>
+        <h>108</h>
+    </instrument>
+
+</instruments>
+
+</PropertyList>
