@@ -1,7 +1,7 @@
 <PropertyList>
 
     <sim>
-        <description>Boeing 777-200 (YASim)</description>
+        <description>Boeing 777-200ER</description>
         <author>Justin Smithies / Syd Adams</author>
         <status>Development</status>
         <aircraft-version>20080400</aircraft-version>
@@ -13,7 +13,7 @@
         </startup>
 
         <model>
-            <path>Aircraft/777-200/Models/777-200.xml</path>
+            <path>Aircraft/777-200/Models/777-200ER.xml</path>
         </model>
 
         <view n="0">
@@ -21,11 +21,24 @@
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
-                <x-offset-m type="double">-0.55</x-offset-m>
+                <x-offset-m type="double">-0.59</x-offset-m>
                 <y-offset-m type="double">0.8</y-offset-m>
                 <z-offset-m type="double">-22.578</z-offset-m>
                 <pitch-offset-deg>-13.5</pitch-offset-deg>
                 <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+            <limits>
+                <enabled type="bool">true</enabled>
+                <left>
+                  <heading-max-deg type="double">140</heading-max-deg>
+                  <x-offset-max-m type="double">0.35</x-offset-max-m>
+                  <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                </left>
+                <right>
+                    <heading-max-deg type="double">160</heading-max-deg>
+                    <x-offset-max-m type="double">0.25</x-offset-max-m>
+                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                </right>
+            </limits>
             </config>
         </view>
 
@@ -50,10 +63,23 @@
             <right-direction-deg type="double">270</right-direction-deg>
             <front-right-direction-deg type="double">315</front-right-direction-deg>
             <dynamic-view type="bool">true</dynamic-view>
-            <x-offset-m type="double">0.55</x-offset-m>
+            <x-offset-m type="double">0.60</x-offset-m>
             <y-offset-m type="double">0.8</y-offset-m>
             <z-offset-m type="double">-22.578</z-offset-m>
             <pitch-offset-deg>-13.5</pitch-offset-deg>
+            <limits>
+                <enabled type="bool">true</enabled>
+                <left>
+                  <heading-max-deg type="double">140</heading-max-deg>
+                  <x-offset-max-m type="double">0.25</x-offset-max-m>
+                  <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                </left>
+                <right>
+                    <heading-max-deg type="double">160</heading-max-deg>
+                    <x-offset-max-m type="double">0.35</x-offset-max-m>
+                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                </right>
+            </limits>
         </config>
     </view>
 
@@ -95,7 +121,7 @@
         <allow-toggle-cockpit>true</allow-toggle-cockpit>
 
         <help>
-            <title>777-200</title>
+            <title>777-200ER</title>
             <key>
                 <name>Delete</name>
                 <desc>toggle thrust reversers</desc>
@@ -186,7 +212,7 @@
             </display-controls>
             <serviceable type="bool">true</serviceable>
             <range type="int" archive="y">10</range>
-            <reference-range-nm type="double" archive="y">320</reference-range-nm>
+            <reference-range-nm type="double" archive="y">640</reference-range-nm>
             <mode type="string" archive="y">WX</mode>
             <font type="string" archive="y">typewriter.txf</font>
             <lightning type="bool" archive="y">true</lightning>
@@ -194,8 +220,8 @@
             <radar-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/od_wxradar.png</radar-texture-path>
             <echo-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/wxecho.png</echo-texture-path>
             <minimized type="bool" archive="y">false</minimized>
-            <heading-marker type="bool" archive="y">false</heading-marker>
-            <limit-deg type="int">640</limit-deg>
+            <heading-marker type="bool" archive="y">true</heading-marker>
+            <limit-deg type="int">360</limit-deg>
         </radar>
     </instrumentation>
 

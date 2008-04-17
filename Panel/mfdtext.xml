@@ -169,7 +169,7 @@
             </chunk>
             <chunk>
                 <type>literal</type>
-                <text>'/</text>
+                <text>*/</text>
             </chunk>
             <chunk>
                 <type>number-value</type>
@@ -231,7 +231,7 @@
             <chunk>
                 <type>number-value</type>
                 <property>instrumentation/radar/range</property>
-				<format>%3.0f</format>
+                <format>%3.0f</format>
             </chunk>
         </chunks>
         <transformations>
