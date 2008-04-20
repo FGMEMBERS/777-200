@@ -105,22 +105,27 @@ Alternator = {
     },
 
     get_output_volts : func {
-        var pwr = me.switch.getValue();
-        var factor = me.rpm_source.getValue() / me.rpm_threshold;
-        if ( factor > 1.0 )factor = 1.0;
-        var out = pwr * (me.ideal_volts * factor);
+        var out = 0;
+        if(me.switch.getBoolValue()){
+            var factor = me.rpm_source.getValue() / me.rpm_threshold;
+            if ( factor > 1.0 )factor = 1.0;
+            var out = (me.ideal_volts * factor);
+        }
         me.gen_output.setValue(out);
         return out;
     },
 
     get_output_amps : func {
-        var pwr = me.switch.getValue();
-        var factor = me.rpm_source.getValue() / me.rpm_threshold;
-        if ( factor > 1.0 ) {
-            factor = 1.0;
+        var ampout =0;
+        if(me.switch.getBoolValue()){
+            var factor = me.rpm_source.getValue() / me.rpm_threshold;
+            if ( factor > 1.0 ) {
+                factor = 1.0;
             }
-        return pwr * (me.ideal_amps * factor);
+            ampout = me.ideal_amps * factor;
         }
+        return ampout;
+    }
 };
 
 var battery = Battery.new("/controls/electric/battery-switch",24,30,34,1.0,7.0);
