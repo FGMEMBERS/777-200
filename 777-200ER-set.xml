@@ -135,7 +135,7 @@
         <menubar>
             <default>
                 <menu n="100">
-                    <label>777-200</label>
+                    <label>777-200ER</label>
                     <enabled type="bool">true</enabled>
                     <item>
                         <label>Autostart</label>
@@ -173,15 +173,6 @@
             <tank n="2"><name>RH Main</name></tank>
         </fuel>
     </consumables>
-
-    <engines>
-        <engine n="0">
-            <rpm>1000</rpm>
-        </engine>
-        <engine n="1">
-            <rpm>1000</rpm>
-        </engine>
-    </engines>
 
     <input>
         <keyboard>
