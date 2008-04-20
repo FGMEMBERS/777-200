@@ -42,9 +42,9 @@
             </config>
         </view>
 
-    <view>
+    <view n="100">
         <name>CoPilot View</name>
-        <enabled type="bool" userarchive="y">true</enabled>
+        <enabled type="bool">true</enabled>
         <type>lookfrom</type>
         <internal type="bool">false</internal>
         <config>
