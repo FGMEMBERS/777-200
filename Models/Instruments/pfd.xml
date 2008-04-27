@@ -7,7 +7,7 @@ Syd Adams
 
  <path>pfd.ac</path>
 
-<animation>
+<!--animation>
     <name>Alpha Sort</name>
     <object-name>APspeed</object-name>
     <object-name>APlnav</object-name>
@@ -19,7 +19,7 @@ Syd Adams
     <object-name>HDGface</object-name>
     <object-name>AI</object-name>
     <object-name>PFDscreen</object-name>
-</animation>
+</animation-->
  
 <animation>
    <type>select</type>
@@ -890,13 +890,9 @@ Syd Adams
      </entry>
      <entry>
        <ind> 2500.0</ind>
-       <dep>0.2400</dep>
+       <dep>0.3500</dep>
      </entry>
-     <entry>
-       <ind> 99000.0</ind>
-       <dep>0.2480</dep>
-     </entry>
-</interpolation>
+	</interpolation>
    <axis>
      <x>0</x>
      <y>1</y>
