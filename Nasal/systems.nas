@@ -173,13 +173,55 @@ var Engine = {
     },
 
 };
+##########################
 
+var Wiper = {
+    new : func {
+        m = { parents : [Wiper] };
+        m.direction = 0;
+        m.delay_count = 0;
+        m.spd_factor = 0;
+        m.node = props.globals.getNode(arg[0],1);
+        m.power = props.globals.getNode(arg[1],1);
+        if(m.power.getValue()==nil)m.power.setDoubleValue(0);
+        m.spd = m.node.getNode("arc-sec",1);
+        if(m.spd.getValue()==nil)m.spd.setDoubleValue(1);
+        m.delay = m.node.getNode("delay-sec",1);
+        if(m.delay.getValue()==nil)m.delay.setDoubleValue(0);
+        m.position = m.node.getNode("position-norm", 1);
+        m.position.setDoubleValue(0);
+        m.switch = m.node.getNode("switch", 1);
+        if (m.switch.getValue() == nil)m.switch.setBoolValue(0);
+        return m;
+    },
+    active: func{
+    if(me.power.getValue()<=5)return;
+    var spd_factor = 1/me.spd.getValue();
+    var pos = me.position.getValue();
+    if(!me.switch.getValue()){
+        if(pos <= 0.000)return;
+        }
+    if(pos >=1.000){
+        me.direction=-1;
+        }elsif(pos <=0.000){
+        me.direction=0;
+        me.delay_count+=getprop("/sim/time/delta-sec");
+        if(me.delay_count >= me.delay.getValue()){
+            me.delay_count=0;
+            me.direction=1;
+            }
+        }
+    var wiper_time = spd_factor*getprop("/sim/time/delta-sec");
+    pos +=(wiper_time * me.direction);
+    me.position.setValue(pos);
+    }
+};
+#####################
 
 var Efis = EFIS.new("instrumentation/efis");
 var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
-
-#############################
+    var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
 
 setlistener("/sim/signals/fdm-initialized", func {
     SndOut.setDoubleValue(0.15);
@@ -220,7 +262,7 @@ setprop("controls/electric/APU-generator",1);
 setprop("controls/electric/avionics-switch",1);
 setprop("controls/electric/battery-switch",1);
 setprop("controls/electric/inverter-switch",1);
-setprop("controls/lighting/instrument-lights",1);
+setprop("controls/lighting/instrument-norm",0.8);
 setprop("controls/lighting/nav-lights",1);
 setprop("controls/lighting/beacon",1);
 setprop("controls/lighting/strobe",1);
@@ -248,7 +290,7 @@ setprop("controls/electric/APU-generator",0);
 setprop("controls/electric/avionics-switch",0);
 setprop("controls/electric/battery-switch",0);
 setprop("controls/electric/inverter-switch",0);
-setprop("controls/lighting/instrument-lights",0);
+setprop("controls/lighting/instruments-norm",0);
 setprop("controls/lighting/nav-lights",0);
 setprop("controls/lighting/beacon",0);
 setprop("controls/lighting/strobe",0);
@@ -282,9 +324,8 @@ var fuel_pump = func(){
 var update_systems = func {
     Efis.calc_kpa();
     Efis.update_temp();
-#    if(LHeng.starter.getValue()==1)LHeng.spool_up();
     LHeng.update();
-#    if(RHeng.starter.getValue()==1)RHeng.spool_up();
     RHeng.update();
+    wiper.active();
     settimer(update_systems,0);
 }
