@@ -83,6 +83,12 @@
         </config>
     </view>
 
+    <airport>
+        <runways>
+            <start-offset-m>20</start-offset-m>
+        </runways>
+    </airport>
+
         <chase-distance-m>-80</chase-distance-m>
 
         <flaps>
