@@ -7,6 +7,58 @@ Syd Adams
 
     <path>777-200.ac</path>
 
+    <nasal>
+        <load>
+            var livery_update = aircraft.livery_update.new("Aircraft/777-200/Models/Liveries", 10);
+        </load>
+
+        <unload>
+            livery_update.stop();
+        </unload>
+    </nasal>
+
+    <animation>
+        <type>material</type>
+        <object-name>Fuselage</object-name>
+        <object-name>Fuselage.003</object-name>
+        <object-name>RFdoor</object-name>
+        <object-name>LFdoor</object-name>
+        <object-name>LRdoor</object-name>
+        <object-name>RRdoor</object-name>
+        <object-name>Engines</object-name>
+        <object-name>Reversers</object-name>
+        <object-name>Wings</object-name>
+        <object-name>Laileron</object-name>
+        <object-name>Lflap4</object-name>
+        <object-name>Lflap3</object-name>
+        <object-name>Lflap2</object-name>
+        <object-name>Rflap2</object-name>
+        <object-name>Rflap3</object-name>
+        <object-name>Rflap4</object-name>
+        <object-name>Raileron</object-name>
+        <object-name>Tail</object-name>
+        <object-name>Rudder</object-name>
+        <object-name>RHstab</object-name>
+        <object-name>LHstab</object-name>
+        <object-name>LHelevator</object-name>
+        <object-name>RHelevator</object-name>
+        <property-base>sim/model</property-base>
+        <texture-prop>livery</texture-prop>
+        <texture>BA-livery.png</texture>
+    </animation>
+
+    <animation>
+        <type>material</type>
+        <object-name>Tail.001</object-name>
+        <object-name>Rudder.001</object-name>
+        <object-name>FuselageL.002</object-name>
+        <object-name>FuselageR.002</object-name>
+        <object-name>Fuselage.001</object-name>
+        <property-base>sim/model</property-base>
+        <texture-prop>lights</texture-prop>
+        <texture>lights.png</texture>
+    </animation>
+
     <panel>
         <path>Aircraft/777-200/Panel/PFD-panel.xml</path>
         <bottom-left>
@@ -101,6 +153,45 @@ Syd Adams
             <z-m>0.482</z-m>
         </top-left>
     </panel>
+
+    <panel>
+        <path>Aircraft/777-200/Panel/chart.xml</path>
+        <bottom-left>
+            <x-m>-22.889</x-m>
+            <y-m>-1.175</y-m>
+            <z-m>0.270</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>-22.993</x-m>
+            <y-m>-1.027</y-m>
+            <z-m>0.291</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>-22.998</x-m>
+            <y-m>-1.268</y-m>
+            <z-m>0.383</z-m>
+        </top-left>
+    </panel>
+
+    <panel>
+        <path>Aircraft/777-200/Panel/chart.xml</path>
+        <bottom-left>
+            <x-m>-22.998</x-m>
+            <y-m>1.030</y-m>
+            <z-m>0.286</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>-22.893</x-m>
+            <y-m>1.178</y-m>
+            <z-m>0.265</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>-23.105</x-m>
+            <y-m>1.121</y-m>
+            <z-m>0.403</z-m>
+        </top-left>
+    </panel>
+
 
 
     <model>

@@ -9,7 +9,7 @@ MATERIAL "Chrome" rgb 0.7 0.7 0.7 amb 0.2 0.2 0.2 emis 0 0 0 spec 1 1 1 shi 128 
 MATERIAL "Transparent" rgb 0.26951 0.313206 0.42177 amb 0 0 0 emis 0 0 0 spec 1 1 1 shi 128 trans 0.4
 MATERIAL "instr-lights" rgb 0 0 0 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 OBJECT world
-kids 150
+kids 152
 OBJECT poly
 name "APlettering"
 data 8
@@ -23572,7 +23572,7 @@ kids 0
 OBJECT poly
 name "LFdoor.001"
 data 8
-Mesh.074
+Mesh.509
 texture "BA-livery.png"
 texrep 1 1
 crease 45.000000
@@ -42744,6 +42744,44 @@ refs 4
 6 0.978515625 0.458984375
 kids 0
 OBJECT poly
+name "Plane.126"
+data 9
+Plane.206
+crease 30.000000
+numvert 4
+-22.998341 0.382788 1.268433
+-22.888664 0.270247 1.175221
+-22.993423 0.290947 1.026965
+-23.1031 0.403488 1.120177
+numsurf 1
+SURF 0x20
+mat 0
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+kids 0
+OBJECT poly
+name "Plane.127"
+data 9
+Plane.207
+crease 30.000000
+numvert 4
+-22.999834 0.38224 -1.269639
+-22.89348 0.2652 -1.178136
+-22.998228 0.28593 -1.029874
+-23.104582 0.40297 -1.121378
+numsurf 1
+SURF 0x20
+mat 0
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+kids 0
+OBJECT poly
 name "Pwheel.dwn"
 data 9
 Plane.050
@@ -42856,7 +42894,7 @@ kids 0
 OBJECT poly
 name "RFdoor.001"
 data 8
-Mesh.117
+Mesh.510
 texture "BA-livery.png"
 texrep 1 1
 crease 45.000000

@@ -14,6 +14,12 @@
 
         <model>
             <path>Aircraft/777-200/Models/777-200ER.xml</path>
+            <livery>
+                <file type="string">BA</file>
+            </livery>
+            <lights>
+                <file type="string">BA</file>
+            </lights>
         </model>
 
         <view n="0">
@@ -85,11 +91,11 @@
 
     <airport>
         <runways>
-            <start-offset-m>20</start-offset-m>
+            <start-offset-m>50</start-offset-m>
         </runways>
     </airport>
 
-        <chase-distance-m>-80</chase-distance-m>
+        <chase-distance-m>-100</chase-distance-m>
 
         <flaps>
             <setting>0.000</setting>  <!-- flaps up -->
@@ -148,6 +154,13 @@
                         <binding>
                             <command>property-toggle</command>
                             <property>sim/model/start-idling</property>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Select Livery</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>aircraft.livery.dialog.toggle()</script>
                         </binding>
                     </item>
                 </menu>
@@ -211,7 +224,17 @@
             <range type="int" archive="y">10</range>
             <reference-range-nm type="double" archive="y">640</reference-range-nm>
             <mode type="string" archive="y">WX</mode>
-            <font type="string" archive="y">typewriter.txf</font>
+            <font>
+                <color>
+                    <red type="float">0.7</red>
+                    <green type="float">0.7</green>
+                    <blue type="float">0.7</blue>
+                    <alpha type="float">1</alpha>
+                </color>
+                <name type="string" archive="y">helvetica_bold.txf</name>
+                <size type="float">8</size>
+                <line-spacing type="float">0.2</line-spacing>
+            </font>
             <lightning type="bool" archive="y">true</lightning>
             <display-mode type="string" archive="y">arc</display-mode>
             <radar-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/od_wxradar.png</radar-texture-path>
@@ -220,6 +243,10 @@
             <heading-marker type="bool" archive="y">true</heading-marker>
             <limit-deg type="int">360</limit-deg>
         </radar>
+        <groundradar>
+            <id type="string">KSFO</id>
+            <range type="double">1.2</range>
+        </groundradar>
     </instrumentation>
 
     <controls>

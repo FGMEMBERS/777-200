@@ -1,6 +1,7 @@
 # 777-200 systems
 #Syd Adams
 #
+aircraft.livery.init("Aircraft/777-200/Models/Liveries");
 var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
 var FHmeter = aircraft.timer.new("/instrumentation/clock/flight-meter-sec", 10).stop();
 var fuel_density =0;
@@ -226,6 +227,7 @@ var RHeng=Engine.new(1);
 setlistener("/sim/signals/fdm-initialized", func {
     SndOut.setDoubleValue(0.15);
     setprop("/instrumentation/clock/flight-meter-hour",0);
+    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
     settimer(update_systems,2);
 });
 
@@ -234,6 +236,16 @@ setlistener("/sim/signals/reinit", func {
     setprop("/instrumentation/clock/flight-meter-hour",0);
     Shutdown();
 });
+
+setlistener("/autopilot/route-manager/route/num", func(wp){
+    var wpt= wp.getValue() -1;
+    
+    if(wpt>-1){
+    setprop("instrumentation/groundradar/id",getprop("autopilot/route-manager/route/wp["~wpt~"]/id"));
+    }else{
+    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
+    }
+},1,0);
 
 setlistener("/sim/current-view/name", func(vw){
     var ViewName= vw.getValue();

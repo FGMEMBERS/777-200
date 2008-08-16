@@ -31,7 +31,7 @@
             </transformation>
             <transformation>
                 <type>y-shift</type>
-                <offset>55</offset>
+                <offset>53</offset>
             </transformation>
         </transformations>
     </layer>
@@ -60,7 +60,7 @@
             </transformation>
             <transformation>
                 <type>y-shift</type>
-                <offset>48</offset>
+                <offset>45</offset>
             </transformation>
         </transformations>
     </layer>
@@ -106,14 +106,15 @@
         </color>
         <chunks>
             <chunk>
-                <type>literal</type>
-                <text>GS       TAS</text>
+                <type>number-value</type>
+                <property>velocities/groundspeed-kt</property>
+                <format>GS %3.0f</format>
             </chunk>
         </chunks>
         <transformations>
             <transformation>
                 <type>x-shift</type>
-                <offset>-58</offset>
+                <offset>-56</offset>
             </transformation>
             <transformation>
                 <type>y-shift</type>
@@ -123,10 +124,10 @@
     </layer>
 
     <layer>
-        <name>GSPDtext</name>
+        <name>TAS</name>
         <type>text</type>
         <font>arial_black</font>
-        <point-size>3.5</point-size>
+        <point-size>3</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>
@@ -135,14 +136,15 @@
         <chunks>
             <chunk>
                 <type>number-value</type>
-                <property>velocities/groundspeed-kt</property>
-                <format>%3.0f</format>
+                <property>velocities/uBody-fps</property>
+                <scale>0.59248380</scale>
+                <format>TAS %3.0f</format>
             </chunk>
         </chunks>
         <transformations>
             <transformation>
                 <type>x-shift</type>
-                <offset>-52</offset>
+                <offset>-40</offset>
             </transformation>
             <transformation>
                 <type>y-shift</type>
