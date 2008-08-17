@@ -5,7 +5,6 @@
     <model>
         <livery>
             <name type="string">British Airways</name>
-            <index type="int">0</index>
             <texture>BA-livery.png</texture>
         </livery>
         <lights>
