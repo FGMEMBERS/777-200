@@ -43,7 +43,7 @@ Syd Adams
         <object-name>LHelevator</object-name>
         <object-name>RHelevator</object-name>
         <property-base>sim/model/livery</property-base>
-        <texture-prop>texure</texture-prop>
+        <texture-prop>texture</texture-prop>
         <texture>BA-livery.png</texture>
     </animation>
 
