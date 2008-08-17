@@ -54,8 +54,8 @@ Syd Adams
         <object-name>FuselageL.002</object-name>
         <object-name>FuselageR.002</object-name>
         <object-name>Fuselage.001</object-name>
-        <property-base>sim/model</property-base>
-        <texture-prop>lights</texture-prop>
+        <property-base>sim/model/lights</property-base>
+        <texture-prop>texture</texture-prop>
         <texture>lights.png</texture>
     </animation>
 
