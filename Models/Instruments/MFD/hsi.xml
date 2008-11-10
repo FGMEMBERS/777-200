@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+    <name>HDG</name>
+    <w-base>250</w-base>
+    <h-base>180</h-base>
+
+    <layers>
+
+  <layer>
+   <name>hdg</name>
+   <w>350</w>
+   <h>350</h>
+   <texture>
+    <path>Aircraft/777-200/Models/Instruments/MFD/hsi.png</path>
+    <x1>0.025</x1>
+    <y1>0.025</y1>
+    <x2>0.975</x2>
+    <y2>0.975</y2>
+	</texture>
+   <transformations>
+    <transformation>
+     <type>y-shift</type>
+     <offset>-80</offset>
+    </transformation>
+    <transformation>
+     <type>rotation</type>
+     <property>orientation/heading-magnetic-deg</property>
+     <scale>-1</scale>
+    </transformation>
+   </transformations>
+   <emissive>true</emissive>
+  </layer>
+</layers>
+
+</PropertyList>

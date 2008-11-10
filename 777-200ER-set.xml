@@ -27,24 +27,23 @@
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
-                <x-offset-m type="double">-0.59</x-offset-m>
+                <x-offset-m type="double">-0.57</x-offset-m>
                 <y-offset-m type="double">0.8</y-offset-m>
-                <z-offset-m type="double">-22.578</z-offset-m>
+                <z-offset-m type="double">-22.75</z-offset-m>
                 <pitch-offset-deg>-13.5</pitch-offset-deg>
-                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
-            <limits>
-                <enabled type="bool">true</enabled>
-                <left>
-                  <heading-max-deg type="double">140</heading-max-deg>
-                  <x-offset-max-m type="double">0.35</x-offset-max-m>
-                  <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </left>
-                <right>
-                    <heading-max-deg type="double">160</heading-max-deg>
-                    <x-offset-max-m type="double">0.25</x-offset-max-m>
-                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </right>
-            </limits>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                        <heading-max-deg type="double">140</heading-max-deg>
+                        <x-offset-max-m type="double">0.35</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.25</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </right>
+                </limits>
             </config>
         </view>
 
@@ -52,7 +51,7 @@
         <name>CoPilot View</name>
         <enabled type="bool">true</enabled>
         <type>lookfrom</type>
-        <internal type="bool">false</internal>
+        <internal type="bool">true</internal>
         <config>
             <from-model type="bool">true</from-model>
             <from-model-idx type="int">0</from-model-idx>
@@ -71,7 +70,7 @@
             <dynamic-view type="bool">true</dynamic-view>
             <x-offset-m type="double">0.60</x-offset-m>
             <y-offset-m type="double">0.8</y-offset-m>
-            <z-offset-m type="double">-22.578</z-offset-m>
+            <z-offset-m type="double">-22.75</z-offset-m>
             <pitch-offset-deg>-13.5</pitch-offset-deg>
             <limits>
                 <enabled type="bool">true</enabled>
@@ -112,7 +111,7 @@
                 <path></path>
             </electrical>
             <autopilot>
-                <path>Aircraft/777-200/777-autopilot.xml</path>
+                <path>Aircraft/777-200/Systems/777-autopilot.xml</path>
             </autopilot>
         </systems>
 
@@ -161,6 +160,13 @@
                         <binding>
                             <command>nasal</command>
                             <script>aircraft.livery.dialog.toggle()</script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>EFB</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>b777.EFB.toggle();</script>
                         </binding>
                     </item>
                 </menu>
@@ -237,8 +243,8 @@
             </font>
             <lightning type="bool" archive="y">true</lightning>
             <display-mode type="string" archive="y">arc</display-mode>
-            <radar-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/od_wxradar.png</radar-texture-path>
-            <echo-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/wxecho.png</echo-texture-path>
+            <radar-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
+            <echo-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/MFD/wxecho.png</echo-texture-path>
             <minimized type="bool" archive="y">false</minimized>
             <heading-marker type="bool" archive="y">true</heading-marker>
             <limit-deg type="int">360</limit-deg>

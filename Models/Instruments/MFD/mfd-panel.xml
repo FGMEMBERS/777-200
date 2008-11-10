@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>MFD Panel</name>
+<background>Aircraft/777-200/Models/Instruments/MFD/transparent.png</background>
+<w>256</w>
+<h>256</h>
+
+<instruments>
+
+    <instrument include="hsi.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/bus-volts</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>hsi</name>
+        <x>128</x>
+        <y>138</y>
+        <w>250</w>
+        <h>180</h>
+    </instrument>
+
+    <instrument include="radar.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/bus-volts</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>RDR</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+    <instrument include="mask.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/bus-volts</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>mask</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+    <instrument include="symbols.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/bus-volts</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>symbols</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+ </instruments>
+
+</PropertyList>

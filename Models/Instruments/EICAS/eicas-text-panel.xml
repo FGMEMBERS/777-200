@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>EFIS Panel text</name>
+<background>Aircraft/777-200/Models/Instruments/EICAS/transparent.png</background>
+<w>512</w>
+<h>256</h>
+
+<instruments>
+
+
+</instruments>
+
+</PropertyList>

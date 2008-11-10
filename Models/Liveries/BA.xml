@@ -5,10 +5,10 @@
     <model>
         <livery>
             <name type="string">British Airways</name>
-            <texture>BA-livery.png</texture>
+            <texture>paint1.png</texture>
         </livery>
         <lights>
-            <texture>lights.png</texture>
+            <texture>lights1.png</texture>
         </lights>
     </model>
 </sim>

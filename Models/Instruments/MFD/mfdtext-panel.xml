@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+<name>MFD text</name>
+<background>Aircraft/777-200/Models/Instruments/MFD/transparent.png</background>
+<w>512</w>
+<h>256</h>
+
+<instruments>
+    <instrument include="mfdtext.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/bus-volts</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>MFD</name>
+        <x>256</x>
+        <y>128</y>
+        <w>512</w>
+        <h>256</h>
+    </instrument>
+
+</instruments>
+
+</PropertyList>

@@ -20,7 +20,6 @@ Syd Adams
     <animation>
         <type>material</type>
         <object-name>Fuselage</object-name>
-        <object-name>Fuselage.003</object-name>
         <object-name>RFdoor</object-name>
         <object-name>LFdoor</object-name>
         <object-name>LRdoor</object-name>
@@ -30,10 +29,8 @@ Syd Adams
         <object-name>Wings</object-name>
         <object-name>Laileron</object-name>
         <object-name>Lflap4</object-name>
-        <object-name>Lflap3</object-name>
         <object-name>Lflap2</object-name>
         <object-name>Rflap2</object-name>
-        <object-name>Rflap3</object-name>
         <object-name>Rflap4</object-name>
         <object-name>Raileron</object-name>
         <object-name>Tail</object-name>
@@ -44,155 +41,46 @@ Syd Adams
         <object-name>RHelevator</object-name>
         <property-base>sim/model/livery</property-base>
         <texture-prop>texture</texture-prop>
-        <texture>BA-livery.png</texture>
+        <texture>paint1.png</texture>
     </animation>
 
     <animation>
         <type>material</type>
         <object-name>Tail.001</object-name>
         <object-name>Rudder.001</object-name>
-        <object-name>FuselageL.002</object-name>
-        <object-name>FuselageR.002</object-name>
+        <object-name>FuselageL</object-name>
+        <object-name>FuselageR</object-name>
         <object-name>Fuselage.001</object-name>
         <property-base>sim/model/lights</property-base>
         <texture-prop>texture</texture-prop>
-        <texture>lights.png</texture>
+        <texture>lights1.png</texture>
     </animation>
 
-    <panel>
-        <path>Aircraft/777-200/Panel/PFD-panel.xml</path>
-        <bottom-left>
-            <x-m>-23.347</x-m>
-            <y-m>-0.639</y-m>
-            <z-m>0.285</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>-23.347</x-m>
-            <y-m>-0.439</y-m>
-            <z-m>0.285</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>-23.382</x-m>
-            <y-m>-0.639</y-m>
-            <z-m>0.482</z-m>
-        </top-left>
-    </panel>
 
-    <panel>
-        <path>Aircraft/777-200/Panel/MFD-panel.xml</path>
-        <bottom-left>
-            <x-m>-23.347</x-m>
-            <y-m>-0.414</y-m>
-            <z-m>0.285</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>-23.347</x-m>
-            <y-m>-0.214</y-m>
-            <z-m>0.285</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>-23.382</x-m>
-            <y-m>-0.414</y-m>
-            <z-m>0.482</z-m>
-        </top-left>
-    </panel>
+    <model>
+    
+        <name>EFB1</name>
+        <path>Aircraft/777-200/Models/Instruments/EFB/EFB.xml</path>
+        <offsets>
+            <x-m>-23.270</x-m>
+            <y-m>-1.024</y-m>
+            <z-m>0.293</z-m>
+            <pitch-deg>-23</pitch-deg>
+            <heading-deg>30</heading-deg>
+        </offsets>
+    </model>
 
-    <panel>
-        <path>Aircraft/777-200/Panel/EICAS-panel.xml</path>
-        <bottom-left>
-            <x-m>-23.347</x-m>
-            <y-m>-0.083</y-m>
-            <z-m>0.285</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>-23.347</x-m>
-            <y-m>0.117</y-m>
-            <z-m>0.285</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>-23.382</x-m>
-            <y-m>-0.083</y-m>
-            <z-m>0.482</z-m>
-        </top-left>
-    </panel>
-
-    <panel>
-        <path>Aircraft/777-200/Panel/MFD-panel.xml</path>
-        <bottom-left>
-            <x-m>-23.347</x-m>
-            <y-m>0.246</y-m>
-            <z-m>0.285</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>-23.347</x-m>
-            <y-m>0.446</y-m>
-            <z-m>0.285</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>-23.382</x-m>
-            <y-m>0.246</y-m>
-            <z-m>0.482</z-m>
-        </top-left>
-    </panel>
-
-    <panel>
-        <path>Aircraft/777-200/Panel/PFD-panel.xml</path>
-        <bottom-left>
-            <x-m>-23.347</x-m>
-            <y-m>0.472</y-m>
-            <z-m>0.285</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>-23.347</x-m>
-            <y-m>0.672</y-m>
-            <z-m>0.285</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>-23.382</x-m>
-            <y-m>0.472</y-m>
-            <z-m>0.482</z-m>
-        </top-left>
-    </panel>
-
-    <panel>
-        <path>Aircraft/777-200/Panel/chart.xml</path>
-        <bottom-left>
-            <x-m>-22.889</x-m>
-            <y-m>-1.175</y-m>
-            <z-m>0.270</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>-22.993</x-m>
-            <y-m>-1.027</y-m>
-            <z-m>0.291</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>-22.998</x-m>
-            <y-m>-1.268</y-m>
-            <z-m>0.383</z-m>
-        </top-left>
-    </panel>
-
-    <panel>
-        <path>Aircraft/777-200/Panel/chart.xml</path>
-        <bottom-left>
-            <x-m>-22.998</x-m>
-            <y-m>1.030</y-m>
-            <z-m>0.286</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>-22.893</x-m>
-            <y-m>1.178</y-m>
-            <z-m>0.265</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>-23.105</x-m>
-            <y-m>1.121</y-m>
-            <z-m>0.403</z-m>
-        </top-left>
-    </panel>
-
-
+    <model>
+        <name>EFB2</name>
+        <path>Aircraft/777-200/Models/Instruments/EFB/EFB.xml</path>
+        <offsets>
+            <x-m>-23.270</x-m>
+            <y-m>1.058</y-m>
+            <z-m>0.293</z-m>
+            <pitch-deg>-23			</pitch-deg>
+            <heading-deg>-30</heading-deg>
+        </offsets>
+    </model>
 
     <model>
         <name>OHpanel</name>
@@ -209,85 +97,62 @@ Syd Adams
         <name>APpanel</name>
         <path>Aircraft/777-200/Models/APpanel.xml</path>
         <offsets>
-            <x-m>-23.297</x-m>
-            <y-m>-0.061</y-m>
-            <z-m>0.603</z-m>
+            <x-m>-23.574</x-m>
+            <y-m>-0.051</y-m>
+            <z-m>0.575</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
-
-    <model>
-        <name>EFISctl1</name>
-        <path>Aircraft/777-200/Models/EFIS-ctl.xml</path>
-        <offsets>
-            <x-m>-23.297</x-m>
-            <y-m>-0.437</y-m>
-            <z-m>0.603</z-m>
-            <pitch-deg>-10</pitch-deg>
-        </offsets>
-    </model>
-
-    <model>
-        <name>EFISctl2</name>
-        <path>Aircraft/777-200/Models/EFIS-ctl.xml</path>
-        <offsets>
-            <x-m>-23.297</x-m>
-            <y-m>0.444</y-m>
-            <z-m>0.603</z-m>
-            <pitch-deg>-10</pitch-deg>
-        </offsets>
-    </model>
-
 
     <model>
         <name>PFD1</name>
-        <path>Aircraft/777-200/Models/Instruments/pfd.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/PFD/PFD.xml</path>
         <offsets>
-            <x-m>-23.369</x-m>
-            <y-m>-0.537</y-m>
-            <z-m>0.383</z-m>
+            <x-m>-23.590</x-m>
+            <y-m>-0.539</y-m>
+            <z-m>0.384</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
 
     <model>
         <name>PFD2</name>
-        <path>Aircraft/777-200/Models/Instruments/pfd.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/PFD/PFD.xml</path>
         <offsets>
-            <x-m>-23.369</x-m>
-            <y-m>0.566</y-m>
-            <z-m>0.383</z-m>
+            <x-m>-23.590</x-m>
+            <y-m>0.572</y-m>
+            <z-m>0.384</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
 
     <model>
         <name>ND1</name>
-        <path>Aircraft/777-200/Models/Instruments/nd.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/MFD/ND.xml</path>
         <offsets>
-            <x-m>-23.369</x-m>
-            <y-m>-0.317</y-m>
-            <z-m>0.383</z-m>
+            <x-m>-23.590</x-m>
+            <y-m>-0.314</y-m>
+            <z-m>0.384</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
 
     <model>
         <name>ND2</name>
-        <path>Aircraft/777-200/Models/Instruments/nd.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/MFD/ND.xml</path>
         <offsets>
-            <x-m>-23.369</x-m>
+            <x-m>-23.590</x-m>
             <y-m>0.346</y-m>
-            <z-m>0.383</z-m>
+            <z-m>0.384</z-m>
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
 
     <model>
         <name>EICAS</name>
-        <path>Aircraft/777-200/Models/Instruments/eicas.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/EICAS/eicas.xml</path>
         <offsets>
-            <x-m>-23.369</x-m>
+            <x-m>-23.590</x-m>
             <y-m>0.017</y-m>
             <z-m>0.383</z-m>
             <pitch-deg>-10</pitch-deg>
@@ -296,12 +161,13 @@ Syd Adams
 
     <model>
         <name>NDB</name>
-        <path>Aircraft/777-200/Models/Instruments/ndb.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/NDB/ndb.xml</path>
         <offsets>
-            <x-m>-23.238</x-m>
+            <x-m>-23.463</x-m>
             <y-m>0.017</y-m>
             <z-m>0.170</z-m>
-            <pitch-deg>-59.5</pitch-deg>
+            <roll-deg>180</roll-deg>
+            <pitch-deg>59.5</pitch-deg>
         </offsets>
     </model>
 
@@ -309,7 +175,7 @@ Syd Adams
         <name>Pclock</name>
         <path>Aircraft/777-200/Models/Instruments/chronometer.xml</path>
         <offsets>
-            <x-m>-23.362</x-m>
+            <x-m>-23.594</x-m>
             <y-m>-0.702</y-m>
             <z-m>0.406</z-m>
             <pitch-deg>-10</pitch-deg>
@@ -320,7 +186,7 @@ Syd Adams
         <name>CPclock</name>
         <path>Aircraft/777-200/Models/Instruments/chronometer.xml</path>
         <offsets>
-            <x-m>-23.362</x-m>
+            <x-m>-23.594</x-m>
             <y-m>0.735</y-m>
             <z-m>0.406</z-m>
             <pitch-deg>-10</pitch-deg>
@@ -331,7 +197,7 @@ Syd Adams
         <name>STDBY AI</name>
         <path>Aircraft/777-200/Models/Instruments/stby-ai.xml</path>
         <offsets>
-            <x-m>-23.372</x-m>
+            <x-m>-23.603</x-m>
             <y-m>-0.147</y-m>
             <z-m>0.465</z-m>
             <pitch-deg>-10</pitch-deg>
@@ -342,7 +208,7 @@ Syd Adams
         <name>STBY ASI</name>
         <path>Aircraft/777-200/Models/Instruments/stby-asi.xml</path>
         <offsets>
-            <x-m>-23.356</x-m>
+            <x-m>-23.587</x-m>
             <y-m>-0.147</y-m>
             <z-m>0.371</z-m>
             <pitch-deg>-10</pitch-deg>
@@ -353,7 +219,7 @@ Syd Adams
         <name>STBY ALT</name>
         <path>Aircraft/777-200/Models/Instruments/stby-alt.xml</path>
         <offsets>
-            <x-m>-23.339</x-m>
+            <x-m>-23.570</x-m>
             <y-m>-0.147</y-m>
             <z-m>0.277</z-m>
             <pitch-deg>-10</pitch-deg>
@@ -364,10 +230,10 @@ Syd Adams
         <name>CDU1</name>
         <path>Aircraft/777-200/Models/Instruments/cdu.xml</path>
         <offsets>
-            <x-m>-23.219</x-m>
-            <y-m>-0.155</y-m>
-            <z-m>0.156</z-m>
-            <pitch-deg>-59.5</pitch-deg>
+            <x-m>-23.471</x-m>
+            <y-m>-0.160</y-m>
+            <z-m>0.173</z-m>
+            <pitch-deg>-60</pitch-deg>
         </offsets>
     </model>
 
@@ -375,10 +241,10 @@ Syd Adams
         <name>CDU2</name>
         <path>Aircraft/777-200/Models/Instruments/cdu.xml</path>
         <offsets>
-            <x-m>-23.219</x-m>
+            <x-m>-23.471</x-m>
             <y-m>0.194</y-m>
-            <z-m>0.156</z-m>
-            <pitch-deg>-59.5</pitch-deg>
+            <z-m>0.173</z-m>
+            <pitch-deg>-60</pitch-deg>
         </offsets>
     </model>
 
@@ -386,10 +252,10 @@ Syd Adams
         <name>CDU3</name>
         <path>Aircraft/777-200/Models/Instruments/cdu.xml</path>
         <offsets>
-            <x-m>-22.60</x-m>
+            <x-m>-22.910</x-m>
             <y-m>0.017</y-m>
-            <z-m>0.016</z-m>
-            <pitch-deg>-87.5</pitch-deg>
+            <z-m>0.015</z-m>
+            <pitch-deg>-88.2</pitch-deg>
         </offsets>
     </model>
 
@@ -397,9 +263,9 @@ Syd Adams
         <name>Radio1</name>
         <path>Aircraft/777-200/Models/Instruments/radio1.xml</path>
         <offsets>
-            <x-m>-22.754</x-m>
-            <y-m>-0.105</y-m>
-            <z-m>0.018</z-m>
+            <x-m>-22.953</x-m>
+            <y-m>-0.104</y-m>
+            <z-m>0.016</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
@@ -408,12 +274,36 @@ Syd Adams
         <name>Radio2</name>
         <path>Aircraft/777-200/Models/Instruments/radio1.xml</path>
         <offsets>
-            <x-m>-22.754</x-m>
-            <y-m>0.137</y-m>
-            <z-m>0.018</z-m>
+            <x-m>-22.953</x-m>
+		<y-m>0.138</y-m>
+            <z-m>0.016</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
+
+	<animation>
+		<type>select</type>
+		<object-name>EFB1</object-name>
+		<object-name>EFB2</object-name>
+		<object-name>PFD1</object-name>
+		<object-name>PFD2</object-name>
+		<object-name>ND1</object-name>
+		<object-name>ND2</object-name>
+		<object-name>EICAS</object-name>
+		<object-name>NDB</object-name>
+		<object-name>STBY AI</object-name>
+		<object-name>STBY ASI</object-name>
+		<object-name>STBY ALT</object-name>
+		<object-name>CDU1</object-name>
+		<object-name>CDU2</object-name>
+		<object-name>CDU3</object-name>		
+		<object-name>Radio1</object-name>
+		<object-name>Radio2</object-name>
+		<condition>
+			<property>sim/current-view/internal</property>
+		</condition>
+	</animation>
+
 
     <animation>
         <type>shader</type>
@@ -479,11 +369,11 @@ Syd Adams
         <object-name>LHthrottle</object-name>
         <object-name>LHthrottle.001</object-name>
         <property>controls/engines/engine/throttle</property>
-        <factor>-45</factor>
+        <factor>-40</factor>
         <center>
-            <x-m>-22.946</x-m>
+            <x-m>-23.185</x-m>
             <y-m>0</y-m>
-            <z-m>0.045</z-m>
+            <z-m>0.011</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -497,11 +387,11 @@ Syd Adams
         <object-name>RHthrottle</object-name>
         <object-name>RHthrottle.001</object-name>
         <property>controls/engines/engine[1]/throttle</property>
-        <factor>45</factor>
+        <factor>40</factor>
         <center>
-            <x-m>-22.946</x-m>
+            <x-m>-23.185</x-m>
             <y-m>0</y-m>
-            <z-m>0.045</z-m>
+            <z-m>0.011</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -545,9 +435,9 @@ Syd Adams
             </entry>
         </interpolation>
         <center>
-            <x-m>-22.946</x-m>
+            <x-m>-23.185</x-m>
             <y-m>0</y-m>
-            <z-m>0.045</z-m>
+            <z-m>0.011</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -560,11 +450,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>SpdBrkLever</object-name>
         <property>controls/flight/speedbrake</property>
-        <factor>57</factor>
+        <factor>52</factor>
         <center>
-            <x-m>-22.946</x-m>
+            <x-m>-23.185</x-m>
             <y-m>0</y-m>
-            <z-m>0.045</z-m>
+            <z-m>0.011</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -579,7 +469,7 @@ Syd Adams
         <property>controls/gear/brake-parking</property>
         <factor>60</factor>
         <center>
-            <x-m>-22.853</x-m>
+            <x-m>-23.078</x-m>
             <y-m>0</y-m>
             <z-m>0.030</z-m>
         </center>
@@ -609,9 +499,9 @@ Syd Adams
             </entry>
         </interpolation>
         <center>
-            <x-m>-22.946</x-m>
+            <x-m>-23.185</x-m>
             <y-m>0</y-m>
-            <z-m>0.045</z-m>
+            <z-m>0.011</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -626,9 +516,9 @@ Syd Adams
         <property>controls/gear/gear-down</property>
         <factor>30</factor>
         <center>
-            <x-m>-23.41</x-m>
+            <x-m>-23.626</x-m>
             <y-m>0</y-m>
-            <z-m>0.375</z-m>
+            <z-m>0.380</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -827,23 +717,6 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>Rflap3</object-name>
-        <property>surface-positions/flap-pos-norm</property>
-        <factor>-20</factor>
-        <center>
-            <x-m>7.777</x-m>
-            <y-m>11.046</y-m>
-            <z-m>-0.389</z-m>
-        </center>
-        <axis>
-            <x>0.0</x>
-            <y>-0.991</y>
-            <z>-0.137</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
         <object-name>Rflap4</object-name>
         <property>surface-positions/flap-pos-norm</property>
         <factor>-30</factor>
@@ -890,40 +763,6 @@ Syd Adams
             <x>0.0</x>
             <y>0.991</y>
             <z>0.137</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
-        <object-name>Rbrake1.001</object-name>
-        <property>surface-positions/speedbrake-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.2</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.4</ind>
-                <dep>-30</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>-30</dep>
-            </entry>
-        </interpolation>
-        <center>
-            <x-m>7.262</x-m>
-            <y-m>11.980</y-m>
-            <z-m>-0.096</z-m>
-        </center>
-        <axis>
-            <x>0.437</x>
-            <y>0.895</y>
-            <z>0.084</z>
         </axis>
     </animation>
 
@@ -1006,23 +845,6 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>Lflap3</object-name>
-        <property>surface-positions/flap-pos-norm</property>
-        <factor>20</factor>
-        <center>
-            <x-m>7.777</x-m>
-            <y-m>-11.046</y-m>
-            <z-m>-0.389</z-m>
-        </center>
-        <axis>
-            <x>0.0</x>
-            <y>0.991</y>
-            <z>-0.137</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
         <object-name>Lflap4</object-name>
         <property>surface-positions/flap-pos-norm</property>
         <factor>30</factor>
@@ -1087,40 +909,6 @@ Syd Adams
             </entry>
             <entry>
                 <ind>0.8</ind>
-                <dep>30</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>30</dep>
-            </entry>
-        </interpolation>
-        <center>
-            <x-m>7.262</x-m>
-            <y-m>-11.980</y-m>
-            <z-m>-0.096</z-m>
-        </center>
-        <axis>
-            <x>0.437</x>
-            <y>-0.895</y>
-            <z>0.084</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
-        <object-name>Lbrake1.001</object-name>
-        <property>surface-positions/speedbrake-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.2</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.4</ind>
                 <dep>30</dep>
             </entry>
             <entry>
@@ -1247,9 +1035,9 @@ Syd Adams
     <animation>
         <type>select</type>
         <object-name>RHLND.flare</object-name>
-        <object-name>FuselageL.002</object-name>
+        <object-name>FuselageL</object-name>
         <object-name>LHLND.flare</object-name>
-        <object-name>FuselageR.002</object-name>
+        <object-name>FuselageR</object-name>
         <object-name>CTRLND.flare</object-name>
         <condition>
             <property>controls/lighting/landing-lights</property>
@@ -1524,7 +1312,6 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>Wheelwell</object-name>
         <object-name>Fuselage.001</object-name>
         <object-name>RFdoor.001</object-name>
         <object-name>LFdoor.001</object-name>
@@ -1543,75 +1330,14 @@ Syd Adams
     </animation>
 
     <animation>
-        <type>textranslate</type>
+        <type>select</type>
         <object-name>cabinlighting</object-name>
-        <property>controls/lighting/cabin-lights</property>
-        <factor>-0.0312</factor>
-        <axis>
-            <x>0</x>
-            <y>1</y>
-            <z>0</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>material</type>
-        <object-name>cockpit</object-name>
-        <object-name>Seats</object-name>
-        <emission>
-            <red>0.3</red>
-            <green>0.25</green>
-            <blue>0.2</blue>
-            <factor-prop>controls/lighting/map-lights</factor-prop>
-        </emission>
-    </animation>
-
-    <animation>
-        <type>material</type>
-        <object-name>APlettering</object-name>
-        <object-name>LMlettering</object-name>
-        <emission>
-            <red>0.25</red>
-            <green>0.4</green>
-            <blue>0.05</blue>
-            <factor-prop>controls/lighting/instrument-lights</factor-prop>	
-        </emission>
-    </animation>
-
-    <animation>
-        <type>material</type>
-        <object-name>Panel</object-name>
-        <object-name>Pedestal</object-name>
         <condition>
-            <less-than>
-                <property>rendering/scene/ambient/blue</property>
-                <value>0.250</value>
-            </less-than>
+                <greater-than>
+                    <property>sim/time/sun-angle-rad</property>
+                    <value>1.55</value>
+                </greater-than>
         </condition>
-        <emission>
-            <red>0.6</red>
-            <green>0.6</green>
-            <blue>0.6</blue>
-            <factor-prop>controls/lighting/panel-norm</factor-prop>
-        </emission>
-    </animation>
-
-    <animation>
-        <type>material</type>
-        <object-name>Panel</object-name>
-        <object-name>Pedestal</object-name>
-        <condition>
-            <greater-than>
-                <property>rendering/scene/ambient/blue</property>
-                <value>0.250</value>
-            </greater-than>
-        </condition>
-        <emission>
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-            <factor-prop>controls/lighting/panel-norm</factor-prop>
-        </emission>
     </animation>
 
     <animation>
@@ -1784,6 +1510,24 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>spin</type>
+        <object-name>FrtWheel</object-name>
+        <property>gear/gear/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-19.284</x-m>
+            <y-m>0</y-m>
+            <z-m>-5.058</z-m>
+        </center>
+    </animation>
+
+
+    <animation>
         <type>select</type>
         <object-name>RFdoor</object-name>
         <object-name>LFdoor</object-name>
@@ -1804,39 +1548,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LFdoor</object-name>
-        <property>gear/gear[0]/position-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.2</ind>
-                <dep>90</dep>
-            </entry>
-            <entry>
-                <ind>0.8</ind>
-                <dep>90</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>0</dep>
-            </entry>
-        </interpolation>
-        <center>
-            <x-m>-20.409</x-m>
-            <y-m>-0.5</y-m>
-            <z-m>-2.668</z-m>
-        </center>
-        <axis>
-            <x>-0.988</x>
-            <y>0.028</y>
-            <z>0.153</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
         <object-name>LFdoor.001</object-name>
         <property>gear/gear[0]/position-norm</property>
         <interpolation>
@@ -1872,40 +1583,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RFdoor</object-name>
-        <property>gear/gear[0]/position-norm</property>
-        <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>0</dep>
-            </entry>
-            <entry>
-                <ind>0.2</ind>
-                <dep>-90</dep>
-            </entry>
-            <entry>
-                <ind>0.8</ind>
-                <dep>-90</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>0</dep>
-            </entry>
-        </interpolation>
-        <center>
-            <x-m>-20.409</x-m>
-            <y-m>0.5</y-m>
-            <z-m>-2.668</z-m>
-        </center>
-        <axis>
-            <x>-0.988</x>
-            <y>-0.028</y>
-            <z>0.153</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
-        <object-name>RFdoor.001</object-name>
+	<object-name>RFdoor.001</object-name>
         <property>gear/gear[0]/position-norm</property>
         <interpolation>
             <entry>
@@ -1999,24 +1677,28 @@ Syd Adams
 
 <!--       Left Gear      -->
 
-<!--
     <animation>
         <type>rotate</type>
-        <object-name>LUdamper</object-name>
-        <property>gear/gear[1]/compression-norm</property>
-        <factor>120</factor>
+        <object-name>LHwheel.1</object-name>
+        <object-name>LHwheel.2</object-name>
+        <object-name>LHwheel.3</object-name>
+        <object-name>Laxle</object-name>
+        <property>gear/gear[1]/compression-m</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.52</ind><dep>20</dep></entry>
+        </interpolation>
         <center>
-            <x-m>1.638</x-m>
-            <y-m>-1.324</y-m>
-            <z-m>-0.609</z-m>
+            <x-m>6.407</x-m>
+            <y-m>-5.616</y-m>
+            <z-m>-5.101</z-m>
         </center>
         <axis>
             <x>0</x>
-            <y>1</y>
+            <y>-1</y>
             <z>0</z>
         </axis>
     </animation>
--->
 
     <animation>
         <type>translate</type>
@@ -2027,6 +1709,11 @@ Syd Adams
         <object-name>Laxle</object-name>
         <object-name>Lstrut</object-name>
         <property>gear/gear[1]/compression-m</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.52</ind><dep>0</dep></entry>
+            <entry><ind>1.8</ind><dep>1.28</dep></entry>
+        </interpolation>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -2090,7 +1777,81 @@ Syd Adams
         </axis>
     </animation>
 
+    <animation>
+        <type>spin</type>
+        <object-name>LHwheel.1</object-name>
+        <property>gear/gear[1]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>5.006</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-4.591</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>spin</type>
+        <object-name>LHwheel.2</object-name>
+        <property>gear/gear[1]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>6.404</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-5.100</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>spin</type>
+        <object-name>LHwheel.3</object-name>
+        <property>gear/gear[1]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>7.807</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-5.611</z-m>
+        </center>
+    </animation>
+
 <!--   Right gear -->
+
+    <animation>
+        <type>rotate</type>
+        <object-name>RHwheel.1</object-name>
+        <object-name>RHwheel.2</object-name>
+        <object-name>RHwheel.3</object-name>
+        <object-name>Raxle</object-name>
+        <property>gear/gear[2]/compression-m</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.52</ind><dep>20</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.407</x-m>
+            <y-m>5.616</y-m>
+            <z-m>-5.101</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
     <animation>
         <type>translate</type>
@@ -2101,6 +1862,11 @@ Syd Adams
         <object-name>Raxle</object-name>
         <object-name>Rstrut</object-name>
         <property>gear/gear[2]/compression-m</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.52</ind><dep>0</dep></entry>
+            <entry><ind>1.8</ind><dep>1.28</dep></entry>
+        </interpolation>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -2162,6 +1928,57 @@ Syd Adams
             <y>0</y>
             <z>0</z>
         </axis>
+    </animation>
+
+    <animation>
+        <type>spin</type>
+        <object-name>RHwheel.1</object-name>
+        <property>gear/gear[2]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>5.006</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-4.591</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>spin</type>
+        <object-name>RHwheel.2</object-name>
+        <property>gear/gear[2]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>6.404</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-5.100</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>spin</type>
+        <object-name>RHwheel.3</object-name>
+        <property>gear/gear[2]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>7.807</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-5.611</z-m>
+        </center>
     </animation>
 
 <!-- OSG hotspots -->

@@ -6,6 +6,9 @@ var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
 var FHmeter = aircraft.timer.new("/instrumentation/clock/flight-meter-sec", 10).stop();
 var fuel_density =0;
 
+var EFB = gui.Dialog.new("/sim/gui/dialogs/EFB/dialog",
+        "Aircraft/777-200/Systems/EFB-dlg.xml");
+
 #EFIS specific class 
 # ie: var efis = EFIS.new("instrumentation/EFIS");
 var EFIS = {
@@ -247,9 +250,8 @@ setlistener("/autopilot/route-manager/route/num", func(wp){
     }
 },1,0);
 
-setlistener("/sim/current-view/name", func(vw){
-    var ViewName= vw.getValue();
-    if(ViewName =="Pilot View" or ViewName =="CoPilot View"){
+setlistener("/sim/current-view/internal", func(vw){
+    if(vw.getValue()){
     SndOut.setDoubleValue(0.15);
     }else{
     SndOut.setDoubleValue(1.0);
@@ -320,18 +322,6 @@ setprop("controls/fuel/tank[1]/boost-pump[1]",0);
 setprop("controls/fuel/tank[2]/boost-pump",0);
 setprop("controls/fuel/tank[2]/boost-pump[1]",0);
 }
-
-var fuel_pump = func(){
-    var tank=arg[0];
-    var pump=arg[1];
-    var pump2= 1- pump;
-    var tnk = getprop("controls/fuel/tank["~tank~"]/boost-pump["~pump~"]");
-    tnk=1-tnk;
-    setprop("controls/fuel/tank["~tank~"]/boost-pump["~pump~"]",tnk);
-    var tnk2 = getprop("controls/fuel/tank["~tank~"]/boost-pump["~pump2~"]");
-    var ttl = tnk * tnk2;
-    setprop("consumables/fuel/tank["~tank~"]/selected",ttl);
-    }
 
 var update_systems = func {
     Efis.calc_kpa();

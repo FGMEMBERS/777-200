@@ -61,7 +61,9 @@ var FlightDirector = {
         m.AP_disengage.setBoolValue(0);
         m.AP_mode=m.FDnode.getNode("AP-mode",1);
         m.AP_mode.setBoolValue(0);
-        m.AP_hdg = props.globals.getNode("autopilot/locks/heading",1);
+        m.AP_annun=m.FDnode.getNode("AP-annun",1);
+        m.AP_annun.setValue("   ");
+	m.AP_hdg = props.globals.getNode("autopilot/locks/heading",1);
         m.AP_hdg.setValue(m.lnav_text[0]);
         m.AP_hdg_bug = props.globals.getNode("autopilot/settings/heading-bug-deg",1);
         m.AP_hdg_bug.setValue(360);
@@ -111,10 +113,12 @@ var FlightDirector = {
                 me.AP_spd_setting.setValue(200);
                 me.AP_vs_setting.setValue(1500);
                 me.AP_pitch_setting.setValue(10);
+		me.AP_annun.setValue("   CMD");
             }else{
             me.Lnav.setValue(1);
             me.Vnav.setValue(9);
             me.Spd.setValue(0);
+	    me.AP_annun.setValue("      ");
             }
             me.AP_hdg.setValue(me.lnav_text[me.Lnav.getValue()]);
             me.AP_alt.setValue(me.vnav_text[me.Vnav.getValue()]);
@@ -133,9 +137,11 @@ var FlightDirector = {
                     me.AP_hdg.setValue(me.lnav_text[0]);
                     me.Vnav.setValue(0);
                     me.AP_alt.setValue(me.vnav_text[0]);
+		    me.AP_annun.setValue("AP ENG");
                 }
             if(tmpalt<400)apmode =1;
             if(me.AP_disengage.getValue())apmode=1;
+	    me.AP_annun.setValue("   CMD");
             }
             me.AP_toggle.setValue(apmode);
             return;

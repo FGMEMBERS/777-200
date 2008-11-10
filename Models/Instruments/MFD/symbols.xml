@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+    <name>symbols</name>
+    <w-base>256</w-base>
+    <h-base>256</h-base>
+
+    <layers>
+
+        <layer>
+            <name>hdgbug</name>
+            <emissive>true</emissive>
+            <w>10</w>
+            <h>176</h>
+            <texture>
+                <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
+                <x1>0.102</x1>
+                <y1>0.221</y1>
+                <x2>0.150</x2>
+                <y2>0.947</y2>
+            </texture>
+           <transformations>
+            <transformation>
+                <type>y-shift</type>
+                <offset>-76</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>autopilot/internal/fdm-heading-bug-error-deg</property>
+            </transformation>
+            <transformation><!--shift rotation origin-->
+                <type>y-shift</type>
+                <offset>89</offset>
+            </transformation>
+        </transformations>
+        </layer>
+
+    </layers>
+
+</PropertyList>
