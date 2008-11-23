@@ -275,34 +275,34 @@ Syd Adams
         <path>Aircraft/777-200/Models/Instruments/radio1.xml</path>
         <offsets>
             <x-m>-22.953</x-m>
-		<y-m>0.138</y-m>
+        <y-m>0.138</y-m>
             <z-m>0.016</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
 
-	<animation>
-		<type>select</type>
-		<object-name>EFB1</object-name>
-		<object-name>EFB2</object-name>
-		<object-name>PFD1</object-name>
-		<object-name>PFD2</object-name>
-		<object-name>ND1</object-name>
-		<object-name>ND2</object-name>
-		<object-name>EICAS</object-name>
-		<object-name>NDB</object-name>
-		<object-name>STBY AI</object-name>
-		<object-name>STBY ASI</object-name>
-		<object-name>STBY ALT</object-name>
-		<object-name>CDU1</object-name>
-		<object-name>CDU2</object-name>
-		<object-name>CDU3</object-name>		
-		<object-name>Radio1</object-name>
-		<object-name>Radio2</object-name>
-		<condition>
-			<property>sim/current-view/internal</property>
-		</condition>
-	</animation>
+    <animation>
+        <type>select</type>
+        <object-name>EFB1</object-name>
+        <object-name>EFB2</object-name>
+        <object-name>PFD1</object-name>
+        <object-name>PFD2</object-name>
+        <object-name>ND1</object-name>
+        <object-name>ND2</object-name>
+        <object-name>EICAS</object-name>
+        <object-name>NDB</object-name>
+        <object-name>STBY AI</object-name>
+        <object-name>STBY ASI</object-name>
+        <object-name>STBY ALT</object-name>
+        <object-name>CDU1</object-name>
+        <object-name>CDU2</object-name>
+        <object-name>CDU3</object-name>		
+        <object-name>Radio1</object-name>
+        <object-name>Radio2</object-name>
+        <condition>
+            <property>sim/current-view/internal</property>
+        </condition>
+    </animation>
 
 
     <animation>
@@ -1583,7 +1583,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RFdoor</object-name>
-	<object-name>RFdoor.001</object-name>
+    <object-name>RFdoor.001</object-name>
         <property>gear/gear[0]/position-norm</property>
         <interpolation>
             <entry>
@@ -1683,7 +1683,7 @@ Syd Adams
         <object-name>LHwheel.2</object-name>
         <object-name>LHwheel.3</object-name>
         <object-name>Laxle</object-name>
-        <property>gear/gear[1]/compression-m</property>
+        <property>gear/gear[3]/compression-m</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>0.52</ind><dep>20</dep></entry>
@@ -1709,11 +1709,6 @@ Syd Adams
         <object-name>Laxle</object-name>
         <object-name>Lstrut</object-name>
         <property>gear/gear[1]/compression-m</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>0.52</ind><dep>0</dep></entry>
-            <entry><ind>1.8</ind><dep>1.28</dep></entry>
-        </interpolation>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -1836,7 +1831,7 @@ Syd Adams
         <object-name>RHwheel.2</object-name>
         <object-name>RHwheel.3</object-name>
         <object-name>Raxle</object-name>
-        <property>gear/gear[2]/compression-m</property>
+        <property>gear/gear[4]/compression-m</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>0.52</ind><dep>20</dep></entry>
@@ -1862,11 +1857,6 @@ Syd Adams
         <object-name>Raxle</object-name>
         <object-name>Rstrut</object-name>
         <property>gear/gear[2]/compression-m</property>
-        <interpolation>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>0.52</ind><dep>0</dep></entry>
-            <entry><ind>1.8</ind><dep>1.28</dep></entry>
-        </interpolation>
         <axis>
             <x>0</x>
             <y>0</y>

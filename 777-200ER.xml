@@ -131,14 +131,14 @@ egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
 
 <!-- nose -->
 <gear x="19.28"  y="0.00" z="-5.55"
-      compression="0.75" spring="0.7" damp="4">
+      compression="0.7" spring="0.9" damp="1">
   <control-input axis="/controls/flight/rudder" control="STEER" square="true"/>
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[0]/position-norm"/>
   <control-speed control="EXTEND" transition-time="7"/>
 </gear>
 
-<gear x="-8.0" y="5.6" z="-6.264" compression="1.8" spring="1.2" >
+<gear x="-6.39" y="5.6" z="-5.7" compression="0.8" spring="1.0" >
   <control-input axis="/controls/gear/brake-left" control="BRAKE"/>
   <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
@@ -146,7 +146,7 @@ egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-speed control="EXTEND" transition-time="7"/>
 </gear>
 
-<gear x="-8.0" y="-5.6" z="-6.264" compression="1.8" spring="1.2">
+<gear x="-6.39" y="-5.6" z="-5.7" compression="0.8" spring="1.0">
   <control-input axis="/controls/gear/brake-right" control="BRAKE"/>
   <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
@@ -154,6 +154,17 @@ egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-speed control="EXTEND" transition-time="7"/>
 </gear>
 
+<gear x="-7.8" y="5.6" z="-6.22" compression="3.0" spring="1.2" >
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[3]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="7"/>
+</gear>
+
+<gear x="-7.8" y="-5.6" z="-6.22" compression="3.0" spring="1.2">
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[4]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="7"/>
+</gear>
 
 <tank x="-3" y="5" z="-1.5" jet="true" capacity="64000"/>
 <tank x="-5.0" y="0" z="-2.5" jet="true" capacity="174900"/>
