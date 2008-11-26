@@ -37,6 +37,12 @@
         </layer>
 
         <layer>
+            <condition>
+                <greater-than>
+                    <property>environment/wind-speed-kt</property>
+                    <value>0.99</value>
+                </greater-than>
+            </condition>
             <name>wind arrow</name>
             <emissive>true</emissive>
             <w>6</w>

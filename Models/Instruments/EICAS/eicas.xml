@@ -1,11 +1,11 @@
 <!--
 Syd Adams
-777-200 EICAS 
+777-200 EICAS
 -->
 
 <PropertyList>
 
- <path>EFIS.ac</path>
+ <path>eicas.ac</path>
 
     <panel>
         <path>Aircraft/777-200/Models/Instruments/EICAS/eicas-panel.xml</path>

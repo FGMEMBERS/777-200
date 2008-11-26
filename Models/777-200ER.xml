@@ -58,7 +58,7 @@ Syd Adams
 
 
     <model>
-    
+
         <name>EFB1</name>
         <path>Aircraft/777-200/Models/Instruments/EFB/EFB.xml</path>
         <offsets>
@@ -296,7 +296,7 @@ Syd Adams
         <object-name>STBY ALT</object-name>
         <object-name>CDU1</object-name>
         <object-name>CDU2</object-name>
-        <object-name>CDU3</object-name>		
+        <object-name>CDU3</object-name>
         <object-name>Radio1</object-name>
         <object-name>Radio2</object-name>
         <condition>
@@ -1136,6 +1136,15 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>dist-scale</type>
+        <object-name>Strobe01</object-name>
+        <factor>0.01</factor>
+        <offset>1.0</offset>
+        <min>0</min>
+        <max>500.0</max>
+    </animation>
+
+    <animation>
         <type>select</type>
         <object-name>Strobe02</object-name>
         <condition>
@@ -1160,6 +1169,15 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>dist-scale</type>
+        <object-name>Strobe02</object-name>
+        <factor>0.01</factor>
+        <offset>1.0</offset>
+        <min>0</min>
+        <max>500.0</max>
+    </animation>
+
+    <animation>
         <type>select</type>
         <object-name>Strobe03</object-name>
         <condition>
@@ -1181,6 +1199,15 @@ Syd Adams
     <animation>
         <type>billboard</type>
         <object-name>Strobe03</object-name>
+    </animation>
+
+    <animation>
+        <type>dist-scale</type>
+        <object-name>Strobe03</object-name>
+        <factor>0.01</factor>
+        <offset>1.0</offset>
+        <min>0</min>
+        <max>500.0</max>
     </animation>
 
     <animation>

@@ -154,6 +154,12 @@
     </layer>
 
     <layer>
+        <condition>
+            <greater-than>
+                <property>environment/wind-speed-kt</property>
+                <value>0.99</value>
+            </greater-than>
+        </condition>
         <name>Wind</name>
         <type>text</type>
         <font>arial_black</font>
@@ -235,13 +241,13 @@
         <chunks>
             <chunk>
                 <type>literal</type>
-                <text>HDG             MAG</text>
+                <text>HDG            MAG</text>
             </chunk>
         </chunks>
         <transformations>
             <transformation>
                 <type>x-shift</type>
-                <offset>-35</offset>
+                <offset>-36</offset>
             </transformation>
             <transformation>
                 <type>y-shift</type>
