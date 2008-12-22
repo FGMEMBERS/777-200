@@ -12,10 +12,10 @@ Roll Axis Modes
 <!-- go around wing level-->
 
     <pi-simple-controller>
-        <name>GA 1</name>
+        <name>TO/GA</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/heading</prop>
+            <prop>instrumentation/afds/settings/roll-mode</prop>
             <value>TO/GA</value>
         </enable>
         <input>
@@ -25,7 +25,7 @@ Roll Axis Modes
             <value>0.0</value>
         </reference>
         <output>
-            <prop>autopilot/internal/target-roll-deg</prop>
+            <prop>autopilot/internal/target-roll-filter</prop>
         </output>
         <config>
             <Kp>
@@ -33,10 +33,10 @@ Roll Axis Modes
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
-                <prop>instrumentation/flightdirector/bank-limit-min</prop>
+                <prop>instrumentation/afds/bank-min</prop>
             </u_min>
             <u_max>
-                <prop>instrumentation/flightdirector/bank-limit-max</prop>
+                <prop>instrumentation/afds/bank-max</prop>
             </u_max>
         </config>
     </pi-simple-controller>
@@ -44,50 +44,20 @@ Roll Axis Modes
 <!-- Heading Bug Hold. -->
 
     <pi-simple-controller>
-        <name>HDG sel</name>
+        <name>HDG-SEL</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/heading</prop>
+            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
             <value>HDG SEL</value>
         </enable>
         <input>
             <prop>autopilot/internal/fdm-heading-bug-error-deg</prop>
         </input>
         <reference>
-            <value>0.0</value>
+            <value>0</value>
         </reference>
         <output>
-            <prop>autopilot/internal/target-roll-deg</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>-1.5</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <prop>instrumentation/flightdirector/bank-limit-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/flightdirector/bank-limit-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-    <pi-simple-controller>
-        <name>HDG hold</name>
-        <debug>false</debug>
-        <enable>
-            <prop>autopilot/locks/heading</prop>
-            <value>HDG HOLD</value>
-        </enable>
-        <input>
-            <prop>autopilot/internal/fdm-heading-bug-error-deg</prop>
-        </input>
-        <reference>
-            <value>0.0</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-deg</prop>
+            <prop>autopilot/internal/target-roll-filter</prop>
         </output>
         <config>
             <Kp>
@@ -95,31 +65,59 @@ Roll Axis Modes
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
-                <prop>instrumentation/flightdirector/bank-limit-min</prop>
+                <prop>instrumentation/afds/settings/bank-min</prop>
             </u_min>
             <u_max>
-                <prop>instrumentation/flightdirector/bank-limit-max</prop>
+                <prop>instrumentation/afds/settings/bank-max</prop>
             </u_max>
         </config>
     </pi-simple-controller>
 
-<!-- LNAV (route manager) -->
-
     <pi-simple-controller>
-        <name>lnav mode</name>
+        <name>hdg-hld</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/heading</prop>
+            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+            <value>HDG HOLD</value>
+        </enable>
+        <input>
+            <prop>autopilot/internal/fdm-heading-bug-error-deg</prop>
+        </input>
+        <reference>
+            <value>0</value>
+        </reference>
+        <output>
+            <prop>autopilot/internal/target-roll-filter</prop>
+        </output>
+        <config>
+            <Kp>
+                <value>-1.0</value>
+            </Kp>
+            <Ki>0.0</Ki>
+            <u_min>
+                <prop>instrumentation/afds/settings/bank-min</prop>
+            </u_min>
+            <u_max>
+                <prop>instrumentation/afds/settings/bank-max</prop>
+            </u_max>
+        </config>
+    </pi-simple-controller>
+
+    <pi-simple-controller>
+        <name>lnav</name>
+        <debug>false</debug>
+        <enable>
+            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
             <value>LNAV</value>
         </enable>
         <input>
-            <prop>autopilot/internal/true-heading-error-deg</prop>
+            <prop>instrumentation/afds/settings/lnav-mag-heading</prop>
         </input>
         <reference>
-            <value>0.0</value>
+            <value>0</value>
         </reference>
         <output>
-            <prop>autopilot/internal/target-roll-deg</prop>
+            <prop>autopilot/internal/target-roll-filter</prop>
         </output>
         <config>
             <Kp>
@@ -127,10 +125,10 @@ Roll Axis Modes
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
-                <prop>instrumentation/flightdirector/bank-limit-min</prop>
+                <prop>instrumentation/afds/settings/bank-min</prop>
             </u_min>
             <u_max>
-                <prop>instrumentation/flightdirector/bank-limit-max</prop>
+                <prop>instrumentation/afds/settings/bank-max</prop>
             </u_max>
         </config>
     </pi-simple-controller>
@@ -138,31 +136,31 @@ Roll Axis Modes
 <!-- NAV / APPR. -->
 
     <pi-simple-controller>
-        <name>localizer hold</name>
+        <name>LOC</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/heading</prop>
+            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
             <value>LOC</value>
         </enable>
         <input>
-            <prop>/orientation/heading-deg</prop>
+            <prop>autopilot/internal/nav1-track-error-deg</prop>
         </input>
         <reference>
-            <prop>/instrumentation/nav/radials/target-auto-hdg-deg</prop>
+            <value>0</value>
         </reference>
         <output>
-            <prop>autopilot/internal/target-roll-deg</prop>
+            <prop>autopilot/internal/target-roll-filter</prop>
         </output>
         <config>
             <Kp>
-                <value>1.5</value>
+                <value>-1.5</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
-                <prop>instrumentation/flightdirector/bank-limit-min</prop>
+                <prop>instrumentation/afds/settings/bank-min</prop>
             </u_min>
             <u_max>
-                <prop>instrumentation/flightdirector/bank-limit-max</prop>
+                <prop>instrumentation/afds/settings/bank-max</prop>
             </u_max>
         </config>
     </pi-simple-controller>
@@ -173,17 +171,17 @@ Roll Axis Modes
         <name>trk sel</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/heading</prop>
+            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
             <value>TRK SEL</value>
         </enable>
         <input>
-            <prop>autopilot/internal/true-heading-error-deg</prop>
+            <prop>orientation/heading-magnetic-deg</prop>
         </input>
         <reference>
-            <value>0.0</value>
+            <value>instrumentation/afds/settings/trk</value>
         </reference>
         <output>
-            <prop>autopilot/internal/target-roll-deg</prop>
+            <prop>autopilot/internal/target-roll-filter</prop>
         </output>
         <config>
             <Kp>
@@ -191,10 +189,10 @@ Roll Axis Modes
             </Kp>
             <Ki>0</Ki>
             <u_min>
-                <prop>instrumentation/flightdirector/bank-limit-min</prop>
+                <prop>instrumentation/afds/settings/bank-min</prop>
             </u_min>
             <u_max>
-                <prop>instrumentation/flightdirector/bank-limit-max</prop>
+                <prop>instrumentation/afds/settings/bank-max</prop>
             </u_max>
         </config>
     </pi-simple-controller>
@@ -203,17 +201,17 @@ Roll Axis Modes
         <name>trk hold</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/heading</prop>
+            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
             <value>TRK HOLD</value>
         </enable>
         <input>
-            <prop>autopilot/internal/true-heading-error-deg</prop>
+            <prop>orientation/heading-magnetic-deg</prop>
         </input>
         <reference>
-            <value>0.0</value>
+            <value>instrumentation/afds/settings/trk</value>
         </reference>
         <output>
-            <prop>autopilot/internal/target-roll-deg</prop>
+            <prop>autopilot/internal/target-roll-filter</prop>
         </output>
         <config>
             <Kp>
@@ -229,13 +227,23 @@ Roll Axis Modes
         </config>
     </pi-simple-controller>
 
+<filter>
+    <name>aileron</name>
+    <debug>false</debug>
+    <type>noise-spike</type>
+    <input>autopilot/internal/target-roll-filter</input>
+    <output>autopilot/internal/target-roll-deg</output>
+    <max-rate-of-change>5</max-rate-of-change>
+</filter>
+
+
 <!-- AILERON CONTROL -->
 
     <pid-controller>
         <name>Aileron control</name>
         <debug>false</debug>
         <enable>
-            <prop>/autopilot/locks/pitch-engaged</prop>
+            <prop>autopilot/locks/roll-engaged</prop>
             <value>true</value>
             <honor-passive>true</honor-passive>
         </enable>
@@ -282,7 +290,7 @@ Roll Axis Modes
         <name>GA</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/altitude</prop>
+            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
             <value>TO/GA</value>
         </enable>
         <input>
@@ -292,7 +300,7 @@ Roll Axis Modes
             <prop>instrumentation/flightdirector/FP-alt</prop>
         </reference>
         <output>
-            <prop>autopilot/internal/target-pitch-deg</prop>
+            <prop>autopilot/internal/target-pitch-filter</prop>
         </output>
         <config>
             <Kp>
@@ -310,35 +318,18 @@ Roll Axis Modes
 
 <!-- Flight Path Angle -->
 
-    <pi-simple-controller>
-        <name>FPA </name>
+    <filter>
+        <name>fpa</name>
         <debug>false</debug>
-        <enable>
-            <prop>autopilot/locks/altitude</prop>
-            <value>FPA</value>
-        </enable>
-        <input>
-            <prop>orientation/alpha-deg</prop>
-        </input>
-        <reference>
-            <prop>instrumentation/flightdirector/FP-angle</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>1.0</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <value>-9.9</value>
-            </u_min>
-            <u_max>
-                <value>9.9</value>
-            </u_max>
-        </config>
-    </pi-simple-controller>
+        <type>noise-spike</type>
+            <enable>
+                <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+                <value>FPA</value>
+            </enable>
+        <input>instrumentation/afds/settings/fpa</input>
+        <output>autopilot/internal/target-pitch-filter</output>
+        <max-rate-of-change>2</max-rate-of-change>
+    </filter>
 
 <!-- Alt hold -->
 
@@ -346,28 +337,30 @@ Roll Axis Modes
         <name>Inst Altitude Hold</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/altitude</prop>
+            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
             <value>ALT</value>
         </enable>
         <input>
-            <prop>/position/altitude-ft</prop>
+            <prop>position/altitude-ft</prop>
+            <scale>0.1</scale>
         </input>
         <reference>
-            <prop>/autopilot/settings/target-altitude-ft</prop>
+            <prop>instrumentation/afds/settings/altitude</prop>
+            <scale>0.1</scale>
         </reference>
         <output>
-            <prop>/autopilot/internal/target-pitch-deg</prop>
+            <prop>autopilot/internal/target-pitch-filter</prop>
         </output>
         <config>
             <Kp>
-                <value>0.2</value>
+                <value>0.1</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
-                <value>-9.9</value>
+                <value>-5</value>
             </u_min>
             <u_max>
-                <value>9.9</value>
+                <value>5</value>
             </u_max>
         </config>
     </pi-simple-controller>
@@ -385,21 +378,21 @@ Roll Axis Modes
             <prop>instrumentation/altimeter/indicated-altitude-ft</prop>
         </input>
         <reference>
-            <prop>instrumentation/flightdirector/FP-alt</prop>
+            <prop>instrumentation/afds/settings/vnav-alt</prop>
         </reference>
         <output>
-            <prop>autopilot/internal/target-pitch-deg</prop>
+            <prop>autopilot/internal/target-pitch-filter</prop>
         </output>
         <config>
             <Kp>
-                <value>0.025</value>
+                <value>1.5</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
-                <value>-9.9</value>
+                <value>-6.0</value>
             </u_min>
             <u_max>
-                <prop>instrumentation/flightdirector/FP-angle</prop>
+                <value>6.0</value>
             </u_max>
         </config>
     </pi-simple-controller>
@@ -410,16 +403,16 @@ Roll Axis Modes
         <name>Glideslope1</name>
         <debug>false</debug>
        <enable>
-            <prop>autopilot/locks/altitude</prop>
+            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
             <value>G/S</value>
         </enable>
         <input>
-            <prop>/instrumentation/nav/gs-needle-deflection</prop>
+            <prop>instrumentation/nav/gs-needle-deflection</prop>
         </input>
         <reference>
             </reference>
         <output>
-            <prop>autopilot/internal/target-pitch-deg</prop>
+            <prop>autopilot/internal/target-pitch-filter</prop>
         </output>
         <config>
             <Kp>
@@ -430,92 +423,81 @@ Roll Axis Modes
                 <value>-6.0</value>
             </u_min>
             <u_max>
-                <value>0.0</value>
+                <value>1.0</value>
             </u_max>
         </config>
     </pi-simple-controller>
 
 <!-- V/S hold -->
 
-    <pid-controller>
+    <pi-simple-controller>
         <name>Vertical Speed Hold</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/altitude</prop>
+            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
             <value>V/S</value>
         </enable>
         <input>
             <prop>velocities/vertical-speed-fps</prop>
         </input>
         <reference>
-            <prop>autopilot/settings/vertical-speed-fpm</prop>
+            <prop>instrumentation/afds/settings/vs</prop>
             <scale>0.01667</scale>
         </reference>
         <output>
-            <prop>autopilot/settings/target-pitch-deg</prop>
+            <prop>autopilot/internal/target-pitch-filter</prop>
         </output>
         <config>
             <Kp>
-                <value>-0.01</value>
+                <value>0.25</value>
             </Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>
-                <value>10.0</value>
-            </Ti>
-            <Td>
-                <value>0.00001</value>
-            </Td>
+            <Ki>0.0</Ki>
             <u_min>
-                <value>-9.9</value>
+                <value>-5.0</value>
             </u_min>
             <u_max>
-                <value>9.9</value>
+                <value>5.0</value>
             </u_max>
         </config>
-    </pid-controller>
+    </pi-simple-controller>
 
 <!-- Elevator Control -->
+<filter>
+    <name>elevator</name>
+    <debug>false</debug>
+    <type>noise-spike</type>
+    <input>autopilot/internal/target-pitch-filter</input>
+    <output>autopilot/internal/target-pitch-deg</output>
+    <max-rate-of-change>1.0</max-rate-of-change>
+</filter>
 
-    <pid-controller>
-        <name>elevator ctl</name>
-        <debug>false</debug>
-        <enable>
-            <prop>autopilot/locks/pitch-engaged</prop>
-            <value>true</value>
-            <honor-passive>true</honor-passive>
-        </enable>
-        <input>
-            <prop>orientation/pitch-deg</prop>
-        </input>
-        <reference>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </reference>
-        <output>
-            <prop>controls/flight/elevator-trim</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>-0.25</value>
-            </Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>
-                <value>20.0</value>
-            </Ti>
-            <Td>
-                <value>0.0</value>
-            </Td>
-            <u_min>
-                <value>-1.0</value>
-            </u_min>
-            <u_max>
-                <value>1.0</value>
-            </u_max>
-        </config>
-    </pid-controller>
+<pid-controller>
+  <name>Elevator Control</name>
+  <debug>false</debug>
+  <enable>
+    <prop>autopilot/locks/pitch-engaged</prop>
+    <value>true</value>
+    <honor-passive>true</honor-passive>
+  </enable>
+  <input>
+    <prop>orientation/pitch-deg</prop>
+  </input>
+  <reference>
+    <prop>autopilot/internal/target-pitch-deg</prop>
+  </reference>
+  <output>
+    <prop>controls/flight/elevator-trim</prop>
+  </output>
+  <config>
+<Kp>-0.15</Kp>
+<beta>1.0</beta>
+<alpha>0.1</alpha>
+<gamma>0.0</gamma>
+<Ti>1.0</Ti>
+<Td>0.0</Td>
+<u_min>-0.25</u_min>
+<u_max>0.25</u_max>  </config>
+</pid-controller>
 
 <!--
 ===================
@@ -540,8 +522,8 @@ Roll Axis Modes
             <prop>autopilot/settings/target-speed-kt</prop>
         </reference>
         <output>
-            <prop>/controls/engines/engine[0]/throttle</prop>
-            <prop>/controls/engines/engine[1]/throttle</prop>
+            <prop>controls/engines/engine[0]/throttle</prop>
+            <prop>controls/engines/engine[1]/throttle</prop>
         </output>
         <config>
             <Kp>

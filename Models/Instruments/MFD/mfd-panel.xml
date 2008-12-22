@@ -2,68 +2,92 @@
 <PropertyList>
 
 <name>MFD Panel</name>
-<background>Aircraft/777-200/Models/Instruments/MFD/transparent.png</background>
+<background>Aircraft/777-200/Models/Instruments/MFD/black.png</background>
 <w>256</w>
 <h>256</h>
 
 <instruments>
 
-    <instrument include="hsi.xml">
+    <instrument include="APP.xml">
         <condition>
-            <greater-than>
-                <property>systems/electrical/bus-volts</property>
-                <value>15</value>
-            </greater-than>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/bus-volts</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd/display-mode</property>
+                    <value>APP</value>
+                </equals>
+            </and>
         </condition>
-        <name>hsi</name>
-        <x>128</x>
-        <y>138</y>
-        <w>250</w>
-        <h>180</h>
-    </instrument>
-
-    <instrument include="radar.xml">
-        <condition>
-            <greater-than>
-                <property>systems/electrical/bus-volts</property>
-                <value>15</value>
-            </greater-than>
-        </condition>
-        <name>RDR</name>
+        <name>app</name>
         <x>128</x>
         <y>128</y>
         <w>256</w>
         <h>256</h>
     </instrument>
 
-    <instrument include="mask.xml">
+    <instrument include="VOR.xml">
         <condition>
-            <greater-than>
-                <property>systems/electrical/bus-volts</property>
-                <value>15</value>
-            </greater-than>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/bus-volts</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd/display-mode</property>
+                    <value>VOR</value>
+                </equals>
+            </and>
         </condition>
-        <name>mask</name>
+        <name>vor</name>
         <x>128</x>
         <y>128</y>
         <w>256</w>
         <h>256</h>
     </instrument>
 
-    <instrument include="symbols.xml">
+    <instrument include="MAP.xml">
         <condition>
-            <greater-than>
-                <property>systems/electrical/bus-volts</property>
-                <value>15</value>
-            </greater-than>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/bus-volts</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd/display-mode</property>
+                    <value>MAP</value>
+                </equals>
+            </and>
         </condition>
-        <name>symbols</name>
+        <name>map</name>
         <x>128</x>
         <y>128</y>
         <w>256</w>
         <h>256</h>
     </instrument>
 
- </instruments>
+    <instrument include="PLAN.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/bus-volts</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd/display-mode</property>
+                    <value>PLAN</value>
+                </equals>
+            </and>
+        </condition>
+        <name>plan</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+</instruments>
 
 </PropertyList>

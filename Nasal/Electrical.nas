@@ -1,4 +1,4 @@
-####    2 Generator Jet Electrical system    #### 
+####    2 Generator Jet Electrical system    ####
 ####    Syd Adams    ####
 #### Based on Curtis Olson's nasal electrical code ####
 
@@ -12,7 +12,7 @@ var load_list=[];
 
 var Volts = props.globals.getNode("/systems/electrical/bus-volts",1);
 var Amps = props.globals.getNode("/systems/electrical/amps",1);
-var EXT  = props.globals.getNode("/controls/electric/external-power",1); 
+var EXT  = props.globals.getNode("/controls/electric/external-power",1);
 
 strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
 aircraft.light.new("controls/lighting/strobe-state", [0.05, 1.30], strobe_switch);
@@ -28,7 +28,7 @@ Battery = {
             m.ideal_volts = vlt;
             m.ideal_amps = amp;
             m.amp_hours = hr;
-            m.charge_percent = chp; 
+            m.charge_percent = chp;
             m.charge_amps = cha;
             m.output = props.globals.getNode("systems/electrical/batt-volts",1);
             m.output.setDoubleValue(0);
@@ -211,6 +211,9 @@ var init_electrical = func{
     append(output_list,"adf");
     append(load_list,1.0);
     append(switch_list,"controls/electric/avionics-switch");
+    append(output_list,"adf[1]");
+    append(load_list,1.0);
+    append(switch_list,"controls/electric/avionics-switch");
     append(output_list,"dme");
     append(load_list,1.0);
     append(switch_list,"controls/electric/avionics-switch");
@@ -273,7 +276,7 @@ var update_virtual_bus = func( tm ) {
     var load = 0.0;
     var bus_volts = 0.0;
     var power_source = nil;
-        
+
         bus_volts = battery_volts;
         power_source = "battery";
 
@@ -319,7 +322,7 @@ return load;
 }
 #######################
 var electrical_bus = func(vlt) {
-    var bus_volts = vlt; 
+    var bus_volts = vlt;
     var load = 0.0;
     var srvc = 0.0;
 

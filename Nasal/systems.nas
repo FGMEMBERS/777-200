@@ -9,27 +9,48 @@ var fuel_density =0;
 var EFB = gui.Dialog.new("/sim/gui/dialogs/EFB/dialog",
         "Aircraft/777-200/Systems/EFB-dlg.xml");
 
-#EFIS specific class 
+#EFIS specific class
 # ie: var efis = EFIS.new("instrumentation/EFIS");
 var EFIS = {
     new : func(prop1){
         m = { parents : [EFIS]};
         m.radio_list=["instrumentation/comm/frequencies","instrumentation/comm[1]/frequencies","instrumentation/nav/frequencies","instrumentation/nav[1]/frequencies"];
+        m.mfd_mode_list=["APP","VOR","MAP","PLAN"];
+
         m.efis = props.globals.getNode(prop1,1);
-        m.kpa_mode = m.efis.getNode("kpa-mode",1);
-        m.kpa_mode.setBoolValue(0);
-        m.kpa_output = m.efis.getNode("inhg-kpa",1);
-        m.kpa_output.setDoubleValue(0);
-        m.temp = m.efis.getNode("fixed-temp",1);
-        m.temp.setDoubleValue(0);
-        m.alt_meters = m.efis.getNode("alt-meters",1);
-        m.alt_meters.setBoolValue(0);
+        m.mfd = m.efis.getNode("mfd",1);
+        m.pfd = m.efis.getNode("pfd",1);
+        m.mfd_mode_num = m.mfd.initNode("mode-num",2,"INT");
+        m.mfd_display_mode = m.mfd.initNode("display-mode",m.mfd_mode_list[2]);
+        m.kpa_mode = m.efis.initNode("inputs/kpa-mode",0,"BOOL");
+        m.kpa_output = m.efis.initNode("inhg-kpa",29.92);
+        m.temp = m.efis.initNode("fixed-temp",0);
+        m.alt_meters = m.efis.initNode("inputs/alt-meters",0,"BOOL");
+        m.fpv = m.efis.initNode("inputs/fpv",0,"BOOL");
+        m.nd_centered = m.efis.initNode("inputs/nd-centered",0,"BOOL");
+        m.mins_mode = m.efis.initNode("inputs/minimums-mode",0,"BOOL");
+        m.minimums = m.efis.initNode("minimums",200,"INT");
+        m.mk_minimums = props.globals.getNode("instrumentation/mk-viii/inputs/arinc429/decision-height");
+        m.wxr = m.efis.initNode("inputs/wxr",0,"BOOL");
+        m.range = m.efis.initNode("inputs/range",0);
+        m.sta = m.efis.initNode("inputs/sta",0,"BOOL");
+        m.wpt = m.efis.initNode("inputs/wpt",0,"BOOL");
+        m.arpt = m.efis.initNode("inputs/arpt",0,"BOOL");
+        m.data = m.efis.initNode("inputs/data",0,"BOOL");
+        m.pos = m.efis.initNode("inputs/pos",0,"BOOL");
+        m.terr = m.efis.initNode("inputs/terr",0,"BOOL");
+        m.rh_vor_adf = m.efis.initNode("inputs/rh-vor-adf",0,"INT");
+        m.lh_vor_adf = m.efis.initNode("inputs/lh-vor-adf",0,"INT");
+
         m.radio = m.efis.getNode("radio-mode",1);
         m.radio.setIntValue(0);
         m.radio_selected = m.efis.getNode("radio-selected",1);
         m.radio_selected.setDoubleValue(getprop("instrumentation/comm/frequencies/selected-mhz"));
         m.radio_standby = m.efis.getNode("radio-standby",1);
         m.radio_standby.setDoubleValue(getprop("instrumentation/comm/frequencies/standby-mhz"));
+
+        m.kpaL = setlistener("instrumentation/altimeter/setting-inhg", func m.calc_kpa());
+
     return m;
     },
 #### convert inhg to kpa ####
@@ -37,9 +58,7 @@ var EFIS = {
         var kp = getprop("instrumentation/altimeter/setting-inhg");
         if(me.kpa_mode.getBoolValue()){
             kp= kp * 33.8637526;
-            }else{
-                kp = kp * 100;
-            }
+        }
         me.kpa_output.setValue(kp);
         },
 #### update temperature display ####
@@ -95,23 +114,94 @@ var EFIS = {
         me.radio_selected.setDoubleValue(getprop(me.radio_list[rm]~"/selected-mhz"));
         me.radio_standby.setDoubleValue(getprop(me.radio_list[rm]~"/standby-mhz"));
     },
-
-set_radar_range : func(rtmp){
-    var rng =getprop("instrumentation/radar/range");
-    if(rtmp ==1){
-        rng =rng * 2;
-        if(rng > 640) rng = 640;
-    }elsif(rtmp =-1){
-        rng =rng / 2;
-        if(rng < 10) rng = 10;
-    }
-    setprop("instrumentation/radar/range",rng);
-    setprop("instrumentation/radar/reference-range-nm",rng);
-}
-
+######### Controller buttons ##########
+    ctl_func : func(md,val){
+        if(md=="range")
+        {
+            var rng =getprop("instrumentation/radar/range");
+            if(val ==1){
+                rng =rng * 2;
+                if(rng > 640) rng = 640;
+            }elsif(val =-1){
+                rng =rng / 2;
+                if(rng < 10) rng = 10;
+            }
+            setprop("instrumentation/radar/range",rng);
+            me.range.setValue(rng);
+        }
+        elsif(md=="dh")
+        {
+            var num =me.minimums.getValue();
+            if(val==0){
+                num=200;
+            }else{
+                num+=val;
+                if(num<0)num=0;
+                if(num>1000)num=1000;
+            }
+        me.minimums.setValue(num);
+        me.mk_minimums.setValue(num);
+        }
+        elsif(md=="display")
+        {
+            var num =me.mfd_mode_num.getValue();
+            num+=val;
+            if(num<0)num=0;
+            if(num>3)num=3;
+            me.mfd_mode_num.setValue(num);
+            me.mfd_display_mode.setValue(me.mfd_mode_list[num]);
+        }
+        elsif(md=="terr")
+        {
+            var num =me.terr.getValue();
+            num=1-num;
+            me.terr.setValue(num);
+        }
+        elsif(md=="arpt")
+        {
+            var num =me.arpt.getValue();
+            num=1-num;
+            me.arpt.setValue(num);
+        }
+        elsif(md=="wpt")
+        {
+            var num =me.wpt.getValue();
+            num=1-num;
+            me.wpt.setValue(num);
+        }
+        elsif(md=="sta")
+        {
+            var num =me.sta.getValue();
+            num=1-num;
+            me.sta.setValue(num);
+        }
+        elsif(md=="wxr")
+        {
+            var num =me.wxr.getValue();
+            num=1-num;
+            me.wxr.setValue(num);
+        }
+        elsif(md=="rhvor")
+        {
+            var num =me.rh_vor_adf.getValue();
+            num+=val;
+            if(num>1)num=1;
+            if(num<-1)num=-1;
+            me.rh_vor_adf.setValue(num);
+        }
+        elsif(md=="lhvor")
+        {
+            var num =me.lh_vor_adf.getValue();
+            num+=val;
+            if(num>1)num=1;
+            if(num<-1)num=-1;
+            me.lh_vor_adf.setValue(num);
+        }
+    },
 };
-
-#Engine control class 
+##############################################
+##############################################
+#Engine control class
 # ie: var Eng = Engine.new(engine number);
 var Engine = {
     new : func(eng_num){
@@ -242,7 +332,7 @@ setlistener("/sim/signals/reinit", func {
 
 setlistener("/autopilot/route-manager/route/num", func(wp){
     var wpt= wp.getValue() -1;
-    
+
     if(wpt>-1){
     setprop("instrumentation/groundradar/id",getprop("autopilot/route-manager/route/wp["~wpt~"]/id"));
     }else{

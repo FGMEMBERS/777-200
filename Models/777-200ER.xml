@@ -105,6 +105,28 @@ Syd Adams
     </model>
 
     <model>
+        <name>CTL1</name>
+        <path>Aircraft/777-200/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <offsets>
+            <x-m>-23.574</x-m>
+            <y-m>-0.361</y-m>
+            <z-m>0.575</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>CTL2</name>
+        <path>Aircraft/777-200/Models/Instruments/EFIS/efis-ctl.xml</path>
+        <offsets>
+            <x-m>-23.574</x-m>
+            <y-m>0.366</y-m>
+            <z-m>0.575</z-m>
+            <pitch-deg>-10</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
         <name>PFD1</name>
         <path>Aircraft/777-200/Models/Instruments/PFD/PFD.xml</path>
         <offsets>
@@ -1235,6 +1257,15 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>dist-scale</type>
+        <object-name>Beacon01</object-name>
+        <factor>0.01</factor>
+        <offset>1.0</offset>
+        <min>1</min>
+        <max>500.0</max>
+    </animation>
+
+    <animation>
         <type>select</type>
         <object-name>Beacon02</object-name>
         <condition>
@@ -1256,6 +1287,15 @@ Syd Adams
     <animation>
         <type>billboard</type>
         <object-name>Beacon02</object-name>
+    </animation>
+
+    <animation>
+        <type>dist-scale</type>
+        <object-name>Beacon02</object-name>
+        <factor>0.01</factor>
+        <offset>1.0</offset>
+        <min>1</min>
+        <max>500.0</max>
     </animation>
 
     <animation>

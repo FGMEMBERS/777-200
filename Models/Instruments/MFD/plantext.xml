@@ -2,130 +2,105 @@
 
 
 <PropertyList>
-    <name>PFDtext</name>
+    <name>PLANtext</name>
     <w-base>256</w-base>
     <h-base>256</h-base>
 
     <layers>
 
         <layer>
-            <name>SPD annun</name>
+            <name>bkgrd</name>
+            <w>256</w>
+            <h>256</h>
+            <texture>
+                <path>Aircraft/777-200/Models/Instruments/MFD/transparent.png</path>
+                <x1>0.0</x1>
+                <y1>0.0</y1>
+                <x2>1</x2>
+                <y2>1</y2>
+            </texture>
+        <emissive>true</emissive>
+        </layer>
+
+        <layer>
+            <condition>
+                <greater-than>
+                    <property>autopilot/route-manager/route/num</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+            <name>WP ID</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>8</point-size>
             <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.3</blue>
+                <red>0.8</red>
+                <green>0.35</green>
+                <blue>0.5</blue>
             </color>
             <chunks>
                 <chunk>
                     <type>text-value</type>
-                    <property>instrumentation/afds/ap-modes/speed-mode-active</property>
+                    <property>autopilot/route-manager/wp/id</property>
                 </chunk>
             </chunks>
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>-77</offset>
+                    <offset>95</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>110</offset>
+                    <offset>115</offset>
                 </transformation>
             </transformations>
         </layer>
 
         <layer>
-            <name>ROLL annun</name>
+            <condition>
+                <greater-than>
+                    <property>autopilot/route-manager/route/num</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+            <name>WP ETA</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>7</point-size>
             <color>
-                <red>0.3</red>
+                <red>0.8</red>
                 <green>0.8</green>
-                <blue>0.3</blue>
+                <blue>0.8</blue>
             </color>
             <chunks>
                 <chunk>
                     <type>text-value</type>
-                    <property>instrumentation/afds/ap-modes/roll-mode</property>
+                    <property>autopilot/route-manager/wp/eta</property>
                 </chunk>
             </chunks>
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>-30</offset>
+                    <offset>95</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>110</offset>
+                    <offset>100</offset>
                 </transformation>
             </transformations>
         </layer>
 
         <layer>
-            <name>PITCH annun</name>
+            <condition>
+                <greater-than>
+                    <property>autopilot/route-manager/route/num</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+            <name>WP DIST</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
-            <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.3</blue>
-            </color>
-            <chunks>
-                <chunk>
-                    <type>text-value</type>
-                    <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                </chunk>
-            </chunks>
-            <transformations>
-                <transformation>
-                    <type>x-shift</type>
-                    <offset>12</offset>
-                </transformation>
-                <transformation>
-                    <type>y-shift</type>
-                    <offset>110</offset>
-                </transformation>
-            </transformations>
-        </layer>
-
-        <layer>
-            <name>FD on</name>
-            <type>text</type>
-            <font>arial_black</font>
-            <point-size>6</point-size>
-            <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.3</blue>
-            </color>
-            <chunks>
-                <chunk>
-                    <type>text-value</type>
-                    <property>instrumentation/afds/ap-modes/mode-annunciator</property>
-                </chunk>
-            </chunks>
-            <transformations>
-                <transformation>
-                    <type>x-shift</type>
-                    <offset>-30</offset>
-                </transformation>
-                <transformation>
-                    <type>y-shift</type>
-                    <offset>72</offset>
-                </transformation>
-            </transformations>
-        </layer>
-
-
-        <layer>
-            <name>mach</name>
-            <type>text</type>
-            <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>7</point-size>
             <color>
                 <red>0.8</red>
                 <green>0.8</green>
@@ -134,24 +109,89 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>velocities/mach</property>
-                    <format>%0.3f</format>
+                    <property>autopilot/route-manager/wp/dist</property>
+                    <format>%3.1f</format>
                 </chunk>
             </chunks>
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>-118</offset>
+                    <offset>95</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>-95</offset>
+                    <offset>85</offset>
                 </transformation>
             </transformations>
         </layer>
 
         <layer>
-            <name>airspeed</name>
+            <name>GSPD</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>7</point-size>
+            <color>
+                <red>0.8</red>
+                <green>0.8</green>
+                <blue>0.8</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>velocities/groundspeed-kt</property>
+                    <format>GS%3.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-120</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>115</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>TAS</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>7</point-size>
+            <color>
+                <red>0.8</red>
+                <green>0.8</green>
+                <blue>0.8</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>velocities/uBody-fps</property>
+                    <scale>0.59248380</scale>
+                    <format>TAS%3.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-80</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>115</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <condition>
+                <greater-than>
+                    <property>environment/wind-speed-kt</property>
+                    <value>0.99</value>
+                </greater-than>
+            </condition>
+            <name>Wind</name>
             <type>text</type>
             <font>arial_black</font>
             <point-size>8</point-size>
@@ -163,81 +203,32 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>velocities/airspeed-kt</property>
-                    <format>%03.0f</format>
+                    <property>environment/wind-from-heading-deg</property>
+                    <format>%3.0f</format>
                 </chunk>
-            </chunks>
-            <transformations>
-                <transformation>
-                    <type>x-shift</type>
-                    <offset>-122</offset>
-                </transformation>
-                <transformation>
-                    <type>y-shift</type>
-                    <offset>-0.4</offset>
-                </transformation>
-            </transformations>
-        </layer>
-
-        <layer>
-            <name>altitude</name>
-            <type>text</type>
-            <font>arial_black</font>
-            <point-size>8</point-size>
-            <color>
-                <red>0.8</red>
-                <green>0.8</green>
-                <blue>0.8</blue>
-            </color>
-            <chunks>
+                <chunk>
+                    <type>literal</type>
+                    <text>*/</text>
+                </chunk>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/altimeter/indicated-altitude-ft</property>
-                    <format>%05.0f</format>
+                    <property>environment/wind-speed-kt</property>
+                    <format>%3.0f</format>
                 </chunk>
             </chunks>
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>69</offset>
+                    <offset>-120</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>-0.4</offset>
+                    <offset>100</offset>
                 </transformation>
             </transformations>
         </layer>
 
-        <layer>
-            <name>inhg</name>
-            <type>text</type>
-            <font>arial_black</font>
-            <point-size>6</point-size>
-            <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.6</blue>
-            </color>
-            <chunks>
-                <chunk>
-                    <type>number-value</type>
-                    <property>instrumentation/efis/inhg-kpa</property>
-                    <format>%2.2f</format>
-                </chunk>
-            </chunks>
-            <transformations>
-                <transformation>
-                    <type>x-shift</type>
-                    <offset>65</offset>
-                </transformation>
-                <transformation>
-                    <type>y-shift</type>
-                    <offset>-95</offset>
-                </transformation>
-            </transformations>
-        </layer>
+    </layers>
 
-
-</layers>
 
 </PropertyList>

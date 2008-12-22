@@ -63,6 +63,20 @@
         <h>176</h>
     </instrument>
 
+    <instrument include="vsi.xml">
+    <condition>
+        <greater-than>
+            <property>systems/electrical/bus-volts</property>
+            <value>15</value>
+        </greater-than>
+    </condition>
+        <name>vsi</name>
+        <x>240</x>
+        <y>134</y>
+        <w>26</w>
+        <h>120</h>
+    </instrument>
+
     <instrument include="fd.xml">
     <condition>
         <and>
@@ -70,7 +84,7 @@
                 <property>systems/electrical/bus-volts</property>
                 <value>15</value>
             </greater-than>
-            <property>instrumentation/flightdirector/AP-mode</property>
+            <property>instrumentation/afds/inputs/FD</property>
         </and>
     </condition>
         <name>fdbars</name>

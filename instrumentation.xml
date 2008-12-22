@@ -13,6 +13,11 @@ This file selects the instrumentation modules that should be available.
         <number>0</number>
     </adf>
 
+    <adf>
+        <name>adf</name>
+        <number>1</number>
+    </adf>
+
     <airspeed-indicator>
         <name>airspeed-indicator</name>
         <number>0</number>
@@ -67,7 +72,6 @@ This file selects the instrumentation modules that should be available.
         <name>slip-skid-ball</name>
         <number>0</number>
     </slip-skid-ball>
-
 
     <turn-indicator>
         <name>turn-indicator</name>

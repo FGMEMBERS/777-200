@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- Delta Airlines 777-200ER Livery by Michael Smith <mdsmith2@highland.net> -->
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Delta Airlines</name>
+            <texture>DAL-Livery.png</texture>
+        </livery>
+        <lights>
+            <texture>DAL-Lights.png</texture>
+        </lights>
+    </model>
+</sim>
+</PropertyList>

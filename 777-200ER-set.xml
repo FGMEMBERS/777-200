@@ -100,16 +100,14 @@
             <setting>0.000</setting>  <!-- flaps up -->
             <setting>0.033</setting>  <!-- flaps 1  -->
             <setting>0.166</setting>  <!-- flaps 5  -->
-            <setting>0.500</setting>  <!-- flaps 15 --> 
+            <setting>0.500</setting>  <!-- flaps 15 -->
             <setting>0.666</setting>  <!-- flaps 20 -->
             <setting>0.833</setting>  <!-- flaps 25 -->
             <setting>1.000</setting>  <!-- flaps 30 -->
         </flaps>
 
         <systems>
-            <electrical>
-                <path></path>
-            </electrical>
+        <path>Aircraft/777-200/Systems/systems.xml</path>
             <autopilot>
                 <path>Aircraft/777-200/Systems/777-autopilot.xml</path>
             </autopilot>
@@ -175,7 +173,7 @@
 
         <weight n="0">
             <name>Crew</name>
-            <weight-lb>350</weight-lb> 
+            <weight-lb>350</weight-lb>
             <max-lb>500</max-lb>
             <min-lb>350</min-lb>
         </weight>
@@ -253,6 +251,22 @@
             <id type="string">KSFO</id>
             <range type="double">1.2</range>
         </groundradar>
+        <mk-viii>
+            <serviceable>1</serviceable>
+            <speaker>
+                <max-dist>2</max-dist>
+                <reference-dist>1</reference-dist>
+                <volume>0.5</volume>
+            </speaker>
+        </mk-viii>
+        <adf n="1">
+            <serviceable type="bool">1</serviceable>
+            <mode>adf</mode>
+            <frequencies>
+                <selected-khz>341</selected-khz>
+                <standby-khz>379</standby-khz>
+            </frequencies>
+        </adf>
     </instrumentation>
 
     <controls>
@@ -266,6 +280,7 @@
             <file>Aircraft/777-200/Nasal/Electrical.nas</file>
             <file>Aircraft/777-200/Nasal/flightdirector.nas</file>
             <file>Aircraft/777-200/Nasal/systems.nas</file>
+            <file>Aircraft/777-200/Nasal/AFDS.nas</file>
         </b777>
     </nasal>
 
