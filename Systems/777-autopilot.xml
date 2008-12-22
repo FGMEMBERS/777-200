@@ -121,7 +121,7 @@ Roll Axis Modes
         </output>
         <config>
             <Kp>
-                <value>-1.5</value>
+                <value>-1.0</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>

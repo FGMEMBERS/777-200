@@ -31,7 +31,7 @@ MAC 278.51 in - 7.074154 m
 <airplane mass="298900">
 
 <!-- Approach configuration -->
-<approach speed="147" aoa="4" fuel="0.3">
+<approach speed="147" aoa="3" fuel="0.3">
   <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.20"/>
   <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.20"/>
   <control-setting axis="/controls/flight/flaps" value="1"/>
