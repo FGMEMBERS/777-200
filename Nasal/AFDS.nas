@@ -281,7 +281,7 @@ var update_afds = func {
     if(afds.lnav_active){
         if(afds.fms_active){
             mag_var=getprop("environment/magnetic-variation-deg");
-            hdg=getprop("internal/true-heading-error-deg");
+            hdg=getprop("autopilot/internal/true-heading-error-deg");
             hdg+=mag_var;
             if(hdg>359)hdg-=360;
         }else{
