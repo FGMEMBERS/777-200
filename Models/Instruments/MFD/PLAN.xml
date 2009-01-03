@@ -13,10 +13,10 @@
             <h>16</h>
             <texture>
                 <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
-                <x1>0.015</x1>
-                <y1>0.928</y1>
-                <x2>0.078</x2>
-                <y2>0.992</y2>
+                <x1>0.050</x1>
+                <y1>0.866</y1>
+                <x2>0.174</x2>
+                <y2>0.967</y2>
             </texture>
             <transformations>
                 <transformation>

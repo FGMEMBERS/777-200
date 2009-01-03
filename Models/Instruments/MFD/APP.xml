@@ -143,10 +143,10 @@
             <h>50</h>
             <texture>
                 <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
-                <x1>0.862</x1>
-                <y1>0.017</y1>
-                <x2>0.895</x2>
-                <y2>0.394</y2>
+                <x1>0.731</x1>
+                <y1>0.019</y1>
+                <x2>0.788</x2>
+                <y2>0.274</y2>
             </texture>
             <transformations>
                 <transformation>
@@ -166,6 +166,73 @@
                     <type>x-shift</type>
                     <property>instrumentation/nav/heading-needle-deflection</property>
                     <scale>4.124</scale>
+                </transformation>
+            </transformations>
+            <emissive>true</emissive>
+        </layer>
+
+        <layer>
+            <condition>
+                <not>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                </not>
+            </condition>
+            <name>gs scale</name>
+            <w>12</w>
+            <h>90</h>
+            <texture>
+                <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
+                <x1>0.528</x1>
+                <y1>0.470</y1>
+                <x2>0.579</x2>
+                <y2>0.849</y2>
+            </texture>
+            <transformations>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-55</offset>
+                </transformation>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>120</offset>
+                </transformation>
+            </transformations>
+            <emissive>true</emissive>
+        </layer>
+
+        <layer>
+            <condition>
+                <not>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                </not>
+            </condition>
+            <name>gs pointer</name>
+            <w>10</w>
+            <h>16</h>
+            <texture>
+                <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
+                <x1>0.686</x1>
+                <y1>0.833</y1>
+                <x2>0.761</x2>
+                <y2>0.952</y2>
+            </texture>
+            <transformations>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-55</offset>
+                </transformation>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>120</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <property>instrumentation/nav/gs-needle-deflection</property>
+                    <interpolation>
+                        <entry><ind>-0.7</ind><dep>-38</dep></entry>
+                        <entry><ind>0</ind><dep>0</dep></entry>
+                        <entry><ind>0.7</ind><dep>38</dep></entry>
+                    </interpolation>
                 </transformation>
             </transformations>
             <emissive>true</emissive>
@@ -362,10 +429,10 @@
             <h>50</h>
             <texture>
                 <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
-                <x1>0.862</x1>
-                <y1>0.017</y1>
-                <x2>0.895</x2>
-                <y2>0.394</y2>
+                <x1>0.731</x1>
+                <y1>0.019</y1>
+                <x2>0.788</x2>
+                <y2>0.274</y2>
             </texture>
             <transformations>
                 <transformation>
@@ -508,6 +575,69 @@
                 <x2>1.0</x2>
                 <y2>1.0</y2>
             </texture>
+        </layer>
+
+        <layer>
+            <condition>
+                <property>instrumentation/efis/inputs/nd-centered</property>
+            </condition>
+            <name>gs scale 2</name>
+            <w>12</w>
+            <h>90</h>
+            <texture>
+                <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
+                <x1>0.528</x1>
+                <y1>0.470</y1>
+                <x2>0.579</x2>
+                <y2>0.849</y2>
+            </texture>
+            <transformations>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-10</offset>
+                </transformation>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>120</offset>
+                </transformation>
+            </transformations>
+            <emissive>true</emissive>
+        </layer>
+
+        <layer>
+            <condition>
+                <property>instrumentation/efis/inputs/nd-centered</property>
+            </condition>
+            <name>gs pointer 2</name>
+            <w>10</w>
+            <h>16</h>
+            <texture>
+                <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
+                <x1>0.686</x1>
+                <y1>0.833</y1>
+                <x2>0.761</x2>
+                <y2>0.952</y2>
+            </texture>
+            <transformations>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-10</offset>
+                </transformation>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>120</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <property>instrumentation/nav/gs-needle-deflection</property>
+                    <interpolation>
+                        <entry><ind>-0.7</ind><dep>-38</dep></entry>
+                        <entry><ind>0</ind><dep>0</dep></entry>
+                        <entry><ind>0.7</ind><dep>38</dep></entry>
+                    </interpolation>
+                </transformation>
+            </transformations>
+            <emissive>true</emissive>
         </layer>
 
         <layer>

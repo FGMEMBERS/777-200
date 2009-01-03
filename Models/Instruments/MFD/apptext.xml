@@ -23,7 +23,7 @@
         </layer>
 
         <layer>
-            <name>VOR num</name>
+            <name>APP num</name>
             <type>text</type>
             <font>arial_black</font>
             <point-size>7</point-size>
@@ -35,7 +35,7 @@
             <chunks>
                 <chunk>
                     <type>literal</type>
-                    <text>VOR L</text>
+                    <text>ILS L</text>
                 </chunk>
             </chunks>
             <transformations>
@@ -51,7 +51,7 @@
         </layer>
 
         <layer>
-            <name>VOR ident</name>
+            <name>ILS ident</name>
             <type>text</type>
             <font>arial_black</font>
             <point-size>7</point-size>
@@ -79,7 +79,7 @@
         </layer>
 
         <layer>
-            <name>VOR course</name>
+            <name>ILS course</name>
             <type>text</type>
             <font>arial_black</font>
             <point-size>7</point-size>
@@ -108,7 +108,7 @@
         </layer>
 
         <layer>
-            <name>VOR dist</name>
+            <name>ILS dist</name>
             <type>text</type>
             <font>arial_black</font>
             <point-size>7</point-size>

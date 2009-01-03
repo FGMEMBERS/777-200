@@ -31,6 +31,8 @@ var AFDS = {
         m.lnav_active=0;
         m.vnav_active=0;
         m.fms_active=0;
+        m.vor_armed=0;
+        m.gs_armed=0;
 
         m.current_speed_mode=0;
         m.current_roll_mode=0;
@@ -223,7 +225,27 @@ var AFDS = {
                 }
             me.AP_pitch_mode.setValue(tmp);
         }
-
+        elsif(apmode=="APP")
+        {
+            tmp = getprop("instrumentation/nav/has-gs");
+                if(tmp){
+                    me.AP_pitch_arm.setValue("G/S");
+                    me.AP_roll_arm.setValue("LOC");
+                    me.vor_armed=1;
+                    me.gs_armed=1;
+                    me.app.setValue(1);
+                    me.fms_active=0;
+                }else{
+                    me.AP_pitch_arm.setValue("");
+                    me.AP_roll_arm.setValue("");
+                    me.vor_armed=0;
+                    me.gs_armed=0;
+                    me.app.setValue(0);
+                }
+            }
+    },
+    #####################
+    set_ap : func(apmode){
     },
 #####################
     pitch_wheel : func(step){
@@ -286,12 +308,29 @@ var update_afds = func {
             trk=getprop("orientation/heading-magnetic-deg");
             defl=getprop("instrumentation/nav/heading-needle-deflection");
             var newhdg=hdg-trk;
-            newhdg+=defl*3;
+            newhdg+=defl*4;
             if(newhdg>180)newhdg-=360;
             if(newhdg<-180)newhdg+=360;
             hdg=newhdg;
         }
         afds.lnav_heading.setValue(hdg);
+    }
+
+    if(afds.vor_armed ==1){
+        if(defl< 9 and defl>-9){
+            afds.AP_roll_mode.setValue(afds.AP_roll_arm.getValue());
+            afds.AP_roll_arm.setValue("");
+            afds.vor_armed=0;
+        }
+    }
+
+    if(afds.gs_armed==1){
+        var gsdefl = getprop("instrumentation/nav/gs-needle-deflection");
+        if(gsdefl< 0.15 and gsdefl>-0.15){
+            afds.AP_pitch_mode.setValue(afds.AP_pitch_arm.getValue());
+            afds.AP_pitch_arm.setValue("");
+            afds.gs_armed=0;
+        }
     }
 
 settimer(update_afds, 0);

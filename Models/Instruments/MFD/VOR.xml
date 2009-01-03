@@ -143,10 +143,10 @@
             <h>50</h>
             <texture>
                 <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
-                <x1>0.862</x1>
-                <y1>0.017</y1>
-                <x2>0.895</x2>
-                <y2>0.394</y2>
+                <x1>0.731</x1>
+                <y1>0.019</y1>
+                <x2>0.788</x2>
+                <y2>0.274</y2>
             </texture>
             <transformations>
                 <transformation>
@@ -362,10 +362,10 @@
             <h>50</h>
             <texture>
                 <path>Aircraft/777-200/Models/Instruments/MFD/symbols.png</path>
-                <x1>0.862</x1>
-                <y1>0.017</y1>
-                <x2>0.895</x2>
-                <y2>0.394</y2>
+                <x1>0.731</x1>
+                <y1>0.019</y1>
+                <x2>0.788</x2>
+                <y2>0.274</y2>
             </texture>
             <transformations>
                 <transformation>

@@ -12,7 +12,7 @@
             <name>SPD annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>5</point-size>
             <color>
                 <red>0.3</red>
                 <green>0.8</green>
@@ -21,17 +21,17 @@
             <chunks>
                 <chunk>
                     <type>text-value</type>
-                    <property>instrumentation/afds/ap-modes/speed-mode-active</property>
+                    <property>instrumentation/afds/ap-modes/speed-mode</property>
                 </chunk>
             </chunks>
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>-77</offset>
+                    <offset>-70</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>110</offset>
+                    <offset>112</offset>
                 </transformation>
             </transformations>
         </layer>
@@ -40,7 +40,7 @@
             <name>ROLL annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>5</point-size>
             <color>
                 <red>0.3</red>
                 <green>0.8</green>
@@ -55,11 +55,11 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>-30</offset>
+                    <offset>-28</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>110</offset>
+                    <offset>112</offset>
                 </transformation>
             </transformations>
         </layer>
@@ -68,7 +68,7 @@
             <name>PITCH annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>5</point-size>
             <color>
                 <red>0.3</red>
                 <green>0.8</green>
@@ -83,11 +83,67 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>12</offset>
+                    <offset>15</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>110</offset>
+                    <offset>112</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>ROLL arm annun</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>5</point-size>
+            <color>
+                <red>0.7</red>
+                <green>0.7</green>
+                <blue>0.7</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>instrumentation/afds/ap-modes/roll-mode-arm</property>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-25</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>104</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>PITCH arm annun</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>5</point-size>
+            <color>
+                <red>0.7</red>
+                <green>0.7</green>
+                <blue>0.7</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>instrumentation/afds/ap-modes/pitch-mode-arm</property>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>17</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>104</offset>
                 </transformation>
             </transformations>
         </layer>
