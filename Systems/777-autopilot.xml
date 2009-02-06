@@ -387,14 +387,14 @@ Roll Axis Modes
         </output>
         <config>
             <Kp>
-                <value>1.5</value>
+                <value>2</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
-                <value>-5.0</value>
+                <value>-2.5</value>
             </u_min>
             <u_max>
-                <value>5.0</value>
+                <value>2.5</value>
             </u_max>
         </config>
     </pi-simple-controller>
@@ -453,7 +453,7 @@ Roll Axis Modes
         </output>
         <config>
             <Kp>
-                <value>0.05</value>
+                <value>0.25</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
@@ -472,7 +472,7 @@ Roll Axis Modes
     <type>noise-spike</type>
     <input>autopilot/internal/target-pitch-filter</input>
     <output>autopilot/internal/target-pitch-deg</output>
-    <max-rate-of-change>0.5</max-rate-of-change>
+    <max-rate-of-change>1</max-rate-of-change>
 </filter>
 
 <pid-controller>
@@ -493,14 +493,14 @@ Roll Axis Modes
     <prop>controls/flight/elevator-trim</prop>
   </output>
   <config>
-<Kp>-0.15</Kp>
+<Kp>-0.05</Kp>
 <beta>1.0</beta>
 <alpha>0.1</alpha>
 <gamma>0.0</gamma>
 <Ti>1.0</Ti>
 <Td>0.0</Td>
-<u_min>-0.25</u_min>
-<u_max>0.25</u_max>  </config>
+<u_min>-0.5</u_min>
+<u_max>0.5</u_max>  </config>
 </pid-controller>
 
 <!--
