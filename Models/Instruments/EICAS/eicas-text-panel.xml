@@ -22,6 +22,34 @@
         <h>256</h>
     </instrument>
 
+    <instrument include="Msg.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/bus-volts</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>messages</name>
+        <x>315.0</x>
+        <y>192.0</y>
+        <w>180</w>
+        <h>110</h>
+    </instrument>
+
+    <instrument include="AIR.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/bus-volts</property>
+                <value>15</value>
+            </greater-than>
+        </condition>
+        <name>air systems</name>
+        <x>85.0</x>
+        <y>32.0</y>
+        <w>148</w>
+        <h>56</h>
+    </instrument>
+
 </instruments>
 
 </PropertyList>

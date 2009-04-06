@@ -274,9 +274,9 @@ Syd Adams
         <name>CDU3</name>
         <path>Aircraft/777-200/Models/Instruments/cdu.xml</path>
         <offsets>
-            <x-m>-22.910</x-m>
+            <x-m>-22.845</x-m>
             <y-m>0.017</y-m>
-            <z-m>0.015</z-m>
+            <z-m>0.013</z-m>
             <pitch-deg>-88.2</pitch-deg>
         </offsets>
     </model>
@@ -285,9 +285,9 @@ Syd Adams
         <name>Radio1</name>
         <path>Aircraft/777-200/Models/Instruments/radio1.xml</path>
         <offsets>
-            <x-m>-22.953</x-m>
+            <x-m>-22.985</x-m>
             <y-m>-0.104</y-m>
-            <z-m>0.016</z-m>
+            <z-m>0.015</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
@@ -296,9 +296,20 @@ Syd Adams
         <name>Radio2</name>
         <path>Aircraft/777-200/Models/Instruments/radio1.xml</path>
         <offsets>
-            <x-m>-22.953</x-m>
-        <y-m>0.138</y-m>
-            <z-m>0.016</z-m>
+            <x-m>-22.985</x-m>
+        <y-m>0.139</y-m>
+            <z-m>0.015</z-m>
+            <pitch-deg>-88</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>Radio3</name>
+        <path>Aircraft/777-200/Models/Instruments/radio1.xml</path>
+        <offsets>
+            <x-m>-22.786</x-m>
+        <y-m>-0.104</y-m>
+            <z-m>0.011</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
@@ -1036,7 +1047,10 @@ Syd Adams
         <type>select</type>
         <object-name>navlights</object-name>
         <condition>
-            <property>controls/lighting/nav-lights</property>
+            <greater-than>
+            <property>sim/multiplay/generic/int[4]</property>
+            <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1062,7 +1076,10 @@ Syd Adams
         <object-name>FuselageR</object-name>
         <object-name>CTRLND.flare</object-name>
         <condition>
-            <property>controls/lighting/landing-lights</property>
+            <greater-than>
+                <property>sim/multiplay/generic/int[2]</property>
+                <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1089,10 +1106,10 @@ Syd Adams
         <object-name>greenflash</object-name>
         <condition>
             <and>
-                <property>controls/lighting/nav-lights</property>
-                <not>
-                    <property>controls/lighting/strobe-state/state</property>
-                </not>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[4]</property>
+                    <value>5</value>
+                </greater-than>
                 <less-than>
                     <property>rendering/scene/ambient/blue</property>
                     <value>0.38</value>
@@ -1137,7 +1154,10 @@ Syd Adams
         <type>select</type>
         <object-name>Strobe01</object-name>
         <condition>
-            <property>controls/lighting/strobe-state/state</property>
+            <greater-than>
+                <property>sim/multiplay/generic/int[0]</property>
+                <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1170,7 +1190,10 @@ Syd Adams
         <type>select</type>
         <object-name>Strobe02</object-name>
         <condition>
-            <property>controls/lighting/strobe-state/state</property>
+            <greater-than>
+                <property>sim/multiplay/generic/int[0]</property>
+                <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1203,7 +1226,10 @@ Syd Adams
         <type>select</type>
         <object-name>Strobe03</object-name>
         <condition>
-            <property>controls/lighting/strobe-state/state</property>
+            <greater-than>
+                <property>sim/multiplay/generic/int[0]</property>
+                <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1236,7 +1262,10 @@ Syd Adams
         <type>select</type>
         <object-name>Beacon01</object-name>
         <condition>
-            <property>controls/lighting/beacon-state/state</property>
+            <greater-than>
+                <property>sim/multiplay/generic/int[1]</property>
+                <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1269,7 +1298,10 @@ Syd Adams
         <type>select</type>
         <object-name>Beacon02</object-name>
         <condition>
-            <property>controls/lighting/beacon-state/state</property>
+            <greater-than>
+                <property>sim/multiplay/generic/int[1]</property>
+                <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1365,7 +1397,10 @@ Syd Adams
         <type>select</type>
         <object-name>Tail.001</object-name>
         <condition>
-            <property>controls/lighting/logo-lights</property>
+            <greater-than>
+            <property>sim/multiplay/generic/int[3]</property>
+            <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 
@@ -1373,7 +1408,10 @@ Syd Adams
         <type>select</type>
         <object-name>Rudder.001</object-name>
         <condition>
-            <property>controls/lighting/logo-lights</property>
+            <greater-than>
+            <property>sim/multiplay/generic/int[3]</property>
+            <value>5</value>
+            </greater-than>
         </condition>
     </animation>
 

@@ -267,6 +267,17 @@
                 <standby-khz>379</standby-khz>
             </frequencies>
         </adf>
+        <efis>
+            <eicas>
+                <msg n="0">
+                    <text>TESTING TESTING</text>
+                    <red>0.8</red>
+                    <green>0.4</green>
+                    <blue>0.2</blue>
+                    <alpha>0.5</alpha>
+                </msg>
+            </eicas>
+        </efis>
     </instrumentation>
 
     <controls>

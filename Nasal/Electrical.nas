@@ -343,5 +343,12 @@ setprop(outPut~"instrument-lights-norm",0.035714 * getprop(outPut~"instrument-li
 var update_electrical = func {
     var scnd = getprop("sim/time/delta-sec");
     update_virtual_bus( scnd );
+    setprop("sim/multiplay/generic/int[0]",getprop("systems/electrical/outputs/strobe"));
+    setprop("sim/multiplay/generic/int[1]",getprop("systems/electrical/outputs/beacon"));
+
+    setprop("sim/multiplay/generic/int[2]",getprop("systems/electrical/outputs/landing-lights"));
+    setprop("sim/multiplay/generic/int[3]",getprop("systems/electrical/outputs/logo-lights"));
+    setprop("sim/multiplay/generic/int[4]",getprop("systems/electrical/outputs/nav-lights"));
+
 settimer(update_electrical, 0);
 }

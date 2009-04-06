@@ -16,10 +16,16 @@ var EFIS = {
         m = { parents : [EFIS]};
         m.radio_list=["instrumentation/comm/frequencies","instrumentation/comm[1]/frequencies","instrumentation/nav/frequencies","instrumentation/nav[1]/frequencies"];
         m.mfd_mode_list=["APP","VOR","MAP","PLAN"];
+        m.eicas_msg=[];
+        m.eicas_msg_red=[];
+        m.eicas_msg_green=[];
+        m.eicas_msg_blue=[];
+        m.eicas_msg_alpha=[];
 
-        m.efis = props.globals.getNode(prop1,1);
-        m.mfd = m.efis.getNode("mfd",1);
-        m.pfd = m.efis.getNode("pfd",1);
+        m.efis = props.globals.initNode(prop1);
+        m.mfd = m.efis.initNode("mfd");
+        m.pfd = m.efis.initNode("pfd");
+        m.eicas = m.efis.initNode("eicas");
         m.mfd_mode_num = m.mfd.initNode("mode-num",2,"INT");
         m.mfd_display_mode = m.mfd.initNode("display-mode",m.mfd_mode_list[2]);
         m.kpa_mode = m.efis.initNode("inputs/kpa-mode",0,"BOOL");
@@ -50,6 +56,14 @@ var EFIS = {
         m.radio_standby.setDoubleValue(getprop("instrumentation/comm/frequencies/standby-mhz"));
 
         m.kpaL = setlistener("instrumentation/altimeter/setting-inhg", func m.calc_kpa());
+
+        for(var i=0; i<11; i+=1) {
+        append(m.eicas_msg,m.eicas.initNode("msg["~i~"]/text"," ","STRING"));
+        append(m.eicas_msg_red,m.eicas.initNode("msg["~i~"]/red",0.1 *i));
+        append(m.eicas_msg_green,m.eicas.initNode("msg["~i~"]/green",0.8));
+        append(m.eicas_msg_blue,m.eicas.initNode("msg["~i~"]/blue",0.8));
+        append(m.eicas_msg_alpha,m.eicas.initNode("msg["~i~"]/alpha",1.0));
+        }
 
     return m;
     },
@@ -356,6 +370,14 @@ setlistener("/sim/model/start-idling", func(idle){
     Shutdown();
     }
 },0,0);
+
+controls.gearDown = func(v) {
+    if (v < 0) {
+        if(!getprop("gear/gear[1]/wow"))setprop("/controls/gear/gear-down", 0);
+    } elsif (v > 0) {
+      setprop("/controls/gear/gear-down", 1);
+    }
+}
 
 var Startup = func{
 setprop("controls/electric/engine[0]/generator",1);
