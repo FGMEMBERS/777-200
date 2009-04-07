@@ -120,6 +120,7 @@
         <sound>
             <path>Aircraft/777-200/Sounds/777-sound.xml</path>
             <switch type = "bool">0</switch>
+            <stall-horn type="bool">0</stall-horn>
         </sound>
 
         <hud>
@@ -256,7 +257,7 @@
             <speaker>
                 <max-dist>2</max-dist>
                 <reference-dist>1</reference-dist>
-                <volume>0.5</volume>
+                <volume>0.4</volume>
             </speaker>
         </mk-viii>
         <adf n="1">

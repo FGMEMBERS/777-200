@@ -356,7 +356,7 @@ setlistener("/autopilot/route-manager/route/num", func(wp){
 
 setlistener("/sim/current-view/internal", func(vw){
     if(vw.getValue()){
-    SndOut.setDoubleValue(0.15);
+    SndOut.setDoubleValue(0.3);
     }else{
     SndOut.setDoubleValue(1.0);
     }
@@ -376,6 +376,25 @@ controls.gearDown = func(v) {
         if(!getprop("gear/gear[1]/wow"))setprop("/controls/gear/gear-down", 0);
     } elsif (v > 0) {
       setprop("/controls/gear/gear-down", 1);
+    }
+}
+
+stall_horn = func{
+    var alert=0;
+    var kias=getprop("velocities/airspeed-kt");
+    if(kias>150)return;
+    var wow1=getprop("gear/gear[1]/wow");
+    var wow2=getprop("gear/gear[2]/wow");
+    if(!wow1 or !wow2){
+        var grdn=getprop("controls/gear/gear-down");
+        var flap=getprop("controls/flight/flaps");
+        if(kias<100){
+            alert=1;
+        }elsif(kias<120){
+            if(!grdn )alert=1;
+        }else{
+            if(flap==0)alert=1;
+        }
     }
 }
 
@@ -441,5 +460,6 @@ var update_systems = func {
     LHeng.update();
     RHeng.update();
     wiper.active();
+    stall_horn();
     settimer(update_systems,0);
 }
