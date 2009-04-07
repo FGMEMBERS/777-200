@@ -382,7 +382,7 @@ controls.gearDown = func(v) {
 stall_horn = func{
     var alert=0;
     var kias=getprop("velocities/airspeed-kt");
-    if(kias>150)return;
+    if(kias>150){setprop("sim/sound/stall-horn",alert);return;};
     var wow1=getprop("gear/gear[1]/wow");
     var wow2=getprop("gear/gear[2]/wow");
     if(!wow1 or !wow2){
@@ -396,6 +396,7 @@ stall_horn = func{
             if(flap==0)alert=1;
         }
     }
+    setprop("sim/sound/stall-horn",alert);
 }
 
 var Startup = func{
