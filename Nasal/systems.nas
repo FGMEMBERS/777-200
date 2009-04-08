@@ -462,5 +462,12 @@ var update_systems = func {
     RHeng.update();
     wiper.active();
     stall_horn();
+    if(getprop("controls/gear/gear-down")){
+    setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
+    setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
+    setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
+    setprop("sim/multiplay/generic/float[3]",getprop("gear/gear[3]/compression-m"));
+    setprop("sim/multiplay/generic/float[4]",getprop("gear/gear[4]/compression-m"));
+    }
     settimer(update_systems,0);
 }

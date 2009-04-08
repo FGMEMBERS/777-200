@@ -1524,7 +1524,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>FUdamper</object-name>
-        <property>gear/gear[0]/compression-m</property>
+        <property>sim/multiplay/generic/float[0]</property>
         <factor>45</factor>
         <center>
             <x-m>-19.134</x-m>
@@ -1543,7 +1543,7 @@ Syd Adams
         <object-name>FrtWheel</object-name>
         <object-name>FrtStrut</object-name>
         <object-name>FLdamper</object-name>
-        <property>gear/gear[0]/compression-m</property>
+        <property>sim/multiplay/generic/float[0]</property>
         <axis>
             <x>0.087</x>
             <y>0</y>
@@ -1554,7 +1554,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>FLdamper</object-name>
-        <property>gear/gear[0]/compression-m</property>
+        <property>sim/multiplay/generic/float[0]</property>
         <factor>45</factor>
         <center>
             <x-m>-19.180</x-m>
@@ -1788,7 +1788,7 @@ Syd Adams
         <object-name>LHwheel.2</object-name>
         <object-name>LHwheel.3</object-name>
         <object-name>Laxle</object-name>
-        <property>gear/gear[3]/compression-m</property>
+        <property>sim/multiplay/generic/float[3]</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>0.52</ind><dep>20</dep></entry>
@@ -1813,7 +1813,7 @@ Syd Adams
         <object-name>Lknuckle</object-name>
         <object-name>Laxle</object-name>
         <object-name>Lstrut</object-name>
-        <property>gear/gear[1]/compression-m</property>
+        <property>sim/multiplay/generic/float[1]</property>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -1936,7 +1936,7 @@ Syd Adams
         <object-name>RHwheel.2</object-name>
         <object-name>RHwheel.3</object-name>
         <object-name>Raxle</object-name>
-        <property>gear/gear[4]/compression-m</property>
+        <property>sim/multiplay/generic/float[4]</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
             <entry><ind>0.52</ind><dep>20</dep></entry>
@@ -1961,7 +1961,7 @@ Syd Adams
         <object-name>Rknuckle</object-name>
         <object-name>Raxle</object-name>
         <object-name>Rstrut</object-name>
-        <property>gear/gear[2]/compression-m</property>
+        <property>sim/multiplay/generic/float[2]</property>
         <axis>
             <x>0</x>
             <y>0</y>
