@@ -38,9 +38,9 @@
                 <type>y-shift</type>
                 <property>instrumentation/nav/gs-needle-deflection</property>
                 <interpolation>
-                    <entry><ind>-0.7</ind><dep>-35</dep></entry>
+                    <entry><ind>-1.05</ind><dep>-50</dep></entry>
                     <entry><ind>0</ind><dep>0</dep></entry>
-                    <entry><ind>0.7</ind><dep>35</dep></entry>
+                    <entry><ind>1.05</ind><dep>50</dep></entry>
             </interpolation>
             </transformation>
         </transformations>

@@ -11,7 +11,7 @@
     <instrument include="eicastext.xml">
     <condition>
         <greater-than>
-            <property>systems/electrical/bus-volts</property>
+            <property>systems/electrical/outputs/efis</property>
             <value>15</value>
         </greater-than>
     </condition>
@@ -25,7 +25,7 @@
     <instrument include="Msg.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -39,7 +39,7 @@
     <instrument include="AIR.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>

@@ -1,26 +1,34 @@
-####    2 Generator Jet Electrical system    ####
+####    jet engine electrical system    ####
 ####    Syd Adams    ####
-#### Based on Curtis Olson's nasal electrical code ####
-
+var count=0;
 var ammeter_ave = 0.0;
-var outPut = "systems/electrical/outputs/";
-var Breakers = "systems/electrical/breakers/";
-var switch_list=[];
-var output_list=[];
-var breaker_list=[];
-var load_list=[];
+var Lbus = props.globals.initNode("/systems/electrical/left-bus",0,"DOUBLE");
+var Rbus = props.globals.initNode("/systems/electrical/right-bus",0,"DOUBLE");
+var Amps = props.globals.initNode("/systems/electrical/amps",0,"DOUBLE");
+var EXT  = props.globals.initNode("/controls/electric/external-power",0,"DOUBLE");
+var XTie  = props.globals.initNode("/systems/electrical/xtie",0,"BOOL");
+var lbus_volts = 0.0;
+var rbus_volts = 0.0;
 
-var Volts = props.globals.getNode("/systems/electrical/bus-volts",1);
-var Amps = props.globals.getNode("/systems/electrical/amps",1);
-var EXT  = props.globals.getNode("/controls/electric/external-power",1);
+var lbus_input=[];
+var lbus_output=[];
+var lbus_load=[];
 
-strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
+var rbus_input=[];
+var rbus_output=[];
+var rbus_load=[];
+
+var lights_input=[];
+var lights_output=[];
+var lights_load=[];
+
+var strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
 aircraft.light.new("controls/lighting/strobe-state", [0.05, 1.30], strobe_switch);
-beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
-aircraft.light.new("controls/lighting/beacon-state", [0.06, 1.20], beacon_switch);
+var beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
+aircraft.light.new("controls/lighting/beacon-state", [1.0, 1.0], beacon_switch);
 
 #var battery = Battery.new(switch-prop,volts,amps,amp_hours,charge_percent,charge_amps);
-Battery = {
+var Battery = {
     new : func(swtch,vlt,amp,hr,chp,cha){
     m = { parents : [Battery] };
             m.switch = props.globals.getNode(swtch,1);
@@ -30,14 +38,11 @@ Battery = {
             m.amp_hours = hr;
             m.charge_percent = chp;
             m.charge_amps = cha;
-            m.output = props.globals.getNode("systems/electrical/batt-volts",1);
-            m.output.setDoubleValue(0);
     return m;
     },
 
     apply_load : func(load,dt) {
-        var pwr = me.switch.getValue();
-        if(pwr){
+        if(me.switch.getValue()){
         var amphrs_used = load * dt / 3600.0;
         var percent_used = amphrs_used / me.amp_hours;
         me.charge_percent -= percent_used;
@@ -48,36 +53,36 @@ Battery = {
         }
         var output =me.amp_hours * me.charge_percent;
         return output;
-        }else{return 0;}
+        }else return 0;
     },
 
     get_output_volts : func {
-        var pwr = me.switch.getValue();
+        if(me.switch.getValue()){
         var x = 1.0 - me.charge_percent;
         var tmp = -(3.0 * x - 1.0);
         var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
         var output =me.ideal_volts * factor;
-        output=output *pwr;
-        me.output.setValue(output);
         return output;
+        }else return 0;
     },
 
     get_output_amps : func {
-        var pwr = me.switch.getValue();
+        if(me.switch.getValue()){
         var x = 1.0 - me.charge_percent;
         var tmp = -(3.0 * x - 1.0);
         var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
         var output =me.ideal_amps * factor;
-        return output*pwr;
+        return output;
+        }else return 0;
     }
 };
 
 # var alternator = Alternator.new(num,switch,rpm_source,rpm_threshold,volts,amps);
-Alternator = {
+var Alternator = {
     new : func (num,switch,src,thr,vlt,amp){
         m = { parents : [Alternator] };
         m.switch =  props.globals.getNode(switch,1);
-        if(m.switch.getValue()==nil)m.switch.setBoolValue(0);
+        m.switch.setBoolValue(0);
         m.meter =  props.globals.getNode("systems/electrical/gen-load["~num~"]",1);
         m.meter.setDoubleValue(0);
         m.gen_output =  props.globals.getNode("engines/engine["~num~"]/amp-v",1);
@@ -100,14 +105,13 @@ Alternator = {
         }else{
             gout=0;
         }
-        if(cur_amp > gout)me.meter.setValue(cur_amp - 0.01);
-        if(cur_amp < gout)me.meter.setValue(cur_amp + 0.01);
+        me.meter.setValue(gout);
     },
 
     get_output_volts : func {
         var out = 0;
         if(me.switch.getBoolValue()){
-            var factor = me.rpm_source.getValue() / me.rpm_threshold;
+            var factor = me.rpm_source.getValue() / me.rpm_threshold or 0;
             if ( factor > 1.0 )factor = 1.0;
             var out = (me.ideal_volts * factor);
         }
@@ -118,7 +122,7 @@ Alternator = {
     get_output_amps : func {
         var ampout =0;
         if(me.switch.getBoolValue()){
-            var factor = me.rpm_source.getValue() / me.rpm_threshold;
+            var factor = me.rpm_source.getValue() / me.rpm_threshold or 0;
             if ( factor > 1.0 ) {
                 factor = 1.0;
             }
@@ -129,226 +133,212 @@ Alternator = {
 };
 
 var battery = Battery.new("/controls/electric/battery-switch",24,30,34,1.0,7.0);
-alternator1 = Alternator.new(0,"controls/electric/engine[0]/generator","/engines/engine[0]/rpm",40.0,28.0,60.0);
-alternator2 = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/rpm",40.0,28.0,60.0);
-var bus_norm= 1/28;
+var alternator1 = Alternator.new(0,"controls/electric/engine[0]/generator","/engines/engine[0]/rpm",20.0,28.0,60.0);
+var alternator2 = Alternator.new(1,"controls/electric/engine[1]/generator","/engines/engine[1]/rpm",20.0,28.0,60.0);
 
 #####################################
 setlistener("/sim/signals/fdm-initialized", func {
-    init_electrical();
+    init_switches();
     settimer(update_electrical,5);
     print("Electrical System ... ok");
 });
 
-var init_electrical = func{
-
+var init_switches = func{
+    var AVswitch=props.globals.initNode("controls/electric/avionics-switch",0,"BOOL");
     setprop("controls/lighting/instruments-norm",0.8);
-    setprop("controls/lighting/eng-norm",0.8);
+    setprop("controls/lighting/engines-norm",0.8);
+    props.globals.initNode("controls/electric/ammeter-switch",0,"BOOL");
+    props.globals.getNode("systems/electrical/serviceable",0,"BOOL");
+    props.globals.getNode("controls/electric/external-power",0,"BOOL");
+    setprop("controls/lighting/instrument-lights-norm",0.8);
     setprop("controls/lighting/efis-norm",0.8);
     setprop("controls/lighting/panel-norm",0.8);
 
-    append(switch_list,"controls/electric/wipers/switch");
-    append(output_list,"wipers");
-    append(load_list,0.5);
-    append(switch_list,"controls/engines/engine[0]/starter");
-    append(output_list,"starter[0]");
-    append(load_list,10.0);
-    append(switch_list,"controls/engines/engine[1]/starter");
-    append(output_list,"starter[1]");
-    append(load_list,10.0);
-    append(switch_list,"controls/cabin/fan");
-    append(output_list,"cabin-fan");
-    append(load_list,0.5);
-    append(switch_list,"controls/cabin/heat");
-    append(output_list,"cabin-heat");
-    append(load_list,0.5);
-    append(switch_list,"controls/anti-ice/prop-heat");
-    append(output_list,"prop-heat");
-    append(load_list,0.5);
-    append(switch_list,"controls/anti-ice/pitot-heat");
-    append(output_list,"pitot-heat");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/landing-lights");
-    append(output_list,"landing-lights");
-    append(load_list,1.0);
-    append(switch_list,"controls/lighting/beacon-state/state");
-    append(output_list,"beacon");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/nav-lights");
-    append(output_list,"nav-lights");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/cabin-lights");
-    append(output_list,"cabin-lights");
-    append(load_list,1.0);
-    append(switch_list,"controls/lighting/wing-lights");
-    append(output_list,"wing-lights");
-    append(load_list,1.0);
-    append(switch_list,"controls/lighting/recog-lights");
-    append(output_list,"recog-lights");
-    append(load_list,1.0);
-    append(switch_list,"controls/lighting/logo-lights");
-    append(output_list,"logo-lights");
-    append(load_list,1.0);
-    append(switch_list,"controls/lighting/taxi-lights");
-    append(output_list,"taxi-lights");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/strobe-state/state");
-    append(output_list,"strobe");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/instruments-norm");
-    append(output_list,"instrument-lights");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/efis-norm");
-    append(output_list,"efis-lights");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/panel-norm");
-    append(output_list,"panel-lights");
-    append(load_list,0.5);
-    append(switch_list,"controls/lighting/eng-norm");
-    append(output_list,"eng-lights");
-    append(load_list,0.5);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"adf");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"adf[1]");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"dme");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"gps");
-    append(load_list,1.5);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"DG");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"transponder");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"mk-viii");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"tacan");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"turn-coordinator");
-    append(load_list,0.5);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"comm");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"comm[1]");
-    append(load_list,1.0);
-    append(switch_list,"instrumentation/nav/power-btn");
-    append(output_list,"nav");
-    append(load_list,1.0);
-    append(switch_list,"instrumentation/nav[1]/power-btn");
-    append(output_list,"nav[1]");
-    append(load_list,1.0);
-    append(switch_list,"controls/electric/avionics-switch");
-    append(output_list,"KNS80");
-    append(load_list,1.0);
-    append(switch_list,"controls/engines/engine[0]/fuel-pump");
-    append(output_list,"fuel-pump[0]");
-    append(load_list,1.0);
-    append(switch_list,"controls/engines/engine[1]/fuel-pump");
-    append(output_list,"fuel-pump[1]");
-    append(load_list,1.0);
+    append(lights_input,props.globals.initNode("controls/lighting/landing-light[0]",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-light[0]",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/landing-light[1]",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-light[1]",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/nav-lights",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/nav-lights",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/cabin-lights",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/cabin-lights",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/map-lights",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/map-lights",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/wing-lights",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/wing-lights",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/recog-lights",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/recog-lights",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/logo-lights",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/logo-lights",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/taxi-lights",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/taxi-lights",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/beacon-state/state",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/beacon",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/strobe-state/state",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/strobe",0,"DOUBLE"));
+    append(lights_load,1);
 
-    for(var i=0; i<size(switch_list); i+=1) {
-        var tmp = props.globals.getNode(switch_list[i],1);
-        if(tmp.getValue()==nil)tmp.setBoolValue(0);
-        var tmp2 = props.globals.getNode(Breakers~output_list[i],1);
-        tmp2.setBoolValue(1);
-    }
+    append(rbus_input,props.globals.initNode("controls/electric/wiper-switch",0,"BOOL"));
+    append(rbus_output,props.globals.initNode("systems/electrical/outputs/wiper",0,"DOUBLE"));
+    append(rbus_load,1);
+    append(rbus_input,props.globals.initNode("controls/engines/engine[0]/fuel-pump",0,"BOOL"));
+    append(rbus_output,props.globals.initNode("systems/electrical/outputs/fuel-pump[0]",0,"DOUBLE"));
+    append(rbus_load,1);
+    append(rbus_input,props.globals.initNode("controls/engines/engine[1]/fuel-pump",0,"BOOL"));
+    append(rbus_output,props.globals.initNode("systems/electrical/outputs/fuel-pump[1]",0,"DOUBLE"));
+    append(rbus_load,1);
+    append(rbus_input,props.globals.initNode("controls/engines/engine[0]/starter",0,"BOOL"));
+    append(rbus_output,props.globals.initNode("systems/electrical/outputs/starter",0,"DOUBLE"));
+    append(rbus_load,1);
+    append(rbus_input,props.globals.initNode("controls/engines/engine[1]/starter",0,"BOOL"));
+    append(rbus_output,props.globals.initNode("systems/electrical/outputs/starter[1]",0,"DOUBLE"));
+    append(rbus_load,1);
+    append(rbus_input,AVswitch);
+    append(rbus_output,props.globals.initNode("systems/electrical/outputs/KNS80",0,"DOUBLE"));
+    append(rbus_load,1);
+    append(rbus_input,AVswitch);
+    append(rbus_output,props.globals.initNode("systems/electrical/outputs/efis",0,"DOUBLE"));
+    append(rbus_load,1);
+
+
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/adf",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/dme",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/gps",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/DG",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/transponder",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/mk-viii",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/turn-coordinator",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/comm",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/comm[1]",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/nav",0,"DOUBLE"));
+    append(lbus_load,1);
+    append(lbus_input,AVswitch);
+    append(lbus_output,props.globals.initNode("systems/electrical/outputs/nav[1]",0,"DOUBLE"));
+    append(lbus_load,1);
 }
 
 
-var update_virtual_bus = func( tm ) {
-    var dt = tm;
+update_virtual_bus = func( dt ) {
     var PWR = getprop("systems/electrical/serviceable");
-    var battery_volts = battery.get_output_volts();
-    var alternator1_volts = alternator1.get_output_volts();
-    var alternator2_volts = alternator2.get_output_volts();
-    var external_volts = 24.0;
-
-    var load = 0.0;
-    var bus_volts = 0.0;
-    var power_source = nil;
-
-        bus_volts = battery_volts;
+    var xtie=0;
+    load = 0.0;
+    power_source = nil;
+    if(count==0){
+        var battery_volts = battery.get_output_volts();
+        lbus_volts = battery_volts;
         power_source = "battery";
-
-    if (alternator1_volts > bus_volts) {
-        bus_volts = alternator1_volts;
-        power_source = "alternator1";
+        var alternator1_volts = alternator1.get_output_volts();
+        if (alternator1_volts > lbus_volts) {
+            lbus_volts = alternator1_volts;
+            power_source = "alternator1";
         }
-
-    if (alternator2_volts > bus_volts) {
-        bus_volts = alternator2_volts;
-        power_source = "alternator2";
+        lbus_volts *=PWR;
+        Lbus.setValue(lbus_volts);
+        load += lh_bus(lbus_volts);
+            alternator1.apply_load(load);
+    }else{
+        var battery_volts = battery.get_output_volts();
+        rbus_volts = battery_volts;
+        power_source = "battery";
+        var alternator2_volts = alternator2.get_output_volts();
+        if (alternator2_volts > rbus_volts) {
+            rbus_volts = alternator2_volts;
+            power_source = "alternator2";
         }
-    if ( EXT.getBoolValue() and ( external_volts > bus_volts) ) {
-        bus_volts = external_volts;
-        }
-
-    bus_volts *=PWR;
-
-
-    load += electrical_bus(bus_volts);
+        rbus_volts *=PWR;
+        Rbus.setValue(rbus_volts);
+        load += rh_bus(rbus_volts);
+        alternator2.apply_load(load);
+    }
+    count=1-count;
+    if(rbus_volts > 5 and  lbus_volts>5) xtie=1;
+    XTie.setValue(xtie);
+    if(rbus_volts > 5 or  lbus_volts>5) load += lighting(24);
 
     ammeter = 0.0;
-    if ( power_source == "battery" ) {
-        ammeter = -load;
-        } else {
-        ammeter = battery.charge_amps;
-    }
-
-    if ( power_source == "battery" ) {
-        battery.apply_load( load, dt );
-        } elsif ( bus_volts > battery_volts ) {
-        battery.apply_load( -battery.charge_amps, dt );
-        }
-
-    ammeter_ave = 0.8 * ammeter_ave + 0.2 * ammeter;
-
-   Amps.setValue(ammeter_ave);
-    Volts.setValue(bus_volts);
-    alternator1.apply_load(load);
-    alternator2.apply_load(load);
 
 return load;
 }
-#######################
-var electrical_bus = func(vlt) {
-    var bus_volts = vlt;
+
+rh_bus = func(bv) {
+    var bus_volts = bv;
     var load = 0.0;
     var srvc = 0.0;
 
-    for(var i=0; i<size(switch_list); i+=1) {
-        var srvc = getprop(switch_list[i]);
-        var brkr = getprop(Breakers~output_list[i]);
-        srvc = srvc*brkr;
-        setprop(outPut~output_list[i],bus_volts * srvc);
-        load = load + srvc * load_list[i];
+    for(var i=0; i<size(rbus_input); i+=1) {
+        var srvc = rbus_input[i].getValue();
+        load += rbus_load[i] * srvc;
+        rbus_output[i].setValue(bus_volts * srvc);
     }
-setprop(outPut~"instrument-lights-norm",0.035714 * getprop(outPut~"instrument-lights"));
-    setprop(outPut~"flaps",bus_volts);
-
     return load;
 }
-#######################
 
-var update_electrical = func {
+lh_bus = func(bv) {
+    var load = 0.0;
+    var srvc = 0.0;
+
+    for(var i=0; i<size(lbus_input); i+=1) {
+        var srvc = lbus_input[i].getValue();
+        load += lbus_load[i] * srvc;
+        lbus_output[i].setValue(bv * srvc);
+    }
+
+    setprop("systems/electrical/outputs/flaps",bv);
+    return load;
+}
+
+lighting = func(bv) {
+    var load = 0.0;
+    var srvc = 0.0;
+    var ac=bv*4.29;
+
+    for(var i=0; i<size(lights_input); i+=1) {
+        var srvc = lights_input[i].getValue();
+        load += lights_load[i] * srvc;
+        lights_output[i].setValue(bv * srvc);
+    }
+
+setprop("sim/multiplay/generic/int",getprop("systems/electrical/outputs/strobe"));
+setprop("sim/multiplay/generic/int[1]",getprop("systems/electrical/outputs/beacon"));
+setprop("sim/multiplay/generic/int[2]",getprop("systems/electrical/outputs/taxi-lights"));
+setprop("sim/multiplay/generic/int[3]",getprop("systems/electrical/outputs/logo-lights"));
+setprop("sim/multiplay/generic/int[4]",getprop("systems/electrical/outputs/landing-light[1]"));
+
+return load;
+
+}
+
+update_electrical = func {
     var scnd = getprop("sim/time/delta-sec");
     update_virtual_bus( scnd );
-    setprop("sim/multiplay/generic/int[0]",getprop("systems/electrical/outputs/strobe"));
-    setprop("sim/multiplay/generic/int[1]",getprop("systems/electrical/outputs/beacon"));
-
-    setprop("sim/multiplay/generic/int[2]",getprop("systems/electrical/outputs/landing-lights"));
-    setprop("sim/multiplay/generic/int[3]",getprop("systems/electrical/outputs/logo-lights"));
-    setprop("sim/multiplay/generic/int[4]",getprop("systems/electrical/outputs/nav-lights"));
-
 settimer(update_electrical, 0);
 }

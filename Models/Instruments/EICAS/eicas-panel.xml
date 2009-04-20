@@ -11,7 +11,7 @@
     <instrument include="LHepr.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -25,7 +25,7 @@
     <instrument include="RHepr.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -39,7 +39,7 @@
     <instrument include="LHn1.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -53,7 +53,7 @@
     <instrument include="RHn1.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -68,7 +68,7 @@
     <instrument include="LHegt.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -82,7 +82,7 @@
     <instrument include="RHegt.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -96,7 +96,7 @@
     <instrument include="Gear.xml">
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
         </condition>
@@ -111,7 +111,7 @@
         <condition>
             <and>
                 <greater-than>
-                    <property>systems/electrical/bus-volts</property>
+                    <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
                 </greater-than>
                 <greater-than>

@@ -255,11 +255,11 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>-30</offset>
+                    <offset>-20</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>15</offset>
+                    <offset>6</offset>
                 </transformation>
             </transformations>
         </layer>

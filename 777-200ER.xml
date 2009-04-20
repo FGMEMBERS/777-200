@@ -31,9 +31,9 @@ MAC 278.51 in - 7.074154 m
 <airplane mass="298900">
 
 <!-- Approach configuration -->
-<approach speed="155" aoa="3" fuel="0.75">
-    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.2"/>
-    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.2"/>
+<approach speed="132" aoa="7" fuel="0.75">
+    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.3"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.3"/>
     <control-setting axis="/controls/flight/flaps" value="1"/>
     <control-setting axis="/controls/gear/gear-down" value="1"/>
     <solve-weight idx="0" weight="350"/>
@@ -42,8 +42,8 @@ MAC 278.51 in - 7.074154 m
 
 <!-- Cruise configuration -->
 <cruise speed="510" alt="35000" fuel="0.75">
-    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.8"/>
-    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.8"/>
+    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.9"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.9"/>
     <control-setting axis="/controls/flight/flaps" value="0.0"/>
     <control-setting axis="/controls/flight/elevator-trim" value="0"/>
     <control-setting axis="/controls/gear/gear-down" value="0"/>
@@ -66,8 +66,8 @@ MAC 278.51 in - 7.074154 m
 
 <wing x="-2.974" y="3.095" z="-1.66" length="32.107" chord="13.0" sweep="31.5"
       taper="0.0287" dihedral="7" camber="-0.0" incidence="0">
-    <stall aoa="10" width="4" peak="1.5"/>
-    <flap0 start="0" end=".56" lift="1.5" drag="2"/>
+    <stall aoa="13" width="5" peak="1.5"/>
+    <flap0 start="0" end=".56" lift="1.4" drag="2"/>
     <flap1 start=".64" end=".88" lift="1.4" drag="1.1"/>
     <slat start="0" end="1" aoa="4" drag="1.2"/>
     <spoiler start="0.2" end="0.6" lift="0.5" drag="2.0"/>
@@ -86,9 +86,9 @@ MAC 278.51 in - 7.074154 m
 </wing>
 
 <hstab x="-31.0" y="1.5" z="1.0" chord="6.0" length="10.84" taper=".20"
-       sweep="28" dihedral="7"  effectiveness="1.5">
-  <stall aoa="12" width="5" peak="1.5"/>
-  <flap0 start="0" end="1" lift="1.6" drag="1.3"/>
+       sweep="28" dihedral="7"  effectiveness="2.5">
+  <stall aoa="15" width="5" peak="1.5"/>
+  <flap0 start="0" end="1" lift="1.6" drag="1.2"/>
   <control-input axis="/controls/flight/elevator" control="FLAP0"/>
   <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
   <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
@@ -106,7 +106,7 @@ MAC 278.51 in - 7.074154 m
 
 <jet x="1.16" y="9.89"  z="-2.995" mass="13889" thrust="93400" spool-time="3"
 egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
-  <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
+  <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
   <control-input axis="/controls/engines/engine[0]/mixture" control="MIXTURE"/>
   <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
@@ -116,7 +116,7 @@ egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
 
 <jet x="1.16" y="-9.89"  z="-2.995" mass="13889" thrust="93400"  spool-time="3"
 egt="840" tsfc="0.576" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
-  <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
+  <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
   <control-input axis="/controls/engines/engine[0]/mixture" control="MIXTURE"/>
   <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>

@@ -6,17 +6,6 @@
  <path>stby-alt.ac</path>
 
   <animation>
-  <type>material</type>
-  <object-name>StbyAlt</object-name>
-  <emission>
-    <red>0.3</red>
-    <green>0.25</green>
-    <blue>0.2</blue>
-    <factor-prop>controls/lighting/map-lights</factor-prop>	
-  </emission>
-</animation>
-
-  <animation>
    <type>textranslate</type>
    <object-name>atxt10000</object-name>
    <property>instrumentation/altimeter/indicated-altitude-ft</property>
@@ -71,7 +60,7 @@
   <animation>
    <type>textranslate</type>
    <object-name>kpa1000</object-name>
-   <property>instrumentation/efis/kpa</property>
+   <property>instrumentation/efis/inhg-kpa</property>
    <factor>0.0001</factor>
    <step>1000</step>
    <axis>
@@ -84,7 +73,7 @@
   <animation>
    <type>textranslate</type>
    <object-name>kpa100</object-name>
-   <property>instrumentation/efis/kpa</property>
+   <property>instrumentation/efis/inhg-kpa</property>
    <factor>0.001</factor>
    <step>100</step>
    <axis>
@@ -97,7 +86,7 @@
   <animation>
    <type>textranslate</type>
    <object-name>kpa10</object-name>
-   <property>instrumentation/efis/kpa</property>
+   <property>instrumentation/efis/inhg-kpa</property>
    <factor>0.01</factor>
    <step>10</step>
    <axis>
@@ -110,7 +99,7 @@
   <animation>
    <type>textranslate</type>
    <object-name>kpa1</object-name>
-   <property>instrumentation/efis/kpa</property>
+   <property>instrumentation/efis/inhg-kpa</property>
    <factor>0.1</factor>
    <step>1</step>
    <axis>
@@ -190,5 +179,43 @@
      <z>0</z>
    </axis>
  </animation>
+
+<!--  Hotspots -->
+
+    <animation>
+        <type>pick</type>
+        <object-name>StbyAsi.knob</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>StbyAsi.knob</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>-0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
 
 </PropertyList>

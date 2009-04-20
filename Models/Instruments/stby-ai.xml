@@ -5,18 +5,6 @@
 <PropertyList>
  <path>stby-ai.ac</path>
 
-  <animation>
-  <type>material</type>
-  <object-name>StbyAIbezel</object-name>
-  <emission>
-    <red>0.3</red>
-    <green>0.25</green>
-    <blue>0.2</blue>
-    <factor-prop>controls/lighting/map-lights</factor-prop>	
-  </emission>
-</animation>
-
-
  <animation>
    <type>texmultiple</type>
    <object-name>StbyAIface</object-name>

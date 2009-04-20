@@ -219,11 +219,13 @@
         <radar>
             <switch type="string" archive="y">on</switch>
             <mode-control type="int" archive="y">1</mode-control>
+            <display-mode>plan</display-mode>
             <display-controls>
                 <WX type="bool" archive="y">false</WX>
                 <pos type="bool" archive="y">true</pos>
                 <data type="bool" archive="y">true</data>
                 <symbol type="bool" archive="y">true</symbol>
+                <rotate type="bool" archive="y">true</rotate>
             </display-controls>
             <serviceable type="bool">true</serviceable>
             <range type="int" archive="y">10</range>

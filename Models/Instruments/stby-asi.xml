@@ -5,18 +5,6 @@
 <PropertyList>
  <path>stby-asi.ac</path>
 
-  <animation>
-  <type>material</type>
-  <object-name>StbyAsi</object-name>
-  <object-name>StbyAsi.knob</object-name>
-  <emission>
-    <red>0.3</red>
-    <green>0.25</green>
-    <blue>0.2</blue>
-    <factor-prop>controls/lighting/map-lights</factor-prop>	
-  </emission>
-</animation>
-
  <animation>
    <type>textranslate</type>
    <object-name>stbytxt.100</object-name>

@@ -131,8 +131,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>instrumentation/efis/inputs/nd-centered</property>
+            <command>nasal</command>
+            <script>b777.Efis.ctl_func("center",0);</script>
         </binding>
         </action>
     </animation>
@@ -170,8 +170,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("pos",0);</script>
+            <command>property-toggle</command>
+            <property>instrumentation/radar/display-controls/pos</property>
         </binding>
         </action>
     </animation>
@@ -183,8 +183,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("data",0);</script>
+            <command>property-toggle</command>
+            <property>instrumentation/radar/display-controls/data</property>
         </binding>
         </action>
     </animation>
@@ -328,6 +328,19 @@ Syd Adams
             <binding>
             <command>nasal</command>
             <script>b777.Efis.ctl_func("range",1);</script>
+        </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>TFC</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>nasal</command>
+            <script>b777.Efis.ctl_func("tfc",1);</script>
         </binding>
         </action>
     </animation>

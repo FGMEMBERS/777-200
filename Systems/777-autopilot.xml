@@ -121,7 +121,7 @@ Roll Axis Modes
         </output>
         <config>
             <Kp>
-                <value>-1.0</value>
+                <value>-2.0</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
@@ -153,7 +153,7 @@ Roll Axis Modes
         </output>
         <config>
             <Kp>
-                <value>-1.0</value>
+                <value>-2.0</value>
             </Kp>
             <Ki>0.0</Ki>
             <u_min>
@@ -394,15 +394,14 @@ Roll Axis Modes
                 <value>-2.5</value>
             </u_min>
             <u_max>
-                <value>2.5</value>
+                <value>4 .0</value>
             </u_max>
         </config>
     </pi-simple-controller>
 
 <!-- Glideslope hold. -->
-
-    <pi-simple-controller>
-        <name>Glideslope1</name>
+    <pid-controller>
+        <name>GS HOLD</name>
         <debug>false</debug>
        <enable>
             <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
@@ -410,7 +409,6 @@ Roll Axis Modes
         </enable>
         <input>
             <prop>instrumentation/nav/gs-needle-deflection</prop>
-            <offset>-3</offset>
         </input>
         <reference>
             <value>0</value>
@@ -420,17 +418,25 @@ Roll Axis Modes
         </output>
         <config>
             <Kp>
-                <value>-1.5</value>
+                <value>-5.0</value>
             </Kp>
-            <Ki>0.0</Ki>
+            <beta>1.0</beta>
+            <alpha>0.1</alpha>
+            <gamma>0.0</gamma>
+            <Ti>
+                <value>1.0</value>
+            </Ti>
+            <Td>
+                <value>0.0</value>
+            </Td>
             <u_min>
-                <value>-6.0</value>
+                <value>-5</value>
             </u_min>
             <u_max>
-                <value>2.0</value>
+                <value>3</value>
             </u_max>
         </config>
-    </pi-simple-controller>
+    </pid-controller>
 
 <!-- V/S hold -->
 

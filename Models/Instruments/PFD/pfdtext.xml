@@ -265,6 +265,11 @@
         </layer>
 
         <layer>
+            <condition>
+                <not>
+                    <property>instrumentation/efis/inputs/kpa-mode</property>
+                </not>
+            </condition>
             <name>inhg</name>
             <type>text</type>
             <font>arial_black</font>
@@ -277,8 +282,40 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
+                    <property>instrumentation/altimeter/setting-inhg</property>
+                    <format>%2.2f IN</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>65</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-95</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <condition>
+                <property>instrumentation/efis/inputs/kpa-mode</property>
+            </condition>
+            <name>kpa</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>6</point-size>
+            <color>
+                <red>0.3</red>
+                <green>0.8</green>
+                <blue>0.6</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
                     <property>instrumentation/efis/inhg-kpa</property>
-                    <format>%2.2f</format>
+                    <format>%4.1f KPA</format>
                 </chunk>
             </chunks>
             <transformations>

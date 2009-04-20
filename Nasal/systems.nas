@@ -70,9 +70,7 @@ var EFIS = {
 #### convert inhg to kpa ####
     calc_kpa : func{
         var kp = getprop("instrumentation/altimeter/setting-inhg");
-        if(me.kpa_mode.getBoolValue()){
-            kp= kp * 33.8637526;
-        }
+        kp= kp * 33.8637526;
         me.kpa_output.setValue(kp);
         },
 #### update temperature display ####
@@ -143,6 +141,17 @@ var EFIS = {
             setprop("instrumentation/radar/range",rng);
             me.range.setValue(rng);
         }
+        elsif(md=="tfc")
+        {
+            var pos =getprop("instrumentation/radar/switch");
+            if(pos == "on"){
+                pos = "off";
+                
+            }else{
+                pos="on";
+            }
+            setprop("instrumentation/radar/switch",pos);
+        }
         elsif(md=="dh")
         {
             var num =me.minimums.getValue();
@@ -211,6 +220,14 @@ var EFIS = {
             if(num<-1)num=-1;
             me.lh_vor_adf.setValue(num);
         }
+        elsif(md=="center")
+        {
+            var num =me.nd_centered.getValue();
+            var fnt=[5,8];
+            num = 1 - num;
+            me.nd_centered.setValue(num);
+            setprop("instrumentation/radar/font/size",fnt[num]);
+        }
     },
 };
 ##############################################
@@ -258,7 +275,7 @@ var Engine = {
             }else{
                 var tmprpm = me.rpm.getValue();
                 if(tmprpm > 0.0){
-                    tmprpm -= getprop("sim/time/delta-realtime-sec") * 2;
+                    tmprpm -= getprop("sim/time/delta-realtime-sec") * 0.5;
                     me.rpm.setValue(tmprpm);
                 }
             }
@@ -274,7 +291,7 @@ var Engine = {
         return;
         }else{
             var tmprpm = me.rpm.getValue();
-            tmprpm += getprop("sim/time/delta-realtime-sec") * 5;
+            tmprpm += getprop("sim/time/delta-realtime-sec") * 0.5;
             me.rpm.setValue(tmprpm);
             if(tmprpm >= me.n1.getValue())me.cutoff.setBoolValue(0);
         }

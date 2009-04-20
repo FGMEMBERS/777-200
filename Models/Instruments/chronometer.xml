@@ -5,17 +5,6 @@
 <PropertyList>
  <path>clock.ac</path>
 
-  <animation>
-  <type>material</type>
-  <object-name>Chronobezel</object-name>
-  <emission>
-    <red>0.3</red>
-    <green>0.25</green>
-    <blue>0.2</blue>
-    <factor-prop>controls/lighting/map-lights</factor-prop>	
-  </emission>
-</animation>
-
  <animation>
    <type>textranslate</type>
    <object-name>Hr.10</object-name>

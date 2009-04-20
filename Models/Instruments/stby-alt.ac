@@ -1,6 +1,6 @@
 AC3Db
-MATERIAL "Flat.002" rgb 1 1 1 amb 1 1 1 emis 0.1 0.1 0.1 spec 0 0 0 shi 0 trans 0
-MATERIAL "Lights.002" rgb 1 1 1 amb 1 1 1 emis 1 1 1 spec 0 0 0 shi 0 trans 0
+MATERIAL "Flat" rgb 0.8 0.8 0.8 amb 0.8 0.8 0.8 emis 0.1 0.1 0.1 spec 0 0 0 shi 0 trans 0
+MATERIAL "Lights" rgb 1 1 1 amb 1 1 1 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 OBJECT world
 kids 18
 OBJECT poly
@@ -1635,7 +1635,7 @@ refs 3
 12 0.0546875 0.05078125
 kids 0
 OBJECT poly
-name "StbyAsi.knob.001"
+name "StbyAsi.knob"
 texture "flightdeck.png"
 texrep 1 1
 crease 15.000000

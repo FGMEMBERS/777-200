@@ -375,9 +375,14 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/electric/engine/generator</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine/generator</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/electric/engine/bus-tie</property>
+                <property>controls/electric/engine/generator</property>
+            </binding>
         </action>
     </animation>
 
@@ -388,9 +393,14 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/electric/engine[1]/generator</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[1]/generator</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/electric/engine[1]/bus-tie</property>
+                <property>controls/electric/engine[1]/generator</property>
+            </binding>
         </action>
     </animation>
 

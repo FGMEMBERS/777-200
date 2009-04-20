@@ -200,10 +200,20 @@ Autopilot Control Panel
         <type>select</type>
         <object-name>VNAV.toggle</object-name>
         <condition>
+            <or>
             <equals>
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                <value>VNAV</value>
+                <value>VNAV ALT</value>
             </equals>
+            <equals>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                <value>VNAV SPD</value>
+            </equals>
+            <equals>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                <value>VNAV PTH</value>
+            </equals>
+            </or>
         </condition>
     </animation>
 

@@ -225,6 +225,20 @@ var AFDS = {
                 }
             me.AP_pitch_mode.setValue(tmp);
         }
+        elsif(apmode=="ALT")
+        {
+            tmp = me.AP_pitch_mode.getValue();
+                if(tmp!="ALT"){
+                    tmp="ALT";
+                    var tmpalt =getprop("position/altitude-ft");
+                    tmpalt = int(tmpalt * 0.01);
+                    tmpalt =tmpalt * 100;
+                    me.alt_setting.setValue(tmpalt);
+                }else{
+                    tmp="";
+                }
+            me.AP_pitch_mode.setValue(tmp);
+        }
         elsif(apmode=="APP")
         {
             tmp = getprop("instrumentation/nav/has-gs");
@@ -308,7 +322,7 @@ var update_afds = func {
             trk=getprop("orientation/heading-magnetic-deg");
             defl=getprop("instrumentation/nav/heading-needle-deflection");
             var newhdg=hdg-trk;
-            newhdg+=defl*4;
+            newhdg+=defl*4.5;
             if(newhdg>180)newhdg-=360;
             if(newhdg<-180)newhdg+=360;
             hdg=newhdg;
@@ -326,7 +340,7 @@ var update_afds = func {
 
     if(afds.gs_armed==1){
         var gsdefl = getprop("instrumentation/nav/gs-needle-deflection");
-        if(gsdefl< 0.15 and gsdefl>-0.15){
+        if(gsdefl< 0.18 and gsdefl>-0.18){
             afds.AP_pitch_mode.setValue(afds.AP_pitch_arm.getValue());
             afds.AP_pitch_arm.setValue("");
             afds.gs_armed=0;
