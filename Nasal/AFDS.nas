@@ -339,7 +339,7 @@ var update_afds = func {
     }
 
     if(afds.gs_armed==1){
-        var gsdefl = getprop("instrumentation/nav/gs-needle-deflection");
+        var gsdefl = getprop("instrumentation/nav/gs-needle-deflection-norm");
         if(gsdefl< 0.18 and gsdefl>-0.18){
             afds.AP_pitch_mode.setValue(afds.AP_pitch_arm.getValue());
             afds.AP_pitch_arm.setValue("");

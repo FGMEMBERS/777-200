@@ -227,11 +227,11 @@
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <property>instrumentation/nav/gs-needle-deflection</property>
+                    <property>instrumentation/nav/gs-needle-deflection-norm</property>
                     <interpolation>
-                        <entry><ind>-1.05</ind><dep>-57.285</dep></entry>
+                        <entry><ind>-1</ind><dep>-57.285</dep></entry>
                         <entry><ind>0</ind><dep>0</dep></entry>
-                        <entry><ind>1.05</ind><dep>57.285</dep></entry>
+                        <entry><ind>1</ind><dep>57.285</dep></entry>
                     </interpolation>
                 </transformation>
             </transformations>
@@ -629,11 +629,11 @@
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <property>instrumentation/nav/gs-needle-deflection</property>
+                    <property>instrumentation/nav/gs-needle-deflection-norm</property>
                     <interpolation>
-                        <entry><ind>-1.05</ind><dep>-57.285</dep></entry>
+                        <entry><ind>-1</ind><dep>-57.285</dep></entry>
                         <entry><ind>0</ind><dep>0</dep></entry>
-                        <entry><ind>1.05</ind><dep>57.285</dep></entry>
+                        <entry><ind>1</ind><dep>57.285</dep></entry>
                     </interpolation>
                 </transformation>
             </transformations>
