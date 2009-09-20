@@ -289,6 +289,12 @@
         </gear>
     </controls>
 
+    <autopilot>
+        <autobrake>
+            <engaged type="bool">0</engaged>
+        </autobrake>
+    </autopilot>
+
     <nasal>
         <b777>
             <file>Aircraft/777-200/Nasal/Electrical.nas</file>

@@ -74,6 +74,7 @@ var AFDS = {
         m.alt_setting = m.AFDS_settings.initNode("altitude",10000);
         m.bank_min = m.AFDS_settings.initNode("bank-min",-30);
         m.bank_max = m.AFDS_settings.initNode("bank-max",30);
+        m.auto_brake_setting = m.AFDS_settings.initNode("autobrake",0.000,"DOUBLE");
         m.vnav_alt = m.AFDS_settings.initNode("vnav-alt",35000);
         m.lnav_heading = m.AFDS_settings.initNode("lnav-mag-heading",0);
 
@@ -137,7 +138,7 @@ var AFDS = {
             }else tmp-=100;
             if(tmp<0)tmp=0;
             me.alt_setting.setValue(tmp);
-        }
+        }        
     },
 #####################
     ap_mode : func(apmode){

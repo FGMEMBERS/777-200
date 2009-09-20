@@ -599,5 +599,84 @@ Roll Axis Modes
         </config>
     </pid-controller>
 
+       <!-- auto-brake -->
+
+    <pid-controller>
+               <name>AUTOBRAKE FCS</name>
+               <debug>true</debug>
+               <enable>
+                   <prop>autopilot/autobrake/engaged</prop>
+                   <value>true</value>
+               </enable>
+               <input>
+                   <prop>autopilot/autobrake/actual-decel-fts-sec</prop>
+               </input>
+               <reference>
+                   <prop>autopilot/autobrake/target-decel-fts-sec</prop>
+               </reference>
+               <output>
+                   <prop>autopilot/autobrake/fcs-brake</prop>
+               </output>
+               <config>
+                   <Kp>
+                       <value>0.1</value>
+                   </Kp>
+                   <beta>1.0</beta>
+                   <alpha>0.1</alpha>
+                   <gamma>0.0</gamma>
+                   <Ti>
+                       <value>1.0</value>
+                   </Ti>
+                   <Td>
+                       <value>0.0</value>
+                   </Td>
+                   <u_min>
+                       <value>0</value>
+                   </u_min>
+                   <u_max>
+                       <value>0</value>
+                   </u_max>
+               </config>
+           </pid-controller>
+
+    <pid-controller>
+               <name>AUTOBRAKE RH</name>
+               <debug>true</debug>
+               <enable>
+                   <prop>autopilot/autobrake/engaged</prop>
+                   <value>true</value>
+               </enable>
+               <input>
+                   <prop>autopilot/autobrake/fcs-brake</prop>
+               </input>
+               <reference>
+                   <prop>instrumention/afds/settings/autobrake</prop>
+               </reference>
+               <output>
+                   <prop>controls/gear/brake-left</prop>
+                   <prop>controls/gear/brake-right</prop>
+               </output>
+               <config>
+                   <Kp>
+                       <value>0.1</value>
+                   </Kp>
+                   <beta>1.0</beta>
+                   <alpha>0.1</alpha>
+                   <gamma>0.0</gamma>
+                   <Ti>
+                       <value>1.0</value>
+                   </Ti>
+                   <Td>
+                       <value>0.0</value>
+                   </Td>
+                   <u_min>
+                       <value>0</value>
+                   </u_min>
+                   <u_max>
+                       <value>1</value>
+                   </u_max>
+               </config>
+           </pid-controller>
+
 </PropertyList>
 
