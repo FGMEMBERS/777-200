@@ -603,7 +603,7 @@ Roll Axis Modes
 
     <pid-controller>
                <name>AUTOBRAKE FCS</name>
-               <debug>true</debug>
+               <debug>false</debug>
                <enable>
                    <prop>autopilot/autobrake/engaged</prop>
                    <value>true</value>
@@ -619,10 +619,10 @@ Roll Axis Modes
                </output>
                <config>
                    <Kp>
-                       <value>0.1</value>
+                       <value>0.06</value>
                    </Kp>
                    <beta>1.0</beta>
-                   <alpha>0.1</alpha>
+                   <alpha>0.2</alpha>
                    <gamma>0.0</gamma>
                    <Ti>
                        <value>1.0</value>
@@ -634,11 +634,11 @@ Roll Axis Modes
                        <value>0</value>
                    </u_min>
                    <u_max>
-                       <value>0</value>
+                       <value>1</value>
                    </u_max>
                </config>
            </pid-controller>
-
+		<!--
     <pid-controller>
                <name>AUTOBRAKE RH</name>
                <debug>true</debug>
@@ -677,6 +677,6 @@ Roll Axis Modes
                    </u_max>
                </config>
            </pid-controller>
-
+	-->
 </PropertyList>
 
