@@ -615,8 +615,20 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>true</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.heading_bug(1);</script>
+                <condition>
+                    <not>
+                        <property>devices/status/keyboard/shift</property>
+                    </not>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(1);</script>
+            </binding>
+            <binding>
+                <condition>
+                    <property>devices/status/keyboard/shift</property>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(10);</script>
         </binding>
         </action>
     </animation>
@@ -628,8 +640,20 @@ Autopilot Control Panel
             <button>1</button>
             <repeatable>true</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.heading_bug(-1);</script>
+                <condition>
+                    <not>
+                        <property>devices/status/keyboard/shift</property>
+                    </not>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(-1);</script>
+            </binding>
+            <binding>
+                <condition>
+                    <property>devices/status/keyboard/shift</property>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(-10);</script>
         </binding>
         </action>
     </animation>
@@ -641,8 +665,20 @@ Autopilot Control Panel
             <button>3</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.heading_bug(1);</script>
+                <condition>
+                    <not>
+                        <property>devices/status/keyboard/shift</property>
+                    </not>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(1);</script>
+            </binding>
+            <binding>
+                <condition>
+                    <property>devices/status/keyboard/shift</property>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(10);</script>
         </binding>
         </action>
     </animation>
@@ -654,8 +690,20 @@ Autopilot Control Panel
             <button>4</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.heading_bug(-1);</script>
+                <condition>
+                    <not>
+                        <property>devices/status/keyboard/shift</property>
+                    </not>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(-1);</script>
+            </binding>
+            <binding>
+                <condition>
+                    <property>devices/status/keyboard/shift</property>
+                </condition>
+                <command>nasal</command>
+                <script>b777.afds.heading_bug(-10);</script>
         </binding>
         </action>
     </animation>

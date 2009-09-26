@@ -477,8 +477,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.fuel_pump(0,0)</script>
+            <command>property-toggle</command>
+            <script>controls/fuel/tank/boost-pump</script>
         </binding>
         </action>
     </animation>
@@ -490,8 +490,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.fuel_pump(0,1)</script>
+            <command>property-toggle</command>
+            <script>controls/fuel/tank/boost-pump[1]</script>
         </binding>
         </action>
     </animation>
@@ -503,8 +503,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.fuel_pump(1,0)</script>
+            <command>property-toggle</command>
+            <script>controls/fuel/tank[1]/boost-pump</script>
         </binding>
         </action>
     </animation>
@@ -516,8 +516,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.fuel_pump(1,1)</script>
+            <command>property-toggle</command>
+            <script>controls/fuel/tank[1]/boost-pump[1]</script>
         </binding>
         </action>
     </animation>
@@ -529,8 +529,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.fuel_pump(2,0)</script>
+            <command>property-toggle</command>
+            <script>controls/fuel/tank[2]/boost-pump</script>
         </binding>
         </action>
     </animation>
@@ -542,8 +542,8 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.fuel_pump(2,1)</script>
+            <command>property-toggle</command>
+            <script>controls/fuel/tank[2]/boost-pump[1]</script>
         </binding>
         </action>
     </animation>

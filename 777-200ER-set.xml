@@ -114,7 +114,7 @@
         </systems>
 
         <instrumentation>
-            <path>Aircraft/777-200/instrumentation.xml</path>
+            <path>Aircraft/777-200/Systems/instrumentation.xml</path>
         </instrumentation>
 
         <sound>
@@ -281,6 +281,26 @@
                 </msg>
             </eicas>
         </efis>
+		<rmu>
+			<unit n="0">
+				<serviceable type="bool">1</serviceable>
+				<source-index type="int">0</source-index>
+				<selected-freq type="double">0</selected-freq>
+				<standby-freq type="double">0</standby-freq>
+			</unit>
+			<unit n="1">
+				<serviceable type="bool">1</serviceable>
+				<source-index type="int">0</source-index>
+				<selected-freq type="double">0</selected-freq>
+				<standby-freq type="double">0</standby-freq>
+			</unit>
+			<unit n="2">
+				<serviceable type="bool">1</serviceable>
+				<source-index type="int">0</source-index>
+				<selected-freq type="double">0</selected-freq>
+				<standby-freq type="double">0</standby-freq>
+			</unit>
+		</rmu>
     </instrumentation>
 
     <controls>
