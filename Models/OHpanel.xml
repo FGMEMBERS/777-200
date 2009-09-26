@@ -478,7 +478,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-toggle</command>
-            <script>controls/fuel/tank/boost-pump</script>
+            <property>controls/fuel/tank/boost-pump</property>
         </binding>
         </action>
     </animation>
@@ -491,7 +491,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-toggle</command>
-            <script>controls/fuel/tank/boost-pump[1]</script>
+            <property>controls/fuel/tank/boost-pump[1]</property>
         </binding>
         </action>
     </animation>
@@ -504,7 +504,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-toggle</command>
-            <script>controls/fuel/tank[1]/boost-pump</script>
+            <property>controls/fuel/tank[1]/boost-pump</property>
         </binding>
         </action>
     </animation>
@@ -517,7 +517,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-toggle</command>
-            <script>controls/fuel/tank[1]/boost-pump[1]</script>
+            <property>controls/fuel/tank[1]/boost-pump[1]</property>
         </binding>
         </action>
     </animation>
@@ -530,7 +530,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-toggle</command>
-            <script>controls/fuel/tank[2]/boost-pump</script>
+            <property>controls/fuel/tank[2]/boost-pump</property>
         </binding>
         </action>
     </animation>
@@ -543,7 +543,7 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
             <command>property-toggle</command>
-            <script>controls/fuel/tank[2]/boost-pump[1]</script>
+            <property>controls/fuel/tank[2]/boost-pump[1]</property>
         </binding>
         </action>
     </animation>
