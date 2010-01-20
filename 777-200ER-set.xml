@@ -4,7 +4,7 @@
         <description>Boeing 777-200ER</description>
         <author>Justin Smithies / Syd Adams</author>
         <status>Development</status>
-        <aircraft-version>20080400</aircraft-version>
+        <aircraft-version>20100008</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200ER</aero>
         <fuel-fraction>0.75</fuel-fraction>
@@ -29,7 +29,7 @@
             <config>
                 <x-offset-m type="double">-0.57</x-offset-m>
                 <y-offset-m type="double">0.8</y-offset-m>
-                <z-offset-m type="double">-22.75</z-offset-m>
+                <z-offset-m type="double">-22.84</z-offset-m>
                 <pitch-offset-deg>-13.5</pitch-offset-deg>
                 <limits>
                     <enabled type="bool">true</enabled>
@@ -70,7 +70,7 @@
             <dynamic-view type="bool">true</dynamic-view>
             <x-offset-m type="double">0.60</x-offset-m>
             <y-offset-m type="double">0.8</y-offset-m>
-            <z-offset-m type="double">-22.75</z-offset-m>
+            <z-offset-m type="double">-22.84</z-offset-m>
             <pitch-offset-deg>-13.5</pitch-offset-deg>
             <limits>
                 <enabled type="bool">true</enabled>
@@ -144,6 +144,24 @@
 
         <menubar>
             <default>
+                <menu n="3">
+                    <item n="0">
+                    <label>Autopilot Settings</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>dialogs.ap_settings.open()</script>
+                        </binding>
+                    </item>
+                </menu>
+                <menu n="5">
+                    <item n="1">
+                    <label>Radio Stack</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>dialogs.Radio.open()</script>
+                        </binding>
+                    </item>
+                </menu>
                 <menu n="100">
                     <label>777-200ER</label>
                     <enabled type="bool">true</enabled>
@@ -152,6 +170,14 @@
                         <binding>
                             <command>property-toggle</command>
                             <property>sim/model/start-idling</property>
+                        </binding>
+                    </item>
+                    <item >
+                        <label>Pushback</label>
+                        <name>pushback</name>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>pushback</dialog-name>
                         </binding>
                     </item>
                     <item>
@@ -165,7 +191,7 @@
                         <label>EFB</label>
                         <binding>
                             <command>nasal</command>
-                            <script>b777.EFB.toggle();</script>
+                            <script>dialogs.EFB.toggle();</script>
                         </binding>
                     </item>
                 </menu>
@@ -187,8 +213,48 @@
             <min-lb>0</min-lb>
         </weight>
 
+    <multiplay>
+        <generic>
+            <int n="0" alias="/systems/electrical/outputs/strobe"/>
+            <int n="1" alias="/systems/electrical/outputs/beacon"/>
+            <int n="2" alias="/systems/electrical/outputs/taxi-lights"/>
+            <int n="3" alias="/systems/electrical/outputs/logo-lights"/>
+            <int n="4" alias="/systems/electrical/outputs/landing-light[0]"/>
+            <int n="5" alias="/systems/electrical/outputs/landing-light[1]"/>
+            <int n="6" alias="/systems/electrical/outputs/landing-light[2]"/>
+            <int n="7" alias="/systems/electrical/outputs/nav-lights"/>
+
+            <float n="0" alias="/gear/gear[0]/compression-m"/>
+            <float n="1" alias="/gear/gear[1]/compression-m"/>
+            <float n="2" alias="/gear/gear[2]/compression-m"/>
+            <float n="3" alias="/gear/gear[3]/compression-m"/>
+            <float  n="4" alias="/gear/gear[4]/compression-m"/>
+            <float n="5" alias="/surface-positions/speedbrake-norm"/>
+            <float n="6" alias="/surface-positions/reverser-norm"/>
+            <string  alias="/sim/multiplay/callsign"/>
+        </generic>
+    </multiplay>
 
     </sim>
+
+    <gear>
+        <gear n="0">
+            <tyre-smoke type="int">0</tyre-smoke>
+            <sprayspeed-ms type="double">0</sprayspeed-ms>
+            <spray-density type="double">0</spray-density>
+            <caster-angle-deg-damped type="double">0</caster-angle-deg-damped>
+        </gear>
+        <gear n="1">
+            <tyre-smoke type="int">0</tyre-smoke>
+            <sprayspeed-ms type="double">0</sprayspeed-ms>
+            <spray-density type="double">0</spray-density>
+        </gear>
+        <gear n="2">
+            <tyre-smoke type="int">0</tyre-smoke>
+            <sprayspeed-ms type="double">0</sprayspeed-ms>
+            <spray-density type="double">0</spray-density>
+        </gear>
+    </gear>
 
     <consumables>
         <fuel>
@@ -210,6 +276,70 @@
                 <binding>
                     <command>property-toggle</command>
                     <property>controls/engines/engine[1]/reverser</property>
+                </binding>
+            </key>
+            <key n="267">
+                <name>F11</name>
+                <desc>Pop up autopilot dialog</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>dialogs.ap_settings.toggle()</script>
+                </binding>
+            </key>
+            <key n="268">
+                <name>F12</name>
+                <desc>Radio Stack</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>dialogs.Radio.open()</script>
+                </binding>
+            </key>
+            <key n="1">
+                <name>Ctrl-A</name>
+                <desc>Toggle autopilot altitude lock</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/afds/inputs/alt-hold</property>
+                </binding>
+            </key>
+             <key n="7">
+                <name>Ctrl-G</name>
+                <desc>Toggle autopilot glide slope lock</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/afds/inputs/app-hold</property>
+                </binding>
+            </key>
+            <key n="8">
+                <name>Ctrl-H</name>
+                <desc>Toggle autopilot heading lock</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/afds/inputs/hdg-hold</property>
+                </binding>
+            </key>
+            <key n="14">
+                <name>Ctrl-N</name>
+                <desc>Toggle LNAV lock</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/afds/inputs/lnav-hold</property>
+                </binding>
+            </key>
+            <key n="16">
+                <name>Ctrl-P</name>
+                <desc>Toggle VS</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/afds/inputs/vs-fpa-hold</property>
+                </binding>
+            </key>
+            <key n="19">
+                <name>Ctrl-S</name>
+                <desc>Toggle autothrottle</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/afds/inputs/at-hold</property>
                 </binding>
             </key>
         </keyboard>
@@ -281,26 +411,36 @@
                 </msg>
             </eicas>
         </efis>
-		<rmu>
-			<unit n="0">
-				<serviceable type="bool">1</serviceable>
-				<source-index type="int">0</source-index>
-				<selected-freq type="double">0</selected-freq>
-				<standby-freq type="double">0</standby-freq>
-			</unit>
-			<unit n="1">
-				<serviceable type="bool">1</serviceable>
-				<source-index type="int">0</source-index>
-				<selected-freq type="double">0</selected-freq>
-				<standby-freq type="double">0</standby-freq>
-			</unit>
-			<unit n="2">
-				<serviceable type="bool">1</serviceable>
-				<source-index type="int">0</source-index>
-				<selected-freq type="double">0</selected-freq>
-				<standby-freq type="double">0</standby-freq>
-			</unit>
-		</rmu>
+        <rmu>
+            <unit n="0">
+                <source-index type="int">0</source-index>
+                <source type="string">comm1</source>
+                </unit>
+            <unit n="1">
+                <source-index type="int">2</source-index>
+                <source type="string">nav1</source>
+            </unit>
+            <unit n="2">
+                <source-index type="int">5</source-index>
+                <source type="string">adf</source>
+            </unit>
+        </rmu>
+        <nav>
+            <frequencies>
+                <standby-mhz n="1" type="double">109.50</standby-mhz>
+                <standby-mhz n="2" type="double">109.55</standby-mhz>
+                <standby-mhz n="3" type="double">110.10</standby-mhz>
+                <standby-mhz n="4" type="double">111.70</standby-mhz>
+            </frequencies>
+        </nav>
+        <nav n="1">
+            <frequencies>
+                <standby-mhz n="1" type="double">109.50</standby-mhz>
+                <standby-mhz n="2" type="double">109.55</standby-mhz>
+                <standby-mhz n="3" type="double">110.10</standby-mhz>
+                <standby-mhz n="4" type="double">111.70</standby-mhz>
+            </frequencies>
+        </nav>
     </instrumentation>
 
     <controls>
@@ -311,13 +451,7 @@
 
     <autopilot>
         <autobrake>
-            <config>
-                <num-steps type="int">5</num-steps>
-                <rto-step type="int">-2</rto-step>
-                <rto-engage-kts type="double">85</rto-engage-kts>
-                <rto-decel-fts-sec type="double">11</rto-decel-fts-sec>
-                <max-decel-fts-sec type="double">11</max-decel-fts-sec>
-            </config>
+            <engaged type="bool">0</engaged>
         </autobrake>
     </autopilot>
 
@@ -327,7 +461,11 @@
             <file>Aircraft/777-200/Nasal/flightdirector.nas</file>
             <file>Aircraft/777-200/Nasal/systems.nas</file>
             <file>Aircraft/777-200/Nasal/AFDS.nas</file>
+            <file>Aircraft/777-200/Nasal/tyresmoke.nas</file>
         </b777>
+        <dialogs>
+            <file>Aircraft/777-200/Nasal/dialogs.nas</file>
+        </dialogs>
     </nasal>
 
 </PropertyList>

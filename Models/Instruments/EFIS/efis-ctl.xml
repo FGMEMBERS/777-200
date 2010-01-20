@@ -10,6 +10,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>BARO.knob</object-name>
+        <object-name>BARO.knob.001</object-name>
         <property>instrumentation/efis/inputs/kpa-mode</property>
         <factor>80</factor>
         <center>
@@ -27,6 +28,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Range.knob</object-name>
+        <object-name>Range.knob.001</object-name>
         <property>instrumentation/efis/inputs/range</property>
         <interpolation>
             <entry><ind>10</ind><dep>0</dep></entry>
@@ -52,6 +54,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>MINS.knob</object-name>
+        <object-name>MINS.knob.001</object-name>
         <property>instrumentation/efis/inputs/minimums-mode</property>
         <factor>80</factor>
         <center>
@@ -69,6 +72,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>MODE.knob</object-name>
+        <object-name>MODE.knob.001</object-name>
         <property>instrumentation/efis/mfd/mode-num</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -122,7 +126,8 @@ Syd Adams
         </axis>
     </animation>
 
-<!-- hotspots -->
+<!-- 
+#############   hotspots   ############## -->
 
     <animation>
         <type>pick</type>
@@ -256,7 +261,7 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>RVOR.toggle</object-name>
+        <object-name>Rvor.toggle</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -269,9 +274,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>RVOR.toggle</object-name>
+        <object-name>Radf.toggle</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>false</repeatable>
             <binding>
             <command>nasal</command>
@@ -282,7 +287,7 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>LVOR.toggle</object-name>
+        <object-name>Lvor.toggle</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -295,9 +300,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>LVOR.toggle</object-name>
+        <object-name>Ladf.toggle</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>false</repeatable>
             <binding>
             <command>nasal</command>
@@ -308,9 +313,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>Range.knob</object-name>
+        <object-name>rng.dec</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>false</repeatable>
             <binding>
             <command>nasal</command>
@@ -321,7 +326,7 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>Range.knob</object-name>
+        <object-name>rng.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -347,20 +352,35 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>BARO.knob</object-name>
+        <object-name>baro.dec</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
+            <command>property-assign</command>
             <property>instrumentation/efis/inputs/kpa-mode</property>
+            <value>0</value>
         </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>BARO.knob2</object-name>
+        <object-name>baro.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-assign</command>
+            <property>instrumentation/efis/inputs/kpa-mode</property>
+            <value>1</value>
+        </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>inhg.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
@@ -377,9 +397,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>BARO.knob2</object-name>
+        <object-name>inhg.dec</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
              <binding>
                 <command>property-adjust</command>
@@ -392,39 +412,6 @@ Syd Adams
         </action>
     </animation>
 
-    <animation>
-        <type>pick</type>
-        <object-name>BARO.knob2</object-name>
-        <action>
-            <button>3</button>
-            <repeatable>false</repeatable>
-             <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/altimeter/setting-inhg</property>
-                <step>0.01</step>
-                <min>26.0</min>
-                <max>33.0</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>BARO.knob2</object-name>
-        <action>
-            <button>4</button>
-            <repeatable>true</repeatable>
-             <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/altimeter/setting-inhg</property>
-                <step>-0.01</step>
-                <min>26.0</min>
-                <max>33.0</max>
-                <wrap>false</wrap>
-            </binding>
-        </action>
-    </animation>
 
     <animation>
         <type>pick</type>
@@ -443,20 +430,35 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>MINS.knob</object-name>
+        <object-name>Mins.dec</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
              <binding>
-                <command>property-toggle</command>
+                <command>property-assign</command>
                 <property>instrumentation/efis/inputs/minimums-mode</property>
+                <value>0</value>
             </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>MINS.knob2</object-name>
+        <object-name>Mins.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+             <binding>
+                <command>property-assign</command>
+                <property>instrumentation/efis/inputs/minimums-mode</property>
+                <value>1</value>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>minset.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
@@ -469,9 +471,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>MINS.knob2</object-name>
+        <object-name>minset.dec</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
              <binding>
                 <command>nasal</command>
@@ -480,31 +482,6 @@ Syd Adams
         </action>
     </animation>
 
-    <animation>
-        <type>pick</type>
-        <object-name>MINS.knob2</object-name>
-        <action>
-            <button>3</button>
-            <repeatable>false</repeatable>
-             <binding>
-                <command>nasal</command>
-                <script>b777.Efis.ctl_func("dh",10);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>MINS.knob2</object-name>
-        <action>
-            <button>4</button>
-            <repeatable>false</repeatable>
-             <binding>
-                <command>nasal</command>
-                <script>b777.Efis.ctl_func("dh",-10);</script>
-            </binding>
-        </action>
-    </animation>
 
     <animation>
         <type>pick</type>
@@ -522,7 +499,7 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>MODE.knob</object-name>
+        <object-name>Mode.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -535,9 +512,9 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>MODE.knob</object-name>
+        <object-name>Mode.dec</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>false</repeatable>
             <binding>
             <command>nasal</command>

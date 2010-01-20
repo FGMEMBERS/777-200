@@ -8,8 +8,7 @@ Syd Adams
     <path>radio.ac</path>
 
     <animation>
-        <type>select</type>
-        <object-name>Radio.pwr</object-name>
+        <name>comm1</name>
         <object-name>freq</object-name>
         <object-name>freq.001</object-name>
         <object-name>freq.002</object-name>
@@ -27,12 +26,101 @@ Syd Adams
         <object-name>stby.006</object-name>
         <condition>
             <greater-than>
-                <property>systems/electrical/bus-volts</property>
+                <property>systems/electrical/left-bus</property>
                 <value>5</value>
             </greater-than>
         </condition>
     </animation>
 
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>comm1</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>comm1</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>comm2</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>comm2</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>nav1</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>nav1</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>nav2</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>nav2</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>adf</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>adf</object-name>
+    </animation>
 
 <!-- Active freq nav mode -->
 
@@ -314,10 +402,10 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>stby.up</object-name>
+        <object-name>stby.up.001</object-name>
         <visible>false</visible>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -329,10 +417,10 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>stby.dn</object-name>
+        <object-name>stby.dn.001</object-name>
         <visible>false</visible>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>

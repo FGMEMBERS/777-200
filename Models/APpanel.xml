@@ -8,31 +8,11 @@ Autopilot Control Panel
 
 <path>APpanel.ac</path>
 
-    <panel>
-        <path>Aircraft/777-200/Models/ap2dpanel.xml</path>
-        <bottom-left>
-            <x-m>0.004</x-m>
-            <y-m>-0.160</y-m>
-            <z-m>0.010</z-m>
-        </bottom-left>
-        <bottom-right>
-            <x-m>0.004</x-m>
-            <y-m>0.160</y-m>
-            <z-m>0.010</z-m>
-        </bottom-right>
-        <top-left>
-            <x-m>0.004</x-m>
-            <y-m>-0.160</y-m>
-            <z-m>0.030</z-m>
-        </top-left>
-    </panel>
-
-<!--  Upper Panel Autopilot Controls-->
-
-        <animation>
+    <animation>
         <type>rotate</type>
         <object-name>BLimit.knob</object-name>
-        <property>instrumentation/afds/settings/bank-max</property>
+        <object-name>BLimit.knob.001</object-name>
+        <property>instrumentation/afds/inputs/bank-limit-switch</property>
         <factor>-20.0</factor>
         <center>
             <x-m>0</x-m>
@@ -49,6 +29,7 @@ Autopilot Control Panel
         <animation>
         <type>rotate</type>
         <object-name>IAS.knob</object-name>
+        <object-name>IAS.knob.001</object-name>
         <property>instrumentation/afds/inputs/speed-src</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -71,6 +52,7 @@ Autopilot Control Panel
         <animation>
         <type>rotate</type>
         <object-name>ALTmode.knob</object-name>
+        <object-name>ALTmode.knob.001</object-name>
         <property>instrumentation/afds/inputs/alt-knob</property>
         <factor>100</factor>
         <center>
@@ -137,6 +119,18 @@ Autopilot Control Panel
     </animation>
 
     <animation>
+        <type>translate</type>
+        <object-name>AP.disengage</object-name>
+        <property>instrumentation/afds/inputs/AP-disengage</property>
+        <factor>0.011</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+
+    <animation>
         <type>select</type>
         <object-name>APtoggle</object-name>
         <condition>
@@ -189,10 +183,10 @@ Autopilot Control Panel
         <type>select</type>
         <object-name>ATtoggle</object-name>
         <condition>
-            <equals>
+            <not-equals>
                 <property>instrumentation/afds/ap-modes/speed-mode</property>
-                <value>SPD</value>
-            </equals>
+                <value></value>
+            </not-equals>
         </condition>
     </animation>
 
@@ -243,10 +237,13 @@ Autopilot Control Panel
         <type>select</type>
         <object-name>APP.toggle</object-name>
         <condition>
-            <equals>
-                <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                <value>G/S</value>
-            </equals>
+            <or>
+                <equals>
+                    <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                    <value>G/S</value>
+                </equals>
+                <property>instrumentation/afds/inputs/gs-armed</property>
+            </or>
         </condition>
     </animation>
 
@@ -267,19 +264,438 @@ Autopilot Control Panel
         </condition>
     </animation>
 
+<!-- LED displays-->
 
-<!-- AP / FD switches-->
+<!-- IAS/MACH -->
+    <animation>
+        <type>select</type>
+        <object-name>ias.ind</object-name>
+        <object-name>IAS.led1</object-name>
+        <object-name>IAS.led2</object-name>
+        <object-name>IAS.led3</object-name>
+        <condition>
+            <not>
+                <property>instrumentation/afds/inputs/ias-mach-selected</property>
+            </not>
+        </condition>
+    </animation>
 
     <animation>
-        <type>pick</type>
+        <type>textranslate</type>
+        <object-name>IAS.led1</object-name>
+        <property>autopilot/settings/target-speed-kt</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>IAS.led2</object-name>
+        <property>autopilot/settings/target-speed-kt</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>IAS.led3</object-name>
+        <property>autopilot/settings/target-speed-kt</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>mach.ind</object-name>
+        <object-name>MACH.led1</object-name>
+        <object-name>MACH.led2</object-name>
+        <object-name>MACH.led3</object-name>
+        <condition>
+            <property>instrumentation/afds/inputs/ias-mach-selected</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>MACH.led1</object-name>
+        <property>autopilot/settings/target-speed-mach</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <bias>0.005</bias>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>MACH.led2</object-name>
+        <property>autopilot/settings/target-speed-mach</property>
+        <factor>1.0</factor>
+        <step>0.1</step>
+        <bias>0.005</bias>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>MACH.led3</object-name>
+        <property>autopilot/settings/target-speed-mach</property>
+        <factor>10.0</factor>
+        <step>0.01</step>
+        <bias>0.005</bias>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+<!-- HDG/TRK -->
+    <animation>
+        <type>select</type>
+        <object-name>hdg.ind</object-name>
+        <object-name>HDG.led1</object-name>
+        <object-name>HDG.led2</object-name>
+        <object-name>HDG.led3</object-name>
+        <condition>
+            <not>
+                <property>instrumentation/afds/inputs/hdg-trk-selected</property>
+            </not>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>HDG.led1</object-name>
+        <property>autopilot/settings/heading-bug-deg</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>HDG.led2</object-name>
+        <property>autopilot/settings/heading-bug-deg</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>HDG.led3</object-name>
+        <property>autopilot/settings/heading-bug-deg</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>trk.ind</object-name>
+        <object-name>TRK.led1</object-name>
+        <object-name>TRK.led2</object-name>
+        <object-name>TRK.led3</object-name>
+        <condition>
+            <property>instrumentation/afds/inputs/hdg-trk-selected</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>TRK.led1</object-name>
+        <property>instrumentation/afds/settings/trk</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>TRK.led2</object-name>
+        <property>instrumentation/afds/settings/trk</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>TRK.led3</object-name>
+        <property>instrumentation/afds/settings/trk</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+<!-- VS/FPA -->
+    <animation>
+        <type>select</type>
+        <object-name>vs.ind</object-name>
+        <object-name>VS.led1</object-name>
+        <object-name>VS.led2</object-name>
+        <object-name>VS.led3</object-name>
+        <object-name>VS.led4</object-name>
+        <condition>
+            <not>
+                <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+            </not>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>VS.ledminus</object-name>
+        <condition>
+            <and>
+               <not>
+                    <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+               </not>
+            <less-than>
+                <property>autopilot/settings/vertical-speed-fpm</property>
+                <value>0</value>
+            </less-than>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>VS.led1</object-name>
+        <property>instrumentation/afds/settings/vs-display</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>VS.led2</object-name>
+        <property>instrumentation/afds/settings/vs-display</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>VS.led3</object-name>
+        <property>instrumentation/afds/settings/vs-display</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>VS.led4</object-name>
+        <property>instrumentation/afds/settings/vs-display</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>select</type>
+        <object-name>fpa.ind</object-name>
+        <object-name>FPA.led1</object-name>
+        <object-name>FPA.led2</object-name>
+        <condition>
+            <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>FPA.ledminus</object-name>
+        <condition>
+            <and>
+                <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+            <less-than>
+                <property>autopilot/settings/flight-path-angle</property>
+                <value>0</value>
+            </less-than>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>FPA.led1</object-name>
+        <property>instrumentation/afds/settings/fpa-display</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <bias>0.05</bias>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>FPA.led2</object-name>
+        <property>instrumentation/afds/settings/fpa-display</property>
+        <factor>1.0</factor>
+        <step>0.10</step>
+        <bias>0.05</bias>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+<!-- Altitude -->
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ALT.led1</object-name>
+        <property>autopilot/settings/target-altitude-ft</property>
+        <factor>0.00001</factor>
+        <step>10000</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ALT.led2</object-name>
+        <property>autopilot/settings/target-altitude-ft</property>
+        <factor>0.0001</factor>
+        <step>1000</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ALT.led3</object-name>
+        <property>autopilot/settings/target-altitude-ft</property>
+        <factor>0.001</factor>
+        <step>100</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ALT.led4</object-name>
+        <property>autopilot/settings/target-altitude-ft</property>
+        <factor>0.01</factor>
+        <step>10</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ALT.led5</object-name>
+        <property>autopilot/settings/target-altitude-ft</property>
+        <factor>0.1</factor>
+        <step>1</step>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+
+<!-- 
+
+###########   HOTSPOTS ###########
+
+ -->
+    <animation>
+        <type>pick</type> 
         <object-name>MACH.toggle</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("mach-toggle");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/ias-mach-selected</property>
+            </binding>
         </action>
     </animation>
 
@@ -290,9 +706,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("trk-toggle");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/hdg-trk-selected</property>
+            </binding>
         </action>
     </animation>
 
@@ -303,9 +719,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("fpa-toggle");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+            </binding>
         </action>
     </animation>
 
@@ -316,9 +732,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("th1-arm");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/at-armed</property>
+            </binding>
         </action>
     </animation>
 
@@ -329,9 +745,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("th2-arm");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/at-armed[1]</property>
+            </binding>
         </action>
     </animation>
 
@@ -342,9 +758,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("AP");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/AP</property>
+            </binding>
         </action>
     </animation>
 
@@ -355,8 +771,8 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("FD");</script>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/FD</property>
         </binding>
         </action>
     </animation>
@@ -368,9 +784,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("HDG");</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.afds.input(0,1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -381,9 +797,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("LNAV");</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.afds.input(0,3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -394,9 +810,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("VNAV");</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.afds.input(1,5);</script>
+            </binding>
         </action>
     </animation>
 
@@ -407,22 +823,22 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("AT");</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.afds.input(2,1);</script>
+            </binding>
         </action>
     </animation>
 
-    <animation>
+    <!--animation>
         <type>pick</type>
         <object-name>FLCH.btn</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("FLCH");</script>
-        </binding>
+                <command>nasal</command>
+                <script>afds.input(2,2);</script>
+            </binding>
         </action>
     </animation>
 
@@ -433,11 +849,11 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("CLB");</script>
-        </binding>
+                <command>nasal</command>
+                <script>afds.input(2,3);</script>
+            </binding>
         </action>
-    </animation>
+    </animation-->
 
     <animation>
         <type>pick</type>
@@ -446,9 +862,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("VS");</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.afds.input(1,2);</script>
+            </binding>
         </action>
     </animation>
 
@@ -459,9 +875,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("ALT");</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.afds.input(1,1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -472,9 +888,9 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("LOC");</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.afds.input(0,4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -485,9 +901,13 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("APP");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/gs-armed</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/loc-armed</property>
+            </binding>
         </action>
     </animation>
 
@@ -498,307 +918,308 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_mode("AP-DISENGAGE");</script>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/afds/inputs/AP-disengage</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/afds/inputs/AP</property>
+                <value>0</value>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>Pitch.wheel</object-name>
+        <object-name>Pitchwheel.dec</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.pitch_wheel(-1);</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>Pitch.wheel</object-name>
-        <action>
-            <button>1</button>
-            <repeatable>true</repeatable>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                        <value>V/S</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/vertical-speed-fpm</property>
+                <step>-100</step>
+                <min>-8000</min>
+                <max>6000</max>
+            </binding>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.pitch_wheel(1);</script>
-        </binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                        <value>FPA</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/flight-path-angle</property>
+                <step>-0.1</step>
+                <min>-9.9</min>
+                <max>9.9</max>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>Pitch.wheel</object-name>
-        <action>
-            <button>3</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>nasal</command>
-            <script>b777.afds.pitch_wheel(-1);</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>Pitch.wheel</object-name>
-        <action>
-            <button>4</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>nasal</command>
-            <script>b777.afds.pitch_wheel(1);</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>IAS.knob</object-name>
+        <object-name>Pitchwheel.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("ias-inc");</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>IAS.knob</object-name>
-        <action>
-            <button>1</button>
-            <repeatable>true</repeatable>
+            <condition>
+                <equals>
+                    <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                    <value>V/S</value>
+                </equals>
+            </condition>
+            <command>property-adjust</command>
+            <property>autopilot/settings/vertical-speed-fpm</property>
+            <step>100</step>
+            <min>-8000</min>
+            <max>6000</max>
+            </binding>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("ias-dec");</script>
-        </binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                        <value>FPA</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/flight-path-angle</property>
+                <step>0.1</step>
+                <min>-9.9</min>
+                <max>9.9</max>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>IAS.knob</object-name>
-        <action>
-            <button>3</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("ias-inc");</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>IAS.knob</object-name>
-        <action>
-            <button>4</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("ias-dec");</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>HDG.knob</object-name>
+        <object-name>SPD.dec</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
                     <not>
-                        <property>devices/status/keyboard/shift</property>
+                        <property>instrumentation/afds/inputs/ias-mach-selected</property>
                     </not>
                 </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(1);</script>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-kt</property>
+                <step>-10</step>
+                <min>120</min>
+                <max>260</max>
             </binding>
             <binding>
                 <condition>
-                    <property>devices/status/keyboard/shift</property>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(10);</script>
-        </binding>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-mach</property>
+                <step>-0.010</step>
+                <min>0.4</min>
+                <max>0.82</max>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>HDG.knob</object-name>
+        <object-name>SPD.inc</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
                     <not>
-                        <property>devices/status/keyboard/shift</property>
+                        <property>instrumentation/afds/inputs/ias-mach-selected</property>
                     </not>
                 </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(-1);</script>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-kt</property>
+                <step>10</step>
+                <min>120</min>
+                <max>260</max>
             </binding>
             <binding>
                 <condition>
-                    <property>devices/status/keyboard/shift</property>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(-10);</script>
-        </binding>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-mach</property>
+                <step>0.010</step>
+                <min>0.4</min>
+                <max>0.84</max>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>HDG.knob</object-name>
+        <object-name>HDG.inc</object-name>
         <action>
-            <button>3</button>
-            <repeatable>false</repeatable>
+            <button>0</button>
+            <repeatable>true</repeatable>
             <binding>
-                <condition>
-                    <not>
-                        <property>devices/status/keyboard/shift</property>
-                    </not>
-                </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(1);</script>
+                <command>property-adjust</command>
+                <property>autopilot/settings/heading-bug-deg</property>
+                <step>1</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
             </binding>
-            <binding>
-                <condition>
-                    <property>devices/status/keyboard/shift</property>
-                </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(10);</script>
-        </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>HDG.knob</object-name>
+        <object-name>HDG.dec</object-name>
         <action>
-            <button>4</button>
-            <repeatable>false</repeatable>
+            <button>0</button>
+            <repeatable>true</repeatable>
             <binding>
-                <condition>
-                    <not>
-                        <property>devices/status/keyboard/shift</property>
-                    </not>
-                </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(-1);</script>
+                <command>property-adjust</command>
+                <property>autopilot/settings/heading-bug-deg</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
             </binding>
-            <binding>
-                <condition>
-                    <property>devices/status/keyboard/shift</property>
-                </condition>
-                <command>nasal</command>
-                <script>b777.afds.heading_bug(-10);</script>
-        </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>BNK.set</object-name>
+        <object-name>Bank.inc</object-name>
         <visible>0</visible>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("bank-inc");</script>
+                <command>property-adjust</command>
+                <property>instrumentation/afds/inputs/bank-limit-switch</property>
+                <step>1</step>
+                <min>0</min>
+                <max>6</max>
+                <wrap>false</wrap>
         </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>BNK.set</object-name>
+        <object-name>Bank.dec</object-name>
         <visible>0</visible>
-        <action>
-            <button>1</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("bank-dec");</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>ALTmode.knob</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
+                <command>property-adjust</command>
+                <property>instrumentation/afds/inputs/bank-limit-switch</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>6</max>
+                <wrap>false</wrap>
+        </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>ALTmode.auto</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-assign</command>
             <property>instrumentation/afds/inputs/alt-knob</property>
+            <value>0</value>
         </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>ALT.knob</object-name>
+        <object-name>ALTmode.1000</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-assign</command>
+            <property>instrumentation/afds/inputs/alt-knob</property>
+            <value>1</value>
+        </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>ALT.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("alt-inc");</script>
-        </binding>
+                <condition>
+                    <not>
+                        <property>instrumentation/afds/inputs/alt-knob</property>
+                    </not>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-altitude-ft</property>
+                <step>100</step>
+                <min>0</min>
+                <max>50000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/afds/inputs/alt-knob</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-altitude-ft</property>
+                <step>1000</step>
+                <min>0</min>
+                <max>50000</max>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>ALT.knob</object-name>
+        <object-name>ALT.dec</object-name>
         <action>
-            <button>1</button>
+            <button>0</button>
             <repeatable>true</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("alt-dec");</script>
-        </binding>
+                <condition>
+                    <not>
+                        <property>instrumentation/afds/inputs/alt-knob</property>
+                    </not>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-altitude-ft</property>
+                <step>-100</step>
+                <min>0</min>
+                <max>50000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/afds/inputs/alt-knob</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-altitude-ft</property>
+                <step>-1000</step>
+                <min>0</min>
+                <max>50000</max>
+            </binding>
         </action>
     </animation>
 
-    <animation>
-        <type>pick</type>
-        <object-name>ALT.knob</object-name>
-        <action>
-            <button>3</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("alt-inc");</script>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>ALT.knob</object-name>
-        <action>
-            <button>4</button>
-            <repeatable>false</repeatable>
-            <binding>
-            <command>nasal</command>
-            <script>b777.afds.ap_input("alt-dec");</script>
-        </binding>
-        </action>
-    </animation>
 
 </PropertyList>

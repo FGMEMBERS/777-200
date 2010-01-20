@@ -1,769 +1,635 @@
 <?xml version="1.0"?>
-<!-- 777-200  Autopilot-->
-<!-- Syd Adams. -->
+
 
 <PropertyList>
-<!--
-=========
-Roll Axis Modes
-=========
--->
 
-<!-- go around wing level-->
+  <predict-simple>
+     <input>/autopilot/internal/nav1-track-error-deg</input>
+     <output>/autopilot/internal/nav1-track-error-lookahead-deg</output>
+     <seconds>8.0</seconds>
+     <filter-gain>0.0</filter-gain>
+  </predict-simple>
 
-    <pi-simple-controller>
-        <name>TO/GA</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/settings/roll-mode</prop>
-            <value>TO/GA</value>
-        </enable>
-        <input>
-            <prop>orientation/roll-deg</prop>
-        </input>
-        <reference>
-            <value>0.0</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-filter</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>1.0</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <prop>instrumentation/afds/bank-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/afds/bank-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
+  <!-- =============================================================== -->
+  <!-- Roll Axis Modes                                                 -->
+  <!-- =============================================================== -->
 
-<!-- Heading Bug Hold. -->
-
-    <pi-simple-controller>
-        <name>HDG-SEL</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
-            <value>HDG SEL</value>
-        </enable>
-        <input>
-            <prop>autopilot/internal/fdm-heading-bug-error-deg</prop>
-        </input>
-        <reference>
-            <value>0</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-filter</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>-5.5</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <prop>instrumentation/afds/settings/bank-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/afds/settings/bank-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-    <pi-simple-controller>
-        <name>hdg-hld</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
-            <value>HDG HOLD</value>
-        </enable>
-        <input>
-            <prop>autopilot/internal/fdm-heading-bug-error-deg</prop>
-        </input>
-        <reference>
-            <value>0</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-filter</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>-1.0</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <prop>instrumentation/afds/settings/bank-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/afds/settings/bank-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-    <pi-simple-controller>
-        <name>lnav</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
-            <value>LNAV</value>
-        </enable>
-        <input>
-            <prop>instrumentation/afds/settings/lnav-mag-heading</prop>
-        </input>
-        <reference>
-            <value>0</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-filter</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>-2.0</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <prop>instrumentation/afds/settings/bank-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/afds/settings/bank-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-<!-- NAV / APPR. -->
-
-    <pi-simple-controller>
-        <name>loc</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
-            <value>LOC</value>
-        </enable>
-        <input>
-            <prop>instrumentation/afds/settings/lnav-mag-heading</prop>
-        </input>
-        <reference>
-            <value>0</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-filter</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>-2.0</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <prop>instrumentation/afds/settings/bank-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/afds/settings/bank-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-<!-- TRK HOLD. -->
-
-    <pi-simple-controller>
-        <name>trk sel</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
-            <value>TRK SEL</value>
-        </enable>
-        <input>
-            <prop>orientation/heading-magnetic-deg</prop>
-        </input>
-        <reference>
-            <value>instrumentation/afds/settings/trk</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-filter</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>0.5</value>
-            </Kp>
-            <Ki>0</Ki>
-            <u_min>
-                <prop>instrumentation/afds/settings/bank-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/afds/settings/bank-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-    <pi-simple-controller>
-        <name>trk hold</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/roll-mode</prop>
-            <value>TRK HOLD</value>
-        </enable>
-        <input>
-            <prop>orientation/heading-magnetic-deg</prop>
-        </input>
-        <reference>
-            <value>instrumentation/afds/settings/trk</value>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-roll-filter</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>0.5</value>
-            </Kp>
-            <Ki>0</Ki>
-            <u_min>
-                <prop>instrumentation/flightdirector/bank-limit-min</prop>
-            </u_min>
-            <u_max>
-                <prop>instrumentation/flightdirector/bank-limit-max</prop>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-<filter>
-    <name>aileron</name>
+  <pid-controller>
+    <name>TO/GA1</name>
     <debug>false</debug>
-    <type>noise-spike</type>
-    <input>autopilot/internal/target-roll-filter</input>
-    <output>autopilot/internal/target-roll-deg</output>
-    <max-rate-of-change>5</max-rate-of-change>
-</filter>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>TO/GA</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>orientation/roll-deg</prop>
+    </input>
+    <reference>
+      <value>0.0</value>
+    </reference>
+    <output>
+      <prop>/controls/flight/aileron</prop>
+    </output>
+    <config>
+      <Kp>0.20</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>-0.2</u_min>
+      <u_max>0.2</u_max>
+    </config>
+  </pid-controller>
+
+  <pid-controller>
+    <name>Heading Hold 1</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>HDG SEL</value>
+    </enable>
+    <input>
+      <prop>/autopilot/internal/fdm-heading-bug-error-deg</prop>
+    </input>
+    <reference>
+      <value>0.0</value>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </output>
+    <config>
+      <Kp>-5.0</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>
+        <prop>instrumentation/afds/settings/bank-min</prop>
+        </u_min>
+      <u_max>
+        <prop>instrumentation/afds/settings/bank-max</prop>
+      </u_max>
+    </config>
+  </pid-controller>
+
+  <pid-controller>
+    <name>Heading Hold 2</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>HDG SEL</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/orientation/roll-deg</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/aileron</prop>
+    </output>
+    <config>
+      <Kp>1.0</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>1.0</Ti>
+      <Td>0.0</Td>
+      <u_min>-0.5</u_min>
+      <u_max>0.5</u_max>
+    </config>
+  </pid-controller>
+
+  <pid-controller>
+    <name>LNAV FMS</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>LNAV</value>
+    </enable>
+    <input>
+      <prop>instrumentation/afds/settings/lnav-crs</prop>
+    </input>
+    <reference>
+      <value>0.0</value>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </output>
+    <config>
+      <Kp>-2.0</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>
+        <prop>instrumentation/afds/settings/bank-min</prop>
+        </u_min>
+      <u_max>
+        <prop>instrumentation/afds/settings/bank-max</prop>
+      </u_max>
+    </config>
+  </pid-controller>
+
+  <pid-controller>
+    <name>LNAV 2</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>LNAV</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/orientation/roll-deg</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/aileron</prop>
+    </output>
+    <config>
+      <Kp>0.5</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>1.0</Ti>
+      <Td>0.0</Td>
+      <u_min>-0.35</u_min>
+      <u_max>0.35</u_max>
+    </config>
+  </pid-controller>
+
+  <pid-controller>
+    <name>LOC Hold 1</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>LOC</value>
+    </enable>
+    <input>
+      <prop>/autopilot/internal/nav1-heading-error-deg</prop>
+    </input>
+    <reference>
+      <value>0.0</value>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </output>
+    <config>
+      <Kp>-2.0</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>
+        <prop>instrumentation/afds/settings/bank-min</prop>
+        </u_min>
+      <u_max>
+        <prop>instrumentation/afds/settings/bank-max</prop>
+      </u_max>
+    </config>
+  </pid-controller>
+
+  <pid-controller>
+    <name>LOC 2</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>LOC</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/orientation/roll-deg</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/aileron</prop>
+    </output>
+    <config>
+      <Kp>0.25</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>1.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>-0.5</u_min>
+      <u_max>0.5</u_max>
+    </config>
+  </pid-controller>
 
 
-<!-- AILERON CONTROL -->
+  <pid-controller>
+    <name>Yaw Damper</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/yaw-damper</prop>
+      <value>1</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/orientation/roll-deg</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/rudder</prop>
+    </output>
+    <config>
+      <Kp>0.25</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.000000001</Td>
+      <u_min>-0.25</u_min>
+      <u_max>0.25</u_max>
+    </config>
+  </pid-controller>
 
+
+ <!-- =============================================================== -->
+ <!-- Pitch Axis Modes                                                -->
+ <!-- =============================================================== -->
+
+ <pi-simple-controller>
+    <name>TO/GA</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>TO/GA</value>
+    </enable>
+    <input>
+      <prop>instrumentation/altimeter/indicated-altitude-ft</prop>
+    </input>
+    <reference>
+      <value>10000</value>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </output>
+    <config>
+      <Kp>0.3</Kp>
+      <Ki>0.0</Ki>
+      <u_min>-16.67</u_min>
+      <u_max>33.33</u_max>
+    </config>
+   </pi-simple-controller>
+
+  <pid-controller>
+    <name>Altitude Hold (Altimeter based) Stage 2</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>TO/GA</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/velocities/vertical-speed-fps</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/elevator-trim</prop>
+    </output>
+    <config>
+      <Kp>-0.01</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>-0.2</u_min>
+      <u_max>0.2</u_max>
+    </config>
+  </pid-controller>
+
+  <pi-simple-controller>
+    <name>Altitude Stage 1</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>ALT</value>
+    </enable>
+    <input>
+      <prop>instrumentation/altimeter/indicated-altitude-ft</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-altitude-ft</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </output>
+    <config>
+      <Kp>0.3</Kp>
+      <Ki>0.0</Ki>
+      <u_min>-16.67</u_min>
+      <u_max>33.33</u_max>
+    </config>
+  </pi-simple-controller>
+
+  <pid-controller>
+    <name>Altitude Hold (Altimeter based) Stage 2</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>ALT</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/velocities/vertical-speed-fps</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/elevator-trim</prop>
+    </output>
+    <config>
+      <Kp>-0.01</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>-0.2</u_min>
+      <u_max>0.2</u_max>
+    </config>
+  </pid-controller>
+
+  <pi-simple-controller>
+    <name>VNAV Altitude Stage 1</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>VNAV ALT</value>
+    </enable>
+    <input>
+      <prop>instrumentation/altimeter/indicated-altitude-ft</prop>
+    </input>
+    <reference>
+      <prop>/instrumentation/afds/settings/vnav-alt</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </output>
+    <config>
+      <Kp>0.3</Kp>
+      <Ki>0.0</Ki>
+      <u_min>-16.67</u_min>
+      <u_max>33.33</u_max>
+    </config>
+  </pi-simple-controller>
+
+  <pid-controller>
+    <name>Altitude Hold (Altimeter based) Stage 2</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>VNAV ALT</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/velocities/vertical-speed-fps</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/internal/target-climb-rate-fps</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/elevator-trim</prop>
+    </output>
+    <config>
+      <Kp>-0.01</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>-0.2</u_min>
+      <u_max>0.2</u_max>
+    </config>
+  </pid-controller>
+
+  <pid-controller>
+    <name>Glideslop Hold</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>G/S</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/velocities/vertical-speed-fps</prop>
+    </input>
+    <reference>
+      <prop>/instrumentation/nav[0]/gs-rate-of-climb</prop>
+    </reference>
+     <output>
+      <prop>controls/flight/elevator-trim</prop>
+    </output>
+    <config>
+      <Kp>-0.02</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>-0.5</u_min>
+      <u_max>0.5</u_max>
+    </config>
+  </pid-controller>
+
+  <!-- vertical speed hold -->
+  <pid-controller>
+    <name>Vertical Speed Hold</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>V/S</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>/velocities/vertical-speed-fps</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/vertical-speed-fpm</prop>
+      <scale>0.01666666</scale>
+    </reference>
+    <output>
+      <prop>/controls/flight/elevator-trim</prop>
+    </output>
+    <config>
+      <Kp>-0.015</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>1.0</Ti>
+      <Td>0.00001</Td>
+      <u_min>-0.35</u_min>
+      <u_max>0.35</u_max>
+    </config>
+  </pid-controller>
+
+  <!-- vertical speed hold -->
+  <pid-controller>
+    <name>Flight Path Hold</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>FPA</value>
+      <honor-passive>true</honor-passive>
+    </enable>
+    <input>
+      <prop>autopilot/internal/fpa</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/flight-path-angle</prop>
+    </reference>
+    <output>
+      <prop>/controls/flight/elevator-trim</prop>
+    </output>
+    <config>
+      <Kp>-0.15</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>1.0</Ti>
+      <Td>0.0</Td>
+      <u_min>-0.25</u_min>
+      <u_max>0.25</u_max>
+    </config>
+  </pid-controller>
+
+ <!-- =============================================================== -->
+ <!-- Velocity Modes                                                  -->
+ <!-- =============================================================== -->
+
+ <!-- Auto throttle --> 
     <pid-controller>
-        <name>Aileron control</name>
+        <name>Auto Throttle1 ias</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/roll-engaged</prop>
-            <value>true</value>
-            <honor-passive>true</honor-passive>
+          <prop>instrumentation/afds/ap-modes/throttle[0]</prop>
+          <value>ias</value>
+          <honor-passive>true</honor-passive>
         </enable>
         <input>
-            <prop>orientation/roll-deg</prop>
+            <prop>/velocities/airspeed-kt</prop>
         </input>
         <reference>
-            <prop>autopilot/internal/target-roll-deg</prop>
+            <prop>/autopilot/settings/target-speed-kt</prop>
         </reference>
         <output>
-            <prop>controls/flight/aileron</prop>
+            <prop>/controls/engines/engine[0]/throttle</prop>
         </output>
         <config>
-            <Kp>
-                <value>0.5</value>
-            </Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>
-                <value>20.0</value>
-            </Ti>
-            <Td>
-                <value>0.0</value>
-            </Td>
-            <u_min>
-                <value>-1.0</value>
-            </u_min>
-            <u_max>
-                <value>1.0</value>
-            </u_max>
-        </config>
-    </pid-controller>
-
-<!--
-==========================
-                Pitch Axis Modes
-==========================
--->
-
-<!-- GO AROUND -->
-
-    <pi-simple-controller>
-        <name>GA</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>TO/GA</value>
-        </enable>
-        <input>
-            <prop>position/altitude-ft</prop>
-        </input>
-        <reference>
-            <prop>instrumentation/flightdirector/FP-alt</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </output>
-        <config>
-            <Kp>
-                <value>0.05</value>
-            </Kp>
-            <Ki>0.0</Ki>
-            <u_min>
-                <value>-9.9</value>
-            </u_min>
-            <u_max>
-                <value>9.9</value>
-            </u_max>
-        </config>
-    </pi-simple-controller>
-
-    <pid-controller>
-        <name>Elevator output</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>TO/GA</value>
-        </enable>
-        <input>
-            <prop>orientation/pitch-deg</prop>
-        </input>
-        <reference>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </reference>
-        <output>
-            <prop>controls/flight/elevator-filter</prop>
-        </output>
-        <config>
-            <Kp>-0.05</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>1.0</Ti>
-            <Td>0.0</Td>
-            <u_min>-0.5</u_min>
-            <u_max>0.5</u_max>
-        </config>
-    </pid-controller>
-
-<!-- Flight Path Angle -->
-
-    <filter>
-        <name>fpa</name>
-        <debug>false</debug>
-        <type>noise-spike</type>
-            <enable>
-                <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-                <value>FPA</value>
-            </enable>
-        <input>instrumentation/afds/settings/fpa</input>
-        <output>autopilot/internal/target-pitch-deg</output>
-        <max-rate-of-change>2</max-rate-of-change>
-    </filter>
-
-<!-- Alt hold -->
-
-    <pi-simple-controller>
-        <name>Altitude Hold (Altimeter based) Stage 1</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>ALT</value>
-        </enable>
-        <input>
-            <prop>instrumentation/altimeter/pressure-alt-ft</prop>
-        </input>
-        <reference>
-            <prop>autopilot/settings/target-altitude-ft</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-climb-rate-fps</prop>
-        </output>
-        <config>
-            <Kp>1.5</Kp>
-            <Ki>0.0</Ki>
-            <u_min>-30.0</u_min>
-            <u_max>50.0</u_max>
-        </config>
-    </pi-simple-controller>
-
-    <pid-controller>
-        <name>Altitude Hold (Altimeter based) Stage 2</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>ALT</value>
-        </enable>
-        <input>
-            <prop>velocities/vertical-speed-fps</prop>
-        </input>
-        <reference>
-            <prop>autopilot/internal/target-climb-rate-fps</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </output>
-        <config>
-            <Kp>0.5</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>10.0</Ti>
-            <Td>0.00001</Td>
-            <u_min>-5.0</u_min>
-            <u_max>5.0</u_max>
-        </config>
-    </pid-controller>
-
-    <pid-controller>
-        <name>Pitch hold</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>ALT</value>
-        </enable>
-        <input>
-            <prop>orientation/pitch-deg</prop>
-        </input>
-        <reference>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/elevator-filter</prop>
-        </output>
-        <config>
-            <Kp>-0.05</Kp>
+            <Kp>0.15</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
             <Ti>20.0</Ti>
-            <Td>0.02</Td>
-            <u_min>-0.5</u_min>
-            <u_max>0.5</u_max>
-        </config>
-    </pid-controller>
-
-<!-- VNAV ALT  hold -->
-
-    <pi-simple-controller>
-        <name>VNAV Hold1</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>VNAV ALT</value>
-        </enable>
-        <input>
-            <prop>instrumentation/altimeter/indicated-altitude-ft</prop>
-        </input>
-        <reference>
-            <prop>instrumentation/afds/settings/vnav-alt</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-climb-rate-fps</prop>
-        </output>
-        <config>
-            <Kp>1.5</Kp>
-            <Ki>0.0</Ki>
-            <u_min>-30.0</u_min>
-            <u_max>50.0</u_max>
-        </config>
-    </pi-simple-controller>
-
-    <pid-controller>
-        <name>VNAV Hold2</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>VNAV ALT</value>
-        </enable>
-        <input>
-            <prop>velocities/vertical-speed-fps</prop>
-        </input>
-        <reference>
-            <prop>autopilot/internal/target-climb-rate-fps</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </output>
-        <config>
-            <Kp>0.5</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>10.0</Ti>
             <Td>0.00001</Td>
-            <u_min>-5.0</u_min>
-            <u_max>5.0</u_max>
-        </config>
-    </pid-controller>
-
-    <pid-controller>
-        <name>VNAV Hold3</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>VNAV ALT</value>
-        </enable>
-        <input>
-            <prop>orientation/pitch-deg</prop>
-        </input>
-        <reference>
-            <prop>autopilot/internal/target-pitch-deg</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/elevator-filter</prop>
-        </output>
-        <config>
-            <Kp>-0.05</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>20.0</Ti>
-            <Td>0.02</Td>
-            <u_min>-0.5</u_min>
-            <u_max>0.5</u_max>
-        </config>
-    </pid-controller>
-
-<!-- Glideslope hold. -->
-    <pid-controller>
-        <name>Glideslop Hold</name>
-        <debug>false</debug>
-        <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>G/S</value>
-        </enable>
-        <input>
-            <prop>velocities/vertical-speed-fps</prop>
-        </input>
-        <reference>
-            <prop>instrumentation/nav[0]/gs-rate-of-climb</prop>
-        </reference>
-        <output>
-            <prop>autopilot/internal/elevator-filter</prop>
-        </output>
-        <config>
-            <Kp>-0.01</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>10.0</Ti>
-            <Td>0.01</Td>
-            <u_min>-1.0</u_min>
+            <u_min>0.0</u_min>
             <u_max>1.0</u_max>
         </config>
     </pid-controller>
 
-<!-- V/S hold -->
-
-<pid-controller>
-        <name>VS HOLD</name>
+    <pid-controller>
+        <name>Auto Throttle2 ias</name>
         <debug>false</debug>
         <enable>
-            <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>V/S</value>
+          <prop>instrumentation/afds/ap-modes/throttle[1]</prop>
+          <value>ias</value>
+          <honor-passive>true</honor-passive>
         </enable>
         <input>
-            <prop>velocities/vertical-speed-fps</prop>
+            <prop>/velocities/airspeed-kt</prop>
         </input>
         <reference>
-            <prop>instrumentation/afds/settings/vs</prop>
-            <scale>0.01666666</scale>
+            <prop>/autopilot/settings/target-speed-kt</prop>
         </reference>
         <output>
-            <prop>autopilot/internal/elevator-filter</prop>
+            <prop>/controls/engines/engine[1]/throttle</prop>
         </output>
         <config>
-            <Kp>-0.05</Kp>
+            <Kp>0.15</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
             <Ti>20.0</Ti>
-            <Td>0.0</Td>
-            <u_min>-0.5</u_min>
-            <u_max>0.5</u_max>
+            <Td>0.00001</Td>
+            <u_min>0.0</u_min>
+            <u_max>1.0</u_max>
         </config>
     </pid-controller>
 
-<filter>
-    <name>elevator</name>
-    <enable>
-        <property>autopilot/locks/pitch-active</property>
-        <value>true</value>
-        <honor-passive>true</honor-passive>
-    </enable>
-    <debug>false</debug>
-    <type>noise-spike</type>
-    <input>autopilot/internal/elevator-filter</input>
-    <output>controls/flight/elevator-trim</output>
-    <max-rate-of-change>0.5</max-rate-of-change>
-</filter>
-<!--
-===================
-           Velocity Modes
-===================
--->
-
-<!-- IAS hold-->
-
     <pid-controller>
-        <name>IAS HOLD</name>
+        <name>Auto Throttle1 mach</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/speed</prop>
-            <value>SPD</value>
-            <honor-passive>true</honor-passive>
+          <prop>instrumentation/afds/ap-modes/throttle[0]</prop>
+          <value>mach</value>
+          <honor-passive>true</honor-passive>
         </enable>
         <input>
-            <prop>velocities/airspeed-kt</prop>
+            <prop>/velocities/mach</prop>
         </input>
         <reference>
-            <prop>autopilot/settings/target-speed-kt</prop>
+            <prop>/autopilot/settings/target-speed-mach</prop>
         </reference>
         <output>
-            <prop>controls/engines/engine[0]/throttle</prop>
-            <prop>controls/engines/engine[1]/throttle</prop>
+            <prop>/controls/engines/engine[0]/throttle</prop>
         </output>
         <config>
-            <Kp>
-                <value>0.1</value>
-            </Kp>
+            <Kp>20.0</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
-            <Ti>
-                <value>10.0</value>
-            </Ti>
-            <Td>
-                <value>0.001</value>
-            </Td>
-            <u_min>
-                <value>0</value>
-            </u_min>
-            <u_max>
-                <value>1</value>
-            </u_max>
+            <Ti>10.0</Ti>
+            <Td>0.00001</Td>
+            <u_min>0.0</u_min>
+            <u_max>1.0</u_max>
         </config>
     </pid-controller>
 
-<!-- MACH hold-->
-
     <pid-controller>
-        <name>MACH HOLD</name>
+        <name>Auto Throttle2 mach</name>
         <debug>false</debug>
         <enable>
-            <prop>autopilot/locks/speed</prop>
-            <value>mach-hold</value>
-            <honor-passive>true</honor-passive>
+          <prop>instrumentation/afds/ap-modes/throttle[1]</prop>
+          <value>mach</value>
+          <honor-passive>true</honor-passive>
         </enable>
         <input>
-            <prop>velocities/mach</prop>
+            <prop>/velocities/mach</prop>
         </input>
         <reference>
-            <prop>autopilot/settings/target-speed-mach</prop>
+            <prop>/autopilot/settings/target-speed-mach</prop>
         </reference>
         <output>
-            <prop>controls/engines/engine[0]/throttle</prop>
-            <prop>controls/engines/engine[1]/throttle</prop>
+            <prop>/controls/engines/engine[1]/throttle</prop>
         </output>
         <config>
-            <Kp>
-                <value>2.0</value>0
-            </Kp>
+            <Kp>20.0</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
-            <Ti>
-                <value>10.0</value>
-            </Ti>
-            <Td>
-                <value>0.001</value>
-            </Td>
-            <u_min>
-                <value>0</value>
-            </u_min>
-            <u_max>
-                <value>1</value>
-            </u_max>
+            <Ti>10.0</Ti>
+            <Td>0.00001</Td>
+            <u_min>0.0</u_min>
+            <u_max>1.0</u_max>
         </config>
     </pid-controller>
 
-       <!-- auto-brake -->
 
-    <pid-controller>
-               <name>AUTOBRAKE FCS</name>
-               <debug>false</debug>
-               <enable>
-                   <prop>autopilot/autobrake/engaged</prop>
-                   <value>true</value>
-               </enable>
-               <input>
-                   <prop>autopilot/autobrake/actual-decel-fts-sec</prop>
-               </input>
-               <reference>
-                   <prop>autopilot/autobrake/target-decel-fts-sec</prop>
-               </reference>
-               <output>
-                   <prop>autopilot/autobrake/fcs-brake</prop>
-               </output>
-               <config>
-                   <Kp>
-                       <value>0.06</value>
-                   </Kp>
-                   <beta>1.0</beta>
-                   <alpha>0.2</alpha>
-                   <gamma>0.0</gamma>
-                   <Ti>
-                       <value>1.0</value>
-                   </Ti>
-                   <Td>
-                       <value>0.0</value>
-                   </Td>
-                   <u_min>
-                       <value>0</value>
-                   </u_min>
-                   <u_max>
-                       <value>1</value>
-                   </u_max>
-               </config>
-           </pid-controller>
-		<!--
-    <pid-controller>
-               <name>AUTOBRAKE RH</name>
-               <debug>true</debug>
-               <enable>
-                   <prop>autopilot/autobrake/engaged</prop>
-                   <value>true</value>
-               </enable>
-               <input>
-                   <prop>autopilot/autobrake/fcs-brake</prop>
-               </input>
-               <reference>
-                   <prop>instrumention/afds/settings/autobrake</prop>
-               </reference>
-               <output>
-                   <prop>controls/gear/brake-left</prop>
-                   <prop>controls/gear/brake-right</prop>
-               </output>
-               <config>
-                   <Kp>
-                       <value>0.1</value>
-                   </Kp>
-                   <beta>1.0</beta>
-                   <alpha>0.1</alpha>
-                   <gamma>0.0</gamma>
-                   <Ti>
-                       <value>1.0</value>
-                   </Ti>
-                   <Td>
-                       <value>0.0</value>
-                   </Td>
-                   <u_min>
-                       <value>0</value>
-                   </u_min>
-                   <u_max>
-                       <value>1</value>
-                   </u_max>
-               </config>
-           </pid-controller>
-	-->
 </PropertyList>
-

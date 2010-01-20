@@ -5,7 +5,7 @@ Syd Adams
 
 <PropertyList>
 
-    <path>777-200.ac</path>
+    <path>777-200ER.ac</path>
 
     <nasal>
         <load>
@@ -24,6 +24,8 @@ Syd Adams
         <object-name>LFdoor</object-name>
         <object-name>LRdoor</object-name>
         <object-name>RRdoor</object-name>
+        <object-name>Rmain.geardoor</object-name>
+        <object-name>Lmain.geardoor</object-name>
         <object-name>Engines</object-name>
         <object-name>Reversers</object-name>
         <object-name>Wings</object-name>
@@ -46,6 +48,8 @@ Syd Adams
 
     <animation>
         <type>material</type>
+        <object-name>RFdoor.001</object-name>
+        <object-name>LFdoor.001</object-name>
         <object-name>Tail.001</object-name>
         <object-name>Rudder.001</object-name>
         <object-name>FuselageL</object-name>
@@ -56,12 +60,24 @@ Syd Adams
         <texture>lights1.png</texture>
     </animation>
 
-
-    <model>
+<!-- Ver 1.9.1 + -->
+    <!--model>
         <name>flightdeck</name>
         <path>Aircraft/777-200/Models/flightdeck.xml</path>
         <offsets>
-            <x-m>0</x-m>
+            <x-m>-21.750</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
+            <pitch-deg>0</pitch-deg>
+        </offsets>
+    </model-->
+
+<!-- Ver 2-->
+    <model>
+        <name>flightdeck</name>
+        <path>Aircraft/777-200/Models/flightdeck2.xml</path>
+        <offsets>
+            <x-m>-21.750</x-m>
             <y-m>0</y-m>
             <z-m>0</z-m>
             <pitch-deg>0</pitch-deg>
@@ -90,6 +106,7 @@ Syd Adams
         <object-name>taxiL-off</object-name>
     </animation>
 
+
     <animation>
         <type>shader</type>
         <shader>chrome</shader>
@@ -98,23 +115,55 @@ Syd Adams
     </animation>
 
     <animation>
-        <name>Frontgear</name>
-        <object-name>FrtGear</object-name>
-        <object-name>FrtStrut</object-name>
-        <object-name>FUdamper</object-name>
-        <object-name>FLdamper</object-name>
+        <name>Frtstrut</name>
         <object-name>FrtWheel</object-name>
-        <object-name>taxiL-off</object-name>
-        <object-name>taxiL-on</object-name>
-        <object-name>Llight0</object-name>
+        <object-name>FrtStrut</object-name>
+        <object-name>FLdamper</object-name>
+        <object-name>FUdamper</object-name>
     </animation>
 
     <animation>
-        <name>Leftgear</name>
-        <object-name>Lgear</object-name>
-        <object-name>Lram</object-name>
-        <object-name>Lstrut</object-name>
-        <object-name>Lknuckle</object-name>
+        <name>Frontgear</name>
+        <object-name>Frtstrut</object-name>
+        <object-name>FrtGear</object-name>
+        <object-name>FrtGear.lines</object-name>
+        <object-name>taxiL-on</object-name>
+        <object-name>taxiL-off</object-name>
+        <object-name>Llight0</object-name>
+        <object-name>CTRLND.flare</object-name>
+    </animation>
+
+    <animation>
+        <name>RHaxle</name>
+        <object-name>Raxle</object-name>
+        <object-name>RHwheel.1</object-name>
+        <object-name>RHwheel.2</object-name>
+        <object-name>RHwheel.3</object-name>
+    </animation>
+
+    <animation>
+        <name>RHstrut</name>
+        <object-name>Rstrut</object-name>
+        <object-name>RHaxle</object-name>
+    </animation>
+
+    <animation>
+        <name>RHgear</name>
+        <object-name>Rgear</object-name>
+        <object-name>Rlbrace</object-name>
+        <object-name>Rlbrace1</object-name>
+        <object-name>Rlockbrace</object-name>
+        <object-name>Rlockbrace.1</object-name>
+        <object-name>Rgear.tubing</object-name>
+        <object-name>RUsupport</object-name>
+        <object-name>RBsupport</object-name>
+        <object-name>RUdamper</object-name>
+        <object-name>RBdamper</object-name>
+        <object-name>RHstrut</object-name>
+    </animation>
+
+    <animation>
+        <name>LHaxle</name>
         <object-name>Laxle</object-name>
         <object-name>LHwheel.1</object-name>
         <object-name>LHwheel.2</object-name>
@@ -122,15 +171,24 @@ Syd Adams
     </animation>
 
     <animation>
-        <name>Rightgear</name>
-        <object-name>Rgear</object-name>
-        <object-name>Rram</object-name>
-        <object-name>Rstrut</object-name>
-        <object-name>Rknuckle</object-name>
-        <object-name>Raxle</object-name>
-        <object-name>RHwheel.1</object-name>
-        <object-name>RHwheel.2</object-name>
-        <object-name>RHwheel.3</object-name>
+        <name>LHstrut</name>
+        <object-name>Lstrut</object-name>
+        <object-name>LHaxle</object-name>
+    </animation>
+
+    <animation>
+        <name>LHgear</name>
+        <object-name>Lgear</object-name>
+        <object-name>Llbrace</object-name>
+        <object-name>Llbrace1</object-name>
+        <object-name>Llockbrace</object-name>
+        <object-name>Llockbrace.1</object-name>
+        <object-name>Lgear.tubing</object-name>
+        <object-name>LUsupport</object-name>
+        <object-name>LBsupport</object-name>
+        <object-name>LUdamper</object-name>
+        <object-name>LBdamper</object-name>
+        <object-name>LHstrut</object-name>
     </animation>
 
 <!-- control surfaces -->
@@ -319,7 +377,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rbrake</object-name>
-        <property>surface-positions/speedbrake-norm</property>
+        <property>sim/multiplay/generic/float[5]</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -353,7 +411,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rbrake1</object-name>
-        <property>surface-positions/speedbrake-norm</property>
+        <property>sim/multiplay/generic/float[5]</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -447,7 +505,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Lbrake</object-name>
-        <property>surface-positions/speedbrake-norm</property>
+        <property>sim/multiplay/generic/float[5]</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -481,7 +539,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Lbrake1</object-name>
-        <property>surface-positions/speedbrake-norm</property>
+        <property>sim/multiplay/generic/float[5]</property>
         <interpolation>
             <entry>
                 <ind>0</ind>
@@ -583,7 +641,7 @@ Syd Adams
     <animation>
         <type>translate</type>
         <object-name>Reversers</object-name>
-        <property>surface-positions/reverser-norm</property>
+        <property>sim/multiplay/generic/float[6]</property>
         <factor>0.7</factor>
         <axis>
             <x>1.0</x>
@@ -597,9 +655,12 @@ Syd Adams
     <animation>
         <type>select</type>
         <object-name>navlights</object-name>
+        <object-name>redflash</object-name>
+        <object-name>whiteflash</object-name>
+        <object-name>greenflash</object-name>
         <condition>
             <greater-than>
-            <property>sim/multiplay/generic/int[4]</property>
+            <property>sim/multiplay/generic/int[7]</property>
             <value>5</value>
             </greater-than>
         </condition>
@@ -610,7 +671,7 @@ Syd Adams
         <object-name>taxiL-on</object-name>
         <condition>
             <and>
-                <property>controls/lighting/taxi-lights</property>
+                <property>sim/multiplay/generic/int[2]</property>
                 <equals>
                     <property>gear/gear[0]/position-norm</property>
                     <value>1.0</value>
@@ -621,16 +682,42 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>RHLND.flare</object-name>
         <object-name>FuselageL</object-name>
         <object-name>LHLND.flare</object-name>
-        <object-name>FuselageR</object-name>
-        <object-name>CTRLND.flare</object-name>
         <condition>
             <greater-than>
-                <property>sim/multiplay/generic/int[2]</property>
+                <property>sim/multiplay/generic/int[4]</property>
                 <value>5</value>
             </greater-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>RHLND.flare</object-name>
+        <object-name>FuselageR</object-name>
+        <condition>
+            <greater-than>
+                <property>sim/multiplay/generic/int[6]</property>
+                <value>5</value>
+            </greater-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>CTRLND.flare</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[5]</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>gear/gear[0]/position-norm</property>
+                    <value>1.0</value>
+                </equals>
+            </and>
         </condition>
     </animation>
 
@@ -648,25 +735,6 @@ Syd Adams
     <animation>
         <type>billboard</type>
         <object-name>whiteflash</object-name>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>redflash</object-name>
-        <object-name>whiteflash</object-name>
-        <object-name>greenflash</object-name>
-        <condition>
-            <and>
-                <greater-than>
-                    <property>sim/multiplay/generic/int[4]</property>
-                    <value>5</value>
-                </greater-than>
-                <less-than>
-                    <property>rendering/scene/ambient/blue</property>
-                    <value>0.38</value>
-                </less-than>
-            </and>
-        </condition>
     </animation>
 
     <animation>
@@ -974,8 +1042,8 @@ Syd Adams
         <condition>
             <and>
                 <or>
-                    <property>controls/lighting/taxi-lights</property>
-                    <property>controls/lighting/landing-light-c</property>
+                    <property>sim/multiplay/generic/int[2]</property>
+                    <property>sim/multiplay/generic/int[5]</property>
                 </or>
                 <equals>
                     <property>gear/gear[0]/position-norm</property>
@@ -1063,6 +1131,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>FUdamper</object-name>
+        <object-name>FLdamper</object-name>
         <property>sim/multiplay/generic/float[0]</property>
         <factor>45</factor>
         <center>
@@ -1079,9 +1148,7 @@ Syd Adams
 
     <animation>
         <type>translate</type>
-        <object-name>FrtWheel</object-name>
-        <object-name>FrtStrut</object-name>
-        <object-name>FLdamper</object-name>
+        <object-name>Frtstrut</object-name>
         <property>sim/multiplay/generic/float[0]</property>
         <axis>
             <x>0.087</x>
@@ -1094,12 +1161,12 @@ Syd Adams
         <type>rotate</type>
         <object-name>FLdamper</object-name>
         <property>sim/multiplay/generic/float[0]</property>
-        <factor>45</factor>
+        <factor>90</factor>
         <center>
-            <x-m>-19.180</x-m>
+            <x-m>-18.674</x-m>
             <y-m>0</y-m>
-            <z-m>-4.810</z-m>
-        </center>
+            <z-m>-4.198</z-m>
+        </center>	
         <axis>
             <x>0</x>
             <y>1</y>
@@ -1110,7 +1177,8 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Frontgear</object-name>
-        <property>gear/gear[0]/caster-angle-deg</property>
+        <property>controls/flight/rudder</property>
+        <factor>60</factor>
         <center>
             <x-m>-19.284</x-m>
             <y-m>0.0</y-m>
@@ -1164,9 +1232,9 @@ Syd Adams
             <z>0</z>
         </axis>
         <center>
-            <x-m>-19.284</x-m>
+            <x-m>-19.076</x-m>
             <y-m>0</y-m>
-            <z-m>-5.058</z-m>
+            <z-m>-5.057</z-m>
         </center>
     </animation>
 
@@ -1323,10 +1391,60 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>LHwheel.1</object-name>
-        <object-name>LHwheel.2</object-name>
-        <object-name>LHwheel.3</object-name>
-        <object-name>Laxle</object-name>
+        <object-name>Lmain.geardoor</object-name>
+        <property>gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.3</ind><dep>70</dep></entry>
+            <entry><ind>0.7</ind><dep>70</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.343</x-m>
+            <y-m>-0.311</y-m>
+            <z-m>-3.432</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>LHstrut</object-name>
+        <property>sim/multiplay/generic/float[1]</property>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>LHaxle</object-name>
+        <property>gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>20</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.407</x-m>
+            <y-m>-5.616</y-m>
+            <z-m>-5.101</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>LHaxle</object-name>
         <property>sim/multiplay/generic/float[3]</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -1345,34 +1463,14 @@ Syd Adams
     </animation>
 
     <animation>
-        <type>translate</type>
-        <object-name>LHwheel.1</object-name>
-        <object-name>LHwheel.2</object-name>
-        <object-name>LHwheel.3</object-name>
-        <object-name>Lknuckle</object-name>
-        <object-name>Laxle</object-name>
-        <object-name>Lstrut</object-name>
-        <property>sim/multiplay/generic/float[1]</property>
-        <axis>
-            <x>0</x>
-            <y>0</y>
-            <z>1</z>
-        </axis>
-    </animation>
-
-    <animation>
         <type>rotate</type>
-        <object-name>Leftgear</object-name>
+        <object-name>LHgear</object-name>
         <property>gear/gear[1]/position-norm</property>
         <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>90</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>0</dep>
-            </entry>
+            <entry><ind>0</ind><dep>80</dep></entry>
+            <entry><ind>0.2</ind><dep>80</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
@@ -1388,26 +1486,20 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>Lram</object-name>
+        <object-name>Llockbrace</object-name>
+        <object-name>Llockbrace.1</object-name>
         <property>gear/gear[1]/position-norm</property>
         <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>135</dep>
-            </entry>
-            <entry>
-                <ind>.50</ind>
-                <dep>62</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>0</dep>
-            </entry>
+            <entry><ind>0</ind><dep>-60</dep></entry>
+            <entry><ind>0.3</ind><dep>-60</dep></entry>
+            <entry><ind>0.6</ind><dep>-23</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
-            <x-m>6.407</x-m>
-            <y-m>-5.616</y-m>
-            <z-m>-3.402</z-m>
+            <x-m>6.398</x-m>
+            <y-m>-5.400</y-m>
+            <z-m>-3.248</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -1415,6 +1507,107 @@ Syd Adams
             <z>0</z>
         </axis>
     </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Llockbrace.1</object-name>
+        <property>gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>175</dep></entry>
+            <entry><ind>0.3</ind><dep>175</dep></entry>
+            <entry><ind>0.6</ind><dep>119</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.433</x-m>
+            <y-m>-4.239</y-m>
+            <z-m>-2.571</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Llbrace</object-name>
+        <object-name>Llbrace1</object-name>
+        <property>gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>-95</dep></entry>
+            <entry><ind>0.3</ind><dep>-95</dep></entry>
+            <entry><ind>0.6</ind><dep>-74</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.413</x-m>
+            <y-m>-5.472</y-m>
+            <z-m>-2.377</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Llbrace1</object-name>
+        <property>gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>170</dep></entry>
+            <entry><ind>0.3</ind><dep>170</dep></entry>
+            <entry><ind>0.6</ind><dep>89</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.423</x-m>
+            <y-m>-4.894</y-m>
+            <z-m>-2.456</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Lwing.geardoor</object-name>
+        <property>gear/gear[1]/position-norm</property>
+        <factor>90</factor>
+        <axis>
+            <x1-m>6.794</x1-m>
+            <y1-m>-6.028</y1-m>
+            <z1-m>-1.589</z1-m>
+            <x2-m>6.035</x2-m>
+            <y2-m>-6.035</y2-m>
+            <z2-m>-1.670</z2-m>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Lramdoor</object-name>
+        <property>gear/gear[1]/position-norm</property>
+        <factor>80</factor>
+        <axis>
+            <x1-m>5.608</x1-m>
+            <y1-m>-3.065</y1-m>
+            <z1-m>-2.224</z1-m>
+            <x2-m>6.035</x2-m>
+            <y2-m>-3.065</y2-m>
+            <z2-m>-2.140</z2-m>
+        </axis>
+    </animation>
+
 
     <animation>
         <type>spin</type>
@@ -1427,9 +1620,9 @@ Syd Adams
             <z>0</z>
         </axis>
         <center>
-            <x-m>5.006</x-m>
+            <x-m>4.916</x-m>
             <y-m>5.617</y-m>
-            <z-m>-4.591</z-m>
+            <z-m>-5.100</z-m>
         </center>
     </animation>
 
@@ -1461,9 +1654,9 @@ Syd Adams
             <z>0</z>
         </axis>
         <center>
-            <x-m>7.807</x-m>
+            <x-m>7.897</x-m>
             <y-m>5.617</y-m>
-            <z-m>-5.611</z-m>
+            <z-m>-5.100</z-m>
         </center>
     </animation>
 
@@ -1471,10 +1664,50 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>RHwheel.1</object-name>
-        <object-name>RHwheel.2</object-name>
-        <object-name>RHwheel.3</object-name>
-        <object-name>Raxle</object-name>
+        <object-name>Rmain.geardoor</object-name>
+        <property>gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.3</ind><dep>70</dep></entry>
+            <entry><ind>0.7</ind><dep>70</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.343</x-m>
+            <y-m>0.311</y-m>
+            <z-m>-3.432</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>RHaxle</object-name>
+        <property>gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>20</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.407</x-m>
+            <y-m>5.616</y-m>
+            <z-m>-5.101</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>rotate</type>
+        <object-name>RHaxle</object-name>
         <property>sim/multiplay/generic/float[4]</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -1494,12 +1727,7 @@ Syd Adams
 
     <animation>
         <type>translate</type>
-        <object-name>RHwheel.1</object-name>
-        <object-name>RHwheel.2</object-name>
-        <object-name>RHwheel.3</object-name>
-        <object-name>Rknuckle</object-name>
-        <object-name>Raxle</object-name>
-        <object-name>Rstrut</object-name>
+        <object-name>RHstrut</object-name>
         <property>sim/multiplay/generic/float[2]</property>
         <axis>
             <x>0</x>
@@ -1510,17 +1738,13 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>Rightgear</object-name>
+        <object-name>RHgear</object-name>
         <property>gear/gear[2]/position-norm</property>
         <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>90</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>0</dep>
-            </entry>
+            <entry><ind>0</ind><dep>80</dep></entry>
+            <entry><ind>0.2</ind><dep>80</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
             <x-m>6.407</x-m>
@@ -1536,31 +1760,125 @@ Syd Adams
 
     <animation>
         <type>rotate</type>
-        <object-name>Rram</object-name>
+        <object-name>Rlockbrace</object-name>
+        <object-name>Rlockbrace.1</object-name>
         <property>gear/gear[2]/position-norm</property>
         <interpolation>
-            <entry>
-                <ind>0</ind>
-                <dep>135</dep>
-            </entry>
-            <entry>
-                <ind>.50</ind>
-                <dep>62</dep>
-            </entry>
-            <entry>
-                <ind>1.0</ind>
-                <dep>0</dep>
-            </entry>
+            <entry><ind>0</ind><dep>-60</dep></entry>
+            <entry><ind>0.3</ind><dep>-60</dep></entry>
+            <entry><ind>0.6</ind><dep>-23</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
         </interpolation>
         <center>
-            <x-m>6.407</x-m>
-            <y-m>5.616</y-m>
-            <z-m>-3.402</z-m>
+            <x-m>6.398</x-m>
+            <y-m>5.400</y-m>
+            <z-m>-3.248</z-m>
         </center>
         <axis>
             <x>1</x>
             <y>0</y>
             <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Rlockbrace.1</object-name>
+        <property>gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>175</dep></entry>
+            <entry><ind>0.3</ind><dep>175</dep></entry>
+            <entry><ind>0.6</ind><dep>119</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.433</x-m>
+            <y-m>4.239</y-m>
+            <z-m>-2.571</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Rlbrace</object-name>
+        <object-name>Rlbrace1</object-name>
+        <property>gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>-95</dep></entry>
+            <entry><ind>0.3</ind><dep>-95</dep></entry>
+            <entry><ind>0.6</ind><dep>-74</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.413</x-m>
+            <y-m>5.472</y-m>
+            <z-m>-2.377</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Rlbrace1</object-name>
+        <property>gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>170</dep></entry>
+            <entry><ind>0.3</ind><dep>170</dep></entry>
+            <entry><ind>0.6</ind><dep>89</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>6.423</x-m>
+            <y-m>4.894</y-m>
+            <z-m>-2.456</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Rwing.geardoor</object-name>
+        <property>gear/gear[2]/position-norm</property>
+        <factor>-90</factor>
+        <axis>
+            <x1-m>6.794</x1-m>
+            <y1-m>6.028</y1-m>
+            <z1-m>-1.589</z1-m>
+            <x2-m>6.035</x2-m>
+            <y2-m>6.035</y2-m>
+            <z2-m>-1.670</z2-m>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Rramdoor</object-name>
+        <property>gear/gear[2]/position-norm</property>
+        <factor>-80</factor>
+        <axis>
+            <x1-m>5.608</x1-m>
+            <y1-m>3.065</y1-m>
+            <z1-m>-2.224</z1-m>
+            <x2-m>6.035</x2-m>
+            <y2-m>3.065</y2-m>
+            <z2-m>-2.140</z2-m>
         </axis>
     </animation>
 
@@ -1575,9 +1893,9 @@ Syd Adams
             <z>0</z>
         </axis>
         <center>
-            <x-m>5.006</x-m>
+            <x-m>4.916</x-m>
             <y-m>5.617</y-m>
-            <z-m>-4.591</z-m>
+            <z-m>-5.100</z-m>
         </center>
     </animation>
 
@@ -1609,10 +1927,92 @@ Syd Adams
             <z>0</z>
         </axis>
         <center>
-            <x-m>7.807</x-m>
+            <x-m>7.897</x-m>
             <y-m>5.617</y-m>
-            <z-m>-5.611</z-m>
+            <z-m>-5.100</z-m>
         </center>
     </animation>
+
+<!-- contrails -->
+
+<model>
+<path>Aircraft/777-200/Models/Effects/contrail1.xml</path>
+<offsets>
+<x-m>15.10</x-m>
+<y-m>-9.90</y-m>
+<z-m>-3.0</z-m>
+<heading-deg>0</heading-deg>
+ <roll-deg>0</roll-deg>
+ <pitch-deg>0 </pitch-deg>
+</offsets>
+</model>
+
+<model>
+<path>Aircraft/777-200/Models/Effects/contrail1.xml</path>
+<offsets>
+<x-m>14.88</x-m>
+<y-m>9.90</y-m>
+<z-m>-3.0</z-m>
+<heading-deg>0</heading-deg>
+ <roll-deg>0</roll-deg>
+ <pitch-deg>0</pitch-deg>
+</offsets>
+</model>
+
+
+<!--model>
+<path>Aircraft/777-200/Models/Effects/contrail3.xml</path>
+<offsets>
+<x-m>40.3</x-m>
+<y-m>-9.90</y-m>
+<z-m>-3.0</z-m>
+<heading-deg>0</heading-deg>
+ <roll-deg>    0 </roll-deg>
+ <pitch-deg>   0 </pitch-deg>
+</offsets>
+</model>
+
+<model>
+<path>Aircraft/777-200/Models/Effects/contrail4.xml</path>
+<offsets>
+<x-m>41.0</x-m>
+<y-m>9.90</y-m>
+<z-m>-3.0</z-m>
+<heading-deg>0</heading-deg>
+ <roll-deg>    0 </roll-deg>
+ <pitch-deg>   0 </pitch-deg>
+</offsets>
+</model-->
+
+<model>
+ <path>Aircraft/777-200/Models/Effects/tyre-smoke-nose.xml</path>
+ <name>tyre-smoke-n</name>
+ <offsets>
+  <x-m>-19.00</x-m>
+  <y-m>0</y-m>
+  <z-m>-5.50</z-m>
+ </offsets>
+</model>
+
+
+<model>
+ <path>Aircraft/777-200/Models/Effects/tyre-smoke-left.xml</path>
+ <name>tyre-smoke-l</name>
+ <offsets>
+  <x-m>7.80</x-m>
+  <y-m>-5.50</y-m>
+  <z-m>-5.70</z-m>
+ </offsets>
+</model>
+
+<model>
+ <path>Aircraft/777-200/Models/Effects/tyre-smoke-right.xml</path>
+ <name>tyre-smoke-r</name>
+ <offsets>
+  <x-m>7.80</x-m>
+  <y-m>5.50</y-m>
+  <z-m>-5.70</z-m>
+ </offsets>
+</model>
 
 </PropertyList>

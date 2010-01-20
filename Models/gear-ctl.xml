@@ -5,14 +5,15 @@
     <animation>
         <type>rotate</type>
         <object-name>AutoBrake.knob</object-name>
-        <property>/autopilot/autobrake/step</property>
+        <object-name>Abrake.001</object-name>
+        <property>instrumentation/afds/settings/autobrake</property>
         <interpolation>
             <entry>
-                <ind>-2</ind>
+                <ind>-0.4</ind>
                 <dep>0</dep>
             </entry>
             <entry>
-                <ind>-1</ind>
+                <ind>-0.2</ind>
                 <dep>59</dep>
             </entry>
             <entry>
@@ -20,23 +21,23 @@
                 <dep>91</dep>
             </entry>
             <entry>
-                <ind>1</ind>
+                <ind>0.2</ind>
                 <dep>120.0</dep>
             </entry>
             <entry>
-                <ind>2</ind>
+                <ind>0.4</ind>
                 <dep>150.0</dep>
             </entry>
             <entry>
-                <ind>3</ind>
+                <ind>0.6</ind>
                 <dep>180.0</dep>
             </entry>
             <entry>
-                <ind>4</ind>
+                <ind>0.8</ind>
                 <dep>206.0</dep>
             </entry>
             <entry>
-                <ind>5</ind>
+                <ind>1.0</ind>
                 <dep>237.0</dep>
             </entry>
         </interpolation>
@@ -114,10 +115,21 @@
             <button>0</button>
             <binding>
                 <command>property-adjust</command>
-                <property>/autopilot/autobrake/step</property>
-                <step>1</step>
-                <min>-2</min>
-                <max>5</max>
+                <property>instrumentation/afds/settings/autobrake</property>
+                <step>0.2000</step>
+                <min>-0.4000</min>
+                <max>1.0000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <greater-than>
+                        <property>instrumentation/afds/settings/autobrake</property>
+                        <value>0</value>
+                    </greater-than>
+                </condition>
+                <command> property-assign</command>
+                <property>autopilot/autobrake/engaged</property>
+                <value>true</value>
             </binding>
         </action>
     </animation>
@@ -129,10 +141,21 @@
             <button>1</button>
             <binding>
                 <command>property-adjust</command>
-                <property>/autopilot/autobrake/step</property>
-                <step>-1</step>
-                <min>-2</min>
-                <max>5</max>
+                <property>instrumentation/afds/settings/autobrake</property>
+                <step>-0.2000</step>
+                <min>-0.4000</min>
+                <max>1.0000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <less-than>
+                        <property>instrumentation/afds/settings/autobrake</property>
+                        <value>0.2</value>
+                    </less-than>
+                </condition>
+                <command>property-assign</command>
+                <property>autopilot/autobrake/engaged</property>
+                <value>false</value>
             </binding>
         </action>
     </animation>

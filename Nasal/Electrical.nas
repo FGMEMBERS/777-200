@@ -25,7 +25,7 @@ var lights_load=[];
 var strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
 aircraft.light.new("controls/lighting/strobe-state", [0.05, 1.30], strobe_switch);
 var beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
-aircraft.light.new("controls/lighting/beacon-state", [1.0, 1.0], beacon_switch);
+aircraft.light.new("controls/lighting/beacon-state", [0.05, 2.0], beacon_switch);
 
 #var battery = Battery.new(switch-prop,volts,amps,amp_hours,charge_percent,charge_amps);
 var Battery = {
@@ -159,6 +159,9 @@ var init_switches = func{
     append(lights_load,1);
     append(lights_input,props.globals.initNode("controls/lighting/landing-light[1]",0,"BOOL"));
     append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-light[1]",0,"DOUBLE"));
+    append(lights_load,1);
+    append(lights_input,props.globals.initNode("controls/lighting/landing-light[2]",0,"BOOL"));
+    append(lights_output,props.globals.initNode("systems/electrical/outputs/landing-light[2]",0,"DOUBLE"));
     append(lights_load,1);
     append(lights_input,props.globals.initNode("controls/lighting/nav-lights",0,"BOOL"));
     append(lights_output,props.globals.initNode("systems/electrical/outputs/nav-lights",0,"DOUBLE"));
@@ -326,12 +329,6 @@ lighting = func(bv) {
         load += lights_load[i] * srvc;
         lights_output[i].setValue(bv * srvc);
     }
-
-setprop("sim/multiplay/generic/int",getprop("systems/electrical/outputs/strobe"));
-setprop("sim/multiplay/generic/int[1]",getprop("systems/electrical/outputs/beacon"));
-setprop("sim/multiplay/generic/int[2]",getprop("systems/electrical/outputs/taxi-lights"));
-setprop("sim/multiplay/generic/int[3]",getprop("systems/electrical/outputs/logo-lights"));
-setprop("sim/multiplay/generic/int[4]",getprop("systems/electrical/outputs/landing-light[1]"));
 
 return load;
 

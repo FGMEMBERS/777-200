@@ -153,7 +153,7 @@ Syd Adams
 
     <model>
         <name>PFD1</name>
-        <path>Aircraft/777-200/Models/Instruments/PFD/PFD.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/PFD/PFD3d.xml</path>
         <offsets>
             <x-m>-1.84</x-m>
             <y-m>-0.539</y-m>
@@ -164,7 +164,7 @@ Syd Adams
 
     <model>
         <name>PFD2</name>
-        <path>Aircraft/777-200/Models/Instruments/PFD/PFD.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/PFD/PFD3d.xml</path>
         <offsets>
             <x-m>-1.84</x-m>
             <y-m>0.572</y-m>

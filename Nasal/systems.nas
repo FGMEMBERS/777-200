@@ -1,20 +1,18 @@
 # 777-200 systems
 #Syd Adams
 #
-aircraft.livery.init("Aircraft/777-200/Models/Liveries");
+
+
 var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
 var FHmeter = aircraft.timer.new("/instrumentation/clock/flight-meter-sec", 10).stop();
 var fuel_density =0;
-
-var EFB = gui.Dialog.new("/sim/gui/dialogs/EFB/dialog",
-        "Aircraft/777-200/Systems/EFB-dlg.xml");
+aircraft.livery.init("Aircraft/777-200/Models/Liveries");
 
 #EFIS specific class
 # ie: var efis = EFIS.new("instrumentation/EFIS");
 var EFIS = {
     new : func(prop1){
         m = { parents : [EFIS]};
-        m.radio_list=["instrumentation/comm/frequencies","instrumentation/comm[1]/frequencies","instrumentation/nav/frequencies","instrumentation/nav[1]/frequencies"];
         m.mfd_mode_list=["APP","VOR","MAP","PLAN"];
         m.eicas_msg=[];
         m.eicas_msg_red=[];
@@ -48,13 +46,6 @@ var EFIS = {
         m.rh_vor_adf = m.efis.initNode("inputs/rh-vor-adf",0,"INT");
         m.lh_vor_adf = m.efis.initNode("inputs/lh-vor-adf",0,"INT");
 
-        m.radio = m.efis.getNode("radio-mode",1);
-        m.radio.setIntValue(0);
-        m.radio_selected = m.efis.getNode("radio-selected",1);
-        m.radio_selected.setDoubleValue(getprop("instrumentation/comm/frequencies/selected-mhz"));
-        m.radio_standby = m.efis.getNode("radio-standby",1);
-        m.radio_standby.setDoubleValue(getprop("instrumentation/comm/frequencies/standby-mhz"));
-
         m.kpaL = setlistener("instrumentation/altimeter/setting-inhg", func m.calc_kpa());
 
         for(var i=0; i<11; i+=1) {
@@ -80,51 +71,6 @@ var EFIS = {
             tmp = -1 * tmp;
         }
         me.temp.setValue(tmp);
-    },
-#### swap radio freq ####
-    swap_freq : func(){
-        var tmpsel = me.radio_selected.getValue();
-        var tmpstb = me.radio_standby.getValue();
-        me.radio_selected.setValue(tmpstb);
-        me.radio_standby.setValue(tmpsel);
-        me.update_frequencies();
-    },
-#### copy efis freq to radios ####
-    update_frequencies : func(){
-        var fq = me.radio.getValue();
-        setprop(me.radio_list[fq]~"/selected-mhz",me.radio_selected.getValue());
-        setprop(me.radio_list[fq]~"/standby-mhz",me.radio_standby.getValue());
-    },
-#### modify efis radio standby freq ####
-    set_freq : func(fdr){
-        var rd = me.radio.getValue();
-        var frq =me.radio_standby.getValue();
-        var frq_step =0;
-        if(rd >=2){
-            if(fdr ==1)frq_step = 0.05;
-            if(fdr ==-1)frq_step = -0.05;
-            if(fdr ==10)frq_step = 1.0;
-            if(fdr ==-10)frq_step = -1.0;
-            frq += frq_step;
-            if(frq > 118.000)frq -= 10.000;
-            if(frq<108.000) frq += 10.000;
-        }else{
-            if(fdr ==1)frq_step = 0.025;
-            if(fdr ==-1)frq_step = -0.025;
-            if(fdr ==10)frq_step = 1.0;
-            if(fdr ==-10)frq_step = -1.0;
-            frq += frq_step;
-            if(frq > 136.000)frq -= 18.000;
-            if(frq<118.000) frq += 18.000;
-        }
-        me.radio_standby.setValue(frq);
-        me.update_frequencies();
-    },
-
-    set_radio_mode : func(rm){
-        me.radio.setIntValue(rm);
-        me.radio_selected.setDoubleValue(getprop(me.radio_list[rm]~"/selected-mhz"));
-        me.radio_standby.setDoubleValue(getprop(me.radio_list[rm]~"/standby-mhz"));
     },
 ######### Controller buttons ##########
     ctl_func : func(md,val){
@@ -348,6 +294,7 @@ var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
     var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
 
+
 setlistener("/sim/signals/fdm-initialized", func {
     SndOut.setDoubleValue(0.15);
     setprop("/instrumentation/clock/flight-meter-hour",0);
@@ -483,8 +430,8 @@ var update_systems = func {
     setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
     setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
     setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
-    setprop("sim/multiplay/generic/float[3]",getprop("gear/gear[3]/compression-m"));
-    setprop("sim/multiplay/generic/float[4]",getprop("gear/gear[4]/compression-m"));
+   
+    var kias=getprop("velocities/airspeed-kt");
     }
     settimer(update_systems,0);
 }
