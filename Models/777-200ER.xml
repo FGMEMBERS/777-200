@@ -101,7 +101,9 @@ Syd Adams
         <object-name>FrtStrut</object-name>
         <object-name>Lstrut</object-name>
         <object-name>Rstrut</object-name>
-        <object-name>Slats</object-name>
+        <object-name>Rslat1.001</object-name>
+        <object-name>Lslat1.001</object-name>
+        <object-name>Wheaters</object-name>
         <object-name>LandingLights</object-name>
         <object-name>taxiL-off</object-name>
     </animation>
@@ -396,15 +398,13 @@ Syd Adams
                 <dep>-30</dep>
             </entry>
         </interpolation>
-        <center>
-            <x-m>7.126</x-m>
-            <y-m>4.052</y-m>
-            <z-m>-1.147</z-m>
-        </center>
         <axis>
-            <x>0.0</x>
-            <y>0.991</y>
-            <z>0.137</z>
+            <x1-m>6.673</x1-m>
+            <y1-m>3.269</y1-m>
+            <z1-m>-1.108</z1-m>
+            <x2-m>6.737</x2-m>
+            <y2-m>8.286</y2-m>
+            <z2-m>-0.487</z2-m>
         </axis>
     </animation>
 
@@ -430,15 +430,13 @@ Syd Adams
                 <dep>-30</dep>
             </entry>
         </interpolation>
-        <center>
-            <x-m>7.262</x-m>
-            <y-m>11.980</y-m>
-            <z-m>-0.096</z-m>
-        </center>
         <axis>
-            <x>0.437</x>
-            <y>0.895</y>
-            <z>0.084</z>
+            <x1-m>7.262</x1-m>
+            <y1-m>11.979</y1-m>
+            <z1-m>-0.091</z1-m>
+            <x2-m>11.353</x2-m>
+            <y2-m>20.368</y2-m>
+            <z2-m>0.690</z2-m>
         </axis>
     </animation>
 
@@ -517,22 +515,20 @@ Syd Adams
             </entry>
             <entry>
                 <ind>0.8</ind>
-                <dep>30</dep>
+                <dep>-30</dep>
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>30</dep>
+                <dep>-30</dep>
             </entry>
         </interpolation>
-        <center>
-            <x-m>7.126</x-m>
-            <y-m>-4.052</y-m>
-            <z-m>-1.147</z-m>
-        </center>
         <axis>
-            <x>0.0</x>
-            <y>-0.991</y>
-            <z>0.137</z>
+            <x1-m>6.737</x1-m>
+            <y1-m>-8.363</y1-m>
+            <z1-m>-0.479</z1-m>
+            <x2-m>6.672</x2-m>
+            <y2-m>-3.270</y2-m>
+            <z2-m>-1.113</z2-m>
         </axis>
     </animation>
 
@@ -551,22 +547,20 @@ Syd Adams
             </entry>
             <entry>
                 <ind>0.8</ind>
-                <dep>30</dep>
+                <dep>-30</dep>
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>30</dep>
+                <dep>-30</dep>
             </entry>
         </interpolation>
-        <center>
-            <x-m>7.262</x-m>
-            <y-m>-11.980</y-m>
-            <z-m>-0.096</z-m>
-        </center>
         <axis>
-            <x>0.437</x>
-            <y>-0.895</y>
-            <z>0.084</z>
+            <x1-m>11.353</x1-m>
+            <y1-m>-20.368</y1-m>
+            <z1-m>0.690</z1-m>
+            <x2-m>7.262</x2-m>
+            <y2-m>-11.979</y2-m>
+            <z2-m>-0.091</z2-m>
         </axis>
     </animation>
 
@@ -649,6 +643,22 @@ Syd Adams
             <z>0</z>
         </axis>
     </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>Rslat1</object-name>
+        <object-name>Lslat1</object-name>
+        <object-name>Rslat1.001</object-name>
+        <object-name>Lslat1.001</object-name>
+        <property>surface-positions/slats</property>
+        <factor>0.4</factor>
+        <axis>
+            <x>-1.0</x>
+            <y>0</y>
+            <z>-0.50</z>
+        </axis>
+    </animation>
+
 
 <!-- FX / Lights -->
 
@@ -1582,7 +1592,12 @@ Syd Adams
         <type>rotate</type>
         <object-name>Lwing.geardoor</object-name>
         <property>gear/gear[1]/position-norm</property>
-        <factor>90</factor>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.2</ind><dep>0</dep></entry>
+            <entry><ind>0.5</ind><dep>90</dep></entry>
+            <entry><ind>1</ind><dep>90</dep></entry>
+        </interpolation>
         <axis>
             <x1-m>6.794</x1-m>
             <y1-m>-6.028</y1-m>
@@ -1597,7 +1612,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>Lramdoor</object-name>
         <property>gear/gear[1]/position-norm</property>
-        <factor>80</factor>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.3</ind><dep>80</dep></entry>
+            <entry><ind>1</ind><dep>80</dep></entry>
+        </interpolation>
         <axis>
             <x1-m>5.608</x1-m>
             <y1-m>-3.065</y1-m>
@@ -1856,7 +1875,12 @@ Syd Adams
         <type>rotate</type>
         <object-name>Rwing.geardoor</object-name>
         <property>gear/gear[2]/position-norm</property>
-        <factor>-90</factor>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.2</ind><dep>0</dep></entry>
+            <entry><ind>0.5</ind><dep>-90</dep></entry>
+            <entry><ind>1</ind><dep>-90</dep></entry>
+        </interpolation>
         <axis>
             <x1-m>6.794</x1-m>
             <y1-m>6.028</y1-m>
@@ -1871,7 +1895,11 @@ Syd Adams
         <type>rotate</type>
         <object-name>Rramdoor</object-name>
         <property>gear/gear[2]/position-norm</property>
-        <factor>-80</factor>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>0.3</ind><dep>-80</dep></entry>
+            <entry><ind>1</ind><dep>-80</dep></entry>
+        </interpolation>
         <axis>
             <x1-m>5.608</x1-m>
             <y1-m>3.065</y1-m>

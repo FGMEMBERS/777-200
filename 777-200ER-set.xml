@@ -20,6 +20,7 @@
             <lights>
                 <file type="string">BA</file>
             </lights>
+            <armrest type="double">0</armrest>
         </model>
 
         <view n="0">

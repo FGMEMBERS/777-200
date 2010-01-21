@@ -79,6 +79,39 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>select</type>
+        <object-name>FDroll</object-name>
+        <object-name>FDpitch</object-name>
+        <condition>
+                <property>instrumentation/afds/inputs/FD</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>FDpitch</object-name>
+        <property>autopilot/internal/target-pitch-deg</property>
+        <factor>0.00168</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>FDroll</object-name>
+        <property>autopilot/internal/target-roll-deg</property>
+        <factor>0.001</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
         <type>translate</type>
         <object-name>gspointer</object-name>
         <property>instrumentation/nav/gs-needle-deflection-norm</property>
@@ -103,17 +136,39 @@ Syd Adams
     </animation>
 
     <animation>
+        <type>translate</type>
+        <object-name>VSI.needle</object-name>
+        <property>velocities/vertical-speed-fps</property>
+        <interpolation>
+            <entry><ind>-100</ind><dep>-0.0385</dep></entry>
+            <entry><ind>-33.3333</ind><dep>-0.0265</dep></entry>
+            <entry><ind>-16.6666</ind><dep>-0.0147</dep></entry>
+            <entry><ind>16.6666</ind><dep>0.0147</dep></entry>
+            <entry><ind>33.3333</ind><dep>0.0265</dep></entry>
+            <entry><ind>100</ind><dep>0.0385</dep></entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+
+    <animation>
         <type>rotate</type>
         <object-name>VSI.needle</object-name>
         <property>velocities/vertical-speed-fps</property>
         <interpolation>
-            <entry><ind>-100</ind><dep>-60</dep></entry>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>100</ind><dep>60</dep></entry>
+            <entry><ind>-100</ind><dep>-60.0</dep></entry>
+            <entry><ind>-33.3333</ind><dep>-50.0</dep></entry>
+            <entry><ind>-16.6666</ind><dep>-34.0</dep></entry>
+            <entry><ind>16.6666</ind><dep>34.0</dep></entry>
+            <entry><ind>33.3333</ind><dep>50.0</dep></entry>
+            <entry><ind>100</ind><dep>60.0</dep></entry>
         </interpolation>
         <center>
             <x-m>0.002</x-m>
-            <y-m>0.086</y-m>
+            <y-m>0.082</y-m>
             <z-m>0.007</z-m>
         </center>
         <axis>
@@ -122,6 +177,7 @@ Syd Adams
             <z>0</z>
         </axis>
     </animation>
+
 
     <animation>
         <type>rotate</type>
@@ -145,24 +201,9 @@ Syd Adams
     </animation>
 
     <animation>
-        <type>translate</type>
-        <object-name>VSI.needle</object-name>
-        <property>velocities/vertical-speed-fps</property>
-        <interpolation>
-            <entry><ind>-100</ind><dep>-0.025</dep></entry>
-            <entry><ind>0</ind><dep>0</dep></entry>
-            <entry><ind>100</ind><dep>0.025</dep></entry>
-        </interpolation>
-        <axis>
-            <x>0</x>
-            <y>0</y>
-            <z>1</z>
-        </axis>
-    </animation>
-
-    <animation>
         <type>rotate</type>
         <object-name>Roll.needle</object-name>
+        <object-name>Slip.needle</object-name>
         <property>orientation/roll-deg</property>
         <center>
             <x-m>0.002</x-m>
@@ -172,6 +213,18 @@ Syd Adams
         <axis>
             <x>1</x>
             <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>Slip.needle</object-name>
+        <property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
+        <factor>0.0025</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
             <z>0</z>
         </axis>
     </animation>
@@ -435,7 +488,7 @@ Syd Adams
         <name>ROLL</name>
         <offsets>
             <x-m>0.004</x-m>
-            <y-m>-0.012</y-m>
+            <y-m>-0.009</y-m>
             <z-m>0.088</z-m>
         </offsets>
         <alignment>center-center</alignment>
@@ -455,7 +508,7 @@ Syd Adams
         <name>PITCH</name>
         <offsets>
             <x-m>0.004</x-m>
-            <y-m>0.020</y-m>
+            <y-m>0.025</y-m>
             <z-m>0.088</z-m>
         </offsets>
         <alignment>center-center</alignment>

@@ -285,4 +285,62 @@ Syd Adams
         </axis>
     </animation>
 
+    <animation>
+        <type>rotate</type>
+        <object-name>Cseat.armrest</object-name>
+        <property>sim/model/armrest</property>
+        <factor>93</factor>
+        <center>
+            <x-m>-0.928</x-m>
+            <y-m>0</y-m>
+            <z-m>0.127</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Pseat.armrest</object-name>
+        <property>sim/model/armrest</property>
+        <factor>93</factor>
+        <center>
+            <x-m>-0.928</x-m>
+            <y-m>0</y-m>
+            <z-m>0.127</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Pseat.armrest</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/model/armrest</property>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Cseat.armrest</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/model/armrest</property>
+            </binding>
+        </action>
+    </animation>
+
 </PropertyList>
