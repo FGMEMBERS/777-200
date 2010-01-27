@@ -448,6 +448,9 @@
         <gear>
             <brake-parking type="bool">1</brake-parking>
         </gear>
+        <flight>
+            <speedbrake-lever type="int">0</speedbrake-lever>
+        </flight>
     </controls>
 
     <autopilot>

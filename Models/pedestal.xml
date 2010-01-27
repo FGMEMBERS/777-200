@@ -206,8 +206,12 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>SpdBrkLever</object-name>
-        <property>controls/flight/speedbrake</property>
-        <factor>50</factor>
+        <property>controls/flight/speedbrake-lever</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>20.0</dep></entry>
+            <entry><ind>2</ind><dep>50.0</dep></entry>
+        </interpolation>
         <center>
             <x-m>-0.140</x-m>
             <y-m>0</y-m>
@@ -352,8 +356,26 @@ Syd Adams
         <action>
             <button>0</button>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/flight/speedbrake</property>
+                <command>property-adjust</command>
+                <property>controls/flight/speedbrake-lever</property>
+                <step>1</step>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>SpdBrkLever</object-name>
+        <action>
+            <button>1</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/flight/speedbrake-lever</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>2</max>
             </binding>
         </action>
     </animation>

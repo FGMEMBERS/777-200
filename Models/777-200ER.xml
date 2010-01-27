@@ -60,22 +60,9 @@ Syd Adams
         <texture>lights1.png</texture>
     </animation>
 
-<!-- Ver 1.9.1 + -->
-    <!--model>
-        <name>flightdeck</name>
-        <path>Aircraft/777-200/Models/flightdeck.xml</path>
-        <offsets>
-            <x-m>-21.750</x-m>
-            <y-m>0</y-m>
-            <z-m>0</z-m>
-            <pitch-deg>0</pitch-deg>
-        </offsets>
-    </model-->
-
-<!-- Ver 2-->
     <model>
         <name>flightdeck</name>
-        <path>Aircraft/777-200/Models/flightdeck2.xml</path>
+        <path>Aircraft/777-200/Models/flightdeck.xml</path>
         <offsets>
             <x-m>-21.750</x-m>
             <y-m>0</y-m>
