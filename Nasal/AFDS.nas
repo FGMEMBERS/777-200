@@ -116,8 +116,10 @@ var AFDS = {
 
     ap_update : func{
         var VS =getprop("velocities/vertical-speed-fps");
-        var TAS =abs(getprop("velocities/uBody-fps"));
-        var FPangle = math.asin(VS/TAS) * 90;
+        var TAS =getprop("velocities/uBody-fps");
+        if(TAS < 1) TAS = 1;
+        var FPangle = math.asin(VS/TAS);
+        FPangle *=90;
         setprop("autopilot/internal/fpa",FPangle);
         var msg=" ";
         if(me.FD.getValue())msg="FLT DIR";
