@@ -64,6 +64,8 @@ var AFDS = {
         m.fpa_display = m.AFDS_settings.initNode("fpa-display",0);
         m.bank_min = m.AFDS_settings.initNode("bank-min",-30);
         m.bank_max = m.AFDS_settings.initNode("bank-max",30);
+        m.pitch_min = m.AFDS_settings.initNode("pitch-min",-10);
+        m.pitch_max = m.AFDS_settings.initNode("pitch-max",15);
         m.vnav_alt = m.AFDS_settings.initNode("vnav-alt",35000);
         m.lnav_heading = m.AFDS_settings.initNode("lnav-crs",0);
 
@@ -117,7 +119,8 @@ var AFDS = {
     ap_update : func{
         var VS =getprop("velocities/vertical-speed-fps");
         var TAS =getprop("velocities/uBody-fps");
-        if(TAS < 1) TAS = 1;
+        if(TAS < 10) TAS = 10;
+        if(VS < -200) VS=-200;
         var FPangle = math.asin(VS/TAS);
         FPangle *=90;
         setprop("autopilot/internal/fpa",FPangle);
