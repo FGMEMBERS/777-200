@@ -78,6 +78,8 @@ var AFDS = {
         m.AP_throttle1 = m.AFDS_apmodes.initNode("throttle[0]"," ");
         m.AP_throttle2 = m.AFDS_apmodes.initNode("throttle[1]"," ");
 
+        m.FMS = props.globals.initNode("instrumentation/nav/slaved-to-gps");
+
         m.APl = setlistener(m.AP, func m.setAP(),0,0);
         m.Lbank = setlistener(m.bank_switch, func m.setbank(),0,0);
         return m;
@@ -86,9 +88,12 @@ var AFDS = {
 ####    Inputs    ####
 ###################
     input : func(mode,btn){
+        var fms = 0;
         if(mode==0){
             if(me.lateral_mode.getValue() ==btn) btn=0;
+            if(btn==3)fms=1;
             me.lateral_mode.setValue(btn);
+            me.FMS.setValue(fms);
         }elsif(mode==1){
             if(me.vertical_mode.getValue() ==btn) btn=0;
             me.vertical_mode.setValue(btn);
@@ -102,6 +107,8 @@ var AFDS = {
         var output=1-me.AP.getValue();
         var disabled = me.AP_disengaged.getValue();
         if(disabled)output = 1;
+        setprop("autopilot/internal/target-pitch-deg",0);
+        setprop("autopilot/internal/target-roll-deg",0);
         me.AP_passive.setValue(output);
     },
 ###################
@@ -194,11 +201,9 @@ var AFDS = {
                 me.AP_speed_mode.setValue(me.spd_list[idx]);
         }
 
-        if(getprop("autopilot/route-manager/route/num")>0){
-            crs=getprop("autopilot/internal/true-heading-error-deg");
-        }else{
-            crs=getprop("autopilot/internal/nav1-course-error");
-        }
+        var crs=getprop("autopilot/internal/nav1-track-error-deg") or 0;
+        var crs_offset = getprop("instrumentation/nav/heading-needle-deflection") or 0;
+        crs+=(crs_offset);
         me.lnav_heading.setValue(crs);
 
         me.step+=1;

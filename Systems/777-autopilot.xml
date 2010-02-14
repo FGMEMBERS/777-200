@@ -40,8 +40,8 @@
     </config>
   </pid-controller>
 
-  <pid-controller>
-    <name>Heading Hold 1</name>
+  <pi-simple-controller>
+    <name>HDG HOLD</name>
     <debug>false</debug>
     <enable>
       <prop>instrumentation/afds/ap-modes/roll-mode</prop>
@@ -57,13 +57,8 @@
       <prop>/autopilot/internal/target-roll-deg</prop>
     </output>
     <config>
-      <Ts>0.05</Ts> 
-      <Kp>-5.0</Kp>
-      <beta>1.0</beta>
-      <alpha>0.1</alpha>
-      <gamma>0.0</gamma>
-      <Ti>10.0</Ti>
-      <Td>0.00001</Td>
+      <Kp>-10</Kp>
+      <Ki>0.0</Ki>
         <u_min>
             <prop>instrumentation/afds/settings/bank-min</prop>
         </u_min>
@@ -71,32 +66,27 @@
             <prop>instrumentation/afds/settings/bank-max</prop>
         </u_max>
     </config>
-  </pid-controller>
+   </pi-simple-controller>
 
-  <pid-controller>
-    <name>LNAV FMS</name>
+  <pi-simple-controller>
+    <name>LNAV1</name>
     <debug>false</debug>
     <enable>
       <prop>instrumentation/afds/ap-modes/roll-mode</prop>
       <value>LNAV</value>
     </enable>
     <input>
-      <prop>autopilot/internal/nav1-track-error-deg</prop>
+      <prop>/autopilot/internal/nav1-track-error-deg</prop>
     </input>
     <reference>
-      <value>0.0</value>
+      <value>0</value>
     </reference>
     <output>
       <prop>/autopilot/internal/target-roll-deg</prop>
     </output>
     <config>
-      <Ts>0.05</Ts> 
-      <Kp>-2.0</Kp>
-      <beta>1.0</beta>
-      <alpha>0.1</alpha>
-      <gamma>0.0</gamma>
-      <Ti>10.0</Ti>
-      <Td>0.0</Td>
+      <Kp>-5</Kp>
+      <Ki>0.0</Ki>
         <u_min>
             <prop>instrumentation/afds/settings/bank-min</prop>
         </u_min>
@@ -104,10 +94,10 @@
             <prop>instrumentation/afds/settings/bank-max</prop>
         </u_max>
     </config>
-  </pid-controller>
+   </pi-simple-controller>
 
-  <pid-controller>
-    <name>LOC Hold 1</name>
+  <pi-simple-controller>
+    <name>LOC1</name>
     <debug>false</debug>
     <enable>
       <prop>instrumentation/afds/ap-modes/roll-mode</prop>
@@ -123,13 +113,8 @@
       <prop>/autopilot/internal/target-roll-deg</prop>
     </output>
     <config>
-      <Ts>0.05</Ts>
-      <Kp>-2.0</Kp>
-      <beta>1.0</beta>
-      <alpha>0.1</alpha>
-      <gamma>0.0</gamma>
-      <Ti>10.0</Ti>
-      <Td>0.00001</Td>
+      <Kp>-5.0</Kp>
+      <Ki>0.0</Ki>
         <u_min>
             <prop>instrumentation/afds/settings/bank-min</prop>
         </u_min>
@@ -137,7 +122,7 @@
             <prop>instrumentation/afds/settings/bank-max</prop>
         </u_max>
     </config>
-  </pid-controller>
+   </pi-simple-controller>
 
   <pid-controller>
     <name>Aileron Control</name>
@@ -158,11 +143,11 @@
     </output>
     <config>
       <Ts>0.05</Ts> 
-      <Kp>0.5</Kp>
+      <Kp>1.0</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
       <gamma>0.0</gamma>
-      <Ti>1.0</Ti>
+      <Ti>10.0</Ti>
       <Td>0.0</Td>
       <u_min>
         <value>-0.8</value>
@@ -256,7 +241,7 @@
       <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </output>
     <config>
-      <Kp>0.5</Kp>
+      <Kp>0.15</Kp>
       <Ki>0.0</Ki>
       <u_min>
         <value>-16.67</value>
@@ -285,12 +270,12 @@
     </output>
     <config>
       <Ts>0.05</Ts> 
-      <Kp>0.15</Kp>
+      <Kp>0.5</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
       <gamma>0.0</gamma>
       <Ti>10.0</Ti>
-      <Td>0.00001</Td>
+      <Td>0.0</Td>
         <u_min>
             <prop>instrumentation/afds/settings/pitch-min</prop>
         </u_min>
@@ -317,7 +302,7 @@
       <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </output>
     <config>
-      <Kp>1.0</Kp>
+      <Kp>0.3</Kp>
       <Ki>0.0</Ki>
       <u_min>
         <value>-16.67</value>
@@ -346,7 +331,7 @@
     </output>
     <config>
       <Ts>0.05</Ts> 
-      <Kp>0.15</Kp>
+      <Kp>0.05</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
       <gamma>0.0</gamma>
@@ -395,7 +380,7 @@
   </pid-controller>
 
   <pid-controller>
-    <name>Vertical Speed Hold</name>
+    <name>VS</name>
     <debug>false</debug>
     <enable>
       <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
@@ -417,7 +402,7 @@
       <beta>1.0</beta>
       <alpha>0.1</alpha>
       <gamma>0.0</gamma>
-      <Ti>1.0</Ti>
+      <Ti>10.0</Ti>
       <Td>0.00001</Td>
         <u_min>
             <prop>instrumentation/afds/settings/pitch-min</prop>
@@ -480,7 +465,7 @@
     </output>
     <config>
       <Ts>0.05</Ts> 
-      <Kp>-0.05</Kp>
+      <Kp>-0.015</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
       <gamma>0.0</gamma>
