@@ -112,6 +112,13 @@
             <autopilot>
                 <path>Aircraft/777-200/Systems/777-autopilot.xml</path>
             </autopilot>
+            <autopilot>
+                <path>Aircraft/777-200/Systems/777-spoiler-fcs.xml</path>
+            </autopilot>
+            <autopilot>
+                <name>Autobrake system</name>
+                <path>Aircraft/777-200/Systems/777-autobrake.xml</path>
+            </autopilot>
         </systems>
 
         <instrumentation>
@@ -455,8 +462,13 @@
 
     <autopilot>
         <autobrake>
-            <engaged type="bool">0</engaged>
-        </autobrake>
+        <step type="int">-1</step> <!-- OFF on selection -->
+        <config>
+             <idle-throttle type="double">0.10</idle-throttle>
+             <!-- 25% input cancel AB operation -->
+             <pilot-input type="double">0.25</pilot-input>
+        </config>
+       </autobrake>
     </autopilot>
 
     <nasal>
