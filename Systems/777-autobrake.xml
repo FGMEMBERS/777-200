@@ -239,15 +239,15 @@
         <input>
            <condition>
                 <not><property>/autopilot/autobrake/rto-selected</property></not>
-                <property>/autopilot/autobrake/pitch-up-1deg</property>
+                <not><equals>
+                    <property>/autopilot/autobrake/step</property>
+                    <value>5</value>
+                </equals></not>
             </condition> 
             <expression>
                 <!-- values taken from http://static.pprune.org/archive/index.php/t-337486.html;
                 unverified, except that MAX is definitely 11FPS, and the intermediate values
                 looks plausible on that basis 
-                
-                Note this input is used for the *initial* phase of MAX (pitch > 1 degree),
-                a second input kicks in to supply the 'real' MAX of 11FPS, see below
                 -->
                 <table>
                     <property>/autopilot/autobrake/step</property> 
@@ -256,18 +256,33 @@
                     <entry><ind>2</ind><dep>5</dep></entry>
                     <entry><ind>3</ind><dep>6</dep></entry>
                     <entry><ind>4</ind><dep>7</dep></entry>
-                    <entry><ind>5</ind><dep>7</dep></entry> <!-- MAX -->
                 </table>
             </expression>
         </input>
-        <input>
-            <condition>
-                <not><property>/autopilot/autobrake/rto-selected</property></not>
-                <not><property>/autopilot/autobrake/pitch-up-1deg</property></not>
-            </condition>
-            <value>11</value> <!-- the real MAX value -->
         
-        </input>
+        <input>
+              <condition>
+                  <not><property>/autopilot/autobrake/rto-selected</property></not>
+                  <property>/autopilot/autobrake/pitch-up-1deg</property>
+                  <equals>
+                      <property>/autopilot/autobrake/step</property>
+                      <value>5</value>
+                  </equals>
+              </condition>
+              <value>7</value> <!-- MAX limits to 7FPS until pitch is < 1 degree -->
+          </input>
+
+          <input>
+              <condition>
+                  <not><property>/autopilot/autobrake/rto-selected</property></not>
+                  <not><property>/autopilot/autobrake/pitch-up-1deg</property></not>
+                  <equals>
+                      <property>/autopilot/autobrake/step</property>
+                      <value>5</value>
+                  </equals>
+              </condition>
+              <value>11</value> <!-- the real MAX value -->
+          </input>
         
         <input>
            <condition>
