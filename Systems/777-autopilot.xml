@@ -4,7 +4,7 @@
 <PropertyList>
 
   <!-- =============================================================== -->
-  <!--                        Lateral Modes                                        -->
+  <!--                        Lateral Modes                            -->
   <!-- =============================================================== -->
 
   <pid-controller>
@@ -48,16 +48,16 @@
       <value>HDG SEL</value>
     </enable>
     <input>
-      <prop>/autopilot/internal/fdm-heading-bug-error-deg</prop>
+      <prop>autopilot/internal/fdm-heading-bug-error-deg</prop>
     </input>
     <reference>
-      <value>0.0</value>
+      <value>0</value>
     </reference>
     <output>
       <prop>/autopilot/internal/target-roll-deg</prop>
     </output>
     <config>
-      <Kp>-10</Kp>
+      <Kp>-2</Kp>
       <Ki>0.0</Ki>
         <u_min>
             <prop>instrumentation/afds/settings/bank-min</prop>
@@ -76,7 +76,7 @@
       <value>LNAV</value>
     </enable>
     <input>
-      <prop>/autopilot/internal/nav1-track-error-deg</prop>
+      <prop>/autopilot/internal/nav1-heading-error-deg</prop>
     </input>
     <reference>
       <value>0</value>
@@ -85,7 +85,7 @@
       <prop>/autopilot/internal/target-roll-deg</prop>
     </output>
     <config>
-      <Kp>-5</Kp>
+      <Kp>-5.0</Kp>
       <Ki>0.0</Ki>
         <u_min>
             <prop>instrumentation/afds/settings/bank-min</prop>
@@ -124,6 +124,30 @@
     </config>
    </pi-simple-controller>
 
+  <pi-simple-controller>
+    <name>ROLLOUT</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+      <value>ROLLOUT</value>
+    </enable>
+    <input>
+      <prop>/autopilot/internal/nav1-heading-error-deg</prop>
+    </input>
+    <reference>
+      <value>0.0</value>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-roll-deg</prop>
+    </output>
+    <config>
+      <Kp>-5.0</Kp>
+      <Ki>0.0</Ki>
+      <u_min>-5.0</u_min>
+      <u_max>5.0</u_max>
+    </config>
+   </pi-simple-controller>
+
   <pid-controller>
     <name>Aileron Control</name>
     <debug>false</debug>
@@ -142,7 +166,7 @@
       <prop>/controls/flight/aileron-trim</prop>
     </output>
     <config>
-      <Ts>0.05</Ts> 
+      <Ts>0.1</Ts> 
       <Kp>1.0</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
@@ -413,6 +437,39 @@
     </config>
   </pid-controller>
 
+  <pid-controller>
+    <name>Flare</name>
+    <debug>false</debug>
+    <enable>
+      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
+      <value>FLARE</value>
+    </enable>
+    <input>
+      <prop>/velocities/vertical-speed-fps</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/flare-speed-fps</prop>
+    </reference>
+    <output>
+      <prop>/autopilot/internal/target-pitch-deg</prop>
+    </output>
+    <config>
+      <Ts>0.05</Ts> 
+      <Kp>0.15</Kp>
+      <beta>1.0</beta>
+      <alpha>0.1</alpha>
+      <gamma>0.0</gamma>
+      <Ti>10.0</Ti>
+      <Td>0.00001</Td>
+        <u_min>
+            <prop>instrumentation/afds/settings/pitch-min</prop>
+        </u_min>
+        <u_max>
+            <prop>instrumentation/afds/settings/pitch-max</prop>
+        </u_max>
+    </config>
+  </pid-controller>
+  
   <pid-controller>
     <name>Flight Path Hold</name>
     <debug>false</debug>

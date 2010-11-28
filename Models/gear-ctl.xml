@@ -43,8 +43,8 @@
         </interpolation>
         <center>
             <x-m>0</x-m>
-            <y-m>-0.011</y-m>
-            <z-m>-0.113</z-m>
+            <y-m>-0.012</y-m>
+            <z-m>-0.102</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -59,9 +59,9 @@
         <property>controls/gear/gear-down</property>
         <factor>30</factor>
         <center>
-            <x-m>-0.056</x-m>
+            <x-m>-0.035</x-m>
             <y-m>0</y-m>
-            <z-m>0.010</z-m>
+            <z-m>0.015</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -70,7 +70,223 @@
         </axis>
     </animation>
 
+    <animation>
+        <type>select</type>
+        <object-name>GS.ovride.001</object-name>
+        <condition>
+	    <and>
+                <property>instrumentation/mk-viii/inputs/discretes/glideslope-inhibit</property>
+                <not-equals>
+                    <property>/systems/electrical/outputs/mk-viii</property>
+                    <value>0</value>
+                </not-equals>
+                <not>
+                    <or>
+                        <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+                        <property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
+                        <property>instrumentation/mk-viii/outputs/discretes/gpws-inop</property>
+                    </or>
+                </not>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Ground.prox.001</object-name>
+        <condition>
+            <and>
+                <or>
+                    <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+                    <property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
+                    <property>instrumentation/mk-viii/outputs/discretes/gpws-inop</property>
+                </or>
+                <not-equals>
+                    <property>/systems/electrical/outputs/mk-viii</property>
+                    <value>0</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Flap.ovride.001</object-name>
+        <condition>
+            <property>instrumentation/mk-viii/outputs/discretes/flap-override</property>
+        </condition>
+    </animation>
+<!--
+    <animation>
+        <type>select</type>
+        <object-name>Flap.ovride.002</object-name>
+        <condition>
+            <and>
+                <not-equals>
+                    <property>/systems/electrical/outputs/mk-viii</property>
+                    <value>0</value>
+                </not-equals>
+                <not>
+                    <property>instrumentation/mk-viii/outputs/discretes/flap-override</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+-->
+    <animation>
+        <type>select</type>
+        <object-name>Gear.ovride.001</object-name>
+        <condition>
+            <and>
+                <property>instrumentation/mk-viii/inputs/discretes/gear-override</property>
+                <not-equals>
+                    <property>/systems/electrical/outputs/mk-viii</property>
+                    <value>0</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+<!--
+    <animation>
+        <type>select</type>
+        <object-name>Gear.ovride.002</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property>instrumentation/mk-viii/inputs/discretes/gear-override</property>
+                </not>
+                <not-equals>
+                    <property>/systems/electrical/outputs/mk-viii</property>
+                    <value>0</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+-->
+    <animation>
+        <type>select</type>
+        <object-name>Terrain.inhibit.001</object-name>
+        <condition>
+            <and>
+                <property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
+                <not-equals>
+                    <property>/systems/electrical/outputs/mk-viii</property>
+                    <value>0</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+<!--
+    <animation>
+        <type>select</type>
+        <object-name>Terrain.inhibit.002</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
+                </not>
+                <not-equals>
+                    <property>/systems/electrical/outputs/mk-viii</property>
+                    <value>0</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+-->
 <!-- OSG hotspots -->
+
+    <!-- G/S INHIBIT button -->
+    <animation>
+        <type>pick</type>
+        <object-name>GS.ovride</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                  controls.click(3);
+                  b777.Gpws.clicked_gs_override();
+                  b777.Gpws.press_selftest_button();
+                </script>
+            </binding>
+            <mod-up>
+              <binding>
+                <command>nasal</command>
+                <script>
+                  b777.Gpws.release_selftest_button();
+                </script>
+              </binding>
+            </mod-up>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>GS.ovride</object-name>
+        <action>
+            <button>1</button> <!-- middle button to simulate long push-button press... -->
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                  controls.click(4);
+                  b777.Gpws.clicked_selftest();
+                </script>
+            </binding>
+        </action>
+    </animation>
+
+    <!-- FLAP OVERRIDE button -->
+    <animation>
+        <type>pick</type>
+        <object-name>Flap.ovride</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                  controls.click(3);
+                  b777.Gpws.clicked_flap_override();
+                </script>
+            </binding>
+        </action>
+    </animation>
+
+    <!-- GEAR OVERRIDE button -->
+    <animation>
+        <type>pick</type>
+        <object-name>Gear.ovride</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                  controls.click(3);
+                  b777.Gpws.clicked_gear_override();
+                </script>
+            </binding>
+        </action>
+    </animation>
+
+    <!-- TERRAIN INHIBIT button -->
+    <animation>
+        <type>pick</type>
+        <object-name>Terrain.inhibit</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                  controls.click(3);
+                  b777.Gpws.clicked_terrain_inhibit();
+                </script>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -120,6 +336,10 @@
                 <min>-2</min>
                 <max>5</max>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
         </action>
     </animation>
 
@@ -134,6 +354,10 @@
                 <step>-1</step>
                 <min>-2</min>
                 <max>5</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
             </binding>
         </action>
     </animation>

@@ -696,6 +696,10 @@ Autopilot Control Panel
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/ias-mach-selected</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -708,6 +712,10 @@ Autopilot Control Panel
             <binding>
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/hdg-trk-selected</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
             </binding>
         </action>
     </animation>
@@ -722,6 +730,10 @@ Autopilot Control Panel
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/vs-fpa-selected</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -734,6 +746,10 @@ Autopilot Control Panel
             <binding>
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/at-armed</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -748,6 +764,10 @@ Autopilot Control Panel
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/at-armed[1]</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -761,6 +781,10 @@ Autopilot Control Panel
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/AP</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -773,7 +797,11 @@ Autopilot Control Panel
             <binding>
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/FD</property>
-        </binding>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -785,7 +813,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.afds.input(0,1);</script>
+                <script>controls.click(4);b777.afds.input(0,1);</script>
             </binding>
         </action>
     </animation>
@@ -798,7 +826,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.afds.input(0,3);</script>
+                <script>controls.click(3);b777.afds.input(0,3);</script>
             </binding>
         </action>
     </animation>
@@ -811,7 +839,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.afds.input(1,5);</script>
+                <script>controls.click(4);b777.afds.input(1,5);</script>
             </binding>
         </action>
     </animation>
@@ -824,7 +852,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.afds.input(2,1);</script>
+                <script>controls.click(3);b777.afds.input(2,1);</script>
             </binding>
         </action>
     </animation>
@@ -837,7 +865,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>afds.input(2,2);</script>
+                <script>controls.click(4);afds.input(2,2);</script>
             </binding>
         </action>
     </animation>
@@ -850,7 +878,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>afds.input(2,3);</script>
+                <script>controls.click(3);afds.input(2,3);</script>
             </binding>
         </action>
     </animation-->
@@ -863,7 +891,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.afds.input(1,2);</script>
+                <script>controls.click(4);b777.afds.input(1,2);</script>
             </binding>
         </action>
     </animation>
@@ -876,7 +904,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.afds.input(1,1);</script>
+                <script>controls.click(3);b777.afds.input(1,1);</script>
             </binding>
         </action>
     </animation>
@@ -889,7 +917,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.afds.input(0,4);</script>
+                <script>controls.click(4);</script>
             </binding>
         </action>
     </animation>
@@ -908,6 +936,10 @@ Autopilot Control Panel
                 <command>property-toggle</command>
                 <property>instrumentation/afds/inputs/loc-armed</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -925,6 +957,10 @@ Autopilot Control Panel
                 <command>property-assign</command>
                 <property>instrumentation/afds/inputs/AP</property>
                 <value>0</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
             </binding>
         </action>
     </animation>
@@ -961,6 +997,10 @@ Autopilot Control Panel
                 <min>-9.9</min>
                 <max>9.9</max>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
         </action>
     </animation>
 
@@ -996,6 +1036,10 @@ Autopilot Control Panel
                 <min>-9.9</min>
                 <max>9.9</max>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1026,6 +1070,10 @@ Autopilot Control Panel
                 <step>-0.010</step>
                 <min>0.4</min>
                 <max>0.82</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
             </binding>
         </action>
     </animation>
@@ -1058,6 +1106,10 @@ Autopilot Control Panel
                 <min>0.4</min>
                 <max>0.84</max>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1074,6 +1126,10 @@ Autopilot Control Panel
                 <min>0</min>
                 <max>360</max>
                 <wrap>true</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
             </binding>
         </action>
     </animation>
@@ -1092,6 +1148,10 @@ Autopilot Control Panel
                 <max>360</max>
                 <wrap>true</wrap>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1109,7 +1169,11 @@ Autopilot Control Panel
                 <min>0</min>
                 <max>6</max>
                 <wrap>false</wrap>
-        </binding>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1127,7 +1191,11 @@ Autopilot Control Panel
                 <min>0</min>
                 <max>6</max>
                 <wrap>false</wrap>
-        </binding>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1138,10 +1206,14 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-assign</command>
-            <property>instrumentation/afds/inputs/alt-knob</property>
-            <value>0</value>
-        </binding>
+                <command>property-assign</command>
+                <property>instrumentation/afds/inputs/alt-knob</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1152,10 +1224,14 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-assign</command>
-            <property>instrumentation/afds/inputs/alt-knob</property>
-            <value>1</value>
-        </binding>
+                <command>property-assign</command>
+                <property>instrumentation/afds/inputs/alt-knob</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1187,6 +1263,10 @@ Autopilot Control Panel
                 <min>0</min>
                 <max>50000</max>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
         </action>
     </animation>
 
@@ -1217,6 +1297,10 @@ Autopilot Control Panel
                 <step>-1000</step>
                 <min>0</min>
                 <max>50000</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
             </binding>
         </action>
     </animation>

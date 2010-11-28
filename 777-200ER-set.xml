@@ -119,6 +119,12 @@
                 <name>Autobrake system</name>
                 <path>Aircraft/777-200/Systems/777-autobrake.xml</path>
             </autopilot>
+            <autopilot>
+                <path>Aircraft/Generic/generic-autopilot-helper.xml</path>
+            </autopilot>
+            <autopilot>
+                <path>Aircraft/777-200/Systems/777-PFD.xml</path>
+            </autopilot>
         </systems>
 
         <instrumentation>
@@ -127,8 +133,15 @@
 
         <sound>
             <path>Aircraft/777-200/Sounds/777-sound.xml</path>
-            <switch type = "bool">0</switch>
             <stall-horn type="bool">0</stall-horn>
+            <click1 type="bool">0</click1>
+            <click2 type="bool">0</click2>
+            <click3 type="bool">0</click3>
+            <click4 type="bool">0</click4>
+            <click5 type="bool">0</click5>
+            <click6 type="bool">0</click6>
+            <click7 type="bool">0</click7>
+            <click8 type="bool">0</click8>
         </sound>
 
         <hud>
@@ -141,12 +154,36 @@
         <help>
             <title>777-200ER</title>
             <key>
+                <name>S</name>
+                <desc>autostart / shutdown</desc>
+            </key>
+            <key>
                 <name>Delete</name>
                 <desc>toggle thrust reversers</desc>
             </key>
             <key>
-                <name>Ctrl-b</name>
-                <desc>toggle speed brakes</desc>
+                <name>Ctrl-B</name>
+                <desc>toggle spoilers</desc>
+            </key>
+            <key>
+                <name>Ctrl-I</name>
+                <desc>toggle auto spoilers</desc>
+            </key>
+            <key>
+                <name>L</name>
+                <desc>toggle landing lights</desc>
+            </key>
+            <key>
+                <name>Ctrl-L</name>
+                <desc>toggle cabin lights</desc>
+            </key>
+            <key>
+                <name>Ctrl-M</name>
+                <desc>mute current master warning</desc>
+            </key>
+            <key>
+                <name>Ctrl-W</name>
+                <desc>enable/disable EICAS warning unit</desc>
             </key>
         </help>
 
@@ -231,12 +268,13 @@
             <int n="5" alias="/systems/electrical/outputs/landing-light[1]"/>
             <int n="6" alias="/systems/electrical/outputs/landing-light[2]"/>
             <int n="7" alias="/systems/electrical/outputs/nav-lights"/>
+            <int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
 
             <float n="0" alias="/gear/gear[0]/compression-m"/>
             <float n="1" alias="/gear/gear[1]/compression-m"/>
             <float n="2" alias="/gear/gear[2]/compression-m"/>
             <float n="3" alias="/gear/gear[3]/compression-m"/>
-            <float  n="4" alias="/gear/gear[4]/compression-m"/>
+            <float n="4" alias="/gear/gear[4]/compression-m"/>
             <float n="5" alias="/surface-positions/speedbrake-norm"/>
             <float n="6" alias="/surface-positions/reverser-norm"/>
             <string  alias="/sim/multiplay/callsign"/>
@@ -244,6 +282,8 @@
     </multiplay>
 
     </sim>
+
+
 
     <gear>
         <gear n="0">
@@ -304,7 +344,7 @@
             </key>
             <key n="1">
                 <name>Ctrl-A</name>
-                <desc>Toggle autopilot altitude lock</desc>
+                <desc>toggle autopilot altitude lock</desc>
                 <binding>
                     <command>property-toggle</command>
                     <property>instrumentation/afds/inputs/alt-hold</property>
@@ -312,7 +352,7 @@
             </key>
              <key n="7">
                 <name>Ctrl-G</name>
-                <desc>Toggle autopilot glide slope lock</desc>
+                <desc>toggle autopilot glide slope lock</desc>
                 <binding>
                     <command>property-toggle</command>
                     <property>instrumentation/afds/inputs/app-hold</property>
@@ -320,15 +360,39 @@
             </key>
             <key n="8">
                 <name>Ctrl-H</name>
-                <desc>Toggle autopilot heading lock</desc>
+                <desc>toggle autopilot heading lock</desc>
                 <binding>
                     <command>property-toggle</command>
                     <property>instrumentation/afds/inputs/hdg-hold</property>
                 </binding>
             </key>
+            <key n="9">
+                <name>Ctrl-I</name>
+                <desc>toggle auto spoilers</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>controls.toggleAutoSpoilers();</script>
+                </binding>
+            </key>
+            <key n="12">
+                <name>Ctrl-L</name>
+                <desc>toggle cabin lights</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>controls/lighting/cabin-lights</property>
+                </binding>
+            </key>
+            <key n="13">
+                <name>Ctrl-M</name>
+                <desc>mute current master warning</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>b777.Weu.mute_warnings();</script>
+                </binding>
+            </key>
             <key n="14">
                 <name>Ctrl-N</name>
-                <desc>Toggle LNAV lock</desc>
+                <desc>toggle LNAV lock</desc>
                 <binding>
                     <command>property-toggle</command>
                     <property>instrumentation/afds/inputs/lnav-hold</property>
@@ -336,7 +400,7 @@
             </key>
             <key n="16">
                 <name>Ctrl-P</name>
-                <desc>Toggle VS</desc>
+                <desc>toggle VS</desc>
                 <binding>
                     <command>property-toggle</command>
                     <property>instrumentation/afds/inputs/vs-fpa-hold</property>
@@ -344,10 +408,34 @@
             </key>
             <key n="19">
                 <name>Ctrl-S</name>
-                <desc>Toggle autothrottle</desc>
+                <desc>toggle autothrottle</desc>
                 <binding>
                     <command>property-toggle</command>
                     <property>instrumentation/afds/inputs/at-hold</property>
+                </binding>
+            </key>
+            <key n="23">
+                <name>Ctrl-W</name>
+                <desc>enable/disable EICAS warning unit</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/weu/serviceable</property>
+                </binding>
+            </key>
+            <key n="108">
+                <name>L</name>
+                <desc>toggle landing lights</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>controls.toggleLandingLights();</script>
+                </binding>
+            </key>
+            <key n="115">
+                <name>S</name>
+                <desc>autostart / shutdown</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>sim/model/start-idling</property>
                 </binding>
             </key>
         </keyboard>
@@ -392,14 +480,42 @@
             <id type="string">KSFO</id>
             <range type="double">1.2</range>
         </groundradar>
-        <mk-viii>
-            <serviceable>1</serviceable>
-            <speaker>
-                <max-dist>2</max-dist>
-                <reference-dist>1</reference-dist>
-                <volume>0.4</volume>
+
+        <mk-viii>  <!-- mk-viii configuration, see: http://wiki.flightgear.org/index.php/GPWS -->
+            <serviceable>true</serviceable>     <!-- EGPWS_ENABLE -->
+            <configuration-module>
+                <category-1>                    <!-- AIRCRAFT_MODE_TYPE_SELECT -->
+                   255 <!-- aircraft type T1, fast turbofan -->
+                </category-1>
+                <category-4>                    <!-- ALTITUDE_CALLOUTS -->
+                    13 <!-- enable all altitude callouts -->
+                </category-4>
+                <category-13>                   <!-- INPUT_OUTPUT_DISCRETE_TYPE_SELECT -->
+                     5 <!-- flashing warning lamp -->
+                </category-13>
+            </configuration-module>
+            <inputs>                            <!-- Module I/O -->
+                <arinc429>
+                    <!-- provide fixed value for decision height -->
+                    <decision-height-ncd> false </decision-height-ncd>
+                    <decision-height> 250 </decision-height>
+                </arinc429>
+            </inputs>
+            <input-feeders>    <!-- disable some internal default feeders -->
+                <discretes>
+                    <!-- will provide custom (nasal) sources for the following input feeders -->
+                    <glideslope-inhibit> false </glideslope-inhibit>
+                    <landing-gear> false </landing-gear>
+                    <landing-flaps> false </landing-flaps>
+                </discretes>
+            </input-feeders>
+            <speaker>                           <!-- Speaker Configuration -->
+                <max-dist> 2 </max-dist>        <!-- Max. distance where speaker is heard -->
+                <reference-dist> 1 </reference-dist> <!-- Distance to pilot -->
+                <volume> 0.6 </volume>          <!-- Volume at reference distance -->
             </speaker>
         </mk-viii>
+
         <adf n="1">
             <serviceable type="bool">1</serviceable>
             <mode>adf</mode>
@@ -449,6 +565,9 @@
                 <standby-mhz n="4" type="double">111.70</standby-mhz>
             </frequencies>
         </nav>
+        <transponder>
+                <serviceable>true</serviceable>
+        </transponder>
     </instrumentation>
 
     <controls>
@@ -456,7 +575,7 @@
             <brake-parking type="bool">1</brake-parking>
         </gear>
         <flight>
-            <speedbrake-lever type="int">0</speedbrake-lever>
+            <speedbrake-lever type="int">1</speedbrake-lever>
         </flight>
     </controls>
 
@@ -468,16 +587,22 @@
              <!-- 25% input cancel AB operation -->
              <pilot-input type="double">0.25</pilot-input>
         </config>
-       </autobrake>
+        </autobrake>
+        <locks>
+            <pitch-engaged type="bool">1</pitch-engaged>
+            <roll-engaged type="bool">1</roll-engaged>
+        </locks>
     </autopilot>
 
     <nasal>
         <b777>
             <file>Aircraft/777-200/Nasal/Electrical.nas</file>
-            <file>Aircraft/777-200/Nasal/flightdirector.nas</file>
             <file>Aircraft/777-200/Nasal/systems.nas</file>
             <file>Aircraft/777-200/Nasal/AFDS.nas</file>
             <file>Aircraft/777-200/Nasal/tyresmoke.nas</file>
+            <file>Aircraft/777-200/Nasal/gpws.nas</file>
+            <file>Aircraft/777-200/Nasal/warnsystem.nas</file>
+            <file>Aircraft/777-200/Nasal/brakesystem.nas</file>
         </b777>
         <dialogs>
             <file>Aircraft/777-200/Nasal/dialogs.nas</file>

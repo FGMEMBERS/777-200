@@ -119,13 +119,33 @@
         <max-dist>30.0</max-dist>
     </engine>
 
-    <rumble>
-        <name>rumble</name>
+    <rumblefront>
+        <name>nose wheel rumble</name>
+        <mode>looped</mode>
+        <path>Sounds/rumble.wav</path>
+        <condition>
+            <property>/gear/gear[0]/wow</property>
+        </condition>
+        <volume>
+            <property>/velocities/groundspeed-kt</property>
+            <type>log</type>
+            <factor>0.25</factor>
+        </volume>
+        <position>
+            <x>-22</x>
+            <y>0</y>
+            <z>-5</z>
+        </position>
+        <reference-dist>10.0</reference-dist>
+        <max-dist>25.0</max-dist>
+    </rumblefront>
+
+    <rumblemain>
+        <name>main gear rumble</name>
         <mode>looped</mode>
         <path>Sounds/rumble.wav</path>
         <condition>
             <or>
-                <property>/gear/gear[0]/wow</property>
                 <property>/gear/gear[1]/wow</property>
                 <property>/gear/gear[2]/wow</property>
             </or>
@@ -133,16 +153,16 @@
         <volume>
             <property>/velocities/groundspeed-kt</property>
             <type>log</type>
-            <factor>0.8</factor>
+            <factor>0.25</factor>
         </volume>
         <position>
-            <x>-9</x>
+            <x>-6.5</x>
             <y>0</y>
             <z>-5</z>
         </position>
         <reference-dist>10.0</reference-dist>
         <max-dist>25.0</max-dist>
-    </rumble>
+    </rumblemain>
 
     <gear1>
         <name>gear</name>
@@ -151,6 +171,7 @@
         <property>/gear/gear[0]/position-norm</property>
         <volume>
             <property>sim/sound/Ovolume</property>
+            <offset>0.2</offset>
         </volume>
         <pitch>
             <internal>dt_play</internal>
@@ -158,7 +179,7 @@
             <factor>-0.001</factor>
         </pitch>
         <position>
-            <x>0</x>
+            <x>-22</x>
             <y>0</y>
             <z>-2</z>
         </position>
@@ -166,7 +187,7 @@
         <max-dist>10.0</max-dist>
     </gear1>
 
-    <gear1>
+    <gearlock>
         <name>gear-lock</name>
         <path>Sounds/gear-lck.wav</path>
         <condition>
@@ -177,23 +198,92 @@
         </condition>
         <volume>
             <property>sim/sound/Ovolume</property>
+            <offset>0.2</offset>
         </volume>
-<position>
-            <x>0</x>
+        <position>
+            <x>-22</x>
             <y>0</y>
             <z>-2</z>
         </position>
         <reference-dist>10.0</reference-dist>
         <max-dist>20.0</max-dist>
-    </gear1>
+    </gearlock>
 
     <squeal1>
-        <name>squeal</name>
+        <name>front wheel squeal</name>
+        <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
+        <condition>
+            <property>/gear/gear[0]/wow</property>
+        </condition>
+        <volume>
+            <property>sim/sound/Ovolume</property>
+        </volume>
+        <volume>
+            <property>/velocities/airspeed-kt</property>
+            <factor>0.01</factor>
+        </volume>
+        <volume>
+            <internal>dt_stop</internal>
+            <factor>0.5</factor>
+            <max>1.0</max>
+        </volume>
+        <pitch>
+            <property>/velocities/airspeed-kt</property>
+            <factor>0.0025</factor>
+            <offset>1.2</offset>
+        </pitch>
+        <position>
+            <x>-22</x>
+            <y>0</y>
+            <z>-5</z>
+        </position>
+        <reference-dist>20.0</reference-dist>
+        <max-dist>40.0</max-dist>
+    </squeal1>
+
+    <squeal2>
+        <name>right wheel squeal</name>
         <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
             <or>
-                <property>/gear/gear[0]/wow</property>
                 <property>/gear/gear[1]/wow</property>
+            </or>
+        </condition>
+        <volume>
+            <property>sim/sound/Ovolume</property>
+        </volume>
+        <volume>
+            <property>/velocities/speed-down-fps</property>
+            <factor>0.05</factor>
+        </volume>
+        <volume>
+            <property>/velocities/airspeed-kt</property>
+            <factor>0.01</factor>
+        </volume>
+        <volume>
+            <internal>dt_stop</internal>
+            <factor>0.5</factor>
+            <max>1.0</max>
+        </volume>
+        <pitch>
+            <property>/velocities/airspeed-kt</property>
+            <factor>0.0025</factor>
+            <offset>1.2</offset>
+        </pitch>
+        <position>
+            <x>-6.5</x>
+            <y>-8</y>
+            <z>-5</z>
+        </position>
+        <reference-dist>20.0</reference-dist>
+        <max-dist>40.0</max-dist>
+    </squeal2>
+
+    <squeal3>
+        <name>left wheel squeal</name>
+        <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
+        <condition>
+            <or>
                 <property>/gear/gear[2]/wow</property>
             </or>
         </condition>
@@ -210,7 +300,7 @@
         </volume>
         <volume>
             <internal>dt_stop</internal>
-            <factor>0.05</factor>
+            <factor>0.5</factor>
             <max>1.0</max>
         </volume>
         <pitch>
@@ -220,12 +310,12 @@
         </pitch>
         <position>
             <x>-6.5</x>
-            <y>0</y>
+            <y>8</y>
             <z>-5</z>
         </position>
         <reference-dist>20.0</reference-dist>
         <max-dist>40.0</max-dist>
-    </squeal1>
+    </squeal3>
 
     <flap>
         <name>flaps</name>
@@ -282,7 +372,7 @@
         <mode>looped</mode>
         <path>/Aircraft/777-200/Sounds/stall.wav</path>
         <condition>
-            <property>sim/sound/stall-horn</property>
+            <property>instrumentation/weu/sound/stall-horn</property>
         </condition>
         <volume>
             <offset>0.5</offset>
@@ -296,15 +386,34 @@
         <max-dist>1.0</max-dist>
     </stall>
 
-    <switch>
-        <name>click on</name>
-        <mode>once</mode>
-        <path>Aircraft/777-200/Sounds/click.wav</path>
+    <stickshaker>
+        <name>stick shaker</name>
+        <mode>looped</mode>
+        <path>Aircraft/777-200/Sounds/shaker.wav</path>
         <condition>
-            <property>/sim/sound/switch</property>
+            <property>instrumentation/weu/actuators/stick-shaker</property>
         </condition>
         <volume>
-            <factor>0.45</factor>
+            <factor>0.8</factor>
+        </volume>
+        <position>
+            <x>-24</x>
+            <y>0</y>
+            <z>0.18</z>
+        </position>
+        <reference-dist>0.5</reference-dist>
+        <max-dist>1.0</max-dist>
+    </stickshaker>
+
+    <switch>
+        <name>switch1</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/click1.wav</path>
+        <condition>
+            <property>sim/sound/click1</property>
+        </condition>
+        <volume>
+            <factor>0.4</factor>
         </volume>
         <position>
             <x>-24</x>
@@ -316,16 +425,124 @@
     </switch>
 
     <switch>
-        <name>click off</name>
+        <name>switch2</name>
         <mode>once</mode>
-        <path>Aircraft/777-200/Sounds/click.wav</path>
+        <path>Aircraft/777-200/Sounds/click2.wav</path>
         <condition>
-            <not>
-                <property>/sim/sound/switch</property>
-            </not>
+            <property>sim/sound/click2</property>
         </condition>
         <volume>
-            <offset>0.5</offset>
+            <factor>0.5</factor>
+        </volume>
+        <position>
+            <x>-24</x>
+            <y>0</y>
+            <z>0.18</z>
+        </position>
+        <reference-dist>0.5</reference-dist>
+        <max-dist>1.0</max-dist>
+    </switch>
+
+    <switch>
+        <name>click3</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/click3.wav</path>
+        <condition>
+            <property>sim/sound/click3</property>
+        </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+        <position>
+            <x>-24</x>
+            <y>0</y>
+            <z>0.18</z>
+        </position>
+        <reference-dist>0.5</reference-dist>
+        <max-dist>1.0</max-dist>
+    </switch>
+    <switch>
+        <name>click4</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/click4.wav</path>
+        <condition>
+            <property>sim/sound/click4</property>
+        </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+        <position>
+            <x>-24</x>
+            <y>0</y>
+            <z>0.18</z>
+        </position>
+        <reference-dist>0.5</reference-dist>
+        <max-dist>1.0</max-dist>
+    </switch>
+    <switch>
+        <name>click5</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/click5.wav</path>
+        <condition>
+            <property>sim/sound/click5</property>
+        </condition>
+        <volume>
+            <factor>0.7</factor>
+        </volume>
+        <position>
+            <x>-24</x>
+            <y>0</y>
+            <z>0.18</z>
+        </position>
+        <reference-dist>0.5</reference-dist>
+        <max-dist>1.0</max-dist>
+    </switch>
+    
+    <switch>
+        <name>click6</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/click6.wav</path>
+        <condition>
+            <property>sim/sound/click6</property>
+        </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+        <position>
+            <x>-24</x>
+            <y>0</y>
+            <z>0.18</z>
+        </position>
+        <reference-dist>0.5</reference-dist>
+        <max-dist>1.0</max-dist>
+    </switch>
+    <switch>
+        <name>click7</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/click7.wav</path>
+        <condition>
+            <property>sim/sound/click7</property>
+        </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+        <position>
+            <x>-24</x>
+            <y>0</y>
+            <z>0.18</z>
+        </position>
+        <reference-dist>0.5</reference-dist>
+        <max-dist>1.0</max-dist>
+    </switch>
+    <switch>
+        <name>click8</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/click8.wav</path>
+        <condition>
+            <property>sim/sound/click8</property>
+        </condition>
+        <volume>
+            <factor>1</factor>
         </volume>
         <position>
             <x>-24</x>
@@ -339,17 +556,20 @@
     <speedbrake>
         <name>speedbrake</name>
         <mode>in-transit</mode>
-        <path>Sounds/whine.wav</path>
+        <path>Sounds/flaps.wav</path>
+        <property>/surface-positions/speedbrake-norm</property>
         <volume>
-            <offset>0.5</offset>
+            <property>sim/sound/Ovolume</property>
+            <max>0.8</max>
+            <offset>0.2</offset>
         </volume>
         <position>
-            <x>-24</x>
+            <x>-9</x>
             <y>0</y>
-            <z>0.18</z>
+            <z>0</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>5.0</reference-dist>
+        <max-dist>10.0</max-dist>
     </speedbrake>
 
     <engines>
@@ -395,6 +615,27 @@
         <reference-dist>250.0</reference-dist>
         <max-dist>500.0</max-dist>
     </engines>
+
+    <warningsiren>
+        <name>warning-siren</name>
+        <mode>looped</mode>
+        <path>Aircraft/777-200/Sounds/siren.wav</path>
+        <condition>
+	        <property>instrumentation/weu/sound/siren</property>
+        </condition>
+    </warningsiren>
+
+    <apdisengage>
+        <name>autopilot disengage</name>
+        <mode>once</mode>
+        <path>Aircraft/777-200/Sounds/autopilot-disengage.wav</path>
+        <condition>
+            <property>instrumentation/weu/sound/autopilot-warning</property>
+        </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+    </apdisengage>
 
 </fx>
 

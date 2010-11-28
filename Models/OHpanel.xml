@@ -295,9 +295,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/beacon</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/beacon</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -308,9 +312,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/nav-lights</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/nav-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -321,9 +329,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/logo-lights</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/logo-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -334,9 +346,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/wing-lights</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/wing-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -348,9 +364,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/landing-light[0]</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/landing-light[0]</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -361,9 +381,17 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/landing-light[1]</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/landing-light[1]</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
         </action>
     </animation>
 
@@ -374,9 +402,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/landing-light[2]</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/landing-light[2]</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -387,9 +419,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/electric/battery-switch</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/electric/battery-switch</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -407,6 +443,10 @@ Syd Adams
                 <command>property-assign</command>
                 <property>controls/electric/engine/bus-tie</property>
                 <property>controls/electric/engine/generator</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
             </binding>
         </action>
     </animation>
@@ -426,6 +466,10 @@ Syd Adams
                 <property>controls/electric/engine[1]/bus-tie</property>
                 <property>controls/electric/engine[1]/generator</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -436,9 +480,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/electric/APU-generator</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/electric/APU-generator</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -449,9 +497,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/electric/engine/bus-tie</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine/bus-tie</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -462,9 +514,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/electric/engine[1]/bus-tie</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[1]/bus-tie</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -475,9 +531,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/strobe</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/strobe</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
         </action>
     </animation>
 
@@ -488,9 +548,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/lighting/taxi-lights</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/taxi-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -502,9 +566,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/fuel/tank/boost-pump</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank/boost-pump</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -515,9 +583,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/fuel/tank/boost-pump[1]</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank/boost-pump[1]</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -528,9 +600,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/fuel/tank[1]/boost-pump</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank[1]/boost-pump</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -541,9 +617,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/fuel/tank[1]/boost-pump[1]</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank[1]/boost-pump[1]</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -554,9 +634,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/fuel/tank[2]/boost-pump</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank[2]/boost-pump</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -567,9 +651,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>controls/fuel/tank[2]/boost-pump[1]</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank[2]/boost-pump[1]</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 

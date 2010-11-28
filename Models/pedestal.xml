@@ -404,4 +404,54 @@ Syd Adams
         </action>
     </animation>
 
+    <animation>
+        <type>pick</type>
+        <object-name>FlapLever</object-name>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>nasal</command>
+                <script>controls.flapsDown(1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>FlapLever</object-name>
+        <action>
+            <button>1</button>
+            <binding>
+                <command>nasal</command>
+                <script>controls.flapsDown(-1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>PitchTrim</object-name>
+        <action>
+            <repeatable>true</repeatable>
+            <button>0</button>
+            <binding>
+                <command>nasal</command>
+                <script>controls.elevatorTrim(1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>PitchTrim</object-name>
+        <action>
+            <repeatable>true</repeatable>
+            <button>1</button>
+            <binding>
+                <command>nasal</command>
+                <script>controls.elevatorTrim(-1);</script>
+            </binding>
+        </action>
+    </animation>
+
 </PropertyList>

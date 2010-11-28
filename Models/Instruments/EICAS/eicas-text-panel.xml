@@ -22,7 +22,7 @@
         <h>256</h>
     </instrument>
 
-    <!--instrument include="Msg.xml">
+    <instrument include="Msg.xml">
         <condition>
             <greater-than>
                 <property>systems/electrical/outputs/efis</property>
@@ -36,7 +36,7 @@
         <h>110</h>
     </instrument>
 
-    <instrument include="AIR.xml">
+    <!--instrument include="AIR.xml">
         <condition>
             <greater-than>
                 <property>systems/electrical/outputs/efis</property>

@@ -50,7 +50,10 @@ Syd Adams
         <type>select</type>
         <object-name>gspointer</object-name>
         <condition>
-            <property>instrumentation/nav/gs-in-range</property>
+            <and>
+                <property>instrumentation/nav/gs-in-range</property>
+                <property>instrumentation/nav/has-gs</property>
+            </and>
         </condition>
     </animation>
 
@@ -148,10 +151,39 @@ Syd Adams
     </animation>
 
     <animation>
+        <object-name>StallSpeedInd</object-name>
+        <property>instrumentation/pfd/stallspeed-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.000646</factor>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>StallSpeedInd</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>instrumentation/pfd/stallspeed-diff</property>
+                    <value>-93</value>
+                </greater-than>
+                <less-than>
+                    <property>instrumentation/pfd/stallspeed-diff</property>
+                    <value>79</value>
+                </less-than>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
         <type>translate</type>
         <object-name>locpointer</object-name>
         <property>instrumentation/nav/heading-needle-deflection-norm</property>
-        <factor>0.0272</factor>
+        <factor>-0.0272</factor>
         <axis>
             <x>0</x>
             <y>-1</y>
@@ -1018,6 +1050,51 @@ Syd Adams
                 <value>ALT</value>
             </equals>
         </condition>
+    </animation>
+
+    <!-- TCW display (time critical warnings) from GPWS -->
+    <text>
+        <name>tcws</name>
+        <offsets>
+            <x-m>0.014</x-m>
+            <y-m>-0.01</y-m>
+            <z-m>-0.044</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/mk-viii/outputs/warning</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.015</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">64</width>
+            <height type="int">64</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>material</type>
+        <object-name>tcws</object-name>
+        <emission> <!--red-->
+            <red>0.8</red>
+            <green>0</green>
+            <blue>0</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
     </animation>
 
 </PropertyList>

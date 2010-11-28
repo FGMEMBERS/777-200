@@ -5,7 +5,28 @@ MATERIAL "interior" rgb 0.8 0.8 0.8 amb 0.8 0.8 0.8 emis 0.1 0.1 0.1 spec 0.137 
 MATERIAL "black" rgb 0 0 0 amb 0 0 0 emis 0 0 0 spec 0 0 0 shi 0 trans 0
 MATERIAL "magenta" rgb 0 0 0 amb 0 0 0 emis 0.835 0.498 0.498 spec 0 0 0 shi 0 trans 0
 OBJECT world
-kids 27
+kids 28
+OBJECT poly
+name "StallSpeedInd"
+data 9
+Plane.020
+texture "ati.png"
+texrep 1 1
+crease 30.000000
+numvert 4
+0.0035 0.019 0.064702
+0.0035 0.009 0.064702
+0.0035 0.009 0.072902
+0.0035 0.019 0.072902
+numsurf 1
+SURF 0x00
+mat 1
+refs 4
+0 0.8359375 0.46628125
+3 0.775390625 0.46628125
+2 0.775390625 0.40625
+1 0.8359375 0.40625
+kids 0
 OBJECT poly
 name "AI"
 data 9

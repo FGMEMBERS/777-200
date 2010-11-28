@@ -59,5 +59,18 @@ Syd Adams
         </binding>
         </action>
     </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>Btn.menu</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>dialogs.EFB.toggle();</script>
+            </binding>
+        </action>
+    </animation>
 
 </PropertyList>

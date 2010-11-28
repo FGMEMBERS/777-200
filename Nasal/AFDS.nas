@@ -35,6 +35,8 @@ var AFDS = {
         m.AP = m.AFDS_inputs.initNode("AP",0,"BOOL");
         m.AP_disengaged = m.AFDS_inputs.initNode("AP-disengage",0,"BOOL");
         m.AP_passive = props.globals.initNode("autopilot/locks/passive-mode",1,"BOOL");
+        m.AP_pitch_engaged = props.globals.initNode("autopilot/locks/pitch-engaged",1,"BOOL");
+        m.AP_roll_engaged = props.globals.initNode("autopilot/locks/roll-engaged",1,"BOOL");
 
         m.FD = m.AFDS_inputs.initNode("FD",0,"BOOL");
         m.at1 = m.AFDS_inputs.initNode("at-armed[0]",0,"BOOL");
@@ -67,7 +69,6 @@ var AFDS = {
         m.pitch_min = m.AFDS_settings.initNode("pitch-min",-10);
         m.pitch_max = m.AFDS_settings.initNode("pitch-max",15);
         m.vnav_alt = m.AFDS_settings.initNode("vnav-alt",35000);
-        m.lnav_heading = m.AFDS_settings.initNode("lnav-crs",0);
 
         m.AP_roll_mode = m.AFDS_apmodes.initNode("roll-mode","TO/GA");
         m.AP_roll_arm = m.AFDS_apmodes.initNode("roll-mode-arm"," ");
@@ -79,8 +80,10 @@ var AFDS = {
         m.AP_throttle2 = m.AFDS_apmodes.initNode("throttle[1]"," ");
 
         m.FMS = props.globals.initNode("instrumentation/nav/slaved-to-gps");
+        m.FMS.setValue(0);
 
         m.APl = setlistener(m.AP, func m.setAP(),0,0);
+        m.APdisl = setlistener(m.AP_disengaged, func m.setAP(),0,0);
         m.Lbank = setlistener(m.bank_switch, func m.setbank(),0,0);
         return m;
     },
@@ -106,7 +109,8 @@ var AFDS = {
     setAP : func{
         var output=1-me.AP.getValue();
         var disabled = me.AP_disengaged.getValue();
-        if(disabled)output = 1;
+        if(getprop("position/altitude-agl-ft")<200)disabled = 1;
+        if((disabled)and(output==0)){output = 1;me.AP.setValue(0);}
         setprop("autopilot/internal/target-pitch-deg",0);
         setprop("autopilot/internal/target-roll-deg",0);
         me.AP_passive.setValue(output);
@@ -114,7 +118,7 @@ var AFDS = {
 ###################
     setbank : func{
         var banklimit=me.bank_switch.getValue();
-        var lmt=30;
+        var lmt=25;
         if(banklimit>0){lmt=banklimit * 5};
         me.bank_max.setValue(lmt);
         lmt = -1 * lmt;
@@ -128,9 +132,12 @@ var AFDS = {
         var TAS =getprop("velocities/uBody-fps");
         if(TAS < 10) TAS = 10;
         if(VS < -200) VS=-200;
-        var FPangle = math.asin(VS/TAS);
-        FPangle *=90;
-        setprop("autopilot/internal/fpa",FPangle);
+        if (abs(VS/TAS)<=1)
+        {
+          var FPangle = math.asin(VS/TAS);
+          FPangle *=90;
+          setprop("autopilot/internal/fpa",FPangle);
+        }
         var msg=" ";
         if(me.FD.getValue())msg="FLT DIR";
         if(me.AP.getValue())msg="AP ENG";
@@ -140,11 +147,15 @@ var AFDS = {
         tmp = abs(me.fpa_setting.getValue());
         me.fpa_display.setValue(tmp);
         msg="";
+        var hdgoffset = me.hdg_setting.getValue()-getprop("orientation/heading-magnetic-deg");
+        if(hdgoffset < -180) hdgoffset +=360;
+        if(hdgoffset > 180) hdgoffset +=-360;
+        setprop("autopilot/internal/fdm-heading-bug-error-deg",hdgoffset);
         if(getprop("position/altitude-agl-ft")<200){
             me.AP.setValue(0);
         }
 
-        if(me.step==0){ ### glidesloped armed ?###
+        if(me.step==0){ ### glideslope armed ?###
             msg="";
             if(me.gs_armed.getValue()){
                 msg="G/S";
@@ -174,6 +185,7 @@ var AFDS = {
         }elsif(me.step==2){ ### check lateral modes  ###
             var idx=me.lateral_mode.getValue();
             me.AP_roll_mode.setValue(me.roll_list[idx]);
+            me.AP_roll_engaged.setBoolValue(idx>0);
 
         }elsif(me.step==3){ ### check vertical modes  ###
             var idx=me.vertical_mode.getValue();
@@ -181,13 +193,14 @@ var AFDS = {
             if(idx==2 and test_fpa)idx=9;
             if(idx==9 and !test_fpa)idx=2;
             me.AP_pitch_mode.setValue(me.pitch_list[idx]);
+            me.AP_pitch_engaged.setBoolValue(idx>0);
 
         }elsif(me.step==4){             ### check speed modes  ###
             var idx=me.autothrottle_mode.getValue();
             var test_speed=me.ias_mach_selected.getValue();
             var th1="";
             var th2="";
-            if(idx==1){
+            if((idx==1)and(me.AP.getValue())){
                  if(test_speed){
                     if(me.at1.getValue())th1="mach";
                     if(me.at2.getValue())th2="mach";
@@ -196,15 +209,11 @@ var AFDS = {
                     if(me.at2.getValue())th2="ias";
                  }
             }
-                me.AP_throttle1.setValue(th1);
-                me.AP_throttle2.setValue(th2);
-                me.AP_speed_mode.setValue(me.spd_list[idx]);
-        }
 
-        var crs=getprop("autopilot/internal/nav1-track-error-deg") or 0;
-        var crs_offset = getprop("instrumentation/nav/heading-needle-deflection") or 0;
-        crs+=(crs_offset);
-        me.lnav_heading.setValue(crs);
+            me.AP_throttle1.setValue(th1);
+            me.AP_throttle2.setValue(th2);
+            me.AP_speed_mode.setValue(me.spd_list[idx]);
+        }
 
         me.step+=1;
         if(me.step>4)me.step =0;

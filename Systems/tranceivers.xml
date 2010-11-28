@@ -485,6 +485,50 @@
             </binding>
         </checkbox>
 
+<!--         Transponder (with SquawkGear/VATSIM)     -->
+        <text>
+            <row>6</row>
+            <col>0</col>
+            <label>Transponder</label>
+        </text>
+
+        <text>
+            <row>6</row>
+            <col>1</col>
+            <label>9999</label>
+            <halign>center</halign>
+            <property>/instrumentation/transponder/id-code</property>
+            <format>%04d</format>
+            <live>1</live>
+        </text>
+
+        <button>
+            <row>6</row>
+            <col>2</col>
+            <pref-width>40</pref-width>
+            <pref-height>22</pref-height>
+            <legend>&lt;-&gt;</legend>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>transponder</object-name>
+            </binding>
+            <binding>
+                <command>property-swap</command>
+                <property>/instrumentation/transponder/id-code</property>
+                <property>/instrumentation/transponder/standby-id-code</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command>
+            </binding>
+        </button>
+
+        <input>
+            <row>6</row>
+            <col>3</col>
+            <name>transponder</name>
+            <property>/instrumentation/transponder/standby-id-code</property>
+        </input>
+
     </group>
 
     <hrule/>

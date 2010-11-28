@@ -29,7 +29,8 @@
       <command>dialog-apply</command>
     </binding>
     <binding>
-      <command>dialog-close</command>
+        <command>nasal</command>
+        <script>dialogs.EFB.toggle();</script>
     </binding>
   </button>
 

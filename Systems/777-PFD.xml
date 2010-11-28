@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <!-- =============================================================== -->
+  <!--                        PFD display preprocessors                -->
+  <!-- =============================================================== -->
+
+  <filter>
+      <name>Stall speed margin computer</name> 
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+          <property>instrumentation/weu/state/stall-speed</property>
+      </input>
+      <reference>
+          <property>velocities/airspeed-kt</property>
+      </reference>
+      <output>instrumentation/pfd/stallspeed-diff</output>
+  </filter>
+
+</PropertyList>

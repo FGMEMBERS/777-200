@@ -94,4 +94,14 @@ This file selects the instrumentation modules that should be available.
         <number>0</number>
     </mk-viii>
 
+    <marker-beacon>
+        <name>marker-beacon</name>
+        <number>0</number>
+    </marker-beacon>
+
+    <transponder>
+        <name>transponder</name>
+        <number>0</number>
+    </transponder>
+    
 </PropertyList>

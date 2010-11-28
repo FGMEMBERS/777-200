@@ -1,12 +1,14 @@
 ####    jet engine electrical system    ####
 ####    Syd Adams    ####
-var count=0;
+var vbus_count=0;
 var ammeter_ave = 0.0;
 var Lbus = props.globals.initNode("/systems/electrical/left-bus",0,"DOUBLE");
 var Rbus = props.globals.initNode("/systems/electrical/right-bus",0,"DOUBLE");
 var Amps = props.globals.initNode("/systems/electrical/amps",0,"DOUBLE");
 var EXT  = props.globals.initNode("/controls/electric/external-power",0,"DOUBLE");
 var XTie  = props.globals.initNode("/systems/electrical/xtie",0,"BOOL");
+var AVswitch=props.globals.initNode("controls/electric/avionics-switch",0,"BOOL");
+var APUgen=props.globals.initNode("controls/electric/APU-generator",0,"BOOL");
 var lbus_volts = 0.0;
 var rbus_volts = 0.0;
 
@@ -144,7 +146,6 @@ setlistener("/sim/signals/fdm-initialized", func {
 });
 
 var init_switches = func{
-    var AVswitch=props.globals.initNode("controls/electric/avionics-switch",0,"BOOL");
     setprop("controls/lighting/instruments-norm",0.8);
     setprop("controls/lighting/engines-norm",0.8);
     props.globals.initNode("controls/electric/ammeter-switch",0,"BOOL");
@@ -255,10 +256,15 @@ update_virtual_bus = func( dt ) {
     var xtie=0;
     load = 0.0;
     power_source = nil;
-    if(count==0){
+    if(vbus_count==0){
         var battery_volts = battery.get_output_volts();
         lbus_volts = battery_volts;
         power_source = "battery";
+        if (APUgen.getValue())
+        {
+          power_source = "APU";
+          lbus_volts=24;
+        }
         var alternator1_volts = alternator1.get_output_volts();
         if (alternator1_volts > lbus_volts) {
             lbus_volts = alternator1_volts;
@@ -272,6 +278,11 @@ update_virtual_bus = func( dt ) {
         var battery_volts = battery.get_output_volts();
         rbus_volts = battery_volts;
         power_source = "battery";
+        if (APUgen.getValue())
+        {
+          power_source = "APU";
+          rbus_volts=24;
+        }
         var alternator2_volts = alternator2.get_output_volts();
         if (alternator2_volts > rbus_volts) {
             rbus_volts = alternator2_volts;
@@ -282,7 +293,7 @@ update_virtual_bus = func( dt ) {
         load += rh_bus(rbus_volts);
         alternator2.apply_load(load);
     }
-    count=1-count;
+    vbus_count=1-vbus_count;
     if(rbus_volts > 5 and  lbus_volts>5) xtie=1;
     XTie.setValue(xtie);
     if(rbus_volts > 5 or  lbus_volts>5) load += lighting(24);
@@ -315,6 +326,7 @@ lh_bus = func(bv) {
         lbus_output[i].setValue(bv * srvc);
     }
 
+    AVswitch.setBoolValue(bv>20);
     setprop("systems/electrical/outputs/flaps",bv);
     return load;
 }
@@ -337,5 +349,5 @@ return load;
 update_electrical = func {
     var scnd = getprop("sim/time/delta-sec");
     update_virtual_bus( scnd );
-settimer(update_electrical, 0);
+settimer(update_electrical, 0.2);
 }

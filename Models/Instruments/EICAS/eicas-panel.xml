@@ -107,7 +107,7 @@
         <h>22</h>
     </instrument>
 
-    <instrument include="Flaps.xml">
+    <instrument include="Spoilers.xml">
         <condition>
             <and>
                 <greater-than>
@@ -115,18 +115,43 @@
                     <value>15</value>
                 </greater-than>
                 <greater-than>
-                    <property>surface-positions/flap-pos-norm</property>
+                    <property>surface-positions/speedbrake-norm</property>
                     <value>0</value>
                 </greater-than>
             </and>
         </condition>
         <name>flaps</name>
         <x>190.0</x>
-        <y>68.0</y>
+        <y>90.0</y>
         <w>20</w>
-        <h>50</h>
+        <h>15</h>
     </instrument>
 
+    <instrument include="Flaps.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <or>
+	                <greater-than>
+	                    <property>surface-positions/flap-pos-norm</property>
+	                    <value>0</value>
+	                </greater-than>
+	                <greater-than>
+	                    <property>surface-positions/speedbrake-norm</property>
+	                    <value>0</value>
+	                </greater-than>
+                </or>
+            </and>
+        </condition>
+        <name>flaps</name>
+        <x>190.0</x>
+        <y>58.0</y>
+        <w>20</w>
+        <h>40</h>
+    </instrument>
 
 </instruments>
 

@@ -655,6 +655,8 @@ Syd Adams
         <object-name>redflash</object-name>
         <object-name>whiteflash</object-name>
         <object-name>greenflash</object-name>
+        <object-name>greennav</object-name>
+        <object-name>rednav</object-name>
         <condition>
             <greater-than>
             <property>sim/multiplay/generic/int[7]</property>
@@ -688,6 +690,22 @@ Syd Adams
             </greater-than>
         </condition>
     </animation>
+    <animation>
+        <type>select</type>
+        <object-name>LHLND.spot</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[4]</property>
+                    <value>5</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/sun-angle-rad</property>
+                    <value>1.55</value>
+                </greater-than>
+            </and>
+        </condition>
+    </animation>
 
     <animation>
         <type>select</type>
@@ -700,7 +718,23 @@ Syd Adams
             </greater-than>
         </condition>
     </animation>
-
+    <animation>
+        <type>select</type>
+        <object-name>RHLND.spot</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[6]</property>
+                    <value>5</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/sun-angle-rad</property>
+                    <value>1.55</value>
+                </greater-than>
+            </and>
+        </condition>
+    </animation>
+        
     <animation>
         <type>select</type>
         <object-name>CTRLND.flare</object-name>
@@ -714,6 +748,26 @@ Syd Adams
                     <property>gear/gear[0]/position-norm</property>
                     <value>1.0</value>
                 </equals>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>CTRLND.spot</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[5]</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>gear/gear[0]/position-norm</property>
+                    <value>1.0</value>
+                </equals>
+                <greater-than>
+                    <property>sim/time/sun-angle-rad</property>
+                    <value>1.55</value>
+                </greater-than>
             </and>
         </condition>
     </animation>
@@ -1054,10 +1108,13 @@ Syd Adams
         <type>select</type>
         <object-name>cabinlighting</object-name>
         <condition>
-                <greater-than>
-                    <property>sim/time/sun-angle-rad</property>
-                    <value>1.55</value>
-                </greater-than>
+                <and>
+                    <greater-than>
+                        <property>sim/time/sun-angle-rad</property>
+                        <value>1.55</value>
+                    </greater-than>
+                    <property>sim/multiplay/generic/int[8]</property>
+                </and>
         </condition>
     </animation>
 
