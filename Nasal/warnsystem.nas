@@ -52,7 +52,7 @@ var WEU =
         # inputs
         m.node_flap_override = props.globals.getNode("instrumentation/mk-viii/outputs/discretes/flap-override");
         m.node_radio_alt     = props.globals.getNode("position/gear-agl-ft");
-        m.node_flaps         = props.globals.getNode("controls/flight/flaps");
+        m.node_flaps         = props.globals.getNode("surface-positions/flap-pos-norm");
         m.node_speed         = props.globals.getNode("velocities/airspeed-kt");
 
         # input values

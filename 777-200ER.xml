@@ -77,7 +77,7 @@ MAC 278.51 in - 7.074154 m
     src0="0.5" dst0="0" src1="1.0" dst1="1.0"/>
     <control-output control="FLAP0" prop="/surface-positions/flap-pos-norm"/>
     <control-output control="SLAT" prop="/surface-positions/slats"/>
-    <control-speed control="FLAP0" transition-time="10"/>
+    <control-speed control="FLAP0" transition-time="78"/>
     <control-input axis="/controls/flight/speedbrake" control="SPOILER"/>
     <control-output control="SPOILER" prop="/surface-positions/speedbrake-norm"/>
     <control-speed control="SPOILER" transition-time="5"/>
@@ -111,7 +111,7 @@ egt="840" tsfc="0.16 " n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
   <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
-    <control-speed control="REVERSE_THRUST" transition-time="2"/>
+    <control-speed control="REVERSE_THRUST" transition-time="4"/>
 <actionpt x="-2.7" y="9.89" z="-2.995"/>
 </jet>
 
@@ -120,7 +120,7 @@ egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
   <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
-    <control-speed control="REVERSE_THRUST" transition-time="2"/>
+    <control-speed control="REVERSE_THRUST" transition-time="4"/>
 <actionpt x="-2.7" y="-9.89" z="-2.995"/>
 </jet>
 
@@ -130,7 +130,7 @@ egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-input axis="/controls/flight/rudder" control="STEER" square="true"/>
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[0]/position-norm"/>
-  <control-speed control="EXTEND" transition-time="7"/>
+  <control-speed control="EXTEND" transition-time="19"/>
 </gear>
 
 <gear x="-6.39" y="5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.9">
@@ -138,7 +138,7 @@ egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[1]/position-norm"/>
-  <control-speed control="EXTEND" transition-time="8"/>
+  <control-speed control="EXTEND" transition-time="20"/>
 </gear>
 
 <gear x="-6.39" y="-5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.9">
@@ -146,19 +146,19 @@ egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[2]/position-norm"/>
-  <control-speed control="EXTEND" transition-time="8"/>
+  <control-speed control="EXTEND" transition-time="20"/>
 </gear>
 
 <gear x="-7.8" y="5.6" z="-6.22" compression="3.0" spring="1.2" >
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[3]/position-norm"/>
-  <control-speed control="EXTEND" transition-time="8"/>
+  <control-speed control="EXTEND" transition-time="20"/>
 </gear>
 
 <gear x="-7.8" y="-5.6" z="-6.22" compression="3.0" spring="1.2">
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[4]/position-norm"/>
-  <control-speed control="EXTEND" transition-time="8"/>
+  <control-speed control="EXTEND" transition-time="20"/>
 </gear>
 
 <tank x="-4.3" y="5" z="-1.5" jet="true" capacity="64000"/>

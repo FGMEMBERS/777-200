@@ -171,7 +171,7 @@
         <property>/gear/gear[0]/position-norm</property>
         <volume>
             <property>sim/sound/Ovolume</property>
-            <offset>0.2</offset>
+            <offset>0.3</offset>
         </volume>
         <pitch>
             <internal>dt_play</internal>
@@ -325,12 +325,16 @@
         <volume>
             <property>sim/sound/Ovolume</property>
             <max>0.5</max>
+            <factor>0.6</factor>
         </volume>
         <position>
             <x>-9</x>
             <y>0</y>
             <z>0</z>
         </position>
+        <pitch>
+            <offset>1.4</offset>
+        </pitch>
         <reference-dist>5.0</reference-dist>
         <max-dist>10.0</max-dist>
     </flap>

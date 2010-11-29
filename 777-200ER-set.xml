@@ -603,10 +603,42 @@
             <file>Aircraft/777-200/Nasal/gpws.nas</file>
             <file>Aircraft/777-200/Nasal/warnsystem.nas</file>
             <file>Aircraft/777-200/Nasal/brakesystem.nas</file>
+            <file>Aircraft/Generic/limits.nas</file>
         </b777>
         <dialogs>
             <file>Aircraft/777-200/Nasal/dialogs.nas</file>
         </dialogs>
     </nasal>
+
+    <limits>
+        <max-flap-extension-speed>
+            <flaps>0.033</flaps>
+            <speed>240</speed>
+        </max-flap-extension-speed>
+        <max-flap-extension-speed>
+            <flaps>0.166</flaps>
+            <speed>220</speed>
+        </max-flap-extension-speed>
+        <max-flap-extension-speed>
+            <flaps>0.500</flaps>
+            <speed>200</speed>
+        </max-flap-extension-speed>
+        <max-flap-extension-speed>
+            <flaps>0.666</flaps>
+            <speed>190</speed>
+        </max-flap-extension-speed>
+        <max-flap-extension-speed>
+            <flaps>0.833</flaps>
+            <speed>180</speed>
+        </max-flap-extension-speed>
+        <max-flap-extension-speed>
+            <flaps>1.000</flaps>
+            <speed>170</speed>
+        </max-flap-extension-speed>
+        <max-gear-extension-speed>250</max-gear-extension-speed>
+        <vne>600</vne>
+        <max-positive-g>2.5</max-positive-g> 
+        <max-negative-g>-1.76</max-negative-g>
+    </limits>
 
 </PropertyList>
