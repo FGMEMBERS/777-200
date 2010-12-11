@@ -565,10 +565,13 @@
 
         <layer>
             <condition>
-                <equals>
-                    <property>instrumentation/efis/inputs/lh-vor-adf</property>
-                    <value>1</value>
-                </equals>
+                <and>
+                    <equals>
+                        <property>instrumentation/efis/inputs/lh-vor-adf</property>
+                        <value>1</value>
+                    </equals>
+                    <property>instrumentation/nav/dme-in-range</property>
+                </and>
             </condition>
             <name>L VOR dme</name>
             <type>text</type>
@@ -671,10 +674,13 @@
 
         <layer>
             <condition>
-                <equals>
-                    <property>instrumentation/efis/inputs/rh-vor-adf</property>
-                    <value>1</value>
-                </equals>
+                <and>
+                    <equals>
+                        <property>instrumentation/efis/inputs/rh-vor-adf</property>
+                        <value>1</value>
+                    </equals>
+                    <property>instrumentation/nav[1]/dme-in-range</property>
+                </and>
             </condition>
             <name>R VOR dme</name>
             <type>text</type>
