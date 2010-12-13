@@ -134,9 +134,15 @@
 
         <layer>
             <condition>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                <and>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                         <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
+                </and>
             </condition>
             <name>deflection bar</name>
             <w>7</w>
@@ -355,7 +361,13 @@
 
         <layer>
             <condition>
-                <property>instrumentation/efis/inputs/nd-centered</property>
+                <and>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                         <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
+                </and>
             </condition>
             <name>deflection bar</name>
             <w>5</w>
@@ -537,7 +549,7 @@
 
         <layer>
             <condition>
-               	 <greater-than>
+                <greater-than>
                     <property>environment/wind-speed-kt</property>
                     <value>0.99</value>
                 </greater-than>

@@ -134,9 +134,15 @@
 
         <layer>
             <condition>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                <and>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                        <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
+                </and>
             </condition>
             <name>deflection bar</name>
             <w>7</w>
@@ -173,9 +179,12 @@
 
         <layer>
             <condition>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                <and>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
+                    <property>instrumentation/nav/has-gs</property>
+                </and>
             </condition>
             <name>gs scale</name>
             <w>12</w>
@@ -202,9 +211,12 @@
 
         <layer>
             <condition>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                <and>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
+                    <property>instrumentation/nav/has-gs</property>
+                </and>
             </condition>
             <name>gs pointer</name>
             <w>10</w>
@@ -422,7 +434,13 @@
 
         <layer>
             <condition>
-                <property>instrumentation/efis/inputs/nd-centered</property>
+                <and>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                        <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
+                </and>
             </condition>
             <name>deflection bar</name>
             <w>5</w>
@@ -579,7 +597,10 @@
 
         <layer>
             <condition>
-                <property>instrumentation/efis/inputs/nd-centered</property>
+                <and>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                    <property>instrumentation/nav/has-gs</property>
+                </and>
             </condition>
             <name>gs scale 2</name>
             <w>12</w>
@@ -606,7 +627,10 @@
 
         <layer>
             <condition>
-                <property>instrumentation/efis/inputs/nd-centered</property>
+                <and>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                    <property>instrumentation/nav/has-gs</property>
+                </and>
             </condition>
             <name>gs pointer 2</name>
             <w>10</w>

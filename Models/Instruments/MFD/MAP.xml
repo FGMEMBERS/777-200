@@ -76,13 +76,17 @@
         <layer>
             <condition>
                 <and>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
                     <equals>
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                        <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
                 </and>
             </condition>
             <name>Lvor head</name>
@@ -120,13 +124,17 @@
         <layer>
             <condition>
                 <and>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
                     <equals>
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                        <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
                 </and>
             </condition>
             <name>Lvor tail</name>
@@ -164,13 +172,13 @@
         <layer>
             <condition>
                 <and>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
                     <equals>
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>-1</value>
-                </equals>
+                    </equals>
                 </and>
             </condition>
             <name>Ladf head</name>
@@ -203,13 +211,13 @@
         <layer>
             <condition>
                 <and>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
                     <equals>
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>-1</value>
-                </equals>
+                    </equals>
                 </and>
             </condition>
             <name>Ladf tail</name>
@@ -242,13 +250,14 @@
         <layer>
             <condition>
                 <and>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
                     <equals>
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav[1]/data-is-valid</property>
                 </and>
             </condition>
             <name>Rvor head</name>
@@ -286,13 +295,14 @@
         <layer>
             <condition>
                 <and>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+                    <not>
+                        <property>instrumentation/efis/inputs/nd-centered</property>
+                    </not>
                     <equals>
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav[1]/data-is-valid</property>
                 </and>
             </condition>
             <name>Rvor tail</name>
@@ -543,7 +553,11 @@
                     <equals>
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                        <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
                 </and>
             </condition>
             <name>Lvor head</name>
@@ -585,7 +599,11 @@
                     <equals>
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav/data-is-valid</property>
+                    <not>
+                        <property>instrumentation/nav/slaved-to-gps</property>
+                    </not>
                 </and>
             </condition>
             <name>Lvor tail</name>
@@ -701,7 +719,8 @@
                     <equals>
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav[1]/data-is-valid</property>
                 </and>
             </condition>
             <name>Rvor head</name>
@@ -743,7 +762,8 @@
                     <equals>
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>1</value>
-                </equals>
+                    </equals>
+                    <property>instrumentation/nav[1]/data-is-valid</property>
                 </and>
             </condition>
             <name>Rvor tail</name>

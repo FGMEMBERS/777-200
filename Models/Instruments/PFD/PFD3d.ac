@@ -4,6 +4,7 @@ MATERIAL "white" rgb 0 0 0 amb 0 0 0 emis 0.798 0.798 0.798 spec 0 0 0 shi 0 tra
 MATERIAL "interior" rgb 0.8 0.8 0.8 amb 0.8 0.8 0.8 emis 0.1 0.1 0.1 spec 0.137 0.137 0.137 shi 0 trans 0
 MATERIAL "black" rgb 0 0 0 amb 0 0 0 emis 0 0 0 spec 0 0 0 shi 0 trans 0
 MATERIAL "magenta" rgb 0 0 0 amb 0 0 0 emis 0.835 0.498 0.498 spec 0 0 0 shi 0 trans 0
+MATERIAL "orange" rgb 0 0 0 amb 0 0 0 emis 0.798 0.598 0.0 spec 0 0 0 shi 0 trans 0
 OBJECT world
 kids 28
 OBJECT poly
@@ -2567,7 +2568,7 @@ numvert 4
 0.004 0.008848 -0.036049
 numsurf 1
 SURF 0x20
-mat 1
+mat 5
 refs 4
 0 0 0
 3 0 0
@@ -2636,7 +2637,7 @@ numvert 4
 0.004 -0.038311 0.011533
 numsurf 1
 SURF 0x20
-mat 1
+mat 5
 refs 4
 0 0 0
 3 0 0

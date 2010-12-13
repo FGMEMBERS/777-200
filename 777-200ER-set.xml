@@ -448,7 +448,7 @@
             <display-mode>plan</display-mode>
             <display-controls>
                 <WX type="bool" archive="y">false</WX>
-                <pos type="bool" archive="y">true</pos>
+                <pos type="bool" archive="y">false</pos>
                 <data type="bool" archive="y">true</data>
                 <symbol type="bool" archive="y">true</symbol>
                 <rotate type="bool" archive="y">true</rotate>
@@ -465,8 +465,8 @@
                     <alpha type="float">1</alpha>
                 </color>
                 <name type="string" archive="y">helvetica_bold.txf</name>
-                <size type="float">8</size>
-                <line-spacing type="float">0.2</line-spacing>
+                <size type="float">5</size>
+                <line-spacing type="float">0.3</line-spacing>
             </font>
             <lightning type="bool" archive="y">true</lightning>
             <display-mode type="string" archive="y">arc</display-mode>
