@@ -108,6 +108,9 @@
         </layer>
 
         <layer>
+            <condition>
+                <property>instrumentation/nav/data-is-valid</property>
+            </condition>
             <name>VOR dist</name>
             <type>text</type>
             <font>arial_black</font>
