@@ -2087,4 +2087,15 @@ Syd Adams
  </offsets>
 </model>
 
+<model>
+ <name>Pushback</name>
+ <path>Models/Airport/Pushback/Douglas.xml</path>
+ <offsets>
+  <x-m>-19.284</x-m>
+  <y-m>0.0</y-m>
+  <z-m>-5.4</z-m>
+ </offsets>
+</model>
+
 </PropertyList>
+
