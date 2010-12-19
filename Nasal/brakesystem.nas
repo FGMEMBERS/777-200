@@ -68,7 +68,7 @@ var BrakeSystem =
             if (getprop("/controls/gear/brake-parking"))
                 var BrakeLevel=1.0;
             else
-                var BrakeLevel = getprop("/controls/gear/brake-left");
+                var BrakeLevel = (getprop("/autopilot/autobrake/left-brake-output")+getprop("/autopilot/autobrake/right-brake-output"))/2;
             if ((OnGround)and(BrakeLevel>0))
             {
                 # absorb more energy

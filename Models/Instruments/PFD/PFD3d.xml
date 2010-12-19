@@ -882,6 +882,7 @@ Syd Adams
         <object-name>INHG</object-name>
         <object-name>KPA</object-name>
         <object-name>MAG-annun</object-name>
+        <object-name>mins</object-name>
         <emission>
             <red>0</red>
             <green>0.8</green>
@@ -1058,14 +1059,14 @@ Syd Adams
         <offsets>
             <x-m>0.014</x-m>
             <y-m>-0.01</y-m>
-            <z-m>-0.044</z-m>
+            <z-m>-0.041</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
         <property>instrumentation/mk-viii/outputs/warning</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.015</character-size>
+        <character-size>0.018</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -1096,5 +1097,45 @@ Syd Adams
             <blue>0</blue>
         </specular>
     </animation>
+
+    <text>
+        <name>mins</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.03</y-m>
+            <z-m>-0.045</z-m>
+        </offsets>
+        <alignment>right-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/efis/minimums-mode-text</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>mins</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.03</y-m>
+            <z-m>-0.051</z-m>
+        </offsets>
+        <alignment>right-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%3.0f</format>
+        <property>instrumentation/efis/minimums</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
 
 </PropertyList>

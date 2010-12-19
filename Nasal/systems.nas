@@ -27,7 +27,8 @@ var EFIS = {
         m.fpv = m.efis.initNode("inputs/fpv",0,"BOOL");
         m.nd_centered = m.efis.initNode("inputs/nd-centered",0,"BOOL");
         m.mins_mode = m.efis.initNode("inputs/minimums-mode",0,"BOOL");
-        m.minimums = m.efis.initNode("minimums",200,"INT");
+        m.mins_mode_txt = m.efis.initNode("minimums-mode-text","RADIO","STRING");
+        m.minimums = m.efis.initNode("minimums",250,"INT");
         m.mk_minimums = props.globals.getNode("instrumentation/mk-viii/inputs/arinc429/decision-height");
         m.wxr = m.efis.initNode("inputs/wxr",0,"BOOL");
         m.range = m.efis.initNode("inputs/range",0);
@@ -93,14 +94,23 @@ var EFIS = {
         {
             var num =me.minimums.getValue();
             if(val==0){
-                num=200;
+                num=250;
             }else{
                 num+=val;
                 if(num<0)num=0;
                 if(num>1000)num=1000;
             }
-        me.minimums.setValue(num);
-        me.mk_minimums.setValue(num);
+            me.minimums.setValue(num);
+            me.mk_minimums.setValue(num);
+        }
+        elsif(md=="mins")
+        {
+            mode = me.mins_mode.getValue();
+            me.mins_mode.setValue(1-mode);
+            if (mode)
+                me.mins_mode_txt.setValue("RADIO");
+            else
+                me.mins_mode_txt.setValue("BARO");
         }
         elsif(md=="display")
         {

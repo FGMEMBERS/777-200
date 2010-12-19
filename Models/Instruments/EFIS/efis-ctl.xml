@@ -136,9 +136,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("center",0);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("center",0);</script>
+            </binding>
         </action>
     </animation>
 
@@ -149,9 +149,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>instrumentation/efis/inputs/alt-meters</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/alt-meters</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -162,9 +166,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>instrumentation/efis/inputs/fpv-view</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/fpv-view</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -175,9 +183,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>instrumentation/radar/display-controls/pos</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/radar/display-controls/pos</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -188,9 +200,13 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-toggle</command>
-            <property>instrumentation/radar/display-controls/data</property>
-        </binding>
+                <command>property-toggle</command>
+                <property>instrumentation/radar/display-controls/data</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -201,9 +217,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("terr",0);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("terr",0);</script>
+            </binding>
         </action>
     </animation>
 
@@ -214,9 +230,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("arpt",0);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("arpt",0);</script>
+            </binding>
         </action>
     </animation>
 
@@ -227,9 +243,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("wpt",0);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("wpt",0);</script>
+            </binding>
         </action>
     </animation>
 
@@ -240,9 +256,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("sta",0);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("sta",0);</script>
+            </binding>
         </action>
     </animation>
 
@@ -253,9 +269,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("wxr",0);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("wxr",0);</script>
+            </binding>
         </action>
     </animation>
 
@@ -266,9 +282,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("rhvor",1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("rhvor",1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -279,9 +295,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("rhvor",-1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("rhvor",-1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -292,9 +308,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("lhvor",1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("lhvor",1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -305,35 +321,53 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("lhvor",-1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("lhvor",-1);</script>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
         <object-name>rng.dec</object-name>
+        <object-name>rng2.dec</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("range",-1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",-1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",1);</script>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
         <object-name>rng.inc</object-name>
+        <object-name>rng2.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("range",1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",-1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -344,9 +378,9 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("tfc",1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("tfc",1);</script>
+            </binding>
         </action>
     </animation>
 
@@ -357,10 +391,14 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-assign</command>
-            <property>instrumentation/efis/inputs/kpa-mode</property>
-            <value>0</value>
-        </binding>
+                <command>property-assign</command>
+                <property>instrumentation/efis/inputs/kpa-mode</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
 
@@ -371,10 +409,14 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>property-assign</command>
-            <property>instrumentation/efis/inputs/kpa-mode</property>
-            <value>1</value>
-        </binding>
+                <command>property-assign</command>
+                <property>instrumentation/efis/inputs/kpa-mode</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
         </action>
     </animation>
 
@@ -384,13 +426,33 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-             <binding>
+            <binding>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>0.01</step>
                 <min>26.0</min>
                 <max>33.0</max>
                 <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>-0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -401,7 +463,7 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-             <binding>
+            <binding>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>-0.01</step>
@@ -409,9 +471,28 @@ Syd Adams
                 <max>33.0</max>
                 <wrap>false</wrap>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
         </action>
     </animation>
-
 
     <animation>
         <type>pick</type>
@@ -420,10 +501,14 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
-             <binding>
+            <binding>
                 <command>property-assign</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <value>29.92</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -434,10 +519,17 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
-             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/efis/inputs/minimums-mode</property>
-                <value>0</value>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",0);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",1);</script>
             </binding>
         </action>
     </animation>
@@ -448,10 +540,17 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
-             <binding>
-                <command>property-assign</command>
-                <property>instrumentation/efis/inputs/minimums-mode</property>
-                <value>1</value>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",0);</script>
             </binding>
         </action>
     </animation>
@@ -462,9 +561,17 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-             <binding>
+            <binding>
                 <command>nasal</command>
                 <script>b777.Efis.ctl_func("dh",10);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("dh",-10);</script>
             </binding>
         </action>
     </animation>
@@ -475,13 +582,20 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>true</repeatable>
-             <binding>
+            <binding>
                 <command>nasal</command>
                 <script>b777.Efis.ctl_func("dh",-10);</script>
             </binding>
         </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("dh",10);</script>
+            </binding>
+        </action>
     </animation>
-
 
     <animation>
         <type>pick</type>
@@ -490,7 +604,7 @@ Syd Adams
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
-             <binding>
+            <binding>
                 <command>nasal</command>
                 <script>b777.Efis.ctl_func("dh",0);</script>
             </binding>
@@ -500,26 +614,44 @@ Syd Adams
     <animation>
         <type>pick</type>
         <object-name>Mode.inc</object-name>
+        <object-name>Mode2.inc</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("display",1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("display",1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("display",-1);</script>
+            </binding>
         </action>
     </animation>
 
     <animation>
         <type>pick</type>
         <object-name>Mode.dec</object-name>
+        <object-name>Mode2.dec</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-            <command>nasal</command>
-            <script>b777.Efis.ctl_func("display",-1);</script>
-        </binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("display",-1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("display",1);</script>
+            </binding>
         </action>
     </animation>
 
