@@ -211,6 +211,7 @@ var WEU =
         me.stallspeed.setValue(stallspeed);
 
         if ((me.speed<=stallspeed)and
+            (me.enabled)and
             ((!getprop("gear/gear[1]/wow"))or
              (!getprop("gear/gear[2]/wow"))))
         {

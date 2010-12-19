@@ -7,7 +7,6 @@ Syd Adams
 
  <path>PFD3d.ac</path>
 
-
     <animation>
         <type>select</type>
         <object-name>Power.off</object-name>
@@ -162,23 +161,6 @@ Syd Adams
         <factor>0.000646</factor>
     </animation>
 
-    <animation>
-        <type>select</type>
-        <object-name>StallSpeedInd</object-name>
-        <condition>
-            <and>
-                <greater-than>
-                    <property>instrumentation/pfd/stallspeed-diff</property>
-                    <value>-93</value>
-                </greater-than>
-                <less-than>
-                    <property>instrumentation/pfd/stallspeed-diff</property>
-                    <value>79</value>
-                </less-than>
-            </and>
-        </condition>
-    </animation>
-    
     <animation>
         <type>translate</type>
         <object-name>locpointer</object-name>
@@ -1137,5 +1119,26 @@ Syd Adams
             <height type="int">32</height>
         </font-resolution>
     </text>
+
+    <animation>
+        <object-name>speedtrend.up</object-name>
+        <property>instrumentation/pfd/speed-trend-up</property>
+        <type>textranslate</type>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+        <factor>1</factor> <!-- 0.048/+70knots-->
+    </animation>
+    <animation>
+        <object-name>speedtrend.down</object-name>
+        <property>instrumentation/pfd/speed-trend-down</property>
+        <type>textranslate</type>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+        <factor>1</factor> <!-- 0.048/+70knots-->
+    </animation>
 
 </PropertyList>
