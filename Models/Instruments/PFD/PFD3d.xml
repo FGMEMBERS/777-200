@@ -160,6 +160,16 @@ Syd Adams
         </axis>
         <factor>0.000646</factor>
     </animation>
+    <animation>
+        <type>select</type>
+        <object-name>StallSpeedInd</object-name>
+        <condition>
+            <greater-than>
+                <property>velocities/airspeed-kt</property>
+                <value>40</value>
+            </greater-than>
+        </condition>
+    </animation>
 
     <animation>
         <type>translate</type>
@@ -1041,14 +1051,14 @@ Syd Adams
         <offsets>
             <x-m>0.014</x-m>
             <y-m>-0.01</y-m>
-            <z-m>-0.041</z-m>
+            <z-m>-0.044</z-m>
         </offsets>
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">text-value</type>
         <property>instrumentation/mk-viii/outputs/warning</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.018</character-size>
+        <character-size>0.017</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -1085,7 +1095,7 @@ Syd Adams
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.03</y-m>
-            <z-m>-0.045</z-m>
+            <z-m>-0.054</z-m>
         </offsets>
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
@@ -1104,7 +1114,7 @@ Syd Adams
         <offsets>
             <x-m>0.004</x-m>
             <y-m>0.03</y-m>
-            <z-m>-0.051</z-m>
+            <z-m>-0.06</z-m>
         </offsets>
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
