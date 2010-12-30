@@ -47,6 +47,8 @@ var BrakeSystem =
        m.SmokeToggle   = 0;
        m.LnCoolFactor  = math.ln(1-m.CoolingFactor);
        
+       setprop("sim/animation/fire-services",0);
+
        return m;
     },
 
@@ -109,6 +111,8 @@ var BrakeSystem =
             var SmokeDelay=0;
             if (me.ThermalEnergy < 1.5)
                 SmokeDelay=(1.5-me.ThermalEnergy);
+            else
+                setprop("sim/animation/fire-services",1);
             # No smoke when gear retracted
             var SmokeValue = (getprop("/gear/gear[1]/position-norm")>0.5);
             # toggle smoke to interpolate different densities 
@@ -129,6 +133,7 @@ var BrakeSystem =
             # stop smoke processing
             setprop("/gear/gear[1]/tyre-smoke",0);
             setprop("/gear/gear[2]/tyre-smoke",0);
+            setprop("sim/animation/fire-services",0);
             me.SmokeActive = 0;
         }
     },

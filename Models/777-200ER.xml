@@ -2097,5 +2097,39 @@ Syd Adams
  </offsets>
 </model>
 
-</PropertyList>
+<model>
+ <name>Firetruck1</name>
+ <path>Models/Airport/hoskosh-ti-1500.xml</path>
+ <offsets>
+  <x-m>60.0</x-m>
+  <y-m>10.0</y-m>
+  <z-m>-5.4</z-m>
+ </offsets>
+</model>
 
+<model>
+ <name>Firetruck2</name>
+ <path>Models/Airport/hoskosh-ti-1500.xml</path>
+ <offsets>
+  <x-m>80.0</x-m>
+  <y-m>-8.0</y-m>
+  <z-m>-5.4</z-m>
+ </offsets>
+</model>
+
+<animation>
+    <type>select</type>
+    <object-name>Firetruck1</object-name>
+    <object-name>Firetruck2</object-name>
+    <condition>
+        <and>
+            <property>sim/animation/fire-services</property>
+            <less-than>
+                <property>velocities/airspeed-kt</property>
+                <value>40</value>
+            </less-than>
+        </and>
+    </condition>
+</animation>
+
+</PropertyList>
