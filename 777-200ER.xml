@@ -54,7 +54,7 @@ MAC 278.51 in - 7.074154 m
 
 <cockpit x="22.8" y="0.5" z="0.75"/>
 
-<fuselage ax="25.36" ay="0" az="-0.64" bx="-20.0" by="0.00" bz="0.0"
+<fuselage ax="25.36" ay="0" az="-0.64" bx="16.231" by="0.00" bz="0.0"
     width="6.2" taper="0.0" midpoint="1.0"/>
 <fuselage ax="16.231" ay="0" az="0" bx="-20.0" by="0.00" bz="0.0"
     width="6.2" taper="1.0" midpoint="0.5"/>
