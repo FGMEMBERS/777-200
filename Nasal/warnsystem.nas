@@ -37,7 +37,7 @@ var WEU =
         m.master_caution = m.weu.initNode("light/master-caution", 0,"BOOL");
         m.serviceable    = m.weu.initNode("serviceable", 1,"BOOL");
         # output sounds
-        m.siren        = m.weu.initNode("sound/siren",      0,"BOOL");
+        m.siren        = m.weu.initNode("sound/config-warning",   0,"BOOL");
         m.stallhorn    = m.weu.initNode("sound/stall-horn", 0,"BOOL");
         m.apwarning    = m.weu.initNode("sound/autopilot-warning", 0,"BOOL");
         # actuators

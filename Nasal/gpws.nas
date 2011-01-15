@@ -22,13 +22,14 @@ var GPWS =
     {
         m = { parents : [GPWS]};
 
-        m.gpws          = props.globals.getNode(prop1);
-        m.self_test     = m.gpws.getNode("inputs/discretes/self-test");
-        m.flap_override = m.gpws.getNode("inputs/discretes/momentary-flap-override");
-        m.gs_inhibit    = m.gpws.getNode("inputs/discretes/glideslope-inhibit");
-        m.gpws_inhibit  = m.gpws.getNode("inputs/discretes/gpws-inhibit");
-        m.landing_gear  = m.gpws.getNode("inputs/discretes/landing-gear");
-        m.landing_flaps = m.gpws.getNode("inputs/discretes/landing-flaps");
+        m.gpws            = props.globals.getNode(prop1);
+        m.self_test       = m.gpws.getNode("inputs/discretes/self-test");
+        m.flap_override   = m.gpws.getNode("inputs/discretes/momentary-flap-override");
+        m.gs_inhibit      = m.gpws.getNode("inputs/discretes/glideslope-inhibit");
+        m.gpws_inhibit    = m.gpws.getNode("inputs/discretes/gpws-inhibit");
+        m.terrain_inhibit = m.gpws.getNode("inputs/discretes/ta-tcf-inhibit");
+        m.landing_gear    = m.gpws.getNode("inputs/discretes/landing-gear");
+        m.landing_flaps   = m.gpws.getNode("inputs/discretes/landing-flaps");
 
         # mk-viii doesn't provide gear-override input. Emulate it...
         m.gear_override = m.gpws.initNode("inputs/discretes/gear-override",0,"BOOL");
@@ -116,8 +117,8 @@ var GPWS =
 #### terrain inhibit button ####
     clicked_terrain_inhibit : func
     {
-        # disable entire GPWS (for now...)
-        me.clicked_gpws_inhibit();
+        # toggle
+        me.terrain_inhibit.setBoolValue(!me.terrain_inhibit.getBoolValue());
     },
 
 #### decode alerts to time critical warnings ####
