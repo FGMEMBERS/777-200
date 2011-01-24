@@ -9,6 +9,7 @@ var EXT  = props.globals.initNode("/controls/electric/external-power",0,"DOUBLE"
 var XTie  = props.globals.initNode("/systems/electrical/xtie",0,"BOOL");
 var AVswitch=props.globals.initNode("controls/electric/avionics-switch",0,"BOOL");
 var APUgen=props.globals.initNode("controls/electric/APU-generator",0,"BOOL");
+var CDUswitch=props.globals.initNode("instrumentation/cdu/serviceable",0,"BOOL");
 var lbus_volts = 0.0;
 var rbus_volts = 0.0;
 
@@ -327,6 +328,7 @@ lh_bus = func(bv) {
     }
 
     AVswitch.setBoolValue(bv>20);
+    CDUswitch.setBoolValue(bv>20);
     setprop("systems/electrical/outputs/flaps",bv);
     return load;
 }

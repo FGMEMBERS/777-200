@@ -47,7 +47,7 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>95</offset>
+                    <offset>80</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
@@ -81,7 +81,7 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>95</offset>
+                    <offset>80</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
@@ -116,7 +116,7 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>95</offset>
+                    <offset>80</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>

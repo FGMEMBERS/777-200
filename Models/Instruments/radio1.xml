@@ -205,7 +205,7 @@ Syd Adams
 
     <animation>
         <type>textranslate</type>
-        <object-name>freq.005</object-name>
+        <object-name>freq.006</object-name>
         <property>instrumentation/efis/radio-selected</property>
         <factor>100.0</factor>
         <step>0.001</step>
@@ -384,6 +384,20 @@ Syd Adams
             </binding>
         </action>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>stby.up</object-name>
+        <visible>false</visible>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+             <command>nasal</command>
+            <script>b777.Efis.set_freq(-1)</script>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -396,6 +410,20 @@ Syd Adams
              <binding>
              <command>nasal</command>
             <script>b777.Efis.set_freq(-1)</script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>stby.dn</object-name>
+        <visible>false</visible>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+             <command>nasal</command>
+            <script>b777.Efis.set_freq(1)</script>
             </binding>
         </action>
     </animation>
@@ -414,6 +442,20 @@ Syd Adams
             </binding>
         </action>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>stby.up.001</object-name>
+        <visible>false</visible>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+             <command>nasal</command>
+            <script>b777.Efis.set_freq(-10)</script>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -426,6 +468,20 @@ Syd Adams
              <binding>
              <command>nasal</command>
             <script>b777.Efis.set_freq(-10)</script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>stby.dn.001</object-name>
+        <visible>false</visible>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+             <command>nasal</command>
+            <script>b777.Efis.set_freq(10)</script>
             </binding>
         </action>
     </animation>
