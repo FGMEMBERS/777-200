@@ -182,17 +182,6 @@ Syd Adams
         </offsets>
     </model>
 
-    <model>
-        <name>TCAS</name>
-        <path>Aircraft/777-200/Models/Instruments/tcas-ctl.xml</path>
-        <offsets>
-            <x-m>0.192</x-m>
-            <y-m>0.122</y-m>
-            <z-m>0.401</z-m>
-            <pitch-deg>-88</pitch-deg>
-        </offsets>
-    </model>
-
 <!--  controls -->
 
     <animation>
