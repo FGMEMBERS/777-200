@@ -168,7 +168,7 @@
         <object-name>Terrain.inhibit.001</object-name>
         <condition>
             <and>
-                <property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
+                <property>instrumentation/mk-viii/inputs/discretes/ta-tcf-inhibit</property>
                 <not-equals>
                     <property>/systems/electrical/outputs/mk-viii</property>
                     <value>0</value>
@@ -183,7 +183,7 @@
         <condition>
             <and>
                 <not>
-                    <property>instrumentation/mk-viii/inputs/discretes/gpws-inhibit</property>
+                    <property>instrumentation/mk-viii/inputs/discretes/ta-tcf-inhibit</property>
                 </not>
                 <not-equals>
                     <property>/systems/electrical/outputs/mk-viii</property>
