@@ -700,7 +700,7 @@ Syd Adams
                     <value>5</value>
                 </greater-than>
                 <greater-than>
-                    <property>sim/time/sun-angle-rad</property>
+                    <property>/sim/time/sun-angle-rad</property>
                     <value>1.55</value>
                 </greater-than>
             </and>
@@ -728,7 +728,7 @@ Syd Adams
                     <value>5</value>
                 </greater-than>
                 <greater-than>
-                    <property>sim/time/sun-angle-rad</property>
+                    <property>/sim/time/sun-angle-rad</property>
                     <value>1.55</value>
                 </greater-than>
             </and>
@@ -765,7 +765,7 @@ Syd Adams
                     <value>1.0</value>
                 </equals>
                 <greater-than>
-                    <property>sim/time/sun-angle-rad</property>
+                    <property>/sim/time/sun-angle-rad</property>
                     <value>1.55</value>
                 </greater-than>
             </and>
@@ -1110,7 +1110,7 @@ Syd Adams
         <condition>
                 <and>
                     <greater-than>
-                        <property>sim/time/sun-angle-rad</property>
+                        <property>/sim/time/sun-angle-rad</property>
                         <value>1.55</value>
                     </greater-than>
                     <property>sim/multiplay/generic/int[8]</property>
