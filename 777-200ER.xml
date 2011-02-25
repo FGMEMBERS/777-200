@@ -127,7 +127,9 @@ egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
 <!-- nose -->
 <gear x="19.28"  y="0.00" z="-5.55"
       compression="0.7" spring="1.2" damp="1" sfric="1.5" dfric="1.0">
-  <control-input axis="/controls/flight/rudder" control="STEER" square="true"/>
+  <!-- up to 70 degrees max steering angle with tiller, input is limited to 7 degrees with rudder (see Nasal/ground_steering.nas) -->
+  <control-input control="STEER" axis="/controls/gear/nosegear-steering-cmd-norm" src0="-1.0" dst0="-1.2217304764" src1="1.0" dst1="1.2217304764" />
+  <control-output control="STEER" prop="/controls/gear/nosegear-steering-angle-rad" />
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[0]/position-norm"/>
   <control-speed control="EXTEND" transition-time="19"/>
@@ -149,16 +151,24 @@ egt="840" tsfc="0.16" n1-idle="45" n1-max="105" n2-idle="70" n2-max="108">
   <control-speed control="EXTEND" transition-time="20"/>
 </gear>
 
+<!-- aft axle on left main gear -->
 <gear x="-7.8" y="5.6" z="-6.22" compression="3.0" spring="1.2" >
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[3]/position-norm"/>
   <control-speed control="EXTEND" transition-time="20"/>
+  <!-- 8 degrees main gear steering when nose gear steering above 13 degrees commanded (see Nasal/ground_steering.nas) -->
+  <control-input control="STEER" axis="/controls/gear/maingear-steering-cmd-norm" src0="-1.0" dst0="-0.1396263402" src1="1.0" dst1="0.1396263402" />
+  <control-output control="STEER" prop="/controls/gear/maingear-l-steering-angle-rad" />
 </gear>
 
+<!-- aft axle on right main gear -->
 <gear x="-7.8" y="-5.6" z="-6.22" compression="3.0" spring="1.2">
   <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
   <control-output control="EXTEND" prop="/gear/gear[4]/position-norm"/>
   <control-speed control="EXTEND" transition-time="20"/>
+  <!-- 8 degrees main gear steering when nose gear steering above 13 degrees commanded (see Nasal/ground_steering.nas) -->
+  <control-input control="STEER" axis="/controls/gear/maingear-steering-cmd-norm" src0="-1.0" dst0="-0.1396263402" src1="1.0" dst1="0.1396263402" />
+  <control-output control="STEER" prop="/controls/gear/maingear-r-steering-angle-rad" />
 </gear>
 
 <tank x="-4.3" y="5" z="-1.5" jet="true" capacity="64000"/>

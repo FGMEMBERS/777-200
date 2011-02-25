@@ -38,7 +38,7 @@
         <mode>looped</mode>
         <property>engines/engine[0]/rpm</property>
         <pitch>
-            <property>/engines/engine[0]/rpm</property>
+            <property>engines/engine[0]/rpm</property>
             <offset>0</offset>
             <factor>0.02</factor>
             <min>0.0</min>
@@ -72,7 +72,7 @@
             </not>
         </condition>
         <volume>
-            <property>/engines/engine[1]/thrust-lbs</property>
+            <property>engines/engine[1]/thrust-lbs</property>
             <factor><factor>0.000015</factor></factor>
             <min>0.0</min>
             <max>1.0</max>
@@ -104,7 +104,7 @@
             <property>sim/sound/Ovolume</property>
         </volume>
         <pitch>
-            <property>/engines/engine[1]/rpm</property>
+            <property>engines/engine[1]/rpm</property>
             <offset>0</offset>
             <factor>0.02</factor>
             <min>0.0</min>
@@ -124,10 +124,10 @@
         <mode>looped</mode>
         <path>Sounds/rumble.wav</path>
         <condition>
-            <property>/gear/gear[0]/wow</property>
+            <property>gear/gear[0]/wow</property>
         </condition>
         <volume>
-            <property>/velocities/groundspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <type>log</type>
             <factor>0.25</factor>
         </volume>
@@ -146,12 +146,12 @@
         <path>Sounds/rumble.wav</path>
         <condition>
             <or>
-                <property>/gear/gear[1]/wow</property>
-                <property>/gear/gear[2]/wow</property>
+                <property>gear/gear[1]/wow</property>
+                <property>gear/gear[2]/wow</property>
             </or>
         </condition>
         <volume>
-            <property>/velocities/groundspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <type>log</type>
             <factor>0.25</factor>
         </volume>
@@ -168,7 +168,7 @@
         <name>gear</name>
         <mode>in-transit</mode>
         <path>Sounds/gear.wav</path>
-        <property>/gear/gear[0]/position-norm</property>
+        <property>gear/gear[0]/position-norm</property>
         <volume>
             <property>sim/sound/Ovolume</property>
             <offset>0.3</offset>
@@ -192,7 +192,7 @@
         <path>Sounds/gear-lck.wav</path>
         <condition>
             <equals>
-                <property>/gear/gear[0]/position-norm</property>
+                <property>gear/gear[0]/position-norm</property>
                 <value>0</value>
             </equals>
         </condition>
@@ -213,13 +213,13 @@
         <name>front wheel squeal</name>
         <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
-            <property>/gear/gear[0]/wow</property>
+            <property>gear/gear[0]/wow</property>
         </condition>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <volume>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.01</factor>
         </volume>
         <volume>
@@ -228,7 +228,7 @@
             <max>1.0</max>
         </volume>
         <pitch>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.0025</factor>
             <offset>1.2</offset>
         </pitch>
@@ -246,18 +246,18 @@
         <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
             <or>
-                <property>/gear/gear[1]/wow</property>
+                <property>gear/gear[1]/wow</property>
             </or>
         </condition>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <volume>
-            <property>/velocities/speed-down-fps</property>
+            <property>velocities/speed-down-fps</property>
             <factor>0.05</factor>
         </volume>
         <volume>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.01</factor>
         </volume>
         <volume>
@@ -266,7 +266,7 @@
             <max>1.0</max>
         </volume>
         <pitch>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.0025</factor>
             <offset>1.2</offset>
         </pitch>
@@ -284,18 +284,18 @@
         <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
             <or>
-                <property>/gear/gear[2]/wow</property>
+                <property>gear/gear[2]/wow</property>
             </or>
         </condition>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <volume>
-            <property>/velocities/speed-down-fps</property>
+            <property>velocities/speed-down-fps</property>
             <factor>0.05</factor>
         </volume>
         <volume>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.01</factor>
         </volume>
         <volume>
@@ -304,7 +304,7 @@
             <max>1.0</max>
         </volume>
         <pitch>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.0025</factor>
             <offset>1.2</offset>
         </pitch>
@@ -321,7 +321,7 @@
         <name>flaps</name>
         <mode>in-transit</mode>
         <path>Aircraft/777-200/Sounds/Flaps.wav</path>
-        <property>/surface-positions/flap-pos-norm</property>
+        <property>surface-positions/flap-pos-norm</property>
         <volume>
             <property>sim/sound/Ovolume</property>
             <max>0.5</max>
@@ -343,22 +343,22 @@
         <name>wind</name>
         <mode>looped</mode>
         <path>Sounds/wind.wav</path>
-        <property>/velocities/airspeed-kt</property>
+        <property>velocities/airspeed-kt</property>
         <volume>
-            <property>/position/altitude-ft</property>
+            <property>position/altitude-ft</property>
             <factor>-0.000015</factor>
             <offset>1.0</offset>
             <min>0.1</min>
             <max>1.0</max>
         </volume>
         <volume>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.0015</factor>
             <min>0.03</min>
             <max>0.25</max>
         </volume>
         <pitch>
-            <property>/velocities/airspeed-kt</property>
+            <property>velocities/airspeed-kt</property>
             <factor>0.01</factor>
             <offset>1.25</offset>
         </pitch>
@@ -374,6 +374,7 @@
     <stall>
         <name>stall</name>
         <mode>looped</mode>
+        <type>avionics</type>
         <path>/Aircraft/777-200/Sounds/stall.wav</path>
         <condition>
             <property>instrumentation/weu/sound/stall-horn</property>
@@ -381,11 +382,6 @@
         <volume>
             <offset>0.5</offset>
         </volume>
-        <position>
-            <x>-24</x>
-            <y>0</y>
-            <z>0.18</z>
-        </position>
         <reference-dist>0.5</reference-dist>
         <max-dist>1.0</max-dist>
     </stall>
@@ -561,7 +557,7 @@
         <name>speedbrake</name>
         <mode>in-transit</mode>
         <path>Sounds/flaps.wav</path>
-        <property>/surface-positions/speedbrake-norm</property>
+        <property>surface-positions/speedbrake-norm</property>
         <volume>
             <property>sim/sound/Ovolume</property>
             <max>0.8</max>
@@ -623,6 +619,7 @@
     <warningsiren>
         <name>warning-siren</name>
         <mode>looped</mode>
+        <type>avionics</type>
         <path>Aircraft/777-200/Sounds/siren.wav</path>
         <condition>
 	        <property>instrumentation/weu/sound/siren</property>
@@ -632,6 +629,7 @@
     <configwarning>
         <name>config-warning</name>
         <mode>looped</mode>
+        <type>avionics</type>
         <path>Aircraft/777-200/Sounds/config-warning.wav</path>
         <condition>
             <property>instrumentation/weu/sound/config-warning</property>
@@ -641,6 +639,7 @@
     <apdisengage>
         <name>autopilot disengage</name>
         <mode>once</mode>
+        <type>avionics</type>
         <path>Aircraft/777-200/Sounds/autopilot-disengage.wav</path>
         <condition>
             <property>instrumentation/weu/sound/autopilot-warning</property>
@@ -649,6 +648,19 @@
             <factor>1</factor>
         </volume>
     </apdisengage>
+
+    <crash>
+        <name>Crash</name>
+        <mode>once</mode>
+        <path>Sounds/crash.wav</path>
+        <property>sim/crashed</property>
+        <volume>
+            <factor>1</factor>
+        </volume>
+        <pitch>
+            <factor>1.2</factor>
+        </pitch>
+    </crash>
 
 </fx>
 

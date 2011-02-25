@@ -8,40 +8,40 @@
             <condition>
                 <or>
                 <equals>
-                    <property>/autopilot/autobrake/step</property>
+                    <property>autopilot/autobrake/step</property>
                     <value>0</value> <!-- DISARM -->
                 </equals>
                 <equals>
-                    <property>/autopilot/autobrake/step</property>
+                    <property>autopilot/autobrake/step</property>
                     <value>-1</value> <!-- OFF -->
                 </equals>
                 </or>
             </condition>
         </enable>
         <input><false/></input>
-        <output>/autopilot/autobrake/engaged</output>
+        <output>autopilot/autobrake/engaged</output>
     </logic>
     
     <logic>
         <name>RTO selected</name>
         <input>
             <equals>
-                <property>/autopilot/autobrake/step</property>
+                <property>autopilot/autobrake/step</property>
                 <value>-2</value>
             </equals>
         </input>
-        <output>/autopilot/autobrake/rto-selected</output>
+        <output>autopilot/autobrake/rto-selected</output>
     </logic>
     
     <logic>
         <name>Autobrake Selected</name>
         <input>
             <greater-than>
-                <property>/autopilot/autobrake/step</property>
+                <property>autopilot/autobrake/step</property>
                 <value>0</value>
             </greater-than>
         </input>
-        <output>/autopilot/autobrake/selected</output>
+        <output>autopilot/autobrake/selected</output>
     </logic>
     
     <logic>
@@ -51,41 +51,41 @@
             <and>
             <or>
                 <less-than>
-                    <property>/controls/engines/engine[0]/throttle</property>
-                    <property>/autopilot/autobrake/config/idle-throttle</property>
+                    <property>controls/engines/engine[0]/throttle</property>
+                    <property>autopilot/autobrake/config/idle-throttle</property>
                 </less-than>
-                <property>/controls/engines/engine[0]/reverser</property>
+                <property>controls/engines/engine[0]/reverser</property>
             </or>
            <!-- engine 1 -->    
             <or>
                 <less-than>
-                    <property>/controls/engines/engine[1]/throttle</property>
-                    <property>/autopilot/autobrake/config/idle-throttle</property>
+                    <property>controls/engines/engine[1]/throttle</property>
+                    <property>autopilot/autobrake/config/idle-throttle</property>
                 </less-than>
-                <property>/controls/engines/engine[1]/reverser</property>
+                <property>controls/engines/engine[1]/reverser</property>
             </or>
             </and>
         </input>
-        <output>/autopilot/autobrake/throttles-at-idle</output>
+        <output>autopilot/autobrake/throttles-at-idle</output>
     </logic>
 
     <logic>
         <name>Airborne</name>
         <input>
-            <not><property>/gear/gear/wow</property></not>
+            <not><property>gear/gear/wow</property></not>
         </input>
-        <output>/autopilot/autobrake/airborne</output>
+        <output>autopilot/autobrake/airborne</output>
     </logic>
 
     <logic>
         <name>High-speed</name>
         <input>
             <greater-than>
-                <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
                 <value>85</value>
             </greater-than>
         </input>
-        <output>/autopilot/autobrake/above-85-kts</output>
+        <output>autopilot/autobrake/above-85-kts</output>
     </logic>
     
 
@@ -94,18 +94,18 @@
         <name>Pilot Input</name>
         <input>
             <less-than>
-                <property>/autopilot/autobrake/config/pilot-input</property>
+                <property>autopilot/autobrake/config/pilot-input</property>
                <expression>
                     <max>
-                        <property>/controls/gear/brake-left</property>
-                        <property>/controls/gear/brake-right</property>
-                        <property>/controls/gear/copilot-brake-left</property>
-                        <property>/controls/gear/copilot-brake-right</property>
+                        <property>controls/gear/brake-left</property>
+                        <property>controls/gear/brake-right</property>
+                        <property>controls/gear/copilot-brake-left</property>
+                        <property>controls/gear/copilot-brake-right</property>
                     </max>
                 </expression>          
             </less-than>
         </input>
-        <output>/autopilot/autobrake/pilot-input</output>
+        <output>autopilot/autobrake/pilot-input</output>
     </logic>
 
     <logic>
@@ -115,9 +115,9 @@
         measuring pitch is tricky, so let's use nose-gear WoW instead
         -->
         <input>
-            <not><property>/gear/gear[1]/wow</property></not>
+            <not><property>gear/gear[1]/wow</property></not>
         </input>
-        <output>/autopilot/autobrake/pitch-up-1deg</output>
+        <output>autopilot/autobrake/pitch-up-1deg</output>
     </logic>
 
     <flipflop>
@@ -127,22 +127,22 @@
         <enable>
             <condition>
             <and>
-                <property>/autopilot/autobrake/selected</property>
-                <not><property>/autopilot/autobrake/rto-selected</property></not>
+                <property>autopilot/autobrake/selected</property>
+                <not><property>autopilot/autobrake/rto-selected</property></not>
             </and>
             </condition>
         </enable>
         
         <S>
             <and>
-                <property>/autopilot/autobrake/throttles-at-idle</property>
-                <not><property>/autopilot/autobrake/airborne</property></not>
+                <property>autopilot/autobrake/throttles-at-idle</property>
+                <not><property>autopilot/autobrake/airborne</property></not>
             </and>
         </S>
         <R>
             <false/>
         </R>
-        <output>/autopilot/autobrake/engaged</output>
+        <output>autopilot/autobrake/engaged</output>
     </flipflop>
 
     <filter>
@@ -160,8 +160,8 @@
  
         <enable>
             <condition>
-                <property>/autopilot/autobrake/rto-selected</property>
-                <property>/autopilot/autobrake/airborne</property>
+                <property>autopilot/autobrake/rto-selected</property>
+                <property>autopilot/autobrake/airborne</property>
                 <greater-than>
                     <property>position/altitude-agl-ft</property>
                     <value>100</value>
@@ -170,7 +170,7 @@
         </enable>
         
         <input><value>-1</value></input> <!-- move to 'off' -->
-        <output>/autopilot/autobrake/step</output>
+        <output>autopilot/autobrake/step</output>
     </filter>
     
     <flipflop>
@@ -179,17 +179,17 @@
         <debug>false</debug>
         <enable>
             <condition>
-            <property>/autopilot/autobrake/rto-selected</property>
-            <property>/autopilot/autobrake/above-85-kts</property>
+            <property>autopilot/autobrake/rto-selected</property>
+            <property>autopilot/autobrake/above-85-kts</property>
             </condition>
         </enable>
         <S>
-            <property>/autopilot/autobrake/throttles-at-idle</property>
+            <property>autopilot/autobrake/throttles-at-idle</property>
         </S>
         <R>
             <false/>
         </R>
-        <output>/autopilot/autobrake/engaged</output>
+        <output>autopilot/autobrake/engaged</output>
     </flipflop>
     
     <filter>
@@ -199,19 +199,19 @@
         <gain>1.0</gain>
         <enable>
             <condition>
-            <property>/autopilot/autobrake/engaged</property>
+            <property>autopilot/autobrake/engaged</property>
             <or>
                 <!-- disengage on pilot input -->
-                <property>/autopilot/autobrake/pilot-input</property>
+                <property>autopilot/autobrake/pilot-input</property>
                 
                 <!-- disengage if the throttles are not at idle -->
-                <not><property>/autopilot/autobrake/throttles-at-idle</property></not>
+                <not><property>autopilot/autobrake/throttles-at-idle</property></not>
             </or>
             </condition>
         </enable>
         
         <input><value>0</value></input> <!-- move to 'disarm' -->
-        <output>/autopilot/autobrake/step</output>
+        <output>autopilot/autobrake/step</output>
     </filter>
     
     <!-- model the accelerometer portion of the AB system.
@@ -223,9 +223,9 @@
         <max-rate-of-change>5.0</max-rate-of-change>
         <input>
             <scale>-1</scale> <!-- deceleration, not acceleration -->
-            <property>/accelerations/pilot/x-accel-fps_sec</property>
+            <property>accelerations/pilot/x-accel-fps_sec</property>
         </input>
-        <output>/autopilot/autobrake/actual-decel-ftsec2</output>
+        <output>autopilot/autobrake/actual-decel-ftsec2</output>
     </filter>
     
     <!-- translate dial setting levels into target decelerations, based upon
@@ -235,12 +235,12 @@
         <type>gain</type>
         <debug>false</debug>
         <gain>1.0</gain>
-        <output>/autopilot/autobrake/target-decel-ftsec2</output>
+        <output>autopilot/autobrake/target-decel-ftsec2</output>
         <input>
            <condition>
-                <not><property>/autopilot/autobrake/rto-selected</property></not>
+                <not><property>autopilot/autobrake/rto-selected</property></not>
                 <not><equals>
-                    <property>/autopilot/autobrake/step</property>
+                    <property>autopilot/autobrake/step</property>
                     <value>5</value>
                 </equals></not>
             </condition> 
@@ -250,7 +250,7 @@
                 looks plausible on that basis 
                 -->
                 <table>
-                    <property>/autopilot/autobrake/step</property> 
+                    <property>autopilot/autobrake/step</property> 
                     <entry><ind>0</ind><dep>0</dep></entry>
                     <entry><ind>1</ind><dep>4</dep></entry>
                     <entry><ind>2</ind><dep>5</dep></entry>
@@ -262,10 +262,10 @@
         
         <input>
               <condition>
-                  <not><property>/autopilot/autobrake/rto-selected</property></not>
-                  <property>/autopilot/autobrake/pitch-up-1deg</property>
+                  <not><property>autopilot/autobrake/rto-selected</property></not>
+                  <property>autopilot/autobrake/pitch-up-1deg</property>
                   <equals>
-                      <property>/autopilot/autobrake/step</property>
+                      <property>autopilot/autobrake/step</property>
                       <value>5</value>
                   </equals>
               </condition>
@@ -274,10 +274,10 @@
 
           <input>
               <condition>
-                  <not><property>/autopilot/autobrake/rto-selected</property></not>
-                  <not><property>/autopilot/autobrake/pitch-up-1deg</property></not>
+                  <not><property>autopilot/autobrake/rto-selected</property></not>
+                  <not><property>autopilot/autobrake/pitch-up-1deg</property></not>
                   <equals>
-                      <property>/autopilot/autobrake/step</property>
+                      <property>autopilot/autobrake/step</property>
                       <value>5</value>
                   </equals>
               </condition>
@@ -286,7 +286,7 @@
         
         <input>
            <condition>
-                <property>/autopilot/autobrake/rto-selected</property>
+                <property>autopilot/autobrake/rto-selected</property>
             </condition>
             <!-- RTO setting applies max hydraulic pressure, simulate this
               with a huge value here, to ensure the PI drives to 1.0 output -->
@@ -298,12 +298,12 @@
         <name>Brake Effort Computer</name>
         <debug>false</debug>
         <enable>
-            <property>/autopilot/autobrake/engaged</property>
+            <property>autopilot/autobrake/engaged</property>
         </enable>
-        <input><property>/autopilot/autobrake/actual-decel-ftsec2</property></input>
+        <input><property>autopilot/autobrake/actual-decel-ftsec2</property></input>
         <reference>/autopilot/autobrake/target-decel-ftsec2</reference>
         
-        <output>/autopilot/autobrake/output-brake</output>
+        <output>autopilot/autobrake/output-brake</output>
         <min>0.0</min>
         <max>1.0</max>
         
@@ -321,22 +321,22 @@
         
         <input>
             <condition>
-                <property>/autopilot/autobrake/engaged</property>
+                <property>autopilot/autobrake/engaged</property>
             </condition>
             
             <expression>
                 <max>
-                    <property>/controls/gear/brake-left</property>
-                    <property>/autopilot/autobrake/output-brake</property>
+                    <property>controls/gear/brake-left</property>
+                    <property>autopilot/autobrake/output-brake</property>
                 </max>
             </expression>
         </input>
         <!-- default input -->
         <input>
-            <property>/controls/gear/brake-left</property>
+            <property>controls/gear/brake-left</property>
         </input>
         
-        <output>/autopilot/autobrake/left-brake-output</output>
+        <output>autopilot/autobrake/left-brake-output</output>
     </filter>
     
     <!-- right output summer -->
@@ -347,22 +347,22 @@
         
         <input>
             <condition>
-                <property>/autopilot/autobrake/engaged</property>
+                <property>autopilot/autobrake/engaged</property>
             </condition>
             
             <expression>
                 <max>
-                    <property>/controls/gear/brake-right</property>
-                    <property>/autopilot/autobrake/output-brake</property>
+                    <property>controls/gear/brake-right</property>
+                    <property>autopilot/autobrake/output-brake</property>
                 </max>
             </expression>
         </input>
         <!-- default input -->
         <input>
-            <property>/controls/gear/brake-right</property>
+            <property>controls/gear/brake-right</property>
         </input>
         
-        <output>/autopilot/autobrake/right-brake-output</output>
+        <output>autopilot/autobrake/right-brake-output</output>
     </filter>
     
 </PropertyList>

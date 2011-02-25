@@ -440,6 +440,20 @@ setlistener("/instrumentation/clock/et-knob", func(et){
     }
 },0,0);
 
+setlistener("instrumentation/transponder/mode-switch", func(transponder_switch){
+    var mode = transponder_switch.getValue();
+    var tcas_mode = 1;
+    if (mode == 3) tcas_mode = 2;
+    if (mode == 4) tcas_mode = 3;
+    setprop("instrumentation/tcas/inputs/mode",tcas_mode);
+},0,0);
+
+setlistener("instrumentation/tcas/outputs/traffic-alert", func(traffic_alert){
+    var alert = traffic_alert.getValue();
+    # any TCAS alert enables the traffic display
+    if (alert) setprop("instrumentation/radar/switch","on");
+},0,0);
+
 setlistener("controls/flight/speedbrake", func(spd_brake){
     var brake = spd_brake.getValue();
     # do not update lever when in AUTO position
@@ -528,6 +542,7 @@ setprop("controls/flight/elevator-trim",0);
 setprop("controls/flight/aileron-trim",0);
 setprop("controls/flight/rudder-trim",0);
 if (getprop("/sim/model/start-idling")==0) setprop("/sim/model/start-idling",1);
+setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
 }
 
 var Shutdown = func{
@@ -563,6 +578,7 @@ setprop("controls/fuel/tank[2]/boost-pump",0);
 setprop("controls/fuel/tank[2]/boost-pump[1]",0);
 setprop("sim/model/armrest",0);
 if (getprop("/sim/model/start-idling")) setprop("/sim/model/start-idling",0);
+setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
 }
 
 var click_reset = func(propName) {

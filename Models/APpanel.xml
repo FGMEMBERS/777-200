@@ -26,7 +26,7 @@ Autopilot Control Panel
         </axis>
     </animation>
 
-        <animation>
+    <animation>
         <type>rotate</type>
         <object-name>IAS.knob</object-name>
         <object-name>IAS.knob.001</object-name>
@@ -49,7 +49,7 @@ Autopilot Control Panel
         </axis>
     </animation>
 
-        <animation>
+    <animation>
         <type>rotate</type>
         <object-name>ALTmode.knob</object-name>
         <object-name>ALTmode.knob.001</object-name>
@@ -216,8 +216,8 @@ Autopilot Control Panel
         <object-name>FLCH.toggle</object-name>
         <condition>
             <equals>
-                <property>instrumentation/afds/ap-modes/speed-mode</property>
-                <value>FLCH</value>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                <value>FLCH SPD</value>
             </equals>
         </condition>
     </animation>
@@ -226,10 +226,13 @@ Autopilot Control Panel
         <type>select</type>
         <object-name>LOC.toggle</object-name>
         <condition>
-            <equals>
-                <property>instrumentation/afds/ap-modes/roll-mode</property>
-                <value>LOC</value>
-            </equals>
+            <or>
+                <equals>
+                    <property>instrumentation/afds/ap-modes/roll-mode</property>
+                    <value>LOC</value>
+                </equals>
+                <property>instrumentation/afds/inputs/loc-armed</property>
+            </or>
         </condition>
     </animation>
 
@@ -852,12 +855,12 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(3);b777.afds.input(2,1);</script>
+                <script>controls.click(3);b777.afds.input(2,5);</script>
             </binding>
         </action>
     </animation>
 
-    <!--animation>
+    <animation>
         <type>pick</type>
         <object-name>FLCH.btn</object-name>
         <action>
@@ -865,12 +868,12 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(4);afds.input(2,2);</script>
+                <script>controls.click(4);b777.afds.input(1,8);</script>
             </binding>
         </action>
     </animation>
 
-    <animation>
+    <!-- animation>
         <type>pick</type>
         <object-name>CLB.btn</object-name>
         <action>
@@ -878,7 +881,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(3);afds.input(2,3);</script>
+                <script>controls.click(3);b777.afds.input(2,3);</script>
             </binding>
         </action>
     </animation-->
@@ -915,9 +918,9 @@ Autopilot Control Panel
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
-            <binding>
+             <binding>
                 <command>nasal</command>
-                <script>controls.click(4);</script>
+                <script>controls.click(4);b777.afds.input(3,0);</script>
             </binding>
         </action>
     </animation>
@@ -929,16 +932,8 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/afds/inputs/gs-armed</property>
-            </binding>
-            <binding>
-                <command>property-toggle</command>
-                <property>instrumentation/afds/inputs/loc-armed</property>
-            </binding>
-            <binding>
                 <command>nasal</command>
-                <script>controls.click(4);</script>
+                <script>controls.click(4);b777.afds.input(3,1);</script>
             </binding>
         </action>
     </animation>

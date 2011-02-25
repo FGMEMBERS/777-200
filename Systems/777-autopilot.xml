@@ -252,8 +252,18 @@
     <name>Altitude Stage 1</name>
     <debug>false</debug>
     <enable>
-      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-      <value>ALT</value>
+      <condition>
+        <or>
+          <equals>
+            <property>instrumentation/afds/ap-modes/pitch-mode</property>
+            <value>ALT</value>
+          </equals>
+          <equals>
+            <property>instrumentation/afds/ap-modes/pitch-mode</property>
+            <value>FLCH SPD</value>
+          </equals>
+        </or>
+      </condition>
     </enable>
     <input>
       <prop>instrumentation/altimeter/indicated-altitude-ft</prop>
@@ -280,8 +290,18 @@
     <name>Altitude Hold (Altimeter based) Stage 2</name>
     <debug>false</debug>
     <enable>
-      <prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-      <value>ALT</value>
+      <condition>
+        <or>
+          <equals>
+            <property>instrumentation/afds/ap-modes/pitch-mode</property>
+            <value>ALT</value>
+          </equals>
+          <equals>
+            <property>instrumentation/afds/ap-modes/pitch-mode</property>
+            <value>FLCH SPD</value>
+          </equals>
+        </or>
+      </condition>
     </enable>
     <input>
       <prop>/velocities/vertical-speed-fps</prop>
@@ -547,7 +567,7 @@
     <name>Auto Throttle1 ias</name>
     <debug>false</debug>
     <enable>
-    <prop>instrumentation/afds/ap-modes/throttle[0]</prop>
+      <prop>instrumentation/afds/ap-modes/throttle[0]</prop>
       <value>ias</value>
       <honor-passive>true</honor-passive>
     </enable>
@@ -658,6 +678,5 @@
             <u_max>1.0</u_max>
         </config>
     </pid-controller>
-
 
 </PropertyList>

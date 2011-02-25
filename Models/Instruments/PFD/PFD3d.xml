@@ -1011,7 +1011,7 @@ Syd Adams
             <and>
                 <equals>
                     <property>instrumentation/afds/ap-modes/speed-mode</property>
-                    <value>THR</value>
+                    <value>SPD</value>
                 </equals>
                 <not>
                     <property>instrumentation/afds/inputs/ias-mach-selected</property>
@@ -1027,7 +1027,7 @@ Syd Adams
             <and>
                 <equals>
                     <property>instrumentation/afds/ap-modes/speed-mode</property>
-                    <value>THR</value>
+                    <value>SPD</value>
                 </equals>
                 <property>instrumentation/afds/inputs/ias-mach-selected</property>
             </and>
@@ -1038,10 +1038,16 @@ Syd Adams
         <type>select</type>
         <object-name>ALT-annun</object-name>
         <condition>
+          <or>
             <equals>
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>
                 <value>ALT</value>
             </equals>
+            <equals>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                <value>FLCH SPD</value>
+            </equals>
+          </or>
         </condition>
     </animation>
 

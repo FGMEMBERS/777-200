@@ -30,7 +30,7 @@
     </transformation>
     <transformation>
      <type>y-shift</type>
-     <property>/orientation/pitch-deg</property>
+     <property>orientation/pitch-deg</property>
      <min>-90.0</min>
      <max>90.0</max>
      <scale>-3.14</scale>

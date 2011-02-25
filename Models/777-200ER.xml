@@ -1220,7 +1220,7 @@ Syd Adams
             <x-m>-18.674</x-m>
             <y-m>0</y-m>
             <z-m>-4.198</z-m>
-        </center>	
+        </center>
         <axis>
             <x>0</x>
             <y>1</y>
@@ -1231,8 +1231,8 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Frontgear</object-name>
-        <property>controls/flight/rudder</property>
-        <factor>60</factor>
+        <property>controls/gear/nosegear-steering-cmd-norm</property>
+        <factor>70</factor>
         <center>
             <x-m>-19.284</x-m>
             <y-m>0.0</y-m>
@@ -1705,6 +1705,24 @@ Syd Adams
             <z-m>-5.100</z-m>
         </center>
     </animation>
+    
+    <!-- rear axle steering -->
+    <animation>
+        <type>rotate</type>
+        <object-name>LHwheel.3</object-name>
+        <property>/controls/gear/maingear-steering-cmd-norm</property>
+        <factor>-8</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <center>
+            <x-m>7.897</x-m>
+            <y-m>-5.617</y-m>
+            <z-m>-5.100</z-m>
+        </center>
+    </animation>
 
     <animation>
         <type>spin</type>
@@ -1983,6 +2001,24 @@ Syd Adams
         </axis>
         <center>
             <x-m>6.404</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-5.100</z-m>
+        </center>
+    </animation>
+
+    <!-- rear axle steering -->
+    <animation>
+        <type>rotate</type>
+        <object-name>RHwheel.3</object-name>
+        <property>/controls/gear/maingear-steering-cmd-norm</property>
+        <factor>-8</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <center>
+            <x-m>7.897</x-m>
             <y-m>5.617</y-m>
             <z-m>-5.100</z-m>
         </center>
