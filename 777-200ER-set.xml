@@ -7,7 +7,7 @@
         <aircraft-version>20100008</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200ER</aero>
-        <fuel-fraction>0.75</fuel-fraction>
+        <fuel-fraction>0.2</fuel-fraction>
         <startup>
             <splash-texture>Aircraft/777-200/splash.png</splash-texture>
         </startup>
@@ -345,7 +345,14 @@ Service Ceiling: 43,100ft
 
     </sim>
 
-
+    <engines>
+        <engine n="0">
+            <n1-limit type="double">98.5</n1-limit>
+        </engine>
+        <engine n="1">
+            <n1-limit type="double">98.5</n1-limit>
+        </engine>
+    </engines>
 
     <gear>
         <gear n="0">
@@ -515,7 +522,7 @@ Service Ceiling: 43,100ft
                 <symbol type="bool" archive="y">true</symbol>
                 <rotate type="bool" archive="y">true</rotate>
                 <tcas type="bool" archive="n">true</tcas>
-                <abs-altitude type="bool" archive="n">false</abs-altitude>
+                <abs-altitude type="bool" archive="y">false</abs-altitude>
             </display-controls>
             <serviceable type="bool">true</serviceable>
             <range type="int" archive="y">10</range>
@@ -550,16 +557,16 @@ Service Ceiling: 43,100ft
                         <blue type="float">0</blue>
                     </color>
                 </tcas>
-                <name type="string" archive="y">helvetica_bold.txf</name>
+                <name type="string">helvetica_bold.txf</name>
                 <size type="float">5</size>
                 <line-spacing type="float">0.3</line-spacing>
             </font>
             <lightning type="bool" archive="y">true</lightning>
-            <display-mode type="string" archive="y">arc</display-mode>
-            <radar-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
-            <echo-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/MFD/wxecho.png</echo-texture-path>
-            <minimized type="bool" archive="y">false</minimized>
-            <heading-marker type="bool" archive="y">true</heading-marker>
+            <display-mode type="string">arc</display-mode>
+            <radar-texture-path type="string">Aircraft/777-200/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
+            <echo-texture-path type="string">Aircraft/777-200/Models/Instruments/MFD/wxecho.png</echo-texture-path>
+            <minimized type="bool">false</minimized>
+            <heading-marker type="bool">true</heading-marker>
             <limit-deg type="int">360</limit-deg>
         </radar>
         <groundradar>
@@ -704,6 +711,7 @@ Service Ceiling: 43,100ft
         <gear>
             <brake-parking type="bool">1</brake-parking>
             <tiller-cmd-norm type="double">0</tiller-cmd-norm>
+            <tiller-enabled type="bool" userarchive="y">true</tiller-enabled>
             <nosegear-steering-cmd-norm type="double">0</nosegear-steering-cmd-norm>
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>

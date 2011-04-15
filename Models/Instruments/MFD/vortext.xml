@@ -109,7 +109,7 @@
 
         <layer>
             <condition>
-                <property>instrumentation/nav/data-is-valid</property>
+                <property>instrumentation/nav/dme-in-range</property>
             </condition>
             <name>VOR dist</name>
             <type>text</type>

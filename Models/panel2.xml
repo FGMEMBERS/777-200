@@ -51,7 +51,7 @@ Syd Adams
 
     <model>
         <name>EICAS</name>
-        <path>Aircraft/777-200/Models/Instruments/EICAS/eicas.xml</path>
+        <path>Aircraft/777-200/Models/Instruments/EICAS/eicas-3d.xml</path>
         <offsets>
             <x-m>-1.84</x-m>
             <y-m>0.017</y-m>

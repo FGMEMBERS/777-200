@@ -48,6 +48,15 @@
 		<valign>top</valign>
 		<padding>5</padding>
 		<pref-width>300</pref-width>
+	
+		<checkbox>
+			<halign>left</halign>
+			<label>Enable tiller steering</label>
+			<property>/controls/gear/tiller-enabled</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
 
 		<group>
 			<layout>hbox</layout>
@@ -97,5 +106,12 @@
 			</binding>
 		</button>
 	</group>
+
+	<hrule/>
+	
+	<text>
+		<label>Tiller is controlled via rudder when disabled here.</label>
+	</text>
+
 </PropertyList>
 

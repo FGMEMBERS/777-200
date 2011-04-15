@@ -46,19 +46,17 @@ Syd Adams
         <texture>paint1.png</texture>
     </animation>
 
-    <animation>
-        <type>material</type>
-        <object-name>RFdoor.001</object-name>
-        <object-name>LFdoor.001</object-name>
-        <object-name>Tail.001</object-name>
-        <object-name>Rudder.001</object-name>
-        <object-name>FuselageL</object-name>
-        <object-name>FuselageR</object-name>
-        <object-name>Fuselage.001</object-name>
-        <property-base>sim/model/lights</property-base>
-        <texture-prop>texture</texture-prop>
-        <texture>lights1.png</texture>
-    </animation>
+    <effect>
+        <inherits-from>Effects/lightmap</inherits-from>
+        <parameters>
+            <texture n="1">
+                <image>Aircraft/777-200/Models/Effects/lightmap-F.png</image>
+            </texture>
+        </parameters>
+        <object-name>Fuselage</object-name>
+        <object-name>Tail</object-name>
+        <object-name>Rudder</object-name> 
+    </effect>
 
     <model>
         <name>flightdeck</name>
@@ -185,23 +183,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rudder</object-name>
-        <property>controls/flight/rudder</property>
-        <factor>35</factor>
-        <center>
-            <x-m>31.265</x-m>
-            <y-m>0</y-m>
-            <z-m>2.557</z-m>
-        </center>
-        <axis>
-            <x>0.487</x>
-            <y>0</y>
-            <z>0.873</z>
-        </axis>
-    </animation>
-
-    <animation>
-        <type>rotate</type>
-        <object-name>Rudder.001</object-name>
         <property>controls/flight/rudder</property>
         <factor>35</factor>
         <center>
@@ -1065,47 +1046,6 @@ Syd Adams
 
     <animation>
         <type>select</type>
-        <object-name>Tail.001</object-name>
-        <condition>
-            <greater-than>
-            <property>sim/multiplay/generic/int[3]</property>
-            <value>5</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>Rudder.001</object-name>
-        <condition>
-            <greater-than>
-            <property>sim/multiplay/generic/int[3]</property>
-            <value>5</value>
-            </greater-than>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>Fuselage.001</object-name>
-        <object-name>RFdoor.001</object-name>
-        <object-name>LFdoor.001</object-name>
-        <condition>
-            <and>
-                <or>
-                    <property>sim/multiplay/generic/int[2]</property>
-                    <property>sim/multiplay/generic/int[5]</property>
-                </or>
-                <equals>
-                    <property>gear/gear[0]/position-norm</property>
-                    <value>1.0</value>
-                </equals>
-            </and>
-        </condition>
-    </animation>
-
-    <animation>
-        <type>select</type>
         <object-name>cabinlighting</object-name>
         <condition>
                 <and>
@@ -1314,7 +1254,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LFdoor</object-name>
-        <object-name>LFdoor.001</object-name>
         <property>gear/gear[0]/position-norm</property>
         <interpolation>
             <entry>
@@ -1349,7 +1288,6 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RFdoor</object-name>
-    <object-name>RFdoor.001</object-name>
         <property>gear/gear[0]/position-norm</property>
         <interpolation>
             <entry>

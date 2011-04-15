@@ -7,6 +7,24 @@ Syd Adams
 
     <path>pedestal.ac</path>
 
+    <effect>
+	<inherits-from>Effects/lightmap</inherits-from>
+	<parameters>
+		<texture n="1">
+			<image>Aircraft/777-200/Models/Effects/lightmap-C2.png</image>
+		</texture>
+	</parameters>
+        <object-name>Pedestal</object-name>
+        <object-name>LHthrottle</object-name>
+        <object-name>LHthrottle.001</object-name>
+        <object-name>RHthrottle</object-name>
+        <object-name>RHthrottle.001</object-name>
+        <object-name>BrkLever</object-name>
+        <object-name>PitchTrim</object-name>
+        <object-name>SpdBrkLever</object-name>
+        <object-name>FlapLever</object-name>
+    </effect>
+
     <model>
         <name>NDB</name>
         <path>Aircraft/777-200/Models/Instruments/NDB/ndb.xml</path>

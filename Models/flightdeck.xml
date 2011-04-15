@@ -151,6 +151,38 @@ Syd Adams
         </offsets>
     </model>
 
+    <effect>
+	<inherits-from>Effects/lightmap</inherits-from>
+	<parameters>
+		<texture n="1">
+			<image>Aircraft/777-200/Models/Effects/lightmap-C1.png</image>
+		</texture>
+	</parameters>
+	<object-name>cockpit</object-name>
+ </effect>
+
+    <effect>
+	<inherits-from>Effects/lightmap</inherits-from>
+	<parameters>
+		<texture n="1">
+			<image>Aircraft/777-200/Models/Effects/lightmap-C2.png</image>
+		</texture>
+	</parameters>
+	<object-name>Panel.main</object-name>
+	<object-name>Panel.Rwall</object-name>
+	<object-name>Panel.Lwall</object-name>
+	<object-name>Panel.center</object-name>
+	<object-name>Pseat</object-name>
+	<object-name>Pseat.armrest</object-name>
+	<object-name>Cseat</object-name>
+	<object-name>Cseat.armrest</object-name>
+	<object-name>Seats</object-name>
+	<object-name>Tray</object-name>
+	<object-name>Yokeshaft</object-name>
+	<object-name>Yoke</object-name>
+	<object-name>Yoke.001</object-name>
+    </effect>
+
 <!--2d PFD-->
     <!--model>
         <name>panel1</name>

@@ -85,7 +85,7 @@
       <prop>/autopilot/internal/target-roll-deg</prop>
     </output>
     <config>
-      <Kp>-5.0</Kp>
+      <Kp>-0.5</Kp>
       <Ki>0.0</Ki>
         <u_min>
             <prop>instrumentation/afds/settings/bank-min</prop>
@@ -163,25 +163,45 @@
       <prop>/autopilot/internal/target-roll-deg</prop>
     </reference>
     <output>
+      <!-- prop>/controls/flight/aileron-trim-filter</prop -->
       <prop>/controls/flight/aileron-trim</prop>
     </output>
     <config>
-      <Ts>0.1</Ts> 
-      <Kp>1.0</Kp>
+       <Kp>0.1</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
       <gamma>0.0</gamma>
-      <Ti>10.0</Ti>
+      <Ti>1.0</Ti>
       <Td>0.0</Td>
       <u_min>
-        <value>-0.8</value>
+        <value>-0.5</value>
       </u_min>
       <u_max>
-        <value>0.8</value>
+        <value>0.5</value>
       </u_max>
     </config>
   </pid-controller>
 
+    <!-- filter>
+        <name>Aileron control filter</name>
+        <debug>false</debug>
+        <feedback-if-disabled>true</feedback-if-disabled>
+        <initialize-to>output</initialize-to>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/locks/passive-mode</property>
+                    <value>false</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <property>/controls/flight/aileron-trim-filter</property>
+        </input>
+        <output>/controls/flight/aileron</output>
+        <type>noise-spike</type>
+        <max-rate-of-change>1</max-rate-of-change>
+    </filter -->
 
  <!-- =============================================================== -->
  <!-- Pitch Axis Modes                                                -->
@@ -313,7 +333,6 @@
       <prop>/autopilot/internal/target-pitch-deg</prop>
     </output>
     <config>
-      <Ts>0.05</Ts> 
       <Kp>0.5</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
@@ -374,8 +393,7 @@
       <prop>/autopilot/internal/target-pitch-deg</prop>
     </output>
     <config>
-      <Ts>0.05</Ts> 
-      <Kp>0.05</Kp>
+      <Kp>1</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
       <gamma>0.0</gamma>
@@ -538,10 +556,10 @@
       <prop>/autopilot/internal/target-pitch-deg</prop>
     </reference>
     <output>
+      <!-- prop>/controls/flight/elevator-trim-filter</prop -->
       <prop>/controls/flight/elevator-trim</prop>
     </output>
     <config>
-      <Ts>0.05</Ts> 
       <Kp>-0.015</Kp>
       <beta>1.0</beta>
       <alpha>0.1</alpha>
@@ -549,15 +567,34 @@
       <Ti>1.0</Ti>
       <Td>0.0</Td>
       <u_min>
-        <value>-0.7</value>
+        <value>-0.8</value>
       </u_min>
       <u_max>
-        <value>0.7</value>
+        <value>0.8</value>
       </u_max>
     </config>
   </pid-controller>
 
-
+    <!-- filter>
+        <name>Elevator control filter</name>
+        <debug>false</debug>
+        <feedback-if-disabled>true</feedback-if-disabled>
+        <initialize-to>output</initialize-to>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/locks/passive-mode</property>
+                    <value>false</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <property>/controls/flight/elevator-trim-filter</property>
+        </input>
+        <output>/controls/flight/elevator-trim</output>
+        <type>noise-spike</type>
+        <max-rate-of-change>0.2</max-rate-of-change>
+    </filter -->
  <!-- =============================================================== -->
  <!-- Velocity Modes                                                  -->
  <!-- =============================================================== -->
@@ -678,5 +715,6 @@
             <u_max>1.0</u_max>
         </config>
     </pid-controller>
+
 
 </PropertyList>

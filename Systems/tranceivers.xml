@@ -532,7 +532,14 @@
     </group>
 
     <hrule/>
-
+  
+  <button>
+    <legend>ATC Services in range</legend>
+    <binding>
+      <command>ATC-freq-search</command>
+    </binding>
+  </button>
+  
     <group>
     </group>
 

@@ -11,7 +11,7 @@
         <name>alert messages</name>
         <type>text</type>
         <font>arial_black</font>
-        <point-size>12</point-size>
+        <point-size>14</point-size>
         <color>
             <red>0.9</red>
             <green>0</green>
@@ -39,7 +39,7 @@
         <name>caution messages</name>
         <type>text</type>
         <font>arial_black</font>
-        <point-size>12</point-size>
+        <point-size>14</point-size>
         <color>
             <red>0.8</red>
             <green>0.4</green>
@@ -67,7 +67,7 @@
         <name>info messages</name>
         <type>text</type>
         <font>arial_black</font>
-        <point-size>12</point-size>
+        <point-size>14</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>

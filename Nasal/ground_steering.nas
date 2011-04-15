@@ -20,6 +20,7 @@ var GroundSteeringManager = {
 		m.tiller_node = props.globals.getNode("/controls/gear/tiller-cmd-norm", 1);
 		m.nosegear_steering_node = props.globals.getNode("/controls/gear/nosegear-steering-cmd-norm", 1);
 		m.maingear_steering_node = props.globals.getNode("/controls/gear/maingear-steering-cmd-norm", 1);
+		m.tiller_switch = props.globals.getNode("/controls/gear/tiller-enabled", 1);
 		return m;
 	},
 
@@ -29,6 +30,9 @@ var GroundSteeringManager = {
 		var tiller_cmd_norm = me.tiller_node.getValue();
 		var nosegear_steering_cmd_norm = 0.0;
 		var maingear_steering_cmd_norm = 0.0;
+
+		if (!me.tiller_switch.getValue())
+			tiller_cmd_norm = rudder_cmd_norm;
 
 		if (abs(tiller_cmd_norm) > 0.000001) {
 			nosegear_steering_cmd_norm = tiller_cmd_norm;

@@ -570,10 +570,7 @@
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>1</value>
                     </equals>
-                    <property>instrumentation/nav/data-is-valid</property>
-                    <not>
-                        <property>instrumentation/nav/slaved-to-gps</property>
-                    </not>
+                    <property>instrumentation/nav/dme-in-range</property>
                 </and>
             </condition>
             <name>L VOR dme</name>
@@ -682,7 +679,7 @@
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>1</value>
                     </equals>
-                    <property>instrumentation/nav[1]/data-is-valid</property>
+                    <property>instrumentation/nav[1]/dme-in-range</property>
                 </and>
             </condition>
             <name>R VOR dme</name>

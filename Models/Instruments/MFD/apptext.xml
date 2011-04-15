@@ -108,6 +108,9 @@
         </layer>
 
         <layer>
+            <condition>
+                <property>instrumentation/nav/dme-in-range</property>
+            </condition>
             <name>ILS dist</name>
             <type>text</type>
             <font>arial_black</font>
