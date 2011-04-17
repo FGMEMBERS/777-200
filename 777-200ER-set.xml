@@ -630,14 +630,6 @@ Service Ceiling: 43,100ft
             </speaker>
         </tcas>
 
-        <adf n="1">
-            <serviceable type="bool">1</serviceable>
-            <mode>adf</mode>
-            <frequencies>
-                <selected-khz>341</selected-khz>
-                <standby-khz>379</standby-khz>
-            </frequencies>
-        </adf>
         <efis>
             <eicas>
                 <msg n="0">

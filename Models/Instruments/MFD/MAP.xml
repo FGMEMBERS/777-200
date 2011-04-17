@@ -367,7 +367,7 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>instrumentation/adf/indicated-bearing-deg</property>
+                <property>instrumentation/adf[1]/indicated-bearing-deg</property>
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
@@ -406,7 +406,7 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>instrumentation/adf/indicated-bearing-deg</property>
+                <property>instrumentation/adf[1]/indicated-bearing-deg</property>
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
@@ -826,7 +826,7 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>instrumentation/adf/indicated-bearing-deg</property>
+                <property>instrumentation/adf[1]/indicated-bearing-deg</property>
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
@@ -842,7 +842,7 @@
                     <equals>
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>-1</value>
-                </equals>
+                    </equals>
                 </and>
             </condition>
             <name>Radf tail</name>
@@ -863,7 +863,7 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>instrumentation/adf/indicated-bearing-deg</property>
+                <property>instrumentation/adf[1]/indicated-bearing-deg</property>
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
