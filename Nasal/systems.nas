@@ -381,7 +381,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     props.globals.initNode("/instrumentation/clock/time-knob",0,"INT");
     props.globals.initNode("/instrumentation/clock/et-knob",0,"INT");
     props.globals.initNode("/instrumentation/clock/set-knob",0,"INT");
-    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
+#    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
     Shutdown();
     settimer(start_updates,1);
 });
@@ -402,15 +402,15 @@ setlistener("/sim/signals/reinit", func {
     Shutdown();
 });
 
-setlistener("/autopilot/route-manager/route/num", func(wp){
-    var wpt= wp.getValue() -1;
-
-    if(wpt>-1){
-    setprop("instrumentation/groundradar/id",getprop("autopilot/route-manager/route/wp["~wpt~"]/id"));
-    }else{
-    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
-    }
-},1,0);
+#setlistener("/autopilot/route-manager/route/num", func(wp){
+#    var wpt= wp.getValue() -1;
+#
+#    if(wpt>-1){
+#    setprop("instrumentation/groundradar/id",getprop("autopilot/route-manager/route/wp["~wpt~"]/id"));
+#    }else{
+#    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
+#    }
+#},1,0);
 
 setlistener("/sim/current-view/internal", func(vw){
     if(vw.getValue()){

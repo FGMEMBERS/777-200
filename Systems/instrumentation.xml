@@ -85,7 +85,7 @@ This file selects the instrumentation modules that should be available.
 
     <groundradar>
         <name>groundradar</name>
-        <airport-id-source>instrumentation/groundradar/id</airport-id-source>
+        <!--airport-id-source>instrumentation/groundradar/id</airport-id-source-->
         <range-source>instrumentation/groundradar/range</range-source>
     </groundradar>
 

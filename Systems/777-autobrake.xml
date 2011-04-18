@@ -156,7 +156,7 @@
         
         Let's use AGL to simulate 'after takeoff' for the moment
         -->
-        <debug>true</debug>
+        <debug>false</debug>
  
         <enable>
             <condition>
@@ -194,7 +194,7 @@
     
     <filter>
         <name>Disengage logic</name>
-        <debug>true</debug>
+        <debug>false</debug>
         <type>gain</type>
         <gain>1.0</gain>
         <enable>

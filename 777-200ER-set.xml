@@ -287,13 +287,13 @@ Service Ceiling: 43,100ft
                             <script>aircraft.livery.dialog.toggle()</script>
                         </binding>
                     </item>
-                    <item>
+                    <!--item>
                         <label>EFB</label>
                         <binding>
                             <command>nasal</command>
                             <script>dialogs.EFB.toggle();</script>
                         </binding>
-                    </item>
+                    </item-->
                     <item>
                         <label>Tiller Steering</label>
                         <binding>
@@ -570,7 +570,7 @@ Service Ceiling: 43,100ft
             <limit-deg type="int">360</limit-deg>
         </radar>
         <groundradar>
-            <id type="string">KSFO</id>
+            <!--id type="string">KSFO</id-->
             <range type="double">1.2</range>
         </groundradar>
 

@@ -60,7 +60,7 @@ Syd Adams
         </action>
     </animation>
     
-    <animation>
+    <!--animation>
         <type>pick</type>
         <object-name>Btn.menu</object-name>
         <action>
@@ -71,6 +71,6 @@ Syd Adams
                 <script>dialogs.EFB.toggle();</script>
             </binding>
         </action>
-    </animation>
+    </animation-->
 
 </PropertyList>
