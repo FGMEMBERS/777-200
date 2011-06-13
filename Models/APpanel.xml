@@ -1072,6 +1072,41 @@ Autopilot Control Panel
             </binding>
         </action>
     </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>SPD.dec</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <condition>
+                    <not>
+                        <property>instrumentation/afds/inputs/ias-mach-selected</property>
+                    </not>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-kt</property>
+                <step>10</step>
+                <min>120</min>
+                <max>260</max>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-mach</property>
+                <step>0.010</step>
+                <min>0.4</min>
+                <max>0.84</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -1100,6 +1135,41 @@ Autopilot Control Panel
                 <step>0.010</step>
                 <min>0.4</min>
                 <max>0.84</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>SPD.inc</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <condition>
+                    <not>
+                        <property>instrumentation/afds/inputs/ias-mach-selected</property>
+                    </not>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-kt</property>
+                <step>-10</step>
+                <min>120</min>
+                <max>260</max>
+            </binding>
+            <binding>
+                <condition>
+                    <property>instrumentation/afds/inputs/ias-mach-selected</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/target-speed-mach</property>
+                <step>-0.010</step>
+                <min>0.4</min>
+                <max>0.82</max>
             </binding>
             <binding>
                 <command>nasal</command>

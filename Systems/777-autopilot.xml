@@ -7,6 +7,14 @@
   <!--                        Lateral Modes                            -->
   <!-- =============================================================== -->
 
+  <filter>
+    <name>Radar altimeter</name>
+    <type>gain</type>
+    <gain>1.0</gain>
+    <input>/position/gear-agl-ft</input>
+    <output>instrumentation/afds/ra-ft</output>
+  </filter>
+
   <pid-controller>
     <name>TO/GA1</name>
     <debug>false</debug>
@@ -595,126 +603,6 @@
         <type>noise-spike</type>
         <max-rate-of-change>0.2</max-rate-of-change>
     </filter -->
- <!-- =============================================================== -->
- <!-- Velocity Modes                                                  -->
- <!-- =============================================================== -->
-
-
-  <pid-controller>
-    <name>Auto Throttle1 ias</name>
-    <debug>false</debug>
-    <enable>
-      <prop>instrumentation/afds/ap-modes/throttle[0]</prop>
-      <value>ias</value>
-      <honor-passive>true</honor-passive>
-    </enable>
-    <input>
-      <prop>/velocities/airspeed-kt</prop>
-    </input>
-    <reference>
-      <prop>/autopilot/settings/target-speed-kt</prop>
-    </reference>
-        <output>
-            <prop>/controls/engines/engine[0]/throttle</prop>
-        </output>
-        <config>
-            <Kp>0.15</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>20.0</Ti>
-            <Td>0.00001</Td>
-            <u_min>0.0</u_min>
-            <u_max>1.0</u_max>
-        </config>
-    </pid-controller>
-
-    <pid-controller>
-        <name>Auto Throttle2 ias</name>
-        <debug>false</debug>
-        <enable>
-          <prop>instrumentation/afds/ap-modes/throttle[1]</prop>
-          <value>ias</value>
-          <honor-passive>true</honor-passive>
-        </enable>
-        <input>
-            <prop>/velocities/airspeed-kt</prop>
-        </input>
-        <reference>
-            <prop>/autopilot/settings/target-speed-kt</prop>
-        </reference>
-        <output>
-            <prop>/controls/engines/engine[1]/throttle</prop>
-        </output>
-        <config>
-            <Kp>0.15</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>20.0</Ti>
-            <Td>0.00001</Td>
-            <u_min>0.0</u_min>
-            <u_max>1.0</u_max>
-        </config>
-    </pid-controller>
-
-    <pid-controller>
-        <name>Auto Throttle1 mach</name>
-        <debug>false</debug>
-        <enable>
-          <prop>instrumentation/afds/ap-modes/throttle[0]</prop>
-          <value>mach</value>
-          <honor-passive>true</honor-passive>
-        </enable>
-        <input>
-            <prop>/velocities/mach</prop>
-        </input>
-        <reference>
-            <prop>/autopilot/settings/target-speed-mach</prop>
-        </reference>
-        <output>
-            <prop>/controls/engines/engine[0]/throttle</prop>
-        </output>
-        <config>
-            <Kp>20.0</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>10.0</Ti>
-            <Td>0.00001</Td>
-            <u_min>0.0</u_min>
-            <u_max>1.0</u_max>
-        </config>
-    </pid-controller>
-
-    <pid-controller>
-        <name>Auto Throttle2 mach</name>
-        <debug>false</debug>
-        <enable>
-          <prop>instrumentation/afds/ap-modes/throttle[1]</prop>
-          <value>mach</value>
-          <honor-passive>true</honor-passive>
-        </enable>
-        <input>
-            <prop>/velocities/mach</prop>
-        </input>
-        <reference>
-            <prop>/autopilot/settings/target-speed-mach</prop>
-        </reference>
-        <output>
-            <prop>/controls/engines/engine[1]/throttle</prop>
-        </output>
-        <config>
-            <Kp>20.0</Kp>
-            <beta>1.0</beta>
-            <alpha>0.1</alpha>
-            <gamma>0.0</gamma>
-            <Ti>10.0</Ti>
-            <Td>0.00001</Td>
-            <u_min>0.0</u_min>
-            <u_max>1.0</u_max>
-        </config>
-    </pid-controller>
 
 
 </PropertyList>

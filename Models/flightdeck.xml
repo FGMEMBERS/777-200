@@ -8,6 +8,10 @@ Syd Adams
     <path>flightdeck.ac</path>
 
     <model>
+        <path>Models/Aircraft/marker.xml</path>
+    </model>
+
+    <model>
         <name>Pedestal</name>
         <path>Aircraft/777-200/Models/pedestal.xml</path>
         <offsets>

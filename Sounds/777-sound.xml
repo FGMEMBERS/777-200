@@ -497,7 +497,7 @@
         <reference-dist>0.5</reference-dist>
         <max-dist>1.0</max-dist>
     </switch>
-    
+
     <switch>
         <name>click6</name>
         <mode>once</mode>
@@ -622,7 +622,7 @@
         <type>avionics</type>
         <path>Aircraft/777-200/Sounds/siren.wav</path>
         <condition>
-	        <property>instrumentation/weu/sound/siren</property>
+            <property>instrumentation/weu/sound/siren</property>
         </condition>
     </warningsiren>
 
@@ -635,7 +635,7 @@
             <property>instrumentation/weu/sound/config-warning</property>
         </condition>
     </configwarning>
-    
+
     <apdisengage>
         <name>autopilot disengage</name>
         <mode>once</mode>
@@ -648,6 +648,24 @@
             <factor>1</factor>
         </volume>
     </apdisengage>
+
+<!--
+    <overspeed>
+        <name>overspeed warning</name>
+        <mode>looped</mode>
+        <type>avionics</type>
+        <path>/Sounds/overspeed.wav</path>
+        <condition>
+            <greater-than>
+                <property>velocities/airspeed-kt</property>
+                <property>instrumentation/afds/max-airspeed-kts</property>
+            </greater-than>
+        </condition>
+        <volume>
+            <factor>1</factor>
+        </volume>
+    </overspeed>
+-->
 
     <crash>
         <name>Crash</name>

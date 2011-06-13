@@ -65,8 +65,8 @@ var AFDS = {
         m.trk_setting = m.AFDS_settings.initNode("trk",0,"INT");
         m.vs_display = m.AFDS_settings.initNode("vs-display",0);
         m.fpa_display = m.AFDS_settings.initNode("fpa-display",0);
-        m.bank_min = m.AFDS_settings.initNode("bank-min",-30);
-        m.bank_max = m.AFDS_settings.initNode("bank-max",30);
+        m.bank_min = m.AFDS_settings.initNode("bank-min",-25);
+        m.bank_max = m.AFDS_settings.initNode("bank-max",25);
         m.pitch_min = m.AFDS_settings.initNode("pitch-min",-10);
         m.pitch_max = m.AFDS_settings.initNode("pitch-max",15);
         m.vnav_alt = m.AFDS_settings.initNode("vnav-alt",35000);
@@ -77,8 +77,6 @@ var AFDS = {
         m.AP_pitch_arm = m.AFDS_apmodes.initNode("pitch-mode-arm"," ");
         m.AP_speed_mode = m.AFDS_apmodes.initNode("speed-mode","");
         m.AP_annun = m.AFDS_apmodes.initNode("mode-annunciator"," ");
-        m.AP_throttle1 = m.AFDS_apmodes.initNode("throttle[0]"," ");
-        m.AP_throttle2 = m.AFDS_apmodes.initNode("throttle[1]"," ");
 
         m.FMS = props.globals.initNode("instrumentation/nav/slaved-to-gps");
         m.FMS.setValue(0);
@@ -86,6 +84,7 @@ var AFDS = {
         m.APl = setlistener(m.AP, func m.setAP(),0,0);
         m.APdisl = setlistener(m.AP_disengaged, func m.setAP(),0,0);
         m.Lbank = setlistener(m.bank_switch, func m.setbank(),0,0);
+        m.LTMode = setlistener(m.autothrottle_mode, func m.updateATMode(),0,0);
         return m;
     },
 
@@ -119,6 +118,7 @@ var AFDS = {
         }elsif(mode==2){
             # throttle AP controls
             if(me.autothrottle_mode.getValue() ==btn) btn=0;
+            if(getprop("position/altitude-agl-ft")<200) btn=0;
             me.autothrottle_mode.setValue(btn);
         }elsif(mode==3){
             var arm = 1-((me.loc_armed.getValue() or (4==me.lateral_mode.getValue())));
@@ -151,7 +151,12 @@ var AFDS = {
         lmt = -1 * lmt;
         me.bank_min.setValue(lmt);
     },
-
+###################
+    updateATMode : func()
+    {
+        var idx=me.autothrottle_mode.getValue();
+        me.AP_speed_mode.setValue(me.spd_list[idx]);
+    },
 #################
 
     ap_update : func{
@@ -180,6 +185,7 @@ var AFDS = {
         setprop("autopilot/internal/fdm-heading-bug-error-deg",hdgoffset);
         if(getprop("position/altitude-agl-ft")<200){
             me.AP.setValue(0);
+            me.autothrottle_mode.setValue(0);
         }
 
         if(me.step==0){ ### glideslope armed ?###
@@ -234,42 +240,10 @@ var AFDS = {
             me.AP_pitch_engaged.setBoolValue(idx>0);
 
         }elsif(me.step==4){             ### check speed modes  ###
-            var idx=me.autothrottle_mode.getValue();
-            var th1="";
-            var th2="";
-            if ((idx>0)and(me.AP.getValue()))
-            {
-                var test_speed=me.ias_mach_selected.getValue();
-                if (getprop("controls/engines/engine/reverser")) {
-                    # auto-throttle disables when reverser is enabled
-                    me.autothrottle_mode.setValue(0);
-                    idx=0;
-                }
-                if(idx==4){
-                    # idle
-                    setprop("controls/engines/engine/throttle",0.0);
-                    setprop("controls/engines/engine[1]/throttle",0.0);
-                }else
-                if(idx==5){
-                    if(test_speed){
-                        if(me.at1.getValue())th1="mach";
-                        if(me.at2.getValue())th2="mach";
-                    }else{
-                        if(me.at1.getValue())th1="ias";
-                        if(me.at2.getValue())th2="ias";
-                    }
-                }else
-                if (idx==1)
-                {
-                    # fixed T/O thrust
-                    if(me.at1.getValue()) setprop("controls/engines/engine/throttle",0.95);
-                    if(me.at2.getValue()) setprop("controls/engines/engine[1]/throttle",0.95);
-                }
+            if (getprop("controls/engines/engine/reverser")) {
+                # auto-throttle disables when reverser is enabled
+                me.autothrottle_mode.setValue(0);
             }
-
-            me.AP_throttle1.setValue(th1);
-            me.AP_throttle2.setValue(th2);
-            me.AP_speed_mode.setValue(me.spd_list[idx]);
         }
 
         me.step+=1;
