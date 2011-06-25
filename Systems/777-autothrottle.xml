@@ -54,14 +54,14 @@
         </input>
 
         <input> 
-            <!-- basic IAS limit based upon table 777/1003, Sec1.Page4 in the
+            <!-- basic IAS limit based upon diagram 7771003, Sec1.Page4 in the
               continental manual -->
             <expression>
                 <table>
                     <property>instrumentation/altimeter/indicated-altitude-ft</property> 
                     <entry><ind>0</ind><dep>330</dep></entry> <!-- clean Vmo -->
                     <entry><ind>30000</ind><dep>330</dep></entry>
-                    <entry><ind>41300</ind><dep>248</dep></entry>
+                    <entry><ind>43000</ind><dep>248</dep></entry>
                 </table>
             </expression>
         </input>

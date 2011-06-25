@@ -327,8 +327,11 @@ lh_bus = func(bv) {
         lbus_output[i].setValue(bv * srvc);
     }
 
-    AVswitch.setBoolValue(bv>20);
-    CDUswitch.setBoolValue(bv>20);
+    var isEnabled = (bv>20);
+    if (AVswitch.getBoolValue()!=isEnabled)
+        AVswitch.setBoolValue(isEnabled);
+    if (CDUswitch.getBoolValue()!=isEnabled)
+        CDUswitch.setBoolValue(isEnabled);
     setprop("systems/electrical/outputs/flaps",bv);
     return load;
 }

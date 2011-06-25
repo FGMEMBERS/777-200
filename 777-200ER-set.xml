@@ -573,8 +573,8 @@ Service Ceiling: 43,100ft
                     </color>
                 </tcas>
                 <name type="string">helvetica_bold.txf</name>
-                <size type="float">5</size>
-                <line-spacing type="float">0.3</line-spacing>
+                <size type="float">12</size>
+                <line-spacing type="float">0.01</line-spacing>
             </font>
             <lightning type="bool" archive="y">true</lightning>
             <radar-texture-path type="string">Aircraft/777-200/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
