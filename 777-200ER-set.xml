@@ -199,7 +199,7 @@
         <help>
             <title>777-200ER</title>
             <key>
-                <name>S</name>
+                <name>s</name>
                 <desc>autostart / shutdown</desc>
             </key>
             <key>
@@ -223,7 +223,7 @@
                 <desc>toggle cabin lights</desc>
             </key>
             <key>
-                <name>Ctrl-M</name>
+                <name>m</name>
                 <desc>mute current master warning</desc>
             </key>
             <key>
@@ -466,14 +466,6 @@ Service Ceiling: 43,100ft
                     <property>controls/lighting/cabin-lights</property>
                 </binding>
             </key>
-            <key n="13">
-                <name>Ctrl-M</name>
-                <desc>mute current master warning</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>b777.Weu.mute_warnings();</script>
-                </binding>
-            </key>
             <key n="14">
                 <name>Ctrl-N</name>
                 <desc>toggle LNAV lock</desc>
@@ -507,15 +499,23 @@ Service Ceiling: 43,100ft
                 </binding>
             </key>
             <key n="108">
-                <name>L</name>
+                <name>l</name>
                 <desc>toggle landing lights</desc>
                 <binding>
                     <command>nasal</command>
                     <script>controls.toggleLandingLights();</script>
                 </binding>
             </key>
+            <key n="109">
+                <name>m</name>
+                <desc>mute current master warning</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>b777.Weu.mute_warnings();</script>
+                </binding>
+            </key>
             <key n="115">
-                <name>S</name>
+                <name>s</name>
                 <desc>autostart / shutdown</desc>
                 <binding>
                     <command>property-toggle</command>
