@@ -172,6 +172,17 @@ Syd Adams
     </animation>
 
     <animation>
+        <object-name>OverSpeedInd</object-name>
+        <property>instrumentation/pfd/overspeed-diff</property>
+        <type>textranslate</type>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+        <factor>0.0013</factor>
+    </animation>
+
+    <animation>
         <type>translate</type>
         <object-name>locpointer</object-name>
         <property>instrumentation/nav/heading-needle-deflection-norm</property>
@@ -524,7 +535,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/speed-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.015</character-size>
+        <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -544,7 +555,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/roll-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.015</character-size>
+        <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -564,7 +575,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/pitch-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.015</character-size>
+        <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -584,7 +595,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/roll-mode-arm</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.013</character-size>
+        <character-size>0.006</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -604,7 +615,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/pitch-mode-arm</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.013</character-size>
+        <character-size>0.006</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -624,7 +635,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/mode-annunciator</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.018</character-size>
+        <character-size>0.01</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -1064,7 +1075,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/mk-viii/outputs/warning</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.017</character-size>
+        <character-size>0.01</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>

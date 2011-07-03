@@ -21,6 +21,22 @@
       <max>10</max>
   </filter>
 
+  <filter>
+      <name>Over speed margin computer</name> 
+      <type>gain</type>
+      <gain>-1.0</gain>
+      <input>
+          <property>instrumentation/afds/max-airspeed-kts</property>
+      </input>
+      <reference>
+          <property>velocities/airspeed-kt</property>
+          <offset>-95</offset>
+      </reference>
+      <output>instrumentation/pfd/overspeed-diff</output>
+      <min>-200</min>
+      <max>-10</max>
+  </filter>
+
   <!-- =============================================================== -->
   <!--                 speed trend vector processing                   -->
   <!-- =============================================================== -->

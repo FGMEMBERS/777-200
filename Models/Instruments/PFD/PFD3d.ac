@@ -6,9 +6,30 @@ MATERIAL "black" rgb 0 0 0 amb 0 0 0 emis 0 0 0 spec 0 0 0 shi 0 trans 0
 MATERIAL "magenta" rgb 0 0 0 amb 0 0 0 emis 0.835 0.498 0.498 spec 0 0 0 shi 0 trans 0
 MATERIAL "orange" rgb 0 0 0 amb 0 0 0 emis 0.798 0.598 0.0 spec 0 0 0 shi 0 trans 0
 OBJECT world
-kids 30
+kids 31
 OBJECT poly
 name "StallSpeedInd"
+data 9
+Plane.020
+texture "ati.png"
+texrep 1 1
+crease 30.000000
+numvert 4
+0.002139 0.08 0.0625
+0.002139 -0.056 0.0625
+0.002139 -0.056 0.064702
+0.002139 0.08 0.064702
+numsurf 1
+SURF 0x00
+mat 1
+refs 4
+0 0.796875 0.26
+3 0.787109375 0.26
+2 0.787109375 0
+1 0.796875 0
+kids 0
+OBJECT poly
+name "OverSpeedInd"
 data 9
 Plane.020
 texture "ati.png"
