@@ -654,7 +654,8 @@ Syd Adams
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
         <format type="string">%4.0f</format>
-        <!--truncate type="bool">true</truncate-->
+        <offset>0.1</offset> <!--avoid some quirky "-0" indications-->
+        <truncate type="bool">true</truncate>
         <property>position/gear-agl-ft</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.009</character-size>
@@ -698,6 +699,25 @@ Syd Adams
         <type type="string">number-value</type>
         <format type="string">%2.2f IN</format>
         <property>instrumentation/altimeter/setting-inhg</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>INHG-STD</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.058</y-m>
+            <z-m>-0.061</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>STD</text>
         <font>helvetica_bold.txf</font>
         <character-size>0.008</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
@@ -815,6 +835,28 @@ Syd Adams
     </text>
 
     <text>
+        <name>DME</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.040</y-m>
+            <z-m>0.0714</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <scale>0.000539</scale>
+        <format type="string">DME %3.1f</format>
+        <property>instrumentation/nav/nav-distance</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>
         <name>MACH-annun</name>
         <offsets>
             <x-m>0.004</x-m>
@@ -883,6 +925,7 @@ Syd Adams
         <object-name>PITCH</object-name>
         <object-name>AP-annun</object-name>
         <object-name>INHG</object-name>
+        <object-name>INHG-STD</object-name>
         <object-name>KPA</object-name>
         <object-name>MAG-annun</object-name>
         <object-name>mins</object-name>
@@ -916,6 +959,7 @@ Syd Adams
         <object-name>ALTdigits</object-name>
         <object-name>PITCH arm</object-name>
         <object-name>ROLL arm</object-name>
+        <object-name>DME</object-name>
         <emission>
             <red>0.7</red>
             <green>0.7</green>
@@ -987,11 +1031,25 @@ Syd Adams
 
     <animation>
         <type>select</type>
+        <object-name>DME</object-name>
+        <condition>
+            <property>instrumentation/nav/dme-in-range</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
         <object-name>INHG</object-name>
         <condition>
-            <not>
-                <property>instrumentation/efis/inputs/kpa-mode</property>
-            </not>
+            <and>
+                <not>
+                    <property>instrumentation/efis/inputs/kpa-mode</property>
+                </not>
+                <not-equals>
+                    <property>instrumentation/altimeter/setting-inhg</property>
+                    <value>29.92</value>
+                </not-equals>
+            </and>
         </condition>
     </animation>
 
@@ -999,7 +1057,26 @@ Syd Adams
         <type>select</type>
         <object-name>KPA</object-name>
         <condition>
-            <property>instrumentation/efis/inputs/kpa-mode</property>
+            <and>
+                <property>instrumentation/efis/inputs/kpa-mode</property>
+                <not-equals>
+                    <property>instrumentation/altimeter/setting-inhg</property>
+                    <value>29.92</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>INHG-STD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property>instrumentation/altimeter/setting-inhg</property>
+                    <value>29.92</value>
+                </equals>
+            </and>
         </condition>
     </animation>
 

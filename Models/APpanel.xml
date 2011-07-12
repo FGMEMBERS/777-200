@@ -1038,6 +1038,8 @@ Autopilot Control Panel
         </action>
     </animation>
 
+    <!-- Continental B777 manual, Sec. 6.4, Page 32:
+         MCP/SPD range is 100 - 399 KIAS, 0.40 - 0.95 MACH -->
     <animation>
         <type>pick</type>
         <object-name>SPD.dec</object-name>
@@ -1053,8 +1055,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>-10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1064,7 +1066,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>-0.010</step>
                 <min>0.4</min>
-                <max>0.82</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1088,8 +1090,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1099,7 +1101,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>0.010</step>
                 <min>0.4</min>
-                <max>0.84</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1123,8 +1125,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1134,7 +1136,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>0.010</step>
                 <min>0.4</min>
-                <max>0.84</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1158,8 +1160,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>-10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1169,7 +1171,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>-0.010</step>
                 <min>0.4</min>
-                <max>0.82</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>

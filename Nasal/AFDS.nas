@@ -8,6 +8,8 @@
 # FPA range  : -9.9 ~ 9.9 degrees
 # VS range   : -8000 ~ 6000
 # ALT range  : 0 ~ 50,000
+# KIAS range : 100 ~ 399
+# MACH range : 0.40 ~ 0.95
 #
 #############################################################################
 
@@ -54,7 +56,7 @@ var AFDS = {
         m.vs_fpa_selected = m.AFDS_inputs.initNode("vs-fpa-selected",0,"BOOL");
         m.bank_switch = m.AFDS_inputs.initNode("bank-limit-switch",0,"INT");
 
-        m.ias_setting = m.AP_settings.initNode("target-speed-kt",250);# 100 - 399 #
+        m.ias_setting = m.AP_settings.initNode("target-speed-kt",200);# 100 - 399 #
         m.mach_setting = m.AP_settings.initNode("target-speed-mach",0.40);# 0.40 - 0.95 #
         m.vs_setting = m.AP_settings.initNode("vertical-speed-fpm",0); # -8000 to +6000 #
         m.hdg_setting = m.AP_settings.initNode("heading-bug-deg",360,"INT");
@@ -172,7 +174,7 @@ var AFDS = {
         }
         var msg=" ";
         if(me.FD.getValue())msg="FLT DIR";
-        if(me.AP.getValue())msg="AP ENG";
+        if(me.AP.getValue())msg="A/P";
         me.AP_annun.setValue(msg);
         var tmp = abs(me.vs_setting.getValue());
         me.vs_display.setValue(tmp);

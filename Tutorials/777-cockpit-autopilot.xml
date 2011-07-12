@@ -74,7 +74,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>The PFD displays "AP ENG" whenever autopilot master switch is enabled.</message>
+	<message>The PFD displays "A/P" whenever autopilot master switch is enabled.</message>
 	<view>
 	    <heading-offset-deg>357.2</heading-offset-deg>
 	    <pitch-offset-deg>-19.4</pitch-offset-deg>
@@ -92,7 +92,7 @@ This tutorial quickly walks you through the features of the autopilot.
 	</marker>
 	<set>
 		<property>instrumentation/afds/ap-modes/mode-annunciator</property>
-		<value>AP ENG</value>
+		<value>A/P</value>
 	</set>
 </step>
 

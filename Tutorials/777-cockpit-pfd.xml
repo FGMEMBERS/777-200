@@ -17,6 +17,10 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 			<property>/instrumentation/mk-viii/inputs/arinc429/decision-height</property>
 			<value>250</value>
 		</set>
+		<set>
+			<property>instrumentation/altimeter/setting-inhg</property>
+			<value>29.92</value>
+		</set>
 	</init>
 
 <step>
@@ -98,6 +102,79 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 </step>
 
 <step>
+	<message>DME indicator (NAV1 receiver). Distance to configured VOR/ILS station.
+    Displayed only when station provides a DME signal.</message>
+	<view>
+		<heading-offset-deg>358.3</heading-offset-deg>
+		<pitch-offset-deg>-28.2</pitch-offset-deg>
+		<roll-offset-deg>0.0</roll-offset-deg>
+		<x-offset-m>-0.6</x-offset-m>
+		<y-offset-m>0.8</y-offset-m>
+		<z-offset-m>-22.8</z-offset-m>
+		<field-of-view>33.8</field-of-view>
+	</view>
+	
+	<interval>15</interval>
+
+	<marker>
+		<x-m>-1.8500</x-m>
+		<y-m>-0.5775</y-m>
+		<z-m>0.4542</z-m>
+		<scale>1.0000</scale>
+	</marker>
+</step>
+
+<step>
+	<message>ILS localizer indicator.
+    Amber diamond shows aircraft position relative to localizer signal (left/centered/right).
+    Displayed when NAV1 is tuned to a localizer only.</message>
+	<view>
+		<heading-offset-deg>358.3</heading-offset-deg>
+		<pitch-offset-deg>-28.2</pitch-offset-deg>
+		<roll-offset-deg>0.0</roll-offset-deg>
+		<x-offset-m>-0.6</x-offset-m>
+		<y-offset-m>0.8</y-offset-m>
+		<z-offset-m>-22.8</z-offset-m>
+		<field-of-view>33.8</field-of-view>
+	</view>
+
+	<interval>15</interval>
+
+	<marker>
+	    <x-m>-1.8350</x-m>
+	    <y-m>-0.5508</y-m>
+	    <z-m>0.3400</z-m>
+	    <scale>1.0000</scale>
+	</marker>
+</step>
+
+<step>
+	<message>ILS glideslope indicator.
+    Amber diamond shows aircraft position relative to glideslope (above/centered/below).
+    Displayed when NAV1 is tuned to a glideslope signal only.</message>
+	<view>
+		<heading-offset-deg>358.3</heading-offset-deg>
+		<pitch-offset-deg>-28.2</pitch-offset-deg>
+		<roll-offset-deg>0.0</roll-offset-deg>
+		<x-offset-m>-0.6</x-offset-m>
+		<y-offset-m>0.8</y-offset-m>
+		<z-offset-m>-22.8</z-offset-m>
+		<field-of-view>33.8</field-of-view>
+	</view>
+
+	<interval>15</interval>
+
+	<marker>
+	    <x-m>-1.8392</x-m>
+	    <y-m>-0.5000</y-m>
+	    <z-m>0.3916</z-m>
+	    <scale>1.0000</scale>
+	</marker>
+</step>
+
+
+
+<step>
 	<message>Airspeed indicator (speed in knots).</message>
 	<view>
 		<heading-offset-deg>358.3</heading-offset-deg>
@@ -131,6 +208,8 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<field-of-view>33.8</field-of-view>
 	</view>
 	
+	<interval>14</interval>
+
 	<marker>
 		<x-m>-1.8400</x-m>
 		<y-m>-0.6109</y-m>
@@ -200,7 +279,8 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 </step>
 
 <step>
-	<message>Barometric correction reference (QNH/QFE) to calibrate pressure-based altimeter.</message>
+	<message>Barometric correction reference (QNH/QFE) to calibrate pressure-based altimeter.
+    Standard pressure of 29.92 inHg is displayed as "STD".</message>
 	<view>
 		<heading-offset-deg>358.3</heading-offset-deg>
 		<pitch-offset-deg>-28.2</pitch-offset-deg>
@@ -210,7 +290,9 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<z-offset-m>-22.8</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
-	
+
+	<interval>15</interval>
+
 	<marker>
 		<x-m>-1.8308</x-m>
 		<y-m>-0.4850</y-m>
@@ -311,7 +393,9 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<z-offset-m>-22.8</z-offset-m>
 		<field-of-view>33.8</field-of-view>
 	</view>
-	
+
+	<interval>14</interval>
+
 	<marker>
 		<x-m>-1.8275</x-m>
 		<y-m>-0.5159</y-m>
@@ -333,6 +417,8 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<field-of-view>44.1</field-of-view>
 	</view>
 
+	<interval>15</interval>
+
 	<marker>
 		<x-m>-1.8167</x-m>
 		<y-m>-0.4033</y-m>
@@ -351,7 +437,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 </step>
 
 <step>
-	<message>Barometric correction selector (QNH/QFE). Try increasing/decreasing the correction now - watch PFD indications.</message>
+	<message>Barometric correction selector (QNH/QFE). Pressing "STD" sets standard pressure.</message>
 	<view>
 		<heading-offset-deg>0.2</heading-offset-deg>
 		<pitch-offset-deg>-25.5</pitch-offset-deg>
@@ -361,12 +447,49 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 		<z-offset-m>-22.8</z-offset-m>
 		<field-of-view>44.1</field-of-view>
 	</view>
+
 	<marker>
 		<x-m>-1.8167</x-m>
 		<y-m>-0.3225</y-m>
 		<z-m>0.6025</z-m>
 		<scale>1.2833</scale>
 	</marker>
+</step>
+
+<step>
+	<message>Watch PFD altitude indications while increasing/decreasing reference pressure
+    and set 30.03 INHG now.</message>
+	<view>
+		<heading-offset-deg>0.2</heading-offset-deg>
+		<pitch-offset-deg>-25.5</pitch-offset-deg>
+		<roll-offset-deg>0.0</roll-offset-deg>
+		<x-offset-m>-0.5</x-offset-m>
+		<y-offset-m>0.8</y-offset-m>
+		<z-offset-m>-22.8</z-offset-m>
+		<field-of-view>44.1</field-of-view>
+	</view>
+
+	<marker>
+		<x-m>-1.8167</x-m>
+		<y-m>-0.3225</y-m>
+		<z-m>0.6025</z-m>
+		<scale>1.2833</scale>
+	</marker>
+
+	<exit>
+		<condition>
+			<and>
+				<less-than-equals>
+					<property>instrumentation/altimeter/setting-inhg</property>
+					<value>30.031</value>
+				</less-than-equals>
+				<greater-than-equals>
+					<property>instrumentation/altimeter/setting-inhg</property>
+					<value>30.029</value>
+				</greater-than-equals>
+			</and>
+		</condition>
+	</exit>
 </step>
 
 <step>
