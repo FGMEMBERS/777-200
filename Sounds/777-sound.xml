@@ -28,8 +28,8 @@
             <y>9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>200.0</reference-dist>
-        <max-dist>500.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </engine>
 
     <engine>
@@ -58,8 +58,8 @@
             <y>9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>10.0</reference-dist>
-        <max-dist>30.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </engine>
 
     <engine>
@@ -85,8 +85,8 @@
             <y>-9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>200.0</reference-dist>
-        <max-dist>500.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </engine>
 
     <engine>
@@ -115,8 +115,8 @@
             <y>-9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>10.0</reference-dist>
-        <max-dist>30.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </engine>
 
     <rumblefront>
@@ -136,8 +136,8 @@
             <y>0</y>
             <z>-5</z>
         </position>
-        <reference-dist>10.0</reference-dist>
-        <max-dist>25.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </rumblefront>
 
     <rumblemain>
@@ -160,8 +160,8 @@
             <y>0</y>
             <z>-5</z>
         </position>
-        <reference-dist>10.0</reference-dist>
-        <max-dist>25.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </rumblemain>
 
     <gear1>
@@ -183,8 +183,8 @@
             <y>0</y>
             <z>-2</z>
         </position>
-        <reference-dist>5.0</reference-dist>
-        <max-dist>10.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </gear1>
 
     <gearlock>
@@ -205,13 +205,13 @@
             <y>0</y>
             <z>-2</z>
         </position>
-        <reference-dist>10.0</reference-dist>
-        <max-dist>20.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </gearlock>
 
     <squeal1>
         <name>front wheel squeal</name>
-        <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
+        <path>Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
             <property>gear/gear[0]/wow</property>
         </condition>
@@ -237,13 +237,13 @@
             <y>0</y>
             <z>-5</z>
         </position>
-        <reference-dist>20.0</reference-dist>
-        <max-dist>40.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </squeal1>
 
     <squeal2>
         <name>right wheel squeal</name>
-        <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
+        <path>Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
             <or>
                 <property>gear/gear[1]/wow</property>
@@ -275,13 +275,13 @@
             <y>-8</y>
             <z>-5</z>
         </position>
-        <reference-dist>20.0</reference-dist>
-        <max-dist>40.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </squeal2>
 
     <squeal3>
         <name>left wheel squeal</name>
-        <path>/Aircraft/777-200/Sounds/touchdown.wav</path>
+        <path>Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
             <or>
                 <property>gear/gear[2]/wow</property>
@@ -313,8 +313,8 @@
             <y>8</y>
             <z>-5</z>
         </position>
-        <reference-dist>20.0</reference-dist>
-        <max-dist>40.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </squeal3>
 
     <flap>
@@ -335,8 +335,8 @@
         <pitch>
             <offset>1.4</offset>
         </pitch>
-        <reference-dist>5.0</reference-dist>
-        <max-dist>10.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </flap>
 
     <wind>
@@ -367,23 +367,23 @@
             <y>0</y>
             <z>0.86</z>
         </position>
-        <reference-dist>1.0</reference-dist>
-        <max-dist>2.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </wind>
 
     <stall>
         <name>stall</name>
         <mode>looped</mode>
         <type>avionics</type>
-        <path>/Aircraft/777-200/Sounds/stall.wav</path>
+        <path>Aircraft/777-200/Sounds/stall.wav</path>
         <condition>
             <property>instrumentation/weu/sound/stall-horn</property>
         </condition>
         <volume>
             <offset>0.5</offset>
         </volume>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </stall>
 
     <stickshaker>
@@ -401,8 +401,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </stickshaker>
 
     <switch>
@@ -420,8 +420,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
 
     <switch>
@@ -439,8 +439,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
 
     <switch>
@@ -458,8 +458,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
     <switch>
         <name>click4</name>
@@ -476,8 +476,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
     <switch>
         <name>click5</name>
@@ -494,8 +494,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
 
     <switch>
@@ -513,8 +513,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
     <switch>
         <name>click7</name>
@@ -531,8 +531,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
     <switch>
         <name>click8</name>
@@ -549,8 +549,8 @@
             <y>0</y>
             <z>0.18</z>
         </position>
-        <reference-dist>0.5</reference-dist>
-        <max-dist>1.0</max-dist>
+        <reference-dist>2</reference-dist>
+        <max-dist>200.0</max-dist>
     </switch>
 
     <speedbrake>
@@ -568,8 +568,8 @@
             <y>0</y>
             <z>0</z>
         </position>
-        <reference-dist>5.0</reference-dist>
-        <max-dist>10.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </speedbrake>
 
     <engines>
@@ -590,8 +590,8 @@
             <y>9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>250.0</reference-dist>
-        <max-dist>500.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </engines>
 
     <engines>
@@ -612,8 +612,8 @@
             <y>-9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>250.0</reference-dist>
-        <max-dist>500.0</max-dist>
+        <reference-dist>60.0</reference-dist>
+        <max-dist>6000.0</max-dist>
     </engines>
 
     <warningsiren>
@@ -654,7 +654,7 @@
         <name>overspeed warning</name>
         <mode>looped</mode>
         <type>avionics</type>
-        <path>/Sounds/overspeed.wav</path>
+        <path>Sounds/overspeed.wav</path>
         <condition>
             <greater-than>
                 <property>velocities/airspeed-kt</property>
