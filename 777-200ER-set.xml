@@ -49,93 +49,95 @@
             </config>
         </view>
 
-    <view n="100">
-        <name>CoPilot View</name>
-        <enabled type="bool" userarchive="y">true</enabled>
-        <type>lookfrom</type>
-        <internal type="bool">true</internal>
-        <config>
-            <from-model type="bool">true</from-model>
-            <from-model-idx type="int">0</from-model-idx>
-            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
-            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
-            <default-pitch-deg type="double">0</default-pitch-deg>
-            <default-heading-deg type="double">0</default-heading-deg>
-            <front-direction-deg type="double">0</front-direction-deg>
-            <front-left-direction-deg type="double">45</front-left-direction-deg>
-            <left-direction-deg type="double">90</left-direction-deg>
-            <back-left-direction-deg type="double">135</back-left-direction-deg>
-            <back-direction-deg type="double">180</back-direction-deg>
-            <back-right-direction-deg type="double">225</back-right-direction-deg>
-            <right-direction-deg type="double">270</right-direction-deg>
-            <front-right-direction-deg type="double">315</front-right-direction-deg>
-            <dynamic-view type="bool">true</dynamic-view>
-            <x-offset-m type="double">0.60</x-offset-m>
-            <y-offset-m type="double">0.8</y-offset-m>
-            <z-offset-m type="double">-22.84</z-offset-m>
-            <pitch-offset-deg>-13.5</pitch-offset-deg>
-            <limits>
-                <enabled type="bool">true</enabled>
-                <left>
-                  <heading-max-deg type="double">140</heading-max-deg>
-                  <x-offset-max-m type="double">0.25</x-offset-max-m>
-                  <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </left>
-                <right>
-                    <heading-max-deg type="double">160</heading-max-deg>
-                    <x-offset-max-m type="double">0.35</x-offset-max-m>
-                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </right>
-            </limits>
-        </config>
-    </view>
+        <view n="100">
+            <name>CoPilot View</name>
+            <enabled type="bool" userarchive="y">true</enabled>
+            <type>lookfrom</type>
+            <internal type="bool">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <from-model-idx type="int">0</from-model-idx>
+                <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+                <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>
+                <default-pitch-deg type="double">0</default-pitch-deg>
+                <default-heading-deg type="double">0</default-heading-deg>
+                <front-direction-deg type="double">0</front-direction-deg>
+                <front-left-direction-deg type="double">45</front-left-direction-deg>
+                <left-direction-deg type="double">90</left-direction-deg>
+                <back-left-direction-deg type="double">135</back-left-direction-deg>
+                <back-direction-deg type="double">180</back-direction-deg>
+                <back-right-direction-deg type="double">225</back-right-direction-deg>
+                <right-direction-deg type="double">270</right-direction-deg>
+                <front-right-direction-deg type="double">315</front-right-direction-deg>
+                <dynamic-view type="bool">true</dynamic-view>
+                <x-offset-m type="double">0.60</x-offset-m>
+                <y-offset-m type="double">0.8</y-offset-m>
+                <z-offset-m type="double">-22.84</z-offset-m>
+                <pitch-offset-deg>-13.5</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                      <heading-max-deg type="double">140</heading-max-deg>
+                      <x-offset-max-m type="double">0.25</x-offset-max-m>
+                      <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.35</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
+    
+        <view n="101">
+            <name>Radio/CDU Panel View</name>
+            <enabled type="bool" userarchive="y">true</enabled>
+            <type>lookfrom</type>
+            <internal type="bool">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <from-model-idx type="int">0</from-model-idx>
+                <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+                <default-field-of-view-deg type="double">40.0</default-field-of-view-deg>
+                <default-pitch-deg type="double">-90</default-pitch-deg>
+                <default-heading-deg type="double">0</default-heading-deg>
+                <front-direction-deg type="double">0</front-direction-deg>
+                <front-left-direction-deg type="double">45</front-left-direction-deg>
+                <left-direction-deg type="double">90</left-direction-deg>
+                <back-left-direction-deg type="double">135</back-left-direction-deg>
+                <back-direction-deg type="double">180</back-direction-deg>
+                <back-right-direction-deg type="double">225</back-right-direction-deg>
+                <right-direction-deg type="double">270</right-direction-deg>
+                <front-right-direction-deg type="double">315</front-right-direction-deg>
+                <dynamic-view type="bool">true</dynamic-view>
+                <x-offset-m type="double">0.0025</x-offset-m>
+                <y-offset-m type="double">0.95</y-offset-m>
+                <z-offset-m type="double">-22.84</z-offset-m>
+                <pitch-offset-deg>-90</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                      <heading-max-deg type="double">140</heading-max-deg>
+                      <x-offset-max-m type="double">0.25</x-offset-max-m>
+                      <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.35</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
 
-    <view n="101">
-        <name>Radio/CDU Panel View</name>
-        <enabled type="bool" userarchive="y">true</enabled>
-        <type>lookfrom</type>
-        <internal type="bool">true</internal>
-        <config>
-            <from-model type="bool">true</from-model>
-            <from-model-idx type="int">0</from-model-idx>
-            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
-            <default-field-of-view-deg type="double">40.0</default-field-of-view-deg>
-            <default-pitch-deg type="double">-90</default-pitch-deg>
-            <default-heading-deg type="double">0</default-heading-deg>
-            <front-direction-deg type="double">0</front-direction-deg>
-            <front-left-direction-deg type="double">45</front-left-direction-deg>
-            <left-direction-deg type="double">90</left-direction-deg>
-            <back-left-direction-deg type="double">135</back-left-direction-deg>
-            <back-direction-deg type="double">180</back-direction-deg>
-            <back-right-direction-deg type="double">225</back-right-direction-deg>
-            <right-direction-deg type="double">270</right-direction-deg>
-            <front-right-direction-deg type="double">315</front-right-direction-deg>
-            <dynamic-view type="bool">true</dynamic-view>
-            <x-offset-m type="double">0.0025</x-offset-m>
-            <y-offset-m type="double">0.95</y-offset-m>
-            <z-offset-m type="double">-22.84</z-offset-m>
-            <pitch-offset-deg>-90</pitch-offset-deg>
-            <limits>
-                <enabled type="bool">true</enabled>
-                <left>
-                  <heading-max-deg type="double">140</heading-max-deg>
-                  <x-offset-max-m type="double">0.25</x-offset-max-m>
-                  <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </left>
-                <right>
-                    <heading-max-deg type="double">160</heading-max-deg>
-                    <x-offset-max-m type="double">0.35</x-offset-max-m>
-                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </right>
-            </limits>
-        </config>
-    </view>
-
-    <airport>
-        <runways>
-            <start-offset-m>50</start-offset-m>
-        </runways>
-    </airport>
+        <yokes-visible type="bool">1</yokes-visible>
+    
+        <airport>
+            <runways>
+                <start-offset-m>50</start-offset-m>
+            </runways>
+        </airport>
 
         <chase-distance-m>-100</chase-distance-m>
 
@@ -305,6 +307,13 @@ Service Ceiling: 43,100ft
                         <binding>
                             <command>nasal</command>
                             <script>dialogs.tiller_steering.open()</script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Show/Hide Yokes</label>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>sim/yokes-visible</property>
                         </binding>
                     </item>
                 </menu>
@@ -623,8 +632,8 @@ Service Ceiling: 43,100ft
                 </discretes>
             </input-feeders>
             <speaker>                           <!-- Speaker Configuration -->
-                <max-dist type="double"> 2 </max-dist>        <!-- Max. distance where speaker is heard -->
-                <reference-dist type="double"> 1 </reference-dist> <!-- Distance to pilot -->
+                <max-dist type="double"> 200.0 </max-dist>        <!-- Max. distance where speaker is heard -->
+                <reference-dist type="double"> 2 </reference-dist> <!-- Distance to pilot -->
                 <volume type="double"> 0.6 </volume>          <!-- Volume at reference distance -->
             </speaker>
         </mk-viii>
@@ -638,8 +647,8 @@ Service Ceiling: 43,100ft
                 <file-prefix type="string">Sounds/tcas/</file-prefix>
             </voice-->
             <speaker>                           <!-- Speaker Configuration -->
-                <max-dist type="double"> 2 </max-dist>        <!-- Max. distance where speaker is heard -->
-                <reference-dist type="double"> 1 </reference-dist> <!-- Distance to pilot -->
+                <max-dist type="double"> 200.0 </max-dist>        <!-- Max. distance where speaker is heard -->
+                <reference-dist type="double"> 2 </reference-dist> <!-- Distance to pilot -->
                 <volume type="double"> 1 </volume>          <!-- Volume at reference distance -->
             </speaker>
         </tcas>
