@@ -433,13 +433,9 @@
       <prop>/autopilot/internal/target-pitch-deg</prop>
     </output>
     <config>
-      <Ts>0.05</Ts> 
-      <Kp>0.15</Kp>
-      <beta>1.0</beta>
-      <alpha>0.1</alpha>
-      <gamma>0.0</gamma>
-      <Ti>10.0</Ti>
-      <Td>0.00001</Td>
+        <Kp>0.3</Kp>
+        <Td>1e-7</Td>
+        <Ti>12.0</Ti>
         <u_min>
             <prop>instrumentation/afds/settings/pitch-min</prop>
         </u_min>
