@@ -637,7 +637,7 @@
                 <legend>A/T</legend>
                 <binding>
                     <command>nasal</command>
-                    <script>b777.afds.input(2,1);</script>
+                    <script>b777.afds.input(2,5);</script>
                 </binding>
             </button>
 
