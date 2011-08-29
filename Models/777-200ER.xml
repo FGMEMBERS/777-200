@@ -30,11 +30,13 @@ Syd Adams
         <object-name>Reversers</object-name>
         <object-name>Wings</object-name>
         <object-name>Laileron</object-name>
+        <object-name>Lflaperon</object-name>
         <object-name>Lflap4</object-name>
         <object-name>Lflap2</object-name>
         <object-name>Rflap2</object-name>
         <object-name>Rflap4</object-name>
         <object-name>Raileron</object-name>
+        <object-name>Rflaperon</object-name>
         <object-name>Tail</object-name>
         <object-name>Rudder</object-name>
         <object-name>RHstab</object-name>
@@ -270,6 +272,18 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Raileron</object-name>
+        <condition>
+            <or>
+                <less-than>
+                    <property>velocities/mach</property>
+                    <value>0.59</value>
+                </less-than>
+                <less-than>
+                    <property>velocities/airspeed-kt</property>
+                    <value>278</value>
+                </less-than>
+            </or>
+        </condition>
         <property>surface-positions/right-aileron-pos-norm</property>
         <factor>-15</factor>
         <center>
@@ -281,6 +295,58 @@ Syd Adams
             <x>-0.377</x>
             <y>-0.922</y>
             <z>-0.090</z>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>Rflaperon</object-name>
+        <property>surface-positions/right-aileron-pos-norm</property>
+        <interpolation>
+            <entry> 
+                <ind>-1.0</ind>  
+                <dep>0.0</dep> 
+            </entry> 
+            <entry>  
+                <ind>0</ind>  
+                <dep>0.0</dep> 
+            </entry> 
+            <entry> 
+                <ind>1.0</ind>  
+                <dep>15</dep> 
+            </entry> 
+         </interpolation> 
+        <axis>
+            <x1-m> 7.77445</x1-m>
+            <y1-m> 7.92046</y1-m>
+            <z1-m>-0.87001</z1-m>
+            <x2-m> 7.77445</x2-m>
+            <y2-m> 11.0438</y2-m>
+            <z2-m>-0.426481</z2-m>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>Rflaperon</object-name>
+        <property>surface-positions/flap-pos-norm</property>
+        <interpolation>
+            <entry>  
+                <ind>0</ind>  
+                <dep>0.0</dep> 
+            </entry> 
+            <entry> 
+                <ind>1.0</ind>  
+                <dep>30</dep> 
+            </entry> 
+         </interpolation> 
+        <axis>
+            <x1-m> 7.77445</x1-m>
+            <y1-m> 7.92046</y1-m>
+            <z1-m>-0.87001</z1-m>
+            <x2-m> 7.77445</x2-m>
+            <y2-m> 11.0438</y2-m>
+            <z2-m>-0.426481</z2-m>
         </axis>
     </animation>
 
@@ -535,6 +601,18 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Laileron</object-name>
+        <condition>
+            <or>
+                <less-than>
+                    <property>velocities/mach</property>
+                    <value>0.59</value>
+                </less-than>
+                <less-than>
+                    <property>velocities/airspeed-kt</property>
+                    <value>278</value>
+                </less-than>
+            </or>
+        </condition>
         <property>surface-positions/left-aileron-pos-norm</property>
         <factor>15</factor>
         <center>
@@ -546,6 +624,58 @@ Syd Adams
             <x>-0.377</x>
             <y>0.922</y>
             <z>-0.090</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Lflaperon</object-name>
+        <property>surface-positions/left-aileron-pos-norm</property>
+        <interpolation>
+            <entry> 
+                <ind>-1.0</ind>  
+                <dep>0.0</dep> 
+            </entry> 
+            <entry>  
+                <ind>0</ind>  
+                <dep>0.0</dep> 
+            </entry> 
+            <entry> 
+                <ind>1.0</ind>  
+                <dep>-15</dep> 
+            </entry> 
+         </interpolation> 
+        <axis>
+            <x1-m> 7.77445</x1-m>
+            <y1-m>-7.92046</y1-m>
+            <z1-m>-0.87001</z1-m>
+            <x2-m> 7.77445</x2-m>
+            <y2-m>-11.0438</y2-m>
+            <z2-m>-0.426481</z2-m>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Lflaperon</object-name>
+        <property>surface-positions/flap-pos-norm</property>
+        <interpolation>
+            <entry>  
+                <ind>0</ind>  
+                <dep>0.0</dep> 
+            </entry> 
+            <entry> 
+                <ind>1.0</ind>  
+                <dep>-30</dep> 
+            </entry> 
+         </interpolation> 
+        <axis>
+            <x1-m> 7.77445</x1-m>
+            <y1-m>-7.92046</y1-m>
+            <z1-m>-0.87001</z1-m>
+            <x2-m> 7.77445</x2-m>
+            <y2-m>-11.0438</y2-m>
+            <z2-m>-0.426481</z2-m>
         </axis>
     </animation>
 
