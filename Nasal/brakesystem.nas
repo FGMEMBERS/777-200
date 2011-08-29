@@ -30,8 +30,6 @@ var BrakeSystem =
     new : func()
     {
        m = { parents : [BrakeSystem]};
-       # Initial thermal energy
-       m.ThermalEnergy   = 0.0;
        # deceleration caused by brakes alone (knots/s2)
        m.BrakeDecel    = 1.0; # kt/s^2
        # Higher value means quicker cooling
@@ -42,19 +40,21 @@ var BrakeSystem =
        # anything below <= 1.0 means energy absorbed by brakes is OK. 
        m.ScalingDivisor= 700000*450.0;
        
-       m.LastSimTime   = 0.0;
        m.SmokeActive   = 0;
        m.SmokeToggle   = 0;
        m.LnCoolFactor  = math.ln(1-m.CoolingFactor);
-       
-       setprop("sim/animation/fire-services",0);
+
+       m.reset();
 
        return m;
     },
 
     reset : func()
     {
-        me.ThermalEnergy = 0.0;
+        # Initial thermal energy
+        setprop("/gear/brake-thermal-energy",0.0);
+        setprop("/gear/brake-smoke",0);
+        setprop("sim/animation/fire-services",0);
         me.LastSimTime = 0.0;
     },
 
@@ -67,6 +67,7 @@ var BrakeSystem =
         if (dt<1.0)
         {
             var OnGround = getprop("/gear/gear[1]/wow");
+            var ThermalEnergy = getprop("/gear/brake-thermal-energy");
             if (getprop("/controls/gear/brake-parking"))
                 var BrakeLevel=1.0;
             else
@@ -81,15 +82,15 @@ var BrakeSystem =
                 var V2 = V1 - me.BrakeDecel*dt * BrakeLevel;
                 # do not absorb more energy when plane is (almost) stopped
                 if (V2>0)
-                    me.ThermalEnergy += Mass * (V1*V1 - V2*V2)/2;
+                    ThermalEnergy += Mass * (V1*V1 - V2*V2)/2;
             }
 
             # cooling effect: reduce thermal energy by factor (1-m.CoolingFactor)^dt
-            me.ThermalEnergy = me.ThermalEnergy * math.exp(me.LnCoolFactor * dt);
+            ThermalEnergy = ThermalEnergy * math.exp(me.LnCoolFactor * dt);
 
-            setprop("/gear/brake-thermal-energy",me.ThermalEnergy);
+            setprop("/gear/brake-thermal-energy",ThermalEnergy);
             
-            if ((me.ThermalEnergy>1)and(!me.SmokeActive))
+            if ((ThermalEnergy>1)and(!me.SmokeActive))
             {
                 # start smoke processing 
                 me.SmokeActive = 1;
@@ -105,12 +106,13 @@ var BrakeSystem =
     # smoke processing
     smoke : func()
     {
-        if ((me.SmokeActive)and(me.ThermalEnergy>1))
+        if ((me.SmokeActive)and(getprop("/gear/brake-thermal-energy")>1))
         {
             # make density of smoke effect depend on energy level  
             var SmokeDelay=0;
-            if (me.ThermalEnergy < 1.5)
-                SmokeDelay=(1.5-me.ThermalEnergy);
+            var ThermalEnergy = getprop("/gear/brake-thermal-energy");
+            if (ThermalEnergy < 1.5)
+                SmokeDelay=(1.5-ThermalEnergy);
             else
                 setprop("sim/animation/fire-services",1);
             # No smoke when gear retracted
@@ -124,15 +126,13 @@ var BrakeSystem =
                 else
                     SmokeDelay = 0;
             }
-            setprop("/gear/gear[1]/tyre-smoke",SmokeValue);
-            setprop("/gear/gear[2]/tyre-smoke",SmokeValue);
+            setprop("/gear/brake-smoke",SmokeValue);
             settimer(func { BrakeSys.smoke(); },SmokeDelay);
         }
         else
         {
             # stop smoke processing
-            setprop("/gear/gear[1]/tyre-smoke",0);
-            setprop("/gear/gear[2]/tyre-smoke",0);
+            setprop("/gear/brake-smoke",0);
             setprop("sim/animation/fire-services",0);
             me.SmokeActive = 0;
         }

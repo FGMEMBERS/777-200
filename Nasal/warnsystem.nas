@@ -113,6 +113,9 @@ var WEU =
 #### takeoff config warnings ####
     takeoff_config_warnings : func
     {
+        if (me.speed >= getprop("instrumentation/afds/max-airspeed-kts")+5)
+            append(me.msgs_alert,">OVERSPEED");
+
         if (me.radio_alt<=30)
         {
            # T/O warnings

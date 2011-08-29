@@ -213,13 +213,13 @@
         <name>front wheel squeal</name>
         <path>Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
-            <property>gear/gear[0]/wow</property>
+            <property>gear/gear[0]/tyre-smoke</property>
         </condition>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <volume>
-            <property>velocities/airspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <factor>0.01</factor>
         </volume>
         <volume>
@@ -228,7 +228,7 @@
             <max>1.0</max>
         </volume>
         <pitch>
-            <property>velocities/airspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <factor>0.0025</factor>
             <offset>1.2</offset>
         </pitch>
@@ -245,19 +245,13 @@
         <name>right wheel squeal</name>
         <path>Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
-            <or>
-                <property>gear/gear[1]/wow</property>
-            </or>
+            <property>gear/gear[1]/tyre-smoke</property>
         </condition>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <volume>
-            <property>velocities/speed-down-fps</property>
-            <factor>0.05</factor>
-        </volume>
-        <volume>
-            <property>velocities/airspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <factor>0.01</factor>
         </volume>
         <volume>
@@ -266,7 +260,7 @@
             <max>1.0</max>
         </volume>
         <pitch>
-            <property>velocities/airspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <factor>0.0025</factor>
             <offset>1.2</offset>
         </pitch>
@@ -283,19 +277,13 @@
         <name>left wheel squeal</name>
         <path>Aircraft/777-200/Sounds/touchdown.wav</path>
         <condition>
-            <or>
-                <property>gear/gear[2]/wow</property>
-            </or>
+            <property>gear/gear[2]/tyre-smoke</property>
         </condition>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <volume>
-            <property>velocities/speed-down-fps</property>
-            <factor>0.05</factor>
-        </volume>
-        <volume>
-            <property>velocities/airspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <factor>0.01</factor>
         </volume>
         <volume>
@@ -304,7 +292,7 @@
             <max>1.0</max>
         </volume>
         <pitch>
-            <property>velocities/airspeed-kt</property>
+            <property>velocities/groundspeed-kt</property>
             <factor>0.0025</factor>
             <offset>1.2</offset>
         </pitch>
@@ -354,8 +342,8 @@
         <volume>
             <property>velocities/airspeed-kt</property>
             <factor>0.0015</factor>
-            <min>0.03</min>
-            <max>0.25</max>
+            <min>0.0</min>
+            <max>0.375</max>
         </volume>
         <pitch>
             <property>velocities/airspeed-kt</property>

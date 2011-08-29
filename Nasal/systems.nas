@@ -395,6 +395,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     props.globals.initNode("/instrumentation/clock/et-knob",0,"INT");
     props.globals.initNode("/instrumentation/clock/set-knob",0,"INT");
 #    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
+    setprop("/sim/flaps/current", 0);
     Shutdown();
     settimer(start_updates,1);
 });
