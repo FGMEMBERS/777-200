@@ -535,6 +535,9 @@ Service Ceiling: 43,100ft
     </input>
 
     <instrumentation>
+        <inst-vertical-speed-indicator>
+            <serviceable type="bool">true</serviceable>
+        </inst-vertical-speed-indicator>
         <radar>
             <switch type="string" archive="y">on</switch>
             <mode-control type="int" archive="y">1</mode-control>
@@ -737,12 +740,12 @@ Service Ceiling: 43,100ft
 
     <autopilot>
         <autobrake>
-        <step type="int">-1</step> <!-- OFF on selection -->
-        <config>
-             <idle-throttle type="double">0.10</idle-throttle>
-             <!-- 25% input cancel AB operation -->
-             <pilot-input type="double">0.25</pilot-input>
-        </config>
+            <step type="int">-1</step> <!-- OFF on selection -->
+            <config>
+                 <idle-throttle type="double">0.10</idle-throttle>
+                 <!-- 25% input cancel AB operation -->
+                 <pilot-input type="double">0.25</pilot-input>
+            </config>
         </autobrake>
         <locks>
             <pitch-engaged type="bool">1</pitch-engaged>

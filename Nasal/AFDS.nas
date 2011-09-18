@@ -97,6 +97,17 @@ var AFDS = {
         if(mode==0){
             # horizontal AP controls
             if(me.lateral_mode.getValue() ==btn) btn=0;
+            if (btn==2)
+            {
+                if (me.AP.getValue() and (me.lateral_mode.getValue()!=1))
+                {
+                    # set target to current magnetic heading
+                    var tgtHdg = int(getprop("orientation/heading-magnetic-deg") + 0.50);
+                    me.hdg_setting.setValue(tgtHdg);
+                    btn = 1;
+                } else
+                    btn = 0;
+            }
             if(btn==3)fms=1;
             me.lateral_mode.setValue(btn);
             me.FMS.setValue(fms);
@@ -109,6 +120,19 @@ var AFDS = {
                 {
                     var alt = int((getprop("instrumentation/altimeter/indicated-altitude-ft")+50)/100)*100;
                     me.alt_setting.setValue(alt);
+                } else
+                    btn = 0;
+            }
+            if (btn==2){
+                # hold current vertical speed
+                if (me.AP.getValue())
+                {
+                    var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
+                    if (vs<0) vs -= 50;else vs+=50;
+                    vs = int(vs/100)*100;
+                    if (vs<-8000) vs = -8000;
+                    if (vs>6000) vs = 6000;
+                    me.vs_setting.setValue(vs);
                 } else
                     btn = 0;
             }
@@ -219,6 +243,15 @@ var AFDS = {
 
         }elsif(me.step==2){ ### check lateral modes  ###
             var idx=me.lateral_mode.getValue();
+            if ((idx == 1)or(idx == 2))
+            {
+                # switch between HDG SEL to HDG HOLD
+                if (abs(getprop("orientation/heading-magnetic-deg")-me.hdg_setting.getValue())<2)
+                    idx = 2; # HDG HOLD
+                else
+                    idx = 1; # HDG SEL
+                me.lateral_mode.setValue(idx);
+            }
             me.AP_roll_mode.setValue(me.roll_list[idx]);
             me.AP_roll_engaged.setBoolValue(idx>0);
 

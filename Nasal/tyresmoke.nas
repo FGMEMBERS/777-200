@@ -2,9 +2,9 @@
 var run_tyresmoke0 = 0;
 var run_tyresmoke1 = 0;
 var run_tyresmoke2 = 0;
-var tyresmoke_0 = aircraft.tyresmoke.new(0);
-var tyresmoke_1 = aircraft.tyresmoke.new(1);
-var tyresmoke_2 = aircraft.tyresmoke.new(2);
+var tyresmoke_0 = aircraft.tyresmoke.new(0, 0, 0.8, 0);
+var tyresmoke_1 = aircraft.tyresmoke.new(1, 0, 0.8, 0);
+var tyresmoke_2 = aircraft.tyresmoke.new(2, 0, 0.8, 0);
 
 # =============================== listeners ===============================
 setlistener("gear/gear[0]/position-norm", func {

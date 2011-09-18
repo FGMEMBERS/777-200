@@ -341,6 +341,20 @@
                 <script>controls.click(2);</script>
             </binding>
         </action>
+        <action>
+            <button>3</button> <!--  scroll up -->
+            <binding>
+                <command>property-adjust</command>
+                <property>autopilot/autobrake/step</property>
+                <step>1</step>
+                <min>-2</min>
+                <max>5</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
+        </action>
     </animation>
 
     <animation>
@@ -348,6 +362,20 @@
         <object-name>AutoBrake.knob</object-name>
         <action>
             <button>1</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>autopilot/autobrake/step</property>
+                <step>-1</step>
+                <min>-2</min>
+                <max>5</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>4</button> <!--  scroll down -->
             <binding>
                 <command>property-adjust</command>
                 <property>autopilot/autobrake/step</property>

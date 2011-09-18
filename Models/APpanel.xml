@@ -144,16 +144,10 @@ Autopilot Control Panel
         <type>select</type>
         <object-name>HDGtoggle</object-name>
         <condition>
-            <or>
-                <equals>
-                    <property>instrumentation/afds/ap-modes/roll-mode</property>
-                    <value>HDG SEL</value>
-                </equals>
-                <equals>
-                    <property>instrumentation/afds/ap-modes/roll-mode</property>
-                    <value>HDG HOLD</value>
-                </equals>
-            </or>
+            <equals>
+                <property>instrumentation/afds/ap-modes/roll-mode</property>
+                <value>HDG HOLD</value>
+            </equals>
         </condition>
     </animation>
 
@@ -816,6 +810,19 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
+                <script>controls.click(4);b777.afds.input(0,2);</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>HDG.sel</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
                 <script>controls.click(4);b777.afds.input(0,1);</script>
             </binding>
         </action>
@@ -1037,6 +1044,85 @@ Autopilot Control Panel
             </binding>
         </action>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>Pitchwheel.dec</object-name>
+        <object-name>Pitchwheel.inc</object-name>
+        <action>
+            <button>3</button> <!--  scroll up -->
+            <repeatable>true</repeatable>
+            <binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                        <value>V/S</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/vertical-speed-fpm</property>
+                <step>-100</step>
+                <min>-8000</min>
+                <max>6000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                        <value>FPA</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/flight-path-angle</property>
+                <step>-0.1</step>
+                <min>-9.9</min>
+                <max>9.9</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Pitchwheel.dec</object-name>
+        <object-name>Pitchwheel.inc</object-name>
+        <action>
+            <button>4</button> <!--  scroll down -->
+            <repeatable>true</repeatable>
+            <binding>
+            <condition>
+                <equals>
+                    <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                    <value>V/S</value>
+                </equals>
+            </condition>
+            <command>property-adjust</command>
+            <property>autopilot/settings/vertical-speed-fpm</property>
+            <step>100</step>
+            <min>-8000</min>
+            <max>6000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                        <value>FPA</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/flight-path-angle</property>
+                <step>0.1</step>
+                <min>-9.9</min>
+                <max>9.9</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>
+    </animation>
 
     <!-- Continental B777 manual, Sec. 6.4, Page 32:
          MCP/SPD range is 100 - 399 KIAS, 0.40 - 0.95 MACH -->
@@ -1074,12 +1160,12 @@ Autopilot Control Panel
             </binding>
         </action>
     </animation>
-    
+
     <animation>
         <type>pick</type>
-        <object-name>SPD.dec</object-name>
+        <object-name>SPD.knob</object-name>
         <action>
-            <button>1</button>
+            <button>3</button> <!--  scroll up -->
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1147,9 +1233,9 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>SPD.inc</object-name>
+        <object-name>SPD.knob</object-name>
         <action>
-            <button>1</button>
+            <button>4</button> <!--  scroll down -->
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1199,13 +1285,18 @@ Autopilot Control Panel
                 <script>controls.click(5);</script>
             </binding>
         </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>HDG.sel</object-name>
+        <object-name>HDG.knob</object-name>
         <action>
-            <button>1</button>
+            <button>3</button> <!--  scroll up -->
             <repeatable>true</repeatable>
             <binding>
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
-                <step>-1</step>
+                <step>1</step>
                 <min>0</min>
                 <max>360</max>
                 <wrap>true</wrap>
@@ -1236,13 +1327,18 @@ Autopilot Control Panel
                 <script>controls.click(5);</script>
             </binding>
         </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>HDG.sel</object-name>
+        <object-name>HDG.knob</object-name>
         <action>
-            <button>1</button>
+            <button>4</button> <!--  scroll down -->
             <repeatable>true</repeatable>
             <binding>
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
-                <step>1</step>
+                <step>-1</step>
                 <min>0</min>
                 <max>360</max>
                 <wrap>true</wrap>
@@ -1274,24 +1370,8 @@ Autopilot Control Panel
                 <script>controls.click(2);</script>
             </binding>
         </action>
-        <action>
-            <button>1</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/afds/inputs/bank-limit-switch</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>6</max>
-                <wrap>false</wrap>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(2);</script>
-            </binding>
-        </action>
     </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>Bank.dec</object-name>
@@ -1312,8 +1392,36 @@ Autopilot Control Panel
                 <script>controls.click(2);</script>
             </binding>
         </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BLimit.knob</object-name>
+        <object-name>BLimit.knob.001</object-name>
         <action>
-            <button>1</button>
+            <button>4</button> <!--  scroll down -->
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/afds/inputs/bank-limit-switch</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>6</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(2);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>BLimit.knob</object-name>
+        <object-name>BLimit.knob.001</object-name>
+        <action>
+            <button>3</button> <!--  scroll up -->
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -1365,6 +1473,40 @@ Autopilot Control Panel
             </binding>
         </action>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ALTmode.knob</object-name>
+        <action>
+            <button>3</button> <!--  scroll up -->
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/afds/inputs/alt-knob</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ALTmode.knob</object-name>
+        <action>
+            <button>4</button> <!--  scroll down -->
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/afds/inputs/alt-knob</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -1399,8 +1541,13 @@ Autopilot Control Panel
                 <script>controls.click(5);</script>
             </binding>
         </action>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>ALT.knob</object-name>
         <action>
-            <button>1</button>
+            <button>4</button> <!--  scroll down -->
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1464,8 +1611,13 @@ Autopilot Control Panel
                 <script>controls.click(5);</script>
             </binding>
         </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>ALT.knob</object-name>
         <action>
-            <button>1</button>
+            <button>3</button> <!--  scroll up -->
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1495,6 +1647,5 @@ Autopilot Control Panel
             </binding>
         </action>
     </animation>
-
 
 </PropertyList>

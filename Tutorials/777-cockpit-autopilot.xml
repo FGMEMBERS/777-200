@@ -255,7 +255,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>A/T speed selector. Select 230 knots now (use left/middle mouse button)!</message>
+	<message>A/T speed selector. Select 230 knots now (use mouse scroll wheel)!</message>
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>
@@ -423,7 +423,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>Inner switch: bank limit selector. Use left/middle mouse button to select maximum roll angle for autopilot. Select 30 degrees (max) now!</message>
+	<message>Inner switch: bank limit selector. Use mouse scroll wheel to select maximum roll angle for autopilot. Select 30 degrees (max) now!</message>
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>
@@ -469,7 +469,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>Vertical speed selector. Left/middle mouse button changes target climb/sink rate.</message>
+	<message>Vertical speed selector. Mouse scroll wheel changes target climb/sink rate.</message>
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>
@@ -526,7 +526,7 @@ This tutorial quickly walks you through the features of the autopilot.
 </step>
 
 <step>
-	<message>Altitude selector. Use left/middle mouse button to change target altitude. Select 1500ft now (click)!</message>
+	<message>Altitude selector. Use mouse scroll wheel to change target altitude. Select 1500ft now (click)!</message>
 	<view>
 	    <heading-offset-deg>358.3</heading-offset-deg>
 	    <pitch-offset-deg>-16.8</pitch-offset-deg>

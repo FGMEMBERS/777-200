@@ -37,6 +37,12 @@ This file selects the instrumentation modules that should be available.
         <suction>/systems/vacuum/suction-inhg</suction>
     </attitude-indicator>
 
+    <inst-vertical-speed-indicator>
+        <name>inst-vertical-speed-indicator</name>
+        <number>0</number>
+        <static-pressure>/systems/static/pressure-inhg</static-pressure>
+    </inst-vertical-speed-indicator>
+
     <clock>
         <name>clock</name>
         <number>0</number>

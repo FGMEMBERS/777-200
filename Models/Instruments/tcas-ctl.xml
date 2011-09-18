@@ -218,12 +218,42 @@
             </binding>
         </action>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TCAS.knob</object-name>
+        <action>
+            <button>3</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/transponder/mode-switch</property>
+                <step>1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
         <object-name>TCAS.knob</object-name>
         <action>
             <button>1</button>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/transponder/mode-switch</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TCAS.knob</object-name>
+        <action>
+            <button>4</button>
             <binding>
                 <command>property-adjust</command>
                 <property>instrumentation/transponder/mode-switch</property>

@@ -124,7 +124,10 @@
         <mode>looped</mode>
         <path>Sounds/rumble.wav</path>
         <condition>
-            <property>gear/gear[0]/wow</property>
+            <and>
+                <property>gear/gear[0]/wow</property>
+                <property>sim/current-view/internal</property>
+            </and>
         </condition>
         <volume>
             <property>velocities/groundspeed-kt</property>
@@ -145,10 +148,13 @@
         <mode>looped</mode>
         <path>Sounds/rumble.wav</path>
         <condition>
-            <or>
-                <property>gear/gear[1]/wow</property>
-                <property>gear/gear[2]/wow</property>
-            </or>
+            <and>
+                <or>
+                    <property>gear/gear[1]/wow</property>
+                    <property>gear/gear[2]/wow</property>
+                </or>
+                <property>sim/current-view/internal</property>
+            </and>
         </condition>
         <volume>
             <property>velocities/groundspeed-kt</property>

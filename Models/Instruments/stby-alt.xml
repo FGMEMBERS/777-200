@@ -198,6 +198,19 @@
                 <wrap>false</wrap>
             </binding>
         </action>
+        <action>
+            <button>3</button> <!--  scroll up -->
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
     </animation>
 
     <animation>
@@ -205,6 +218,19 @@
         <object-name>StbyAsi.knob</object-name>
         <action>
             <button>1</button>
+            <repeatable>true</repeatable>
+            <interval-sec>0.2</interval-sec>
+             <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>-0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+        </action>
+        <action>
+            <button>4</button> <!--  scroll down -->
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>

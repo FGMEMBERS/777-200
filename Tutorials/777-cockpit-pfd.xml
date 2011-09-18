@@ -406,7 +406,7 @@ This tutorial shows the features of the cockpit's main instrument: the primary f
 
 <step>
 	<message>Minimums altitude selector. Adjust decision height according to weather/visibility.
-	Watch the PFD and change the value to 300ft now (left+middle mouse button)!</message>
+	Watch the PFD and change the value to 300ft now (use mouse scroll wheel)!</message>
 	<view>
 		<heading-offset-deg>0.2</heading-offset-deg>
 		<pitch-offset-deg>-25.5</pitch-offset-deg>

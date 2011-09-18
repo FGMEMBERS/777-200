@@ -272,7 +272,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 	</step>
 
 	<step>
-		<message>Check: transponder STANDBY (turn left = click middle-mouse button)</message>
+		<message>Check: transponder STANDBY (use mouse scroll wheel)</message>
 		<marker>
 			<x-m>-1.0842</x-m>
 			<y-m>0.1750</y-m>
@@ -299,7 +299,7 @@ Well, you could just press "s" for autostart and skip all this - but you're a re
 	</step>
 
 	<step>
-		<message>Check: altimeter (pressure) setting (turn left/right, use mouse buttons)</message>
+		<message>Check: altimeter (pressure) setting (use mouse scroll wheel)</message>
 		<marker>
 			<x-m>-1.8033</x-m>
 			<y-m>-0.1758</y-m>
