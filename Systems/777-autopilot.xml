@@ -52,8 +52,16 @@
     <name>HDG HOLD</name>
     <debug>false</debug>
     <enable>
-      <prop>instrumentation/afds/ap-modes/roll-mode</prop>
-      <value>HDG SEL</value>
+      <or>
+        <equals>
+          <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+          <value>HDG SEL</value>
+        </equals>
+        <equals>
+          <prop>instrumentation/afds/ap-modes/roll-mode</prop>
+          <value>HDG HOLD</value>
+        </equals>
+      </or>
     </enable>
     <input>
       <prop>autopilot/internal/fdm-heading-bug-error-deg</prop>

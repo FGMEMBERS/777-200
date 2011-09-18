@@ -59,7 +59,7 @@ var AFDS = {
         m.ias_setting = m.AP_settings.initNode("target-speed-kt",200);# 100 - 399 #
         m.mach_setting = m.AP_settings.initNode("target-speed-mach",0.40);# 0.40 - 0.95 #
         m.vs_setting = m.AP_settings.initNode("vertical-speed-fpm",0); # -8000 to +6000 #
-        m.hdg_setting = m.AP_settings.initNode("heading-bug-deg",360,"INT");
+        m.hdg_setting = m.AP_settings.initNode("heading-bug-deg",0,"INT");
         m.fpa_setting = m.AP_settings.initNode("flight-path-angle",0); # -9.9 to 9.9 #
         m.alt_setting = m.AP_settings.initNode("target-altitude-ft",10000,"DOUBLE");
         m.auto_brake_setting = m.AP_settings.initNode("autobrake",0.000,"DOUBLE");
@@ -234,7 +234,10 @@ var AFDS = {
             if(me.loc_armed.getValue()){
                 msg="LOC";
                 var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
-                if(hddefl< 8 and hddefl>-8){
+                if ((hddefl< 8 and hddefl>-8)and
+                    getprop("instrumentation/nav/in-range") and
+                    getprop("instrumentation/nav/nav-loc"))
+                {
                     me.lateral_mode.setValue(4);
                     me.loc_armed.setValue(0);
                 }
