@@ -220,11 +220,11 @@ var AFDS = {
                 msg="G/S";
                 var gsdefl = getprop("instrumentation/nav/gs-needle-deflection");
                 var gsrange = getprop("instrumentation/nav/gs-in-range");
-                if(gsdefl< 0.5 and gsdefl>-0.5){
-                    if(gsrange){
-                        me.vertical_mode.setValue(6);
-                        me.gs_armed.setValue(0);
-                    }
+                if ((gsdefl< 0.5 and gsdefl>-0.5)and
+                    gsrange)
+                {
+                    me.vertical_mode.setValue(6);
+                    me.gs_armed.setValue(0);
                 }
             }
             me.AP_pitch_arm.setValue(msg);

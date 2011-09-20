@@ -107,7 +107,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -155,7 +156,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -578,7 +580,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -624,7 +627,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
