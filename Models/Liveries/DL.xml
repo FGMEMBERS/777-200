@@ -11,5 +11,8 @@
             <texture>DAL-Lights.png</texture>
         </lights>
     </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>DAL</aircraft-operator>
 </sim>
+
 </PropertyList>

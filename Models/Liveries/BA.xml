@@ -11,5 +11,7 @@
             <texture>lights1.png</texture>
         </lights>
     </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>BAW</aircraft-operator>
 </sim>
 </PropertyList>

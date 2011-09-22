@@ -367,7 +367,20 @@ Service Ceiling: 43,100ft
             <tutorial include="Tutorials/777-takeoff.xml"/>
             <!-- <tutorial include="Tutorials/777-approach-landing.xml"/> -->
         </tutorials>
+        <dimensions>
+            <radius-m type="double">32</radius-m>
+            <parkpos-offset-m type="double">0.0</parkpos-offset-m>
+        </dimensions>
+        <aircraft-class type="string">gate</aircraft-class>
+        <aircraft-operator>BAW</aircraft-operator>
+        <aircraft-data>
+            <path>/sim/dimensions/radius-m</path>
+            <path>/sim/dimensions/parkpos-offset-m</path>
+            <path>/sim/aircraft-class</path>
+            <path>/sim/aircraft-operator</path>
+        </aircraft-data>
     </sim>
+
 
     <engines>
         <engine n="0">

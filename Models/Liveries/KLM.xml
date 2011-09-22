@@ -11,5 +11,8 @@
             <texture>KLMlow-lights.png</texture>
         </lights>
     </model>
+    <aircraft-class>gate</aircraft-class>
+    <aircraft-operator>KLM</aircraft-operator>
 </sim>
+
 </PropertyList>
