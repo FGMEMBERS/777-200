@@ -233,13 +233,15 @@ var AFDS = {
             msg="";
             if(me.loc_armed.getValue()){
                 msg="LOC";
-                var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
-                if ((hddefl< 8 and hddefl>-8)and
-                    getprop("instrumentation/nav/in-range") and
-                    getprop("instrumentation/nav/nav-loc"))
+                if (getprop("instrumentation/nav/in-range"))
                 {
-                    me.lateral_mode.setValue(4);
-                    me.loc_armed.setValue(0);
+                    var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
+                    if ((!getprop("instrumentation/nav/nav-loc"))or
+                        (hddefl< 8 and hddefl>-8))
+                    {
+                        me.lateral_mode.setValue(4);
+                        me.loc_armed.setValue(0);
+                    }
                 }
             }
             me.AP_roll_arm.setValue(msg);
