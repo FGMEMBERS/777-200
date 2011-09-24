@@ -108,7 +108,19 @@ var AFDS = {
                 } else
                     btn = 0;
             }
-            if(btn==3)fms=1;
+            if(btn==3)
+            {
+                if ((!getprop("/autopilot/route-manager/active"))or
+                    (getprop("/autopilot/route-manager/current-wp")<0))
+                {
+                    # Oops, route manager isn't active. Keep current mode.
+                    btn = me.lateral_mode.getValue();
+                    setprop("/sim/messages/copilot","Captain, we forgot to program and activate the route manager,");
+                    setprop("/sim/messages/copilot","so LNAV can't engage!");
+                }
+                else
+                    fms=1;
+            }
             me.lateral_mode.setValue(btn);
             me.FMS.setValue(fms);
         }elsif(mode==1){
