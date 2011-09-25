@@ -315,7 +315,7 @@
             <input>
                 <halign>left</halign>
                 <label>nav1 crs</label>
-                <pref-width>100</pref-width>
+                <pref-width>50</pref-width>
                 <pref-height>20</pref-height>
                 <property>instrumentation/nav/radials/selected-deg</property>
                 <format>%03.0f</format>
@@ -330,7 +330,7 @@
             <input>
                 <halign>left</halign>
                 <label>nav2 crs</label>
-                <pref-width>100</pref-width>
+                <pref-width>50</pref-width>
                 <pref-height>20</pref-height>
                 <property>instrumentation/nav[1]/radials/selected-deg</property>
                 <format>%03.0f</format>

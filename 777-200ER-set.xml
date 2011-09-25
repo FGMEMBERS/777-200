@@ -7,7 +7,7 @@
         <aircraft-version>20100008</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200ER</aero>
-        <fuel-fraction>0.2</fuel-fraction>
+        <fuel-fraction>0.7</fuel-fraction>
         <startup>
             <splash-texture>Aircraft/777-200/splash.png</splash-texture>
         </startup>
@@ -51,7 +51,7 @@
 
         <view n="100">
             <name>CoPilot View</name>
-            <enabled type="bool" userarchive="y">true</enabled>
+            <enabled type="bool">true</enabled>
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
@@ -92,7 +92,7 @@
     
         <view n="101">
             <name>Radio/CDU Panel View</name>
-            <enabled type="bool" userarchive="y">true</enabled>
+            <enabled type="bool">true</enabled>
             <type>lookfrom</type>
             <internal type="bool">true</internal>
             <config>
@@ -131,7 +131,7 @@
             </config>
         </view>
 
-        <yokes-visible type="bool" userarchive="y">1</yokes-visible>
+        <yokes-visible type="bool">1</yokes-visible>
     
         <airport>
             <runways>
@@ -195,7 +195,7 @@
             <enable3d>false</enable3d>
         </hud>
 
-        <virtual-cockpit archive="y">true</virtual-cockpit>
+        <virtual-cockpit>true</virtual-cockpit>
         <allow-toggle-cockpit>true</allow-toggle-cockpit>
 
         <help>
@@ -329,7 +329,7 @@ Service Ceiling: 43,100ft
 
         <weight n="1">
         <!--  328 pax max @ 180 lbs-->
-            <name>Pax</name>
+            <name>Pax/Baggage</name>
             <weight-lb>50000</weight-lb>
             <max-lb>59000</max-lb>
             <min-lb>0</min-lb>
@@ -378,7 +378,15 @@ Service Ceiling: 43,100ft
             <path>/sim/dimensions/parkpos-offset-m</path>
             <path>/sim/aircraft-class</path>
             <path>/sim/aircraft-operator</path>
+            <path>/sim/view[100]/enabled</path>
+            <path>/sim/view[101]/enabled</path>
+            <path>/sim/yokes-visible</path>
+            <path>/controls/gear/tiller-enabled</path>
+            <path>/sim/weight[0]/weight-lb</path>
+            <path>/sim/weight[1]/weight-lb</path>
         </aircraft-data>
+        <weight n="0"><weight-lb type="double">400</weight-lb></weight>
+        <weight n="1"><weight-lb type="double">44840</weight-lb></weight>
     </sim>
 
 
@@ -601,7 +609,7 @@ Service Ceiling: 43,100ft
                 <size type="float">12</size>
                 <line-spacing type="float">0.01</line-spacing>
             </font>
-            <lightning type="bool" archive="y">true</lightning>
+            <lightning type="bool">true</lightning>
             <radar-texture-path type="string">Aircraft/777-200/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
             <echo-texture-path type="string">Aircraft/777-200/Models/Instruments/MFD/wxecho.png</echo-texture-path>
             <minimized type="bool">false</minimized>
@@ -609,7 +617,6 @@ Service Ceiling: 43,100ft
             <limit-deg type="int">360</limit-deg>
         </radar>
         <groundradar>
-            <!--id type="string">KSFO</id-->
             <range type="double">1.2</range>
         </groundradar>
 
@@ -736,13 +743,18 @@ Service Ceiling: 43,100ft
                 <Vref type="double">140</Vref>
             </vspeeds>
         </fmc>
+        <gps>
+            <config>
+                <min-runway-length-ft type="double">5000</min-runway-length-ft>
+            </config>
+        </gps>
     </instrumentation>
 
     <controls>
         <gear>
             <brake-parking type="bool">1</brake-parking>
             <tiller-cmd-norm type="double">0</tiller-cmd-norm>
-            <tiller-enabled type="bool" userarchive="y">true</tiller-enabled>
+            <tiller-enabled type="bool">false</tiller-enabled>
             <nosegear-steering-cmd-norm type="double">0</nosegear-steering-cmd-norm>
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>

@@ -15,6 +15,8 @@
 
 #Usage : var afds = AFDS.new();
 
+var copilot = func(msg) { setprop("/sim/messages/copilot",msg);}
+
 var AFDS = {
     new : func{
         var m = {parents:[AFDS]};
@@ -59,7 +61,7 @@ var AFDS = {
         m.ias_setting = m.AP_settings.initNode("target-speed-kt",200);# 100 - 399 #
         m.mach_setting = m.AP_settings.initNode("target-speed-mach",0.40);# 0.40 - 0.95 #
         m.vs_setting = m.AP_settings.initNode("vertical-speed-fpm",0); # -8000 to +6000 #
-        m.hdg_setting = m.AP_settings.initNode("heading-bug-deg",0,"INT");
+        m.hdg_setting = m.AP_settings.initNode("heading-bug-deg",360,"INT"); # 1 to 360
         m.fpa_setting = m.AP_settings.initNode("flight-path-angle",0); # -9.9 to 9.9 #
         m.alt_setting = m.AP_settings.initNode("target-altitude-ft",10000,"DOUBLE");
         m.auto_brake_setting = m.AP_settings.initNode("autobrake",0.000,"DOUBLE");
@@ -80,13 +82,12 @@ var AFDS = {
         m.AP_speed_mode = m.AFDS_apmodes.initNode("speed-mode","");
         m.AP_annun = m.AFDS_apmodes.initNode("mode-annunciator"," ");
 
-        m.FMS = props.globals.initNode("instrumentation/nav/slaved-to-gps");
-        m.FMS.setValue(0);
-
         m.APl = setlistener(m.AP, func m.setAP(),0,0);
         m.APdisl = setlistener(m.AP_disengaged, func m.setAP(),0,0);
         m.Lbank = setlistener(m.bank_switch, func m.setbank(),0,0);
         m.LTMode = setlistener(m.autothrottle_mode, func m.updateATMode(),0,0);
+        m.WpChanged = setlistener(props.globals.getNode("/autopilot/route-manager/wp/id",1), func m.wpChanged(),0,0);
+        m.RmDisabled = setlistener(props.globals.getNode("/autopilot/route-manager/active",1), func m.wpChanged(),0,0);
         return m;
     },
 
@@ -103,6 +104,7 @@ var AFDS = {
                 {
                     # set target to current magnetic heading
                     var tgtHdg = int(getprop("orientation/heading-magnetic-deg") + 0.50);
+                    if (tgtHdg==0) tgtHdg=360;
                     me.hdg_setting.setValue(tgtHdg);
                     btn = 1;
                 } else
@@ -111,18 +113,17 @@ var AFDS = {
             if(btn==3)
             {
                 if ((!getprop("/autopilot/route-manager/active"))or
-                    (getprop("/autopilot/route-manager/current-wp")<0))
+                    (getprop("/autopilot/route-manager/current-wp")<0)or
+                    (getprop("/autopilot/route-manager/wp/id")==""))
                 {
                     # Oops, route manager isn't active. Keep current mode.
                     btn = me.lateral_mode.getValue();
-                    setprop("/sim/messages/copilot","Captain, we forgot to program and activate the route manager,");
-                    setprop("/sim/messages/copilot","so LNAV can't engage!");
+                    copilot("Captain, LNAV doesn't engage. We forgot to program or activate the route manager!");
                 }
                 else
                     fms=1;
             }
             me.lateral_mode.setValue(btn);
-            me.FMS.setValue(fms);
         }elsif(mode==1){
             # vertical AP controls
             if(me.vertical_mode.getValue() ==btn) btn=0;
@@ -156,7 +157,11 @@ var AFDS = {
         }elsif(mode==2){
             # throttle AP controls
             if(me.autothrottle_mode.getValue() ==btn) btn=0;
-            if(getprop("position/altitude-agl-ft")<200) btn=0;
+            if(btn and (getprop("position/altitude-agl-ft")<200))
+            {
+                btn=0;
+                copilot("Captain, auto-throttle won't engage below 200ft.");
+            } 
             me.autothrottle_mode.setValue(btn);
         }elsif(mode==3){
             var arm = 1-((me.loc_armed.getValue() or (4==me.lateral_mode.getValue())));
@@ -174,8 +179,33 @@ var AFDS = {
     setAP : func{
         var output=1-me.AP.getValue();
         var disabled = me.AP_disengaged.getValue();
-        if(getprop("position/altitude-agl-ft")<200)disabled = 1;
+        if((output==0)and(getprop("position/altitude-agl-ft")<200))
+        {
+            disabled = 1;
+            copilot("Captain, autopilot won't engage below 200ft.");
+        }
         if((disabled)and(output==0)){output = 1;me.AP.setValue(0);}
+        if (output==1)
+        {
+            var msg="";
+            var msg2="";
+            var msg3="";
+            if (abs(getprop("controls/flight/rudder-trim"))>0.04)   msg  = "rudder";
+            if (abs(getprop("controls/flight/elevator-trim"))>0.04) msg2 = "pitch";
+            if (abs(getprop("controls/flight/aileron-trim"))>0.04)  msg3 = "aileron";
+            if (msg ~ msg2 ~ msg3 != "")
+            {
+                if ((msg != "")and(msg2!=""))
+                    msg = msg ~ ", " ~ msg2;
+                else
+                    msg = msg ~ msg2;
+                if ((msg != "")and(msg3!=""))
+                    msg = msg ~ " and " ~ msg3;
+                else
+                    msg = msg ~ msg3;
+                copilot("Captain, autopilot disengaged. Careful, check " ~ msg ~ " trim!");
+            }
+        }
         setprop("autopilot/internal/target-pitch-deg",0);
         setprop("autopilot/internal/target-roll-deg",0);
         me.AP_passive.setValue(output);
@@ -196,7 +226,17 @@ var AFDS = {
         me.AP_speed_mode.setValue(me.spd_list[idx]);
     },
 #################
-
+    wpChanged : func{
+        if (((getprop("/autopilot/route-manager/wp/id")=="")or
+             (!getprop("/autopilot/route-manager/active")))and
+            (me.lateral_mode.getValue() == 3)and
+            me.AP.getValue())
+        {
+            # LNAV active, but route manager is disabled now => switch to HDG HOLD (current heading)
+            me.input(0,2);
+        }
+    },
+#################
     ap_update : func{
         var VS =getprop("velocities/vertical-speed-fps");
         var TAS =getprop("velocities/uBody-fps");

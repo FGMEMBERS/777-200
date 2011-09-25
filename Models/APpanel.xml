@@ -1275,10 +1275,10 @@ Autopilot Control Panel
             <binding>
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
-                <step>1</step>
-                <min>0</min>
-                <max>360</max>
-                <wrap>true</wrap>
+                <step type="int">1</step>
+                <min type="int">1</min>
+                <max type="int">361</max>
+                <wrap type="bool">true</wrap>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1296,10 +1296,10 @@ Autopilot Control Panel
             <binding>
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
-                <step>1</step>
-                <min>0</min>
-                <max>360</max>
-                <wrap>true</wrap>
+                <step type="int">1</step>
+                <min type="int">1</min>
+                <max type="int">361</max>
+                <wrap type="bool">true</wrap>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1317,10 +1317,10 @@ Autopilot Control Panel
             <binding>
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>360</max>
-                <wrap>true</wrap>
+                <step type="int">-1</step>
+                <min type="int">1</min>
+                <max type="int">361</max>
+                <wrap type="bool">true</wrap>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1338,10 +1338,10 @@ Autopilot Control Panel
             <binding>
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>360</max>
-                <wrap>true</wrap>
+                <step type="int">-1</step>
+                <min type="int">1</min>
+                <max type="int">361</max>
+                <wrap type="bool">true</wrap>
             </binding>
             <binding>
                 <command>nasal</command>

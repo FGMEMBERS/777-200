@@ -140,10 +140,10 @@ var WEU =
                  append(me.msgs_alert,">CONFIG SPOILERS");
 
                # 777 manual: Rudder trim must be within 2 units from center at T/O.
-               if ((me.rudder_trim<-0.04)or(me.rudder_trim>0.04))
+               if (abs(me.rudder_trim)>0.04)
                  append(me.msgs_alert,">CONFIG RUDDER TRIM");
 
-               if ((me.elev_trim<-0.04)or(me.elev_trim>0.04))
+               if (abs(me.elev_trim)>0.04)
                  append(me.msgs_alert,">CONFIG ELEV TRIM");
            }
         }
