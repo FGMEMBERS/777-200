@@ -74,6 +74,11 @@ This file selects the instrumentation modules that should be available.
         <number>1</number>
     </nav-radio>
 
+    <dme>
+        <name>dme</name>
+        <number>0</number>
+    </dme>
+
     <slip-skid-ball>
         <name>slip-skid-ball</name>
         <number>0</number>
