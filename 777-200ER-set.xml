@@ -357,6 +357,8 @@ Service Ceiling: 43,100ft
                 <string  alias="/sim/multiplay/callsign"/>
             </generic>
         </multiplay>
+
+        <flight-recorder include="Systems/flight-recorder.xml"/>
         
         <tutorials>
             <tutorial include="Tutorials/777-cockpit-overview.xml"/>
