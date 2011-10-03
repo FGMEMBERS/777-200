@@ -302,10 +302,11 @@ var Engine = {
     },
 #### update ####
     update : func{
-        if(me.fuel_out.getBoolValue())me.cutoff.setBoolValue(1);
+        if(me.fuel_out.getBoolValue())
+            me.cutoff.setBoolValue(1);
         if(!me.cutoff.getBoolValue()){
-        me.rpm.setValue(me.n1.getValue());
-        me.throttle_lever.setValue(me.throttle.getValue());
+            me.rpm.setValue(me.n1.getValue());
+            me.throttle_lever.setValue(me.throttle.getValue());
         }else{
             me.throttle_lever.setValue(0);
             if(me.starter.getBoolValue()){
@@ -318,15 +319,16 @@ var Engine = {
                 }
             }
         }
-    me.fuel_pph.setValue(me.fuel_gph.getValue()*me.fdensity);
-    var hpsi =me.rpm.getValue();
-    if(hpsi>60)hpsi = 60;
-    me.hpump.setValue(hpsi);
+        me.fuel_pph.setValue(me.fuel_gph.getValue()*me.fdensity);
+        var hpsi =me.rpm.getValue();
+        if(hpsi>60)
+            hpsi = 60;
+        me.hpump.setValue(hpsi);
     },
 
     spool_up : func{
         if(!me.cutoff.getBoolValue()){
-        return;
+            return;
         }else{
             var tmprpm = me.rpm.getValue();
             tmprpm += getprop("sim/time/delta-realtime-sec") * 0.5;

@@ -95,7 +95,7 @@
     <input>
       <prop>/autopilot/route-manager/wp/bearing-deg</prop>
       <offset>
-        <property>/orientation/heading-deg</property>
+        <property>/orientation/heading-magnetic-deg</property>
         <scale>-1.0</scale>
       </offset>
     </input>

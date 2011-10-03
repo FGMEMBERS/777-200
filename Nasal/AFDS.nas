@@ -206,6 +206,8 @@ var AFDS = {
                 copilot("Captain, autopilot disengaged. Careful, check " ~ msg ~ " trim!");
             }
         }
+        else
+            if(me.lateral_mode.getValue() != 3) me.input(0,1);
         setprop("autopilot/internal/target-pitch-deg",0);
         setprop("autopilot/internal/target-roll-deg",0);
         me.AP_passive.setValue(output);
@@ -283,13 +285,26 @@ var AFDS = {
 
         }elsif(me.step==1){ ### localizer armed ? ###
             msg="";
-            if(me.loc_armed.getValue()){
+            if(me.loc_armed.getValue())
+            {
                 msg="LOC";
                 if (getprop("instrumentation/nav/in-range"))
                 {
                     var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
-                    if ((!getprop("instrumentation/nav/nav-loc"))or
-                        (hddefl< 8 and hddefl>-8))
+                    var vtemp = 9.9;
+                    if(!getprop("instrumentation/nav/nav-loc"))
+                    {
+                        var vspeed = getprop("instrumentation/airspeed-indicator/indicated-speed-kt");
+                        var vcourse = getprop("instrumentation/nav/heading-deg");
+                        var vdistance = getprop("instrumentation/nav/nav-distance");
+                        vtemp = getprop("orientation/heading-deg");
+                        vcourse = abs(vcourse - vtemp);
+                        if (vcourse <= 90)
+                            vtemp = vcourse*vspeed*vdistance/(10*200*1852*15);
+                        if(vtemp > 9.9)
+                            vtemp = 9.9;
+                    }
+                    if(abs(hddefl) < vtemp)
                     {
                         me.lateral_mode.setValue(4);
                         me.loc_armed.setValue(0);
