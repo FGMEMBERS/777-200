@@ -22,7 +22,7 @@ Syd Adams
         <type>select</type>
         <object-name>locscale</object-name>
         <condition>
-            <property>instrumentation/nav/nav-loc</property>
+            <property>instrumentation/nav/in-range</property>
         </condition>
     </animation>
 
@@ -844,9 +844,8 @@ Syd Adams
         <alignment>center-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type type="string">number-value</type>
-        <scale>0.000539</scale>
         <format type="string">DME %3.1f</format>
-        <property>instrumentation/nav/nav-distance</property>
+        <property>/instrumentation/dme/indicated-distance-nm</property>
         <font>helvetica_bold.txf</font>
         <character-size>0.007</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
@@ -1033,7 +1032,7 @@ Syd Adams
         <type>select</type>
         <object-name>DME</object-name>
         <condition>
-            <property>instrumentation/nav/dme-in-range</property>
+            <property>instrumentation/dme/in-range</property>
         </condition>
     </animation>
 

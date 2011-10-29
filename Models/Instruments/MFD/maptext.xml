@@ -531,10 +531,13 @@
 
         <layer>
             <condition>
-                <equals>
-                    <property>instrumentation/efis/inputs/lh-vor-adf</property>
-                    <value>1</value>
-                </equals>
+                <and>
+                    <equals>
+                        <property>instrumentation/efis/inputs/lh-vor-adf</property>
+                        <value>1</value>
+                    </equals>
+                    <property>instrumentation/nav/in-range</property>
+                </and>
             </condition>
             <name>L VOR ID</name>
             <type>text</type>
@@ -570,7 +573,7 @@
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>1</value>
                     </equals>
-                    <property>instrumentation/nav/dme-in-range</property>
+                    <property>instrumentation/dme[0]/in-range</property>
                 </and>
             </condition>
             <name>L VOR dme</name>
@@ -585,8 +588,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/nav/nav-distance</property>
-                    <scale>0.000539</scale>
+                    <property>instrumentation/dme[0]/indicated-distance-nm</property>
                     <format>DME%3.1f</format>
                 </chunk>
             </chunks>
@@ -640,10 +642,13 @@
 
         <layer>
             <condition>
-                <equals>
-                    <property>instrumentation/efis/inputs/rh-vor-adf</property>
-                    <value>1</value>
-                </equals>
+                <and>
+                    <equals>
+                        <property>instrumentation/efis/inputs/rh-vor-adf</property>
+                        <value>1</value>
+                    </equals>
+                    <property>instrumentation/nav[1]/in-range</property>
+                </and>
             </condition>
             <name>R VOR ID</name>
             <type>text</type>
@@ -679,7 +684,7 @@
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>1</value>
                     </equals>
-                    <property>instrumentation/nav[1]/dme-in-range</property>
+                    <property>instrumentation/dme[1]/in-range</property>
                 </and>
             </condition>
             <name>R VOR dme</name>
@@ -694,8 +699,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/nav[1]/nav-distance</property>
-                    <scale>0.000539</scale>
+                    <property>instrumentation/dme[1]/indicated-distance-nm</property>
                     <format>DME%3.1f</format>
                 </chunk>
             </chunks>

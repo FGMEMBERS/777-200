@@ -60,6 +60,9 @@
                 <green>0.6</green>
                 <blue>0.2</blue>
             </color>
+            <condition>
+                <property>instrumentation/nav[0]/in-range</property>
+            </condition>
             <chunks>
                 <chunk>
                     <type>text-value</type>
@@ -109,7 +112,7 @@
 
         <layer>
             <condition>
-                <property>instrumentation/nav/dme-in-range</property>
+                <property>instrumentation/dme[0]/in-range</property>
             </condition>
             <name>VOR dist</name>
             <type>text</type>
@@ -123,8 +126,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/nav/nav-distance</property>
-                    <scale>0.000539</scale>
+                    <property>instrumentation/dme[0]/indicated-distance-nm</property>
                     <format>%03.1f</format>
                 </chunk>
             </chunks>

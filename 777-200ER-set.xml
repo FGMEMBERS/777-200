@@ -2,9 +2,9 @@
 
     <sim>
         <description>Boeing 777-200ER</description>
-        <author>Justin Smithies / Syd Adams</author>
+        <author>Justin Smithies, Syd Adams, Thorsten Brehm</author>
         <status>Development</status>
-        <aircraft-version>20100008</aircraft-version>
+        <aircraft-version>20111005</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200ER</aero>
         <fuel-fraction>0.7</fuel-fraction>
@@ -719,6 +719,18 @@ Service Ceiling: 43,100ft
                 <standby-mhz n="4" type="double">111.70</standby-mhz>
             </frequencies>
         </nav>
+        <dme n="0">
+            <serviceable>true</serviceable>
+            <frequencies>
+                <source>/instrumentation/nav[0]/frequencies/selected-mhz</source>
+            </frequencies>
+        </dme>
+        <dme n="1">
+            <serviceable>true</serviceable>
+            <frequencies>
+                <source>/instrumentation/nav[1]/frequencies/selected-mhz</source>
+            </frequencies>
+        </dme>
         <transponder>
             <serviceable>true</serviceable>
             <id-code>1200</id-code>

@@ -138,7 +138,7 @@
                     <not>
                         <property>instrumentation/efis/inputs/nd-centered</property>
                     </not>
-                    <property>instrumentation/nav/data-is-valid</property>
+                    <property>instrumentation/nav/in-range</property>
                     <not>
                          <property>instrumentation/nav/slaved-to-gps</property>
                     </not>
@@ -363,7 +363,7 @@
             <condition>
                 <and>
                     <property>instrumentation/efis/inputs/nd-centered</property>
-                    <property>instrumentation/nav/data-is-valid</property>
+                    <property>instrumentation/nav/in-range</property>
                     <not>
                          <property>instrumentation/nav/slaved-to-gps</property>
                     </not>
