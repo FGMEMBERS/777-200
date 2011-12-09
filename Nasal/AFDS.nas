@@ -288,7 +288,7 @@ var AFDS = {
             if(me.loc_armed.getValue())
             {
                 msg="LOC";
-                if (getprop("instrumentation/nav/in-range"))
+                if (getprop("instrumentation/nav/signal-quality-norm") > 0.9)
                 {
                     var hddefl = getprop("instrumentation/nav/heading-needle-deflection");
                     var vtemp = 9.9;
