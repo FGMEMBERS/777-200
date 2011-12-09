@@ -188,6 +188,11 @@ WEIGHT/lbs  Vref
     <control-output control="STEER" prop="/controls/gear/maingear-r-steering-angle-rad" />
   </gear>
 
+  <!--  fake gear as tail contact point for tailstrikes -->
+  <gear x="-19.84"  y="0.00" z="-3.38"
+        compression="0.1" spring="1" damp="1" sfric="0.5" dfric="0.5">
+  </gear>
+
   <tank x="-4.3" y="5" z="-1.5" jet="true" capacity="64000"/>
   <tank x="-4.3" y="0" z="-2.5" jet="true" capacity="174900"/>
   <tank x="-4.3" y="-5" z="-1.5" jet="true" capacity="64000"/>
