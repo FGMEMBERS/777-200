@@ -5,117 +5,120 @@
 <!-- cockpit x=22.5 y=0 z=0.78   -->
 
 <fx>
-    <engine>
-        <name>left engine</name>
-        <path>Sounds/jet.wav</path>
-        <mode>looped</mode>
-        <condition>
-            <not>
-                <property>controls/engines/engine[0]/cutoff</property>
-            </not>
-        </condition>
-        <volume>
-            <property>engines/engine[0]/thrust-lbs</property>
-            <factor>0.000015</factor>
-            <min>0.0</min>
-            <max>1</max>
-        </volume>
-        <volume>
-            <property>sim/sound/Ovolume</property>
-        </volume>
-        <position>
-            <x>0</x>
-            <y>9.8</y>
-            <z>-3</z>
-        </position>
-        <reference-dist>60.0</reference-dist>
-        <max-dist>6000.0</max-dist>
-    </engine>
 
     <engine>
-        <name>left n1</name>
-        <path>Sounds/whine.wav</path>
+        <name>left engine</name>
+        <path>/Aircraft/777-200/Sounds/jet-trent2.wav</path>
         <mode>looped</mode>
-        <property>engines/engine[0]/rpm</property>
-        <pitch>
+        <condition>
             <property>engines/engine[0]/rpm</property>
-            <offset>0</offset>
-            <factor>0.02</factor>
-            <min>0.0</min>
-            <max>2.0</max>
-        </pitch>
+        </condition>
         <volume>
             <property>engines/engine[0]/rpm</property>
-            <factor>0.1</factor>
+            <offset>-0.75</offset>
+            <factor>0.0125</factor>
             <min>0.0</min>
-            <max>0.6</max>
+            <max>5.0</max>
         </volume>
-        <volume>
+        <!-- volume>
             <property>sim/sound/Ovolume</property>
-        </volume>
+            <min>0.8</min>
+        </volume-->
         <position>
             <x>0</x>
             <y>9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>60.0</reference-dist>
+        <reference-dist>600.0</reference-dist>
         <max-dist>6000.0</max-dist>
     </engine>
 
     <engine>
         <name>right engine</name>
-        <path>Sounds/jet.wav</path>
+        <path>/Aircraft/777-200/Sounds/jet-trent2.wav</path>
         <mode>looped</mode>
         <condition>
-            <not>
-                <property>controls/engines/engine[1]/cutoff</property>
-            </not>
+            <property>engines/engine[1]/rpm</property>
         </condition>
         <volume>
-            <property>engines/engine[1]/thrust-lbs</property>
-            <factor><factor>0.000015</factor></factor>
+            <property>engines/engine[1]/rpm</property>
+            <offset>-0.75</offset>
+            <factor>0.0125</factor>
             <min>0.0</min>
-            <max>1.0</max>
+            <max>5.0</max>
+        </volume>
+        <!-- 
+        <volume>
+            <property>sim/sound/Ovolume</property>
+            <min>0.8</min>
+        </volume>
+         -->
+        <position>
+            <x>0</x>
+            <y>-9.8</y>
+            <z>-3</z>
+        </position>
+        <reference-dist>600.0</reference-dist>
+        <max-dist>6000.0</max-dist>
+    </engine>
+
+    <engine>
+        <name>left n1</name>
+        <path>/Aircraft/777-200/Sounds/jet-trent1.wav</path>
+        <mode>looped</mode>
+        <property>engines/engine[0]/rpm</property>
+        <pitch>
+            <property>engines/engine[0]/rpm</property>
+            <offset>0.8</offset>
+            <factor>0.01</factor>
+            <min>0.0</min>
+            <max>100.0</max>
+        </pitch>
+        <volume>
+            <property>engines/engine[0]/rpm</property>
+            <factor>0.1</factor>
+            <min>0.0</min>
+            <max>0.5</max>
         </volume>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <position>
             <x>0</x>
-            <y>-9.8</y>
+            <y>9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>60.0</reference-dist>
+        <reference-dist>600.0</reference-dist>
         <max-dist>6000.0</max-dist>
     </engine>
 
     <engine>
         <name>right n1</name>
-        <path>Sounds/whine.wav</path>
+        <path>/Aircraft/777-200/Sounds/jet-trent1.wav</path>
         <mode>looped</mode>
         <property>engines/engine[1]/rpm</property>
         <volume>
             <property>engines/engine[1]/rpm</property>
             <factor>0.1</factor>
             <min>0.0</min>
-            <max>0.6</max>
+            <max>0.5</max>
         </volume>
         <volume>
             <property>sim/sound/Ovolume</property>
         </volume>
         <pitch>
             <property>engines/engine[1]/rpm</property>
-            <offset>0</offset>
-            <factor>0.02</factor>
+            <offset>0.8</offset>
+            <factor>0.01</factor>
             <min>0.0</min>
-            <max>2.0</max>
+            <max>100.0</max>
         </pitch>
         <position>
             <x>0</x>
             <y>-9.8</y>
             <z>-3</z>
         </position>
-        <reference-dist>60.0</reference-dist>
+        <reference-dist>600.0</reference-dist>
         <max-dist>6000.0</max-dist>
     </engine>
 
@@ -197,15 +200,18 @@
         <name>gear-lock</name>
         <path>Sounds/gear-lck.wav</path>
         <condition>
-            <equals>
-                <property>gear/gear[0]/position-norm</property>
-                <value>0</value>
-            </equals>
+            <and>
+                <equals>
+                    <property>gear/gear[0]/position-norm</property>
+                    <value>0</value>
+                </equals>
+                <property>sim/current-view/internal</property>
+            </and>
         </condition>
-        <volume>
-            <property>sim/sound/Ovolume</property>
-            <offset>0.2</offset>
-        </volume>
+        <pitch>
+            <factor>0.0001</factor>
+        </pitch>
+        <volume>2.0</volume>
         <position>
             <x>-22</x>
             <y>0</y>
@@ -673,6 +679,14 @@
             <factor>1.2</factor>
         </pitch>
     </crash>
+
+    <avhum>
+        <path>/Sounds/avionics-400Hz.wav</path>
+        <mode>looped</mode>
+        <type>avionics</type>
+        <property>/controls/electric/avionics-switch</property>
+        <volume><factor>0.2</factor></volume>
+    </avhum>
 
 </fx>
 
