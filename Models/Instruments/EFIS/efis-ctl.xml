@@ -487,54 +487,15 @@ Syd Adams
     <animation>
         <type>pick</type>
         <object-name>inhg.inc</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/altimeter/setting-inhg</property>
-                <step>0.01</step>
-                <min>26.0</min>
-                <max>33.0</max>
-                <wrap>false</wrap>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(4);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
         <object-name>inhg.dec</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>true</repeatable>
-            <binding>
-                <command>property-adjust</command>
-                <property>instrumentation/altimeter/setting-inhg</property>
-                <step>-0.01</step>
-                <min>26.0</min>
-                <max>33.0</max>
-                <wrap>false</wrap>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>controls.click(3);</script>
-            </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>inhg.dec</object-name>
-        <object-name>inhg.inc</object-name>
         <object-name>inhg.reset</object-name>
         <action>
             <button>3</button> <!--  scroll up -->
-            <repeatable>true</repeatable>
+            <repeatable>false</repeatable>
             <binding>
+				<condition>
+					<not><property>instrumentation/inputs/setting-std</property></not>
+				</condition>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>0.01</step>
@@ -556,8 +517,11 @@ Syd Adams
         <object-name>inhg.reset</object-name>
         <action>
             <button>4</button> <!--  scroll down -->
-            <repeatable>true</repeatable>
+            <repeatable>false</repeatable>
             <binding>
+				<condition>
+					<not><property>instrumentation/inputs/setting-std</property></not>
+				</condition>
                 <command>property-adjust</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
                 <step>-0.01</step>
@@ -572,7 +536,7 @@ Syd Adams
         </action>
     </animation>
 
-    <animation>
+	<animation>
         <type>pick</type>
         <object-name>inhg.reset</object-name>
         <visible>true</visible>
@@ -580,9 +544,32 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/inputs/setting-std</property>
+            </binding>
+			<binding>
+				<condition>
+					<property>instrumentation/inputs/setting-std</property>
+				</condition>
+                <command>property-assign</command>
+                <property>instrumentation/efis/inhg-previos</property>
+                <property>instrumentation/altimeter/setting-inhg</property>
+            </binding>
+			<binding>
+				<condition>
+					<property>instrumentation/inputs/setting-std</property>
+				</condition>
+                <command>property-assign</command>
+				<property>instrumentation/altimeter/setting-inhg</property>
+				<value>29.92</value>
+            </binding>
+			<binding>
+				<condition>
+					<not><property>instrumentation/inputs/setting-std</property></not>
+				</condition>
                 <command>property-assign</command>
                 <property>instrumentation/altimeter/setting-inhg</property>
-                <value>29.92</value>
+                <property>instrumentation/efis/inhg-previos</property>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -591,7 +578,7 @@ Syd Adams
         </action>
     </animation>
 
-    <animation>
+	<animation>
         <type>pick</type>
         <object-name>Mins.dec</object-name>
         <action>

@@ -21,8 +21,11 @@ var EFIS = {
         m.eicas = m.efis.initNode("eicas");
         m.mfd_mode_num = m.mfd.initNode("mode-num",2,"INT");
         m.mfd_display_mode = m.mfd.initNode("display-mode",m.mfd_mode_list[2]);
+        m.std_mode = m.efis.initNode("inputs/setting-std",0,"BOOL");
+        m.previous_set = m.efis.initNode("inhg-previos",29.92);
         m.kpa_mode = m.efis.initNode("inputs/kpa-mode",0,"BOOL");
         m.kpa_output = m.efis.initNode("inhg-kpa",29.92);
+        m.kpa_prevoutput = m.efis.initNode("inhg-kpa-previous",29.92);
         m.temp = m.efis.initNode("fixed-temp",0);
         m.alt_meters = m.efis.initNode("inputs/alt-meters",0,"BOOL");
         m.fpv = m.efis.initNode("inputs/fpv",0,"BOOL");
@@ -62,6 +65,9 @@ var EFIS = {
         var kp = getprop("instrumentation/altimeter/setting-inhg");
         kp= kp * 33.8637526;
         me.kpa_output.setValue(kp);
+        kp = getprop("instrumentation/efis/inhg-previos");
+        kp= kp * 33.8637526;
+        me.kpa_prevoutput.setValue(kp);
         },
 #### update temperature display ####
     update_temp : func{
@@ -409,10 +415,16 @@ var start_updates = func {
         Startup();
         setprop("/controls/gear/brake-parking",0);
         controls.gearDown(-1);
+        setprop("instrumentation/afds/ap-modes/pitch-mode", "TO/GA");
+        setprop("instrumentation/afds/ap-modes/roll-mode", "TO/GA");
+        setprop("instrumentation/afds/inputs/vertical-index", 10);
+        setprop("instrumentation/afds/inputs/lateral-index", 9);
+        setprop("sim/model/start-idling", 1);
+        setprop("autopilot/internal/airport-height", 0);
     }
     update_systems();
 }
-                           
+
 setlistener("/sim/signals/reinit", func {
     SndOut.setDoubleValue(0.15);
     Shutdown();
@@ -430,29 +442,29 @@ setlistener("/sim/signals/reinit", func {
 
 setlistener("/sim/current-view/internal", func(vw){
     if(vw.getValue()){
-    SndOut.setDoubleValue(0.3);
+        SndOut.setDoubleValue(0.3);
     }else{
-    SndOut.setDoubleValue(1.0);
+        SndOut.setDoubleValue(1.0);
     }
 },1,0);
 
 setlistener("/sim/model/start-idling", func(idle){
     var run= idle.getBoolValue();
     if(run){
-    Startup();
+        Startup();
     }else{
-    Shutdown();
+        Shutdown();
     }
 },0,0);
 
 setlistener("/instrumentation/clock/et-knob", func(et){
     var tmp = et.getValue();
     if(tmp == -1){
-	    chronometer.reset();
-   	}elsif(tmp==0){
-	    chronometer.stop();
+        chronometer.reset();
+    }elsif(tmp==0){
+        chronometer.stop();
     }elsif(tmp==1){
-    	chronometer.start();
+        chronometer.start();
     }
 },0,0);
 
@@ -473,11 +485,13 @@ setlistener("instrumentation/tcas/outputs/traffic-alert", func(traffic_alert){
 setlistener("controls/flight/speedbrake", func(spd_brake){
     var brake = spd_brake.getValue();
     # do not update lever when in AUTO position
-    if ((brake==0)and(getprop("controls/flight/speedbrake-lever")==2))
+    if ((brake==0) and (getprop("controls/flight/speedbrake-lever")==2))
     {
         setprop("controls/flight/speedbrake-lever",0);
     }
-    elsif ((brake==1)and(getprop("controls/flight/speedbrake-lever")==0))
+    elsif ((brake==1)
+           and ((getprop("controls/flight/speedbrake-lever")==0)
+           or (getprop("controls/flight/speedbrake-lever")==1)))
     {
         setprop("controls/flight/speedbrake-lever",2);
     }
@@ -524,75 +538,79 @@ controls.toggleLandingLights = func()
 }
 
 var Startup = func{
-setprop("sim/model/armrest",1);
-setprop("controls/electric/engine[0]/generator",1);
-setprop("controls/electric/engine[1]/generator",1);
-setprop("controls/electric/engine[0]/bus-tie",1);
-setprop("controls/electric/engine[1]/bus-tie",1);
-setprop("controls/electric/APU-generator",1);
-setprop("controls/electric/avionics-switch",1);
-setprop("controls/electric/battery-switch",1);
-setprop("controls/electric/inverter-switch",1);
-setprop("controls/lighting/instrument-norm",0.8);
-setprop("controls/lighting/nav-lights",1);
-setprop("controls/lighting/beacon",1);
-setprop("controls/lighting/strobe",1);
-setprop("controls/lighting/wing-lights",1);
-setprop("controls/lighting/taxi-lights",1);
-setprop("controls/lighting/logo-lights",1);
-setprop("controls/lighting/cabin-lights",1);
-setprop("controls/lighting/landing-light[0]",1);
-setprop("controls/lighting/landing-light[1]",1);
-setprop("controls/lighting/landing-light[2]",1);
-setprop("controls/engines/engine[0]/cutoff",0);
-setprop("controls/engines/engine[1]/cutoff",0);
-setprop("controls/fuel/tank/boost-pump",1);
-setprop("controls/fuel/tank/boost-pump[1]",1);
-setprop("controls/fuel/tank[1]/boost-pump",1);
-setprop("controls/fuel/tank[1]/boost-pump[1]",1);
-setprop("controls/fuel/tank[2]/boost-pump",1);
-setprop("controls/fuel/tank[2]/boost-pump[1]",1);
-setprop("controls/flight/elevator-trim",0);
-setprop("controls/flight/aileron-trim",0);
-setprop("controls/flight/rudder-trim",0);
-if (getprop("/sim/model/start-idling")==0) setprop("/sim/model/start-idling",1);
-setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
+    setprop("sim/model/armrest",1);
+    setprop("controls/electric/engine[0]/generator",1);
+    setprop("controls/electric/engine[1]/generator",1);
+    setprop("controls/electric/engine[0]/bus-tie",1);
+    setprop("controls/electric/engine[1]/bus-tie",1);
+    setprop("controls/electric/APU-generator",1);
+    setprop("controls/electric/avionics-switch",1);
+    setprop("controls/electric/battery-switch",1);
+    setprop("controls/electric/inverter-switch",1);
+    setprop("controls/lighting/instrument-norm",0.8);
+    setprop("controls/lighting/nav-lights",1);
+    setprop("controls/lighting/beacon",1);
+    setprop("controls/lighting/strobe",1);
+    setprop("controls/lighting/wing-lights",1);
+    setprop("controls/lighting/taxi-lights",1);
+    setprop("controls/lighting/logo-lights",1);
+    setprop("controls/lighting/cabin-lights",1);
+    setprop("controls/lighting/landing-light[0]",1);
+    setprop("controls/lighting/landing-light[1]",1);
+    setprop("controls/lighting/landing-light[2]",1);
+    setprop("controls/engines/engine[0]/cutoff",0);
+    setprop("controls/engines/engine[1]/cutoff",0);
+    setprop("controls/fuel/tank/boost-pump",1);
+    setprop("controls/fuel/tank/boost-pump[1]",1);
+    setprop("controls/fuel/tank[1]/boost-pump",1);
+    setprop("controls/fuel/tank[1]/boost-pump[1]",1);
+    setprop("controls/fuel/tank[2]/boost-pump",1);
+    setprop("controls/fuel/tank[2]/boost-pump[1]",1);
+    setprop("controls/flight/elevator-trim",0);
+    setprop("controls/flight/aileron-trim",0);
+    setprop("controls/flight/rudder-trim",0);
+    if (getprop("/sim/model/start-idling")==0) setprop("/sim/model/start-idling",1);
+    setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
 }
 
 var Shutdown = func{
-setprop("/controls/gear/brake-parking",1);
-setprop("controls/electric/engine[0]/generator",0);
-setprop("controls/electric/engine[1]/generator",0);
-setprop("controls/electric/engine[0]/bus-tie",0);
-setprop("controls/electric/engine[1]/bus-tie",0);
-setprop("controls/electric/APU-generator",0);
-setprop("controls/electric/avionics-switch",0);
-setprop("controls/electric/battery-switch",0);
-setprop("controls/electric/inverter-switch",0);
-setprop("controls/lighting/instruments-norm",0);
-setprop("controls/lighting/nav-lights",0);
-setprop("controls/lighting/beacon",0);
-setprop("controls/lighting/strobe",0);
-setprop("controls/lighting/wing-lights",0);
-setprop("controls/lighting/taxi-lights",0);
-setprop("controls/lighting/logo-lights",0);
-setprop("controls/lighting/cabin-lights",0);
-setprop("controls/lighting/landing-light[0]",0);
-setprop("controls/lighting/landing-light[1]",0);
-setprop("controls/lighting/landing-light[2]",0);
-setprop("controls/lighting/strobe",0);
-setprop("controls/lighting/beacon",0);
-setprop("controls/engines/engine[0]/cutoff",1);
-setprop("controls/engines/engine[1]/cutoff",1);
-setprop("controls/fuel/tank/boost-pump",0);
-setprop("controls/fuel/tank/boost-pump[1]",0);
-setprop("controls/fuel/tank[1]/boost-pump",0);
-setprop("controls/fuel/tank[1]/boost-pump[1]",0);
-setprop("controls/fuel/tank[2]/boost-pump",0);
-setprop("controls/fuel/tank[2]/boost-pump[1]",0);
-setprop("sim/model/armrest",0);
-if (getprop("/sim/model/start-idling")) setprop("/sim/model/start-idling",0);
-setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
+    setprop("/controls/gear/brake-parking",1);
+    setprop("controls/electric/engine[0]/generator",0);
+    setprop("controls/electric/engine[1]/generator",0);
+    setprop("controls/electric/engine[0]/bus-tie",0);
+    setprop("controls/electric/engine[1]/bus-tie",0);
+    setprop("controls/electric/APU-generator",0);
+    setprop("controls/electric/avionics-switch",0);
+    setprop("controls/electric/battery-switch",0);
+    setprop("controls/electric/inverter-switch",0);
+    setprop("controls/lighting/instruments-norm",0);
+    setprop("controls/lighting/nav-lights",0);
+    setprop("controls/lighting/beacon",0);
+    setprop("controls/lighting/strobe",0);
+    setprop("controls/lighting/wing-lights",0);
+    setprop("controls/lighting/taxi-lights",0);
+    setprop("controls/lighting/logo-lights",0);
+    setprop("controls/lighting/cabin-lights",0);
+    setprop("controls/lighting/landing-light[0]",0);
+    setprop("controls/lighting/landing-light[1]",0);
+    setprop("controls/lighting/landing-light[2]",0);
+    setprop("controls/lighting/strobe",0);
+    setprop("controls/lighting/beacon",0);
+    setprop("controls/engines/engine[0]/cutoff",1);
+    setprop("controls/engines/engine[1]/cutoff",1);
+    setprop("controls/fuel/tank/boost-pump",0);
+    setprop("controls/fuel/tank/boost-pump[1]",0);
+    setprop("controls/fuel/tank[1]/boost-pump",0);
+    setprop("controls/fuel/tank[1]/boost-pump[1]",0);
+    setprop("controls/fuel/tank[2]/boost-pump",0);
+    setprop("controls/fuel/tank[2]/boost-pump[1]",0);
+    setprop("controls/flight/elevator-trim",0);
+    setprop("controls/flight/aileron-trim",0);
+    setprop("controls/flight/rudder-trim",0);
+    setprop("controls/flight/speedbrake-lever",0);
+    setprop("sim/model/armrest",0);
+    if (getprop("/sim/model/start-idling")) setprop("/sim/model/start-idling",0);
+    setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
 }
 
 var click_reset = func(propName) {
@@ -627,4 +645,3 @@ var update_systems = func {
     
     settimer(update_systems,0);
 }
-

@@ -89,7 +89,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>consumables/fuel/total-fuel-kg</property>
+        <property>consumables/fuel/total-fuel-lbs</property>
 		<scale>0.001</scale>
 		<format>%3.1f</format>
         <font>helvetica_medium.txf</font>
@@ -111,7 +111,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>consumables/fuel/tank[0]/level-kg</property>
+		<property>consumables/fuel/tank[0]/level-lbs</property>
 		<scale>0.001</scale>
 		<format>%3.1f</format>
         <font>helvetica_medium.txf</font>
@@ -133,7 +133,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>consumables/fuel/tank[1]/level-kg</property>
+        <property>consumables/fuel/tank[1]/level-lbs</property>
 		<scale>0.001</scale>
 		<format>%3.1f</format>
         <font>helvetica_medium.txf</font>
@@ -155,7 +155,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>consumables/fuel/tank[2]/level-kg</property>
+        <property>consumables/fuel/tank[2]/level-lbs</property>
 		<scale>0.001</scale>
 		<format>%3.1f</format>
         <font>helvetica_medium.txf</font>
@@ -211,6 +211,130 @@ Syd Adams
         </font-resolution>
     </text>
 
+    <text>
+        <name>N2</name>
+        <offsets>
+            <x-m>0.003</x-m>
+            <y-m>-0.048</y-m>
+            <z-m>0</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>literal</type>
+		<text>N2</text>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>		
+
+    <text>
+        <name>N2L</name>
+        <offsets>
+            <x-m>0.003</x-m>
+            <y-m>-0.083</y-m>
+            <z-m>0</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>number-value</type>
+        <property>engines/engine[0]/n2</property>
+		<format>%3.1f</format>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>	
+
+    <text>
+        <name>N2R</name>
+        <offsets>
+            <x-m>0.003</x-m>
+            <y-m>-0.018</y-m>
+            <z-m>0</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>number-value</type>
+        <property>engines/engine[1]/n2</property>
+		<format>%3.1f</format>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>		
+
+    <text>
+        <name>FF</name>
+        <offsets>
+            <x-m>0.003</x-m>
+			<y-m>-0.048</y-m>
+            <z-m>-0.009</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>literal</type>
+		<text>FF</text>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>		
+
+    <text>
+        <name>FF0</name>
+        <offsets>
+            <x-m>0.003</x-m>
+            <y-m>-0.085</y-m>
+            <z-m>-0.009</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>number-value</type>
+        <property>engines/engine[0]/fuel-flow-pph</property>
+		<format>%2.1f</format>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>	
+
+    <text>
+        <name>FF1</name>
+        <offsets>
+            <x-m>0.003</x-m>
+            <y-m>-0.018</y-m>
+            <z-m>-0.009</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>number-value</type>
+        <property>engines/engine[1]/fuel-flow-pph</property>
+		<format>%2.1f</format>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>		
+
     <animation>
         <name>WHITE</name>
         <type>material</type>
@@ -220,6 +344,10 @@ Syd Adams
 		<object-name>tank1qty</object-name>
 		<object-name>tank2qty</object-name>
 		<object-name>tank3qty</object-name>
+		<object-name>N2L</object-name>
+		<object-name>N2R</object-name>	
+		<object-name>FF0</object-name>	
+		<object-name>FF1</object-name>		
         <emission>
 			<red>0.9</red>
 			<green>0.9</green>
@@ -242,4 +370,31 @@ Syd Adams
 		</specular>
     </animation>
 
+    <animation>
+        <name>blueish</name>
+        <type>material</type>
+		<object-name>N2</object-name>
+		<object-name>FF</object-name>		
+        <emission>
+			<red>0.3</red>
+			<green>0.6</green>
+			<blue>0.9</blue>
+		</emission>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<diffuse>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</diffuse>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+    </animation>	
+	
 </PropertyList>

@@ -21,6 +21,7 @@
                 <file type="string">BA</file>
             </lights>
             <armrest type="double">0</armrest>
+            <start-idling type="bool">0</start-idling>
         </model>
 
         <view n="0">
@@ -530,7 +531,15 @@ Service Ceiling: 43,100ft
                     <property>instrumentation/weu/serviceable</property>
                 </binding>
             </key>
-            <key n="108">
+            <key n="100">
+                <name>d</name>
+                <desc>TO/GA switch</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>b777.afds.input(2,2);</script>
+                </binding>
+            </key>
+             <key n="108">
                 <name>l</name>
                 <desc>toggle landing lights</desc>
                 <binding>
@@ -773,7 +782,7 @@ Service Ceiling: 43,100ft
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>
         <flight>
-            <speedbrake-lever type="int">1</speedbrake-lever>
+            <speedbrake-lever type="int">0</speedbrake-lever>
         </flight>
     </controls>
 

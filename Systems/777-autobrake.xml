@@ -126,10 +126,10 @@
         <type>RS</type>
         <enable>
             <condition>
-            <and>
-                <property>autopilot/autobrake/selected</property>
-                <not><property>autopilot/autobrake/rto-selected</property></not>
-            </and>
+                <and>
+                    <property>autopilot/autobrake/selected</property>
+                    <not><property>autopilot/autobrake/rto-selected</property></not>
+                </and>
             </condition>
         </enable>
         

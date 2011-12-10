@@ -97,7 +97,7 @@ WEIGHT/lbs  Vref
       <control-speed control="FLAP0" transition-time="78"/>
       <control-input axis="/controls/flight/speedbrake" control="SPOILER"/>
       <control-output control="SPOILER" prop="/surface-positions/speedbrake-norm"/>
-      <control-speed control="SPOILER" transition-time="5"/>
+      <control-speed control="SPOILER" transition-time="2"/>
       <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
       <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>
       <control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm"/>
@@ -124,8 +124,8 @@ WEIGHT/lbs  Vref
   </vstab>
 
   <jet x="1.16" y="9.89"  z="-2.995" mass="17000" thrust="93400" spool-time="3"
-       egt="840" tsfc="0.56 " epr="40" n1-idle="21.8" n1-max="104" n2-idle="70" n2-max="107">
-    <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
+       egt="840" tsfc="0.32 " epr="40" n1-idle="18.5" n1-max="104" n2-idle="70" n2-max="107" reverse="0.4">
+    <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
     <control-speed control="REVERSE_THRUST" transition-time="4"/>
@@ -133,8 +133,8 @@ WEIGHT/lbs  Vref
   </jet>
 
   <jet x="1.16" y="-9.89"  z="-2.995" mass="17000" thrust="93400"  spool-time="3"
-       egt="840" tsfc="0.56" epr="40" n1-idle="21.8" n1-max="104" n2-idle="70" n2-max="107">
-    <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
+       egt="840" tsfc="0.32" epr="40" n1-idle="18.5" n1-max="104" n2-idle="70" n2-max="107" reverse="0.4">
+    <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE"/>
     <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
     <control-speed control="REVERSE_THRUST" transition-time="4"/>

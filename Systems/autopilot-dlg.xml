@@ -381,7 +381,7 @@
                 <legend>&lt;&lt;</legend>
                 <binding>
                     <command>property-adjust</command>
-                    <property>autopilot/settings/target-altitude-ft</property>
+                    <property>autopilot/settings/counter-set-altitude-ft</property>
                     <step type="double">-1000.0</step>
                     <min>0</min>
                     <max>50000</max>
@@ -399,7 +399,7 @@
                 <legend>&lt;</legend>
                 <binding>
                     <command>property-adjust</command>
-                    <property>autopilot/settings/target-altitude-ft</property>
+                    <property>autopilot/settings/counter-set-altitude-ft</property>
                     <step type="double">-100.0</step>
                     <min>0</min>
                     <max>50000</max>
@@ -414,7 +414,7 @@
                 <pref-width>70</pref-width>
                 <pref-height>25</pref-height>
                 <name>altset</name>
-                <property>autopilot/settings/target-altitude-ft</property>
+                <property>autopilot/settings/counter-set-altitude-ft</property>
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
@@ -427,7 +427,7 @@
                 <legend>&gt;</legend>
                 <binding>
                     <command>property-adjust</command>
-                    <property>autopilot/settings/target-altitude-ft</property>
+                    <property>autopilot/settings/counter-set-altitude-ft</property>
                     <step type="double">100.0</step>
                     <min>0</min>
                     <max>50000</max>
@@ -445,7 +445,7 @@
                 <legend>&gt;&gt;</legend>
                 <binding>
                     <command>property-adjust</command>
-                    <property>autopilot/settings/target-altitude-ft</property>
+                    <property>autopilot/settings/counter-set-altitude-ft</property>
                     <step type="double">1000.0</step>
                     <min>0</min>
                     <max>50000</max>
