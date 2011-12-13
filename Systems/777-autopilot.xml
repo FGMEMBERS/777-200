@@ -559,17 +559,29 @@
 		</output>
 	</filter>
 		
-  <pi-simple-controller>
-	<name>Altitude Stage 1</name>
-	<debug>false</debug>
-	<enable>
-	  <condition>
-		 <equals>
-			<property>instrumentation/afds/ap-modes/pitch-mode</property>
-			<value>ALT</value>
-		  </equals>
-	 </condition>
-	</enable>
+	<pi-simple-controller>
+		<name>Altitude Stage 1</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<or>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>ALT</value>
+					</equals>
+					<and>
+						<equals>
+							<property>instrumentation/afds/ap-modes/pitch-mode</property>
+							<value>V/S</value>
+						</equals>
+						<equals>
+							<property>autopilot/settings/vertical-speed-fpm</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</or>
+			</condition>
+		</enable>
 	<input>
 	  <property>instrumentation/altimeter/indicated-altitude-ft</property>
 	</input>
@@ -614,14 +626,12 @@
 	<config>
 		<Kp>
 			<condition>
-				<and>
-					<greater-than>
-						<property>instrumentation/altimeter/indicated-altitude-ft</property>
-						<value>14000</value>
-					</greater-than>
-				</and>
+				<greater-than>
+					<property>instrumentation/altimeter/indicated-altitude-ft</property>
+					<value>14000</value>
+				</greater-than>
 			</condition>
-			<value>0.1</value>
+			<value>0.2</value>
 		</Kp>
 	  <Kp>0.5</Kp>
 	  <beta>1.0</beta>
@@ -807,39 +817,51 @@
 	</config>
   </pid-controller>
 
-  <pid-controller>
-	<name>VS</name>
-	<debug>false</debug>
-	<enable>
-	  <property>instrumentation/afds/ap-modes/pitch-mode</property>
-	  <value>V/S</value>
-	</enable>
-	<input>
-	  <property>/velocities/vertical-speed-fps</property>
-	</input>
-	<reference>
-	  <property>/autopilot/settings/vertical-speed-fpm</property>
-	  <scale>0.01666666</scale>
-	</reference>
-	<output>
-	  <property>/autopilot/internal/target-pitch-deg</property>
-	</output>
-	<config>
-	  <Ts>0.05</Ts>
-	  <Kp>0.15</Kp>
-	  <beta>1.0</beta>
-	  <alpha>0.1</alpha>
-	  <gamma>0.0</gamma>
-	  <Ti>10.0</Ti>
-	  <Td>0.00001</Td>
-		<u_min>
-			<property>instrumentation/afds/settings/pitch-min</property>
-		</u_min>
-		<u_max>
-			<property>instrumentation/afds/settings/pitch-max</property>
-		</u_max>
-	</config>
-  </pid-controller>
+	<pid-controller>
+		<name>VS</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<and>
+					<equals>
+						<property>instrumentation/afds/ap-modes/pitch-mode</property>
+						<value>V/S</value>
+					</equals>
+					<not>
+						<equals>
+							<property>autopilot/settings/vertical-speed-fpm</property>
+							<value>0</value>
+						</equals>
+					</not>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<property>/velocities/vertical-speed-fps</property>
+		</input>
+		<reference>
+			<property>/autopilot/settings/vertical-speed-fpm</property>
+			<scale>0.01666666</scale>
+		</reference>
+		<output>
+			<property>/autopilot/internal/target-pitch-deg</property>
+		</output>
+		<config>
+			<Ts>0.05</Ts>
+			<Kp>0.15</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>10.0</Ti>
+			<Td>0.00001</Td>
+			<u_min>
+				<property>instrumentation/afds/settings/pitch-min</property>
+			</u_min>
+			<u_max>
+				<property>instrumentation/afds/settings/pitch-max</property>
+			</u_max>
+		</config>
+	</pid-controller>
 
 	<filter>
 		<name>Flare end</name>

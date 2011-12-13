@@ -507,6 +507,20 @@ Service Ceiling: 43,100ft
                     <property>instrumentation/afds/inputs/lnav-hold</property>
                 </binding>
             </key>
+			<key n="15">
+				<name>Ctrl-o</name>
+				<desc>A/P ~ Passive</desc>
+				<binding>
+					<command>property-toggle</command>
+					<property>instrumentation/afds/inputs/AP</property>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						b777.afds.input(3,3);
+					</script>
+				</binding>
+			</key>
             <key n="16">
                 <name>Ctrl-P</name>
                 <desc>toggle VS</desc>
@@ -523,6 +537,14 @@ Service Ceiling: 43,100ft
                     <property>instrumentation/afds/inputs/at-hold</property>
                 </binding>
             </key>
+            <key n="20">
+                <name>Ctrl-t</name>
+                <desc>TO/GA switch</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>b777.afds.input(2,2);</script>
+                </binding>
+            </key>
             <key n="23">
                 <name>Ctrl-W</name>
                 <desc>enable/disable EICAS warning unit</desc>
@@ -531,14 +553,27 @@ Service Ceiling: 43,100ft
                     <property>instrumentation/weu/serviceable</property>
                 </binding>
             </key>
-            <key n="100">
-                <name>d</name>
-                <desc>TO/GA switch</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>b777.afds.input(2,2);</script>
-                </binding>
-            </key>
+			<key n="40">
+				<name>(</name>
+				<repeatable type="bool">true</repeatable>
+				<desc>Roll trim-- Left</desc>
+				<binding>
+					<command>property-adjust</command>
+					<property>/controls/flight/aileron-trim</property>
+					<step type="double">-0.012</step>
+				</binding>
+			</key>
+			<key n="41">
+				<name>)</name>
+				<repeatable type="bool">true</repeatable>
+				<desc>Roll trim++ Right</desc>
+				<binding>
+					<command>property-adjust</command>
+					<property>/controls/flight/aileron-trim</property>
+					<step type="double">0.012</step>
+				</binding>
+			</key>
+
              <key n="108">
                 <name>l</name>
                 <desc>toggle landing lights</desc>

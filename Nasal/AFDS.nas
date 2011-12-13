@@ -102,8 +102,8 @@ var AFDS = {
 	{
 		if(getprop("sim/model/start-idling"))
 		{
-			ind_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
-			if((mode==0) and (me.FD.getValue()))
+			current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
+			if(mode==0)
 			{
 				# horizontal AP controls
 				if(btn == 1)		# Heading Sel button
@@ -170,9 +170,9 @@ var AFDS = {
 					# hold current altitude
 					if(me.AP.getValue() or me.FD.getValue())
 					{
-						var alt = int((ind_alt+50)/100)*100;
-						me.alt_setting.setValue(alt);
+						var alt = int((current_alt+50)/100)*100;
 						me.target_alt.setValue(alt);
+						me.autothrottle_mode.setValue(5);	# A/T SPD
 					}
 					else
 					{
@@ -187,8 +187,27 @@ var AFDS = {
 					if (vs<-8000) vs = -8000;
 					if (vs>6000) vs = 6000;
 					me.vs_setting.setValue(vs);
-					alt = me.alt_setting.getValue();
-					me.target_alt.setValue(alt);
+					if(vs == 0)
+					{
+						me.target_alt.setValue(current_alt);
+					}
+					else
+					{
+						me.target_alt.setValue(me.alt_setting.getValue());
+					}
+					me.autothrottle_mode.setValue(5);	# A/T SPD
+				}
+				elsif(btn == 255)
+				{
+					if(me.vs_setting.getValue() == 0)
+					{
+						me.target_alt.setValue(current_alt);
+					}
+					else
+					{
+						me.target_alt.setValue(me.alt_setting.getValue());
+					}
+					btn = 2;
 				}
 				if(btn==5)		# VNAV
 				{
@@ -227,13 +246,13 @@ var AFDS = {
 				if(btn==8)		# FLCH SPD
 				{
 					# change flight level
-					if(((ind_alt
+					if(((current_alt
 						- getprop("autopilot/internal/airport-height")) < 400)
 						or (me.at1.getValue() == 0) or (me.at2.getValue() == 0))
 					{
 						btn = 0;
 					}
-					elsif(ind_alt < me.alt_setting.getValue())
+					elsif(current_alt < me.alt_setting.getValue())
 					{
 						me.autothrottle_mode.setValue(1);	# A/T THR
 					}
@@ -262,7 +281,7 @@ var AFDS = {
 						btn = 0;
 					}
 				}
-				elsif((ind_alt
+				elsif((current_alt
 						- getprop("autopilot/internal/airport-height")) < 400)
 				{
 					btn=0;
@@ -276,13 +295,28 @@ var AFDS = {
 				{
 					if(me.FD.getValue())
 					{
-						me.lateral_mode.setValue(9);		# TOGA
-						me.vertical_mode.setValue(10);		# TOGA
+						if(getprop("gear/gear[1]/wow"))
+						{
+							me.lateral_mode.setValue(9);		# TOGA
+							me.vertical_mode.setValue(10);		# TOGA
+						}
 					}
 					else
 					{
 						me.lateral_mode.setValue(0);		# Clear
 						me.vertical_mode.setValue(0);		# Clear
+					}
+				}
+				elsif(btn == 3)	# AP button toggle
+				{
+					if(!me.AP.getValue())
+					{
+						me.rollout_armed.setValue(0);
+						me.flare_armed.setValue(0);
+						me.lateral_mode.setValue(2);		# HDG HOLD
+						me.vertical_mode.setValue(1);		# ALT
+						me.loc_armed.setValue(0);			# Disarm
+						me.gs_armed.setValue(0);			# Disarm
 					}
 				}
 				else
@@ -394,6 +428,7 @@ var AFDS = {
 	},
 #################
 	ap_update : func{
+		current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
 		var VS =getprop("velocities/vertical-speed-fps");
 		var TAS =getprop("velocities/uBody-fps");
 		if(TAS < 10) TAS = 10;
@@ -529,7 +564,7 @@ var AFDS = {
 		}elsif(me.step==3){ ### check vertical modes  ###
 			if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 100)
 			{
-				setprop("autopilot/internal/airport-height", getprop("instrumentation/altimeter/indicated-altitude-ft"));
+				setprop("autopilot/internal/airport-height", current_alt);
 			}
 			var idx=me.vertical_mode.getValue();
 			var test_fpa=me.vs_fpa_selected.getValue();
@@ -537,10 +572,15 @@ var AFDS = {
 			if(idx==9 and !test_fpa)idx=2;
 			if ((idx==8)or(idx==1)or(idx==2)or(idx==9))
 			{
-				# flight level change mode
-				if (abs(getprop("instrumentation/altimeter/indicated-altitude-ft")-me.target_alt.getValue()) < 200)
+				offset = (abs(getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm")) / 8);
+				if(offset < 200)
 				{
-					# within target altitude: switch to ALT HOLD mode
+					offset = 200;
+				}
+				# flight level change mode
+				if (abs(current_alt - me.alt_setting.getValue()) < offset)
+				{
+					# within MCP altitude: switch to ALT HOLD mode
 					idx=1;
 					if(me.autothrottle_mode.getValue() != 0)
 					{
@@ -550,14 +590,14 @@ var AFDS = {
 				}
 				if((me.mach_setting.getValue() >= 0.840)
 					and (me.ias_mach_selected.getValue() == 0)
-					and (getprop("instrumentation/altimeter/indicated-altitude-ft") < me.target_alt.getValue()))
+					and (current_alt < me.target_alt.getValue()))
 				{
 					me.ias_mach_selected.setValue(1);
 					me.mach_setting.setValue(0.840);
 				}
 				elsif((me.ias_setting.getValue() >= 310)
 					and (me.ias_mach_selected.getValue() == 1)
-					and (getprop("instrumentation/altimeter/indicated-altitude-ft") > me.target_alt.getValue()))
+					and (current_alt > me.target_alt.getValue()))
 				{
 					me.ias_mach_selected.setValue(0);
 					me.ias_setting.setValue(310);
@@ -579,7 +619,7 @@ var AFDS = {
 				}
 				elsif(me.ias_mach_selected.getValue() == 0)
 				{
-					if(getprop("instrumentation/altimeter/indicated-altitude-ft") < 10000)
+					if(current_alt < 10000)
 					{
 						me.ias_setting.setValue(250);
 					}
@@ -599,11 +639,11 @@ var AFDS = {
 				{
 					me.ias_setting.setValue(195);
 				}
-				elsif(getprop("instrumentation/altimeter/indicated-altitude-ft") < 2000)
+				elsif(current_alt < 2000)
 				{
 					me.ias_setting.setValue(210);
 				}
-				elsif(getprop("instrumentation/altimeter/indicated-altitude-ft") < 10000)
+				elsif(current_alt < 10000)
 				{
 					me.ias_setting.setValue(250);
 				}
@@ -611,21 +651,21 @@ var AFDS = {
 				{
 					if((me.mach_setting.getValue() >= 0.840)
 						and (me.ias_mach_selected.getValue() == 0)
-						and (getprop("instrumentation/altimeter/indicated-altitude-ft") < me.target_alt.getValue()))
+						and (current_alt < me.target_alt.getValue()))
 					{
 						me.ias_mach_selected.setValue(1);
 						me.mach_setting.setValue(0.840);
 					}
 					elsif((me.ias_setting.getValue() >= 310)
 						and (me.ias_mach_selected.getValue() == 1)
-						and (getprop("instrumentation/altimeter/indicated-altitude-ft") > me.target_alt.getValue()))
+						and (current_alt > me.target_alt.getValue()))
 					{
 						me.ias_mach_selected.setValue(0);
 						me.ias_setting.setValue(310);
 					}
 					elsif(me.ias_mach_selected.getValue() == 0)
 					{
-						if(getprop("instrumentation/altimeter/indicated-altitude-ft") < 10000)
+						if(current_alt < 10000)
 						{
 							me.ias_setting.setValue(250);
 						}
@@ -637,7 +677,7 @@ var AFDS = {
 				}
 				me.alt_setting.setValue(getprop("autopilot/route-manager/cruise/altitude-ft"));
 				me.target_alt.setValue(me.alt_setting.getValue());
-				if (abs(getprop("instrumentation/altimeter/indicated-altitude-ft")
+				if (abs(current_alt
 					- me.alt_setting.getValue()) < 200)
 				{
 					# within target altitude: switch to VANV PTH mode
@@ -674,12 +714,12 @@ var AFDS = {
 					}
 				}
 			}
-			if((getprop("instrumentation/altimeter/indicated-altitude-ft")
+			if((current_alt
 				- getprop("autopilot/internal/airport-height")) > 400) # Take off mode and above baro 400 ft
 			{
 				if(me.vnav_armed.getValue())
 				{
-					if(me.alt_setting.getValue() == int(getprop("instrumentation/altimeter/indicated-altitude-ft")))
+					if(me.alt_setting.getValue() == int(current_alt))
 					{
 						idx = 3;		# VNAV PTH
 					}
@@ -695,10 +735,12 @@ var AFDS = {
 			me.AP_pitch_engaged.setBoolValue(idx>0);
 
 		}
-		elsif(me.step==4) 			### Auto Throttle mode control  ###
+		elsif(me.step == 4) 			### Auto Throttle mode control  ###
 		{
+			# Thrust reference rate calculation. This should be provided by FMC
 			derate = getprop("consumables/fuel/total-fuel-lbs") + getprop("/sim/weight[0]/weight-lb") + getprop("/sim/weight[1]/weight-lb");
 			derate = 0.3 - derate * 0.00000083;
+			# IAS and MACH number update in back ground
 			if(me.ias_mach_selected.getValue() == 1)
 			{
 				temp = int(getprop("instrumentation/airspeed-indicator/indicated-speed-kt"));
@@ -709,48 +751,62 @@ var AFDS = {
 				temp = (int(getprop("instrumentation/airspeed-indicator/indicated-mach") * 1000) / 1000);
 				me.mach_setting.setValue(temp);
 			}
-			ind_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
+			# Auto throttle arm switch is offed
 			if((me.at1.getValue() == 0) or (me.at2.getValue() == 0))
 			{
 				me.autothrottle_mode.setValue(0);
 			}
+			# auto-throttle disengaged when reverser is enabled
 			elsif (getprop("controls/engines/engine/reverser"))
 			{
-				# auto-throttle disables when reverser is enabled
 				me.autothrottle_mode.setValue(0);
 			}
-			elsif((me.autothrottle_mode.getValue() == 2)		# THR REF
-				and (me.vertical_mode.getValue() != 3)
-				and (me.vertical_mode.getValue() != 5))
+			elsif(me.autothrottle_mode.getValue() == 2)		# THR REF
 			{
-				if((getprop("/controls/flight/flaps") == 0)
-					and (me.vertical_mode.getValue() != 4))
+				if((getprop("instrumentation/airspeed-indicator/indicated-speed-kt") > 80)
+					and ((current_alt - getprop("autopilot/internal/airport-height")) < 400))
 				{
-					me.autothrottle_mode.setValue(5);		# SPD
+					me.autothrottle_mode.setValue(3);			# HOLD
 				}
-				else
+				elsif((me.vertical_mode.getValue() != 3)		# not VNAV PTH
+					and (me.vertical_mode.getValue() != 5))		# not VNAV ALT
 				{
-					if(ind_alt < 35000)
+					if((getprop("/controls/flight/flaps") == 0)		# FLAPs up
+						and (me.vertical_mode.getValue() != 4))		# not VNAV SPD
 					{
-						thrust_lmt = derate / 35000 * abs(ind_alt) + (0.95 - derate);
+						me.autothrottle_mode.setValue(5);		# SPD
 					}
 					else
 					{
-						thrust_lmt = 0.96;
+						# Thurst limit varis on altitude
+						if(current_alt < 35000)
+						{
+							thrust_lmt = derate / 35000 * abs(current_alt) + (0.95 - derate);
+						}
+						else
+						{
+							thrust_lmt = 0.96;
+						}
+						setprop("/controls/engines/engine[0]/throttle", thrust_lmt);
+						setprop("/controls/engines/engine[1]/throttle", thrust_lmt);
 					}
-					setprop("/controls/engines/engine[0]/throttle", thrust_lmt);
-					setprop("/controls/engines/engine[1]/throttle", thrust_lmt);
 				}
-					
 			}
-			elsif((ind_alt
-				- getprop("autopilot/internal/airport-height")) > 400) # Take off mode and above baro 400 ft
+			elsif((me.autothrottle_mode.getValue() == 4)		# Auto throttle mode IDLE 
+				and (me.vertical_mode.getValue() == 8)			# FLCH SPD mode
+				and (getprop("engines/engine[0]/n1") < 30)		# #1Thrust is actual flight idle
+				and (getprop("engines/engine[1]/n1") < 30))		# #2Thrust is actual flight idle
+			{
+				me.autothrottle_mode.setValue(3);				# HOLD
+			}
+			# Take off mode and above baro 400 ft
+			elsif((current_alt - getprop("autopilot/internal/airport-height")) > 400)
 			{
 				if(me.autothrottle_mode.getValue() == 1)		# THR
 				{
-					if(ind_alt < 35000)
+					if(current_alt < 35000)
 					{
-						thrust_lmt = derate / 35000 * abs(ind_alt) + (0.95 - derate);
+						thrust_lmt = derate / 35000 * abs(current_alt) + (0.95 - derate);
 					}
 					else
 					{
@@ -759,8 +815,9 @@ var AFDS = {
 					setprop("/controls/engines/engine[0]/throttle", thrust_lmt);
 					setprop("/controls/engines/engine[1]/throttle", thrust_lmt);
 				}
-				elsif((me.vertical_mode.getValue() == 0)
-					or (me.autothrottle_mode.getValue() == 3))	# HOLD
+				elsif((me.vertical_mode.getValue() == 0)		# not set
+					or ((me.autothrottle_mode.getValue() == 3)	# HOLD
+					and (me.vertical_mode.getValue() != 8)))
 				{
 					if(getprop("/controls/flight/flaps") == 0)
 					{
@@ -784,18 +841,6 @@ var AFDS = {
 					and (me.vertical_mode.getValue() == 6)) 
 			{
 				me.autothrottle_mode.setValue(5);				# SPD
-			}
-			elsif((getprop("instrumentation/airspeed-indicator/indicated-speed-kt") > 80)
-				and (me.autothrottle_mode.getValue() == 2))
-			{
-				me.autothrottle_mode.setValue(3);				# HOLD
-			}
-			elsif((me.autothrottle_mode.getValue() == 4)		# Auto throttle mode IDLE 
-				and (me.vertical_mode.getValue() == 8)			# FLCH SPD mode
-				and (getprop("controls/engines/engine[0]/throttle") < 0.13)			# #1Thrust is actual flight idle
-				and (getprop("controls/engines/engine[1]/throttle") < 0.13))		# #2Thrust is actual flight idle
-			{
-				me.autothrottle_mode.setValue(3);				# HOLD
 			}
 			idx = me.autothrottle_mode.getValue();
 			me.AP_speed_mode.setValue(me.spd_list[idx]);

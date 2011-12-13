@@ -422,6 +422,10 @@ Syd Adams
                 <command>property-toggle</command>
                 <property>controls/electric/battery-switch</property>
             </binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>sim/model/start-idling</property>
+			</binding>
             <binding>
                 <command>nasal</command>
                 <script>controls.click(4);</script>
