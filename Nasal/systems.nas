@@ -58,6 +58,7 @@ var EFIS = {
         m.eicas_msg_caution = m.eicas.initNode("msg/caution"," ","STRING");
         m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
         m.update_radar_font();
+        m.update_nd_center();
     return m;
     },
 #### convert inhg to kpa ####
@@ -136,6 +137,7 @@ var EFIS = {
                 if(rng < 10) rng = 10;
             }
             setprop("instrumentation/radar/range",rng);
+            setprop("instrumentation/nd/range",rng);
             me.range.setValue(rng);
         }
         elsif(md=="tfc")
@@ -232,22 +234,23 @@ var EFIS = {
             num = 1 - num;
             me.nd_centered.setValue(num);
             me.update_radar_font();
+            me.update_nd_center();
         }
     },
     update_radar_font : func {
         var fnt=[12,13];
-        var osg = getprop("sim/version/openscenegraph");
         var linespacing = 0.01;
-        if (osg[0] == "2"[0])
-        {
-            # OSG 2.8.x had other (broken) font-size/line-spacing,
-            # which was changed/"fixed" with >=2.9.14 (>=OSG3.0 stable)
-            fnt = [5,8];
-            linespacing = 0.3;
-        }
         var num = me.nd_centered.getValue();
         setprop("instrumentation/radar/font/size",fnt[num]);
         setprop("instrumentation/radar/font/line-spacing",linespacing);
+    },
+    update_nd_center : func {
+        if (me.nd_centered.getValue() == 0)
+        {
+            setprop("instrumentation/nd/y-center", 0.15);
+        } else {
+            setprop("instrumentation/nd/y-center", 0.5);
+        }
     },
 #### update EICAS messages ####
     update_eicas : func(alertmsgs,cautionmsgs,infomsgs) {
