@@ -301,31 +301,33 @@ var Engine = {
         m.cutoff.setBoolValue(1);
         m.fuel_out = props.globals.getNode("engines/engine["~eng_num~"]/out-of-fuel",1);
         m.fuel_out.setBoolValue(0);
-        m.starter = props.globals.getNode("controls/engines/engine["~eng_num~"]/starter",1);
+        m.starterSwitch = props.globals.getNode("controls/engines/engine["~eng_num~"]/starter",1);
+        m.starterSystem = props.globals.getNode("systems/electrical/outputs/starter["~eng_num~"]",1);
         m.fuel_pph=m.eng.getNode("fuel-flow_pph",1);
         m.fuel_pph.setDoubleValue(0);
         m.fuel_gph=m.eng.getNode("fuel-flow-gph",1);
         m.hpump=props.globals.getNode("systems/hydraulics/pump-psi["~eng_num~"]",1);
+        m.running = props.globals.getNode("engines/engine["~eng_num~"]/run",1);
+        m.running.setBoolValue(0);
         m.hpump.setDoubleValue(0);
-    return m;
+        return m;
     },
 #### update ####
     update : func{
-        if(me.fuel_out.getBoolValue())
-            me.cutoff.setBoolValue(1);
-        if(!me.cutoff.getBoolValue()){
+        if(me.fuel_out.getBoolValue() or me.cutoff.getBoolValue())
+            me.running.setBoolValue(0);
+        if(me.running.getBoolValue()){
             me.rpm.setValue(me.n1.getValue());
             me.throttle_lever.setValue(me.throttle.getValue());
         }else{
             me.throttle_lever.setValue(0);
-            if(me.starter.getBoolValue()){
+            if(me.starterSystem.getValue()>20){
                 me.spool_up();
             }else{
                 var tmprpm = me.rpm.getValue();
-                if(tmprpm > 0.0){
-                    tmprpm -= getprop("sim/time/delta-realtime-sec") * 0.5;
-                    me.rpm.setValue(tmprpm);
-                }
+                tmprpm -= getprop("sim/time/delta-realtime-sec") * 0.3;
+                if(tmprpm < 0.0) tmprpm = 0;
+                me.rpm.setValue(tmprpm);
             }
         }
         me.fuel_pph.setValue(me.fuel_gph.getValue()*me.fdensity);
@@ -336,13 +338,20 @@ var Engine = {
     },
 
     spool_up : func{
-        if(!me.cutoff.getBoolValue()){
-            return;
-        }else{
-            var tmprpm = me.rpm.getValue();
-            tmprpm += getprop("sim/time/delta-realtime-sec") * 0.5;
-            me.rpm.setValue(tmprpm);
-            if(tmprpm >= me.n1.getValue())me.cutoff.setBoolValue(0);
+        var tmprpm = me.rpm.getValue();
+        tmprpm += getprop("sim/time/delta-realtime-sec") * 0.4;
+        if ((tmprpm>2) and
+            (me.fuel_out.getBoolValue() or me.cutoff.getBoolValue()))
+        {
+            # failed to start: no fuel (or cutoff)
+            me.starterSwitch.setBoolValue(0);
+            tmprpm = 2;
+        }
+        me.rpm.setValue(tmprpm);
+        if(tmprpm >= me.n1.getValue())
+        {
+            me.running.setBoolValue(1);
+            me.starterSwitch.setBoolValue(0);
         }
     },
 
@@ -422,8 +431,9 @@ var start_updates = func {
         setprop("instrumentation/afds/ap-modes/roll-mode", "TO/GA");
         setprop("instrumentation/afds/inputs/vertical-index", 10);
         setprop("instrumentation/afds/inputs/lateral-index", 9);
-        setprop("sim/model/start-idling", 1);
         setprop("autopilot/internal/airport-height", 0);
+        setprop("/engines/engine[0]/run",1);
+        setprop("/engines/engine[1]/run",1);
     }
     update_systems();
 }
@@ -451,14 +461,14 @@ setlistener("/sim/current-view/internal", func(vw){
     }
 },1,0);
 
-setlistener("/sim/model/start-idling", func(idle){
-    var run= idle.getBoolValue();
+controls.autostart = func() {
+    var run = !(getprop("/engines/engine[0]/run") or getprop("/controls/engines/engine[0]/starter"));
     if(run){
         Startup();
     }else{
         Shutdown();
     }
-},0,0);
+}
 
 setlistener("/instrumentation/clock/et-knob", func(et){
     var tmp = et.getValue();
@@ -547,7 +557,7 @@ var Startup = func{
     setprop("controls/electric/engine[0]/bus-tie",1);
     setprop("controls/electric/engine[1]/bus-tie",1);
     setprop("controls/electric/APU-generator",1);
-    setprop("controls/electric/avionics-switch",1);
+    setprop("/systems/electrical/outputs/avionics",1);
     setprop("controls/electric/battery-switch",1);
     setprop("controls/electric/inverter-switch",1);
     setprop("controls/lighting/instrument-norm",0.8);
@@ -572,8 +582,9 @@ var Startup = func{
     setprop("controls/flight/elevator-trim",0);
     setprop("controls/flight/aileron-trim",0);
     setprop("controls/flight/rudder-trim",0);
-    if (getprop("/sim/model/start-idling")==0) setprop("/sim/model/start-idling",1);
     setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
+    settimer(func { setprop("controls/engines/engine[0]/starter",1);}, 1);
+    settimer(func { setprop("controls/engines/engine[1]/starter",1);}, 4);
 }
 
 var Shutdown = func{
@@ -583,7 +594,7 @@ var Shutdown = func{
     setprop("controls/electric/engine[0]/bus-tie",0);
     setprop("controls/electric/engine[1]/bus-tie",0);
     setprop("controls/electric/APU-generator",0);
-    setprop("controls/electric/avionics-switch",0);
+    setprop("/systems/electrical/outputs/avionics",0);
     setprop("controls/electric/battery-switch",0);
     setprop("controls/electric/inverter-switch",0);
     setprop("controls/lighting/instruments-norm",0);
@@ -612,13 +623,15 @@ var Shutdown = func{
     setprop("controls/flight/rudder-trim",0);
     setprop("controls/flight/speedbrake-lever",0);
     setprop("sim/model/armrest",0);
-    if (getprop("/sim/model/start-idling")) setprop("/sim/model/start-idling",0);
     setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
+    setprop("controls/engines/engine[0]/starter",0);
+    setprop("controls/engines/engine[1]/starter",0);
 }
 
 var click_reset = func(propName) {
     setprop(propName,0);
 }
+
 controls.click = func(button) {
     if (getprop("sim/freeze/replay-state"))
         return;

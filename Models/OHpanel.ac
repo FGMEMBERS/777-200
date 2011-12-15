@@ -3854,7 +3854,7 @@ refs 4
 3 0.982300579548 0.168407201767
 kids 0
 OBJECT poly
-name "LPCK.btn.001"
+name "AUTOSTART"
 data 8
 Mesh.429
 texture "OHpanel.png"
@@ -3907,7 +3907,7 @@ refs 4
 3 0.982300579548 0.168407201767
 kids 0
 OBJECT poly
-name "LPCK.btn.002"
+name "EEC.MODE.L"
 data 8
 Mesh.430
 texture "OHpanel.png"
@@ -3960,7 +3960,7 @@ refs 4
 3 0.982300579548 0.168407201767
 kids 0
 OBJECT poly
-name "LPCK.btn.003"
+name "EEC.MODE.R"
 data 8
 Mesh.431
 texture "OHpanel.png"
@@ -4013,7 +4013,7 @@ refs 4
 3 0.982300579548 0.168407201767
 kids 0
 OBJECT poly
-name "LPCK.btn.004"
+name "CARGO.FIRE.ARM.AFT"
 data 8
 Mesh.432
 texture "OHpanel.png"
@@ -4066,7 +4066,7 @@ refs 4
 3 0.982300579548 0.168407201767
 kids 0
 OBJECT poly
-name "LPCK.btn.005"
+name "CARGO.FIRE.ARM.FWD"
 data 8
 Mesh.433
 texture "OHpanel.png"
@@ -4119,7 +4119,7 @@ refs 4
 3 0.982300579548 0.168407201767
 kids 0
 OBJECT poly
-name "LPCK.btn.006"
+name "CARGO.FIRE.DISCHARGE"
 data 8
 Mesh.434
 texture "OHpanel.png"
@@ -4172,7 +4172,7 @@ refs 4
 3 0.982300579548 0.168407201767
 kids 0
 OBJECT poly
-name "LPCK.btn.007"
+name "WINDOW.HEAT.FWD"
 data 8
 Mesh.447
 texture "OHpanel.png"

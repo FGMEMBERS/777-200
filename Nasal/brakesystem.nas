@@ -141,7 +141,7 @@ var BrakeSystem =
 
 var BrakeSys = BrakeSystem.new();
 
-setlistener("/sim/model/start-idling",
+setlistener("/sim/signals/fdm-initialized",
             func(idle) { BrakeSys.reset(); },
             0,0);
 

@@ -11,7 +11,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>BCN.btn</object-name>
-<property>controls/lighting/beacon</property>
+   <property>controls/lighting/beacon</property>
    <factor>0.1</factor>
    <axis>
      <x>0</x>
@@ -23,7 +23,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>NAV.btn</object-name>
-<property>controls/lighting/nav-lights</property>
+   <property>controls/lighting/nav-lights</property>
    <factor>0.1</factor>
    <axis>
      <x>0</x>
@@ -35,7 +35,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>LOGO.btn</object-name>
-<property>controls/lighting/logo-lights</property>
+   <property>controls/lighting/logo-lights</property>
    <factor>0.1</factor>
    <axis>
      <x>0</x>
@@ -47,7 +47,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>WING.btn</object-name>
-<property>controls/lighting/wing-lights</property>
+   <property>controls/lighting/wing-lights</property>
    <factor>0.1</factor>
    <axis>
      <x>0</x>
@@ -59,7 +59,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>BATT.btn</object-name>
-<property>controls/electric/battery-switch</property>
+   <property>controls/electric/battery-switch</property>
    <factor>0.0806</factor>
    <axis>
      <x>0</x>
@@ -71,7 +71,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>LGEN.btn</object-name>
-<property>controls/electric/engine/generator</property>
+   <property>controls/electric/engine/generator</property>
    <factor>0.0806</factor>
    <axis>
      <x>0</x>
@@ -83,7 +83,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>RGEN.btn</object-name>
-<property>controls/electric/engine[1]/generator</property>
+   <property>controls/electric/engine[1]/generator</property>
    <factor>0.0806</factor>
    <axis>
      <x>0</x>
@@ -95,7 +95,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>APU.btn</object-name>
-<property>controls/electric/APU-generator</property>
+   <property>controls/electric/APU-generator</property>
    <factor>0.0806</factor>
    <axis>
      <x>0</x>
@@ -107,7 +107,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>LBUS.btn</object-name>
-<property>controls/electric/engine/bus-tie</property>
+   <property>controls/electric/engine/bus-tie</property>
    <factor>0.1</factor>
    <axis>
      <x>0</x>
@@ -119,7 +119,7 @@ Syd Adams
  <animation>
    <type>textranslate</type>
    <object-name>RBUS.btn</object-name>
-<property>controls/electric/engine[1]/bus-tie</property>
+   <property>controls/electric/engine[1]/bus-tie</property>
    <factor>0.1</factor>
    <axis>
      <x>0</x>
@@ -422,10 +422,6 @@ Syd Adams
                 <command>property-toggle</command>
                 <property>controls/electric/battery-switch</property>
             </binding>
-			<binding>
-				<command>property-toggle</command>
-				<property>sim/model/start-idling</property>
-			</binding>
             <binding>
                 <command>nasal</command>
                 <script>controls.click(4);</script>
@@ -657,6 +653,29 @@ Syd Adams
             <binding>
                 <command>property-toggle</command>
                 <property>controls/fuel/tank[2]/boost-pump[1]</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AUTOSTART</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/engine[0]/starter</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/engine[1]/starter</property>
+                <value>1</value>
             </binding>
             <binding>
                 <command>nasal</command>

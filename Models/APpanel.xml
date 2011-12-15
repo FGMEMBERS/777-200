@@ -282,7 +282,7 @@ Autopilot Control Panel
 		<object-name>IAS.led3</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<not>
 					<property>instrumentation/afds/inputs/ias-mach-selected</property>
 				</not>
@@ -349,7 +349,7 @@ Autopilot Control Panel
 		<object-name>MACH.led3</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<property>instrumentation/afds/inputs/ias-mach-selected</property>
 				<not-equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -416,7 +416,7 @@ Autopilot Control Panel
 		<object-name>HDG.led3</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<not>
 					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
 				</not>
@@ -471,7 +471,7 @@ Autopilot Control Panel
 		<object-name>TRK.led3</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<property>instrumentation/afds/inputs/hdg-trk-selected</property>
 			</and>
 		</condition>
@@ -522,7 +522,7 @@ Autopilot Control Panel
 		<object-name>vs.ind</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<not>
 					<property>instrumentation/afds/inputs/vs-fpa-selected</property>
 				</not>
@@ -538,7 +538,7 @@ Autopilot Control Panel
 		<object-name>VS.led4</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
 					<value>V/S</value>
@@ -623,7 +623,7 @@ Autopilot Control Panel
 		<object-name>fpa.ind</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<property>instrumentation/afds/inputs/vs-fpa-selected</property>
 			</and>
 		</condition>
@@ -635,7 +635,7 @@ Autopilot Control Panel
 		<object-name>FPA.led2</object-name>
 		<condition>
 			<and>
-				<property>sim/model/start-idling</property>
+				<property>/systems/electrical/outputs/avionics</property>
 				<property>instrumentation/afds/inputs/vs-fpa-selected</property>
 				<equals>
 					<property>instrumentation/afds/ap-modes/pitch-mode</property>
@@ -699,7 +699,7 @@ Autopilot Control Panel
 		<object-name>ALT.led4</object-name>
 		<object-name>ALT.led5</object-name>
 		<condition>
-			<property>sim/model/start-idling</property>
+			<property>/systems/electrical/outputs/avionics</property>
 		</condition>
 	</animation>
 
@@ -1171,7 +1171,7 @@ Autopilot Control Panel
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<not>
 							<property>instrumentation/afds/inputs/ias-mach-selected</property>
 						</not>
@@ -1186,7 +1186,7 @@ Autopilot Control Panel
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/ias-mach-selected</property>
 					</and>
 				</condition>
@@ -1212,7 +1212,7 @@ Autopilot Control Panel
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<not>
 							<property>instrumentation/afds/inputs/ias-mach-selected</property>
 						</not>
@@ -1227,7 +1227,7 @@ Autopilot Control Panel
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/ias-mach-selected</property>
 					</and>
 				</condition>
@@ -1252,7 +1252,7 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>sim/model/start-idling</property>
+					<property>/systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
@@ -1276,7 +1276,7 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>sim/model/start-idling</property>
+					<property>/systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
@@ -1300,7 +1300,7 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>sim/model/start-idling</property>
+					<property>/systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
@@ -1324,7 +1324,7 @@ Autopilot Control Panel
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>sim/model/start-idling</property>
+					<property>/systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>autopilot/settings/heading-bug-deg</property>
@@ -1349,7 +1349,7 @@ Autopilot Control Panel
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<property>sim/model/start-idling</property>
+					<property>/systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/afds/inputs/bank-limit-switch</property>
@@ -1374,7 +1374,7 @@ Autopilot Control Panel
 			<repeatable>false</repeatable>
 			<binding>
 				<condition>
-					<property>sim/model/start-idling</property>
+					<property>/systems/electrical/outputs/avionics</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/afds/inputs/bank-limit-switch</property>
@@ -1524,12 +1524,12 @@ Autopilot Control Panel
 			<button>4</button> <!--  scroll down -->
 			<repeatable>true</repeatable>
 		<condition>
-			<property>sim/model/start-idling</property>
+			<property>/systems/electrical/outputs/avionics</property>
 		</condition>
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
@@ -1544,7 +1544,7 @@ Autopilot Control Panel
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
 					</and>
 				</condition>
@@ -1570,7 +1570,7 @@ Autopilot Control Panel
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<not>
 							<property>instrumentation/afds/inputs/alt-knob</property>
 						</not>
@@ -1585,7 +1585,7 @@ Autopilot Control Panel
 			<binding>
 				<condition>
 					<and>
-						<property>sim/model/start-idling</property>
+						<property>/systems/electrical/outputs/avionics</property>
 						<property>instrumentation/afds/inputs/alt-knob</property>
 					</and>
 				</condition>

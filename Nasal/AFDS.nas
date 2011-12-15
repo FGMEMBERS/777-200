@@ -100,7 +100,7 @@ var AFDS = {
 ###################
 	input : func(mode,btn)
 	{
-		if(getprop("sim/model/start-idling"))
+		if(getprop("/systems/electrical/outputs/avionics"))
 		{
 			current_alt = getprop("instrumentation/altimeter/indicated-altitude-ft");
 			if(mode==0)

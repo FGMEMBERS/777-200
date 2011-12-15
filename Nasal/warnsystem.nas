@@ -86,7 +86,7 @@ var WEU =
         setlistener("controls/gear/brake-parking",      func { Weu.update_listener_inputs() } );
         setlistener("controls/engines/engine/reverser", func { Weu.update_listener_inputs() } );
         setlistener("controls/electric/APU-generator",  func { Weu.update_listener_inputs() } );
-        setlistener("controls/electric/avionics-switch",func { Weu.update_listener_inputs() } );
+        setlistener("/systems/electrical/outputs/avionics",func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/rudder-trim",      func { Weu.update_listener_inputs() } );
         setlistener("controls/flight/elevator-trim",    func { Weu.update_listener_inputs() } );
         setlistener("sim/freeze/replay-state",          func { Weu.update_listener_inputs() } );
@@ -249,7 +249,7 @@ var WEU =
     update_listener_inputs : func()
     {
         # be nice to sim: some inputs rarely change. use listeners.
-        me.enabled       = (getprop("controls/electric/avionics-switch") and
+        me.enabled       = (getprop("/systems/electrical/outputs/avionics") and
                             (getprop("sim/freeze/replay-state")!=1) and
                             me.serviceable.getValue());
         me.speedbrake    = getprop("controls/flight/speedbrake");

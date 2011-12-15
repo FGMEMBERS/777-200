@@ -43,7 +43,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LH_ind1</object-name>
-        <property>engines/engine[0]/n1</property>
+        <property>engines/engine[0]/rpm</property>
         <factor>2.085</factor>
         <center>
             <x-m>0</x-m>
@@ -60,7 +60,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LH_ind2</object-name>
-        <property>engines/engine[0]/n1</property>
+        <property>engines/engine[0]/rpm</property>
         <factor>1.33</factor>
         <center>
             <x-m>0</x-m>
@@ -77,7 +77,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>LH_ind3</object-name>
-        <property>engines/engine[0]/n1</property>
+        <property>engines/engine[0]/rpm</property>
         <factor>0.66</factor>
         <center>
             <x-m>0</x-m>
@@ -94,7 +94,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind1</object-name>
-        <property>engines/engine[1]/n1</property>
+        <property>engines/engine[1]/rpm</property>
         <factor>2.085</factor>
         <center>
             <x-m>0</x-m>
@@ -111,7 +111,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind2</object-name>
-        <property>engines/engine[1]/n1</property>
+        <property>engines/engine[1]/rpm</property>
         <factor>1.33</factor>
         <center>
             <x-m>0</x-m>
@@ -128,7 +128,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind3</object-name>
-        <property>engines/engine[1]/n1</property>
+        <property>engines/engine[1]/rpm</property>
         <factor>0.66</factor>
         <center>
             <x-m>0</x-m>
@@ -173,7 +173,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[0]/n1</property>
+        <property>engines/engine[0]/rpm</property>
         <format>%3.1f</format>
         <font>helvetica_bold.txf</font>
         <character-size>0.009</character-size>
@@ -194,7 +194,7 @@ Syd Adams
         <alignment>right-center</alignment>
         <axis-alignment>yz-plane</axis-alignment>
         <type>number-value</type>
-        <property>engines/engine[1]/n1</property>
+        <property>engines/engine[1]/rpm</property>
         <format>%3.1f</format>
         <font>helvetica_bold.txf</font>
         <character-size>0.009</character-size>

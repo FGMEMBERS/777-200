@@ -4,7 +4,7 @@
         <description>Boeing 777-200ER</description>
         <author>Justin Smithies, Syd Adams, Thorsten Brehm</author>
         <status>Development</status>
-        <aircraft-version>20111005</aircraft-version>
+        <aircraft-version>20111215</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200ER</aero>
         <fuel-fraction>0.7</fuel-fraction>
@@ -21,7 +21,6 @@
                 <file type="string">BA</file>
             </lights>
             <armrest type="double">0</armrest>
-            <start-idling type="bool">0</start-idling>
         </model>
 
         <view n="0">
@@ -277,8 +276,8 @@ Service Ceiling: 43,100ft
                     <item>
                         <label>Autostart</label>
                         <binding>
-                            <command>property-toggle</command>
-                            <property>sim/model/start-idling</property>
+                            <command>nasal</command>
+                            <script>controls.autostart();</script>
                         </binding>
                     </item>
                     <item >
@@ -594,8 +593,8 @@ Service Ceiling: 43,100ft
                 <name>s</name>
                 <desc>autostart / shutdown</desc>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>sim/model/start-idling</property>
+                    <command>nasal</command>
+                    <script>controls.autostart();</script>
                 </binding>
             </key>
         </keyboard>
@@ -606,7 +605,6 @@ Service Ceiling: 43,100ft
             <serviceable type="bool">true</serviceable>
         </inst-vertical-speed-indicator>
         <radar>
-            <switch type="string" archive="y">on</switch>
             <mode-control type="int" archive="y">1</mode-control>
             <display-mode type="string">plan</display-mode>
             <display-controls>
