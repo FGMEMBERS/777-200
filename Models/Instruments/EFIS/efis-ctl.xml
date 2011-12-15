@@ -217,8 +217,12 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/terr</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("terr",0);</script>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -230,8 +234,12 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/arpt</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("arpt",0);</script>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -243,8 +251,12 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/wpt</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("wpt",0);</script>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -256,8 +268,12 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/sta</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("sta",0);</script>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -269,8 +285,12 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/wxr</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("wxr",0);</script>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>
@@ -400,8 +420,12 @@ Syd Adams
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/tfc</property>
+            </binding>
+            <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("tfc",1);</script>
+                <script>controls.click(3);</script>
             </binding>
         </action>
     </animation>

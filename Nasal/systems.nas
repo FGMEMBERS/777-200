@@ -8,7 +8,7 @@ var fuel_density =0;
 aircraft.livery.init("Aircraft/777-200/Models/Liveries");
 
 #EFIS specific class
-# ie: var efis = EFIS.new("instrumentation/EFIS");
+# ie: var efis = EFIS.new("instrumentation/efis");
 var EFIS = {
     new : func(prop1){
         m = { parents : [EFIS]};
@@ -128,7 +128,7 @@ var EFIS = {
         controls.click(3);
         if(md=="range")
         {
-            var rng =getprop("instrumentation/radar/range");
+            var rng = me.range.getValue();
             if(val ==1){
                 rng =rng * 2;
                 if(rng > 640) rng = 640;
@@ -136,20 +136,7 @@ var EFIS = {
                 rng =rng / 2;
                 if(rng < 10) rng = 10;
             }
-            setprop("instrumentation/radar/range",rng);
-            setprop("instrumentation/nd/range",rng);
             me.range.setValue(rng);
-        }
-        elsif(md=="tfc")
-        {
-            var pos =getprop("instrumentation/radar/switch");
-            if(pos == "on"){
-                pos = "off";
-                
-            }else{
-                pos="on";
-            }
-            setprop("instrumentation/radar/switch",pos);
         }
         elsif(md=="dh")
         {
@@ -182,36 +169,6 @@ var EFIS = {
             me.mfd_mode_num.setValue(num);
             me.mfd_display_mode.setValue(me.mfd_mode_list[num]);
         }
-        elsif(md=="terr")
-        {
-            var num =me.terr.getValue();
-            num=1-num;
-            me.terr.setValue(num);
-        }
-        elsif(md=="arpt")
-        {
-            var num =me.arpt.getValue();
-            num=1-num;
-            me.arpt.setValue(num);
-        }
-        elsif(md=="wpt")
-        {
-            var num =me.wpt.getValue();
-            num=1-num;
-            me.wpt.setValue(num);
-        }
-        elsif(md=="sta")
-        {
-            var num =me.sta.getValue();
-            num=1-num;
-            me.sta.setValue(num);
-        }
-        elsif(md=="wxr")
-        {
-            var num =me.wxr.getValue();
-            num=1-num;
-            me.wxr.setValue(num);
-        }
         elsif(md=="rhvor")
         {
             var num =me.rh_vor_adf.getValue();
@@ -235,6 +192,10 @@ var EFIS = {
             me.nd_centered.setValue(num);
             me.update_radar_font();
             me.update_nd_center();
+        }
+        else
+        {
+            print("Unsupported mode: ",md);
         }
     },
     update_radar_font : func {
@@ -492,7 +453,7 @@ setlistener("instrumentation/transponder/mode-switch", func(transponder_switch){
 setlistener("instrumentation/tcas/outputs/traffic-alert", func(traffic_alert){
     var alert = traffic_alert.getValue();
     # any TCAS alert enables the traffic display
-    if (alert) setprop("instrumentation/radar/switch","on");
+    if (alert) setprop("instrumentation/efis/inputs/tfc",1);
 },0,0);
 
 setlistener("controls/flight/speedbrake", func(spd_brake){

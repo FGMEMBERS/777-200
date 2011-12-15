@@ -11,7 +11,7 @@ Configure the nav-display symbology
 <symbol>
     <type type="string">airport</type>
     <enable>
-        <property>instrumentation/EFIS/inputs/arpt</property>
+        <property>instrumentation/efis/inputs/arpt</property>
     </enable>
     
     <state type="string">!departure</state>
@@ -52,6 +52,7 @@ Configure the nav-display symbology
 
 <symbol>
     <type type="string">waypoint</type>
+    <property>instrumentation/efis/inputs/wpt</property>
     <state type="string">current-wp</state>
     
     <width type="float">24</width>
@@ -80,6 +81,7 @@ Configure the nav-display symbology
     
 <symbol>
     <type type="string">waypoint</type>
+    <property>instrumentation/efis/inputs/wpt</property>
     <state type="string">on-active-route</state>
     <state type="string">!current-wp</state>
     <width type="float">24</width>
@@ -124,7 +126,7 @@ Configure the nav-display symbology
 <symbol>
     <type type="string">vor</type>
     <enable>
-        <property>instrumentation/EFIS/inputs/sta</property>
+        <property>instrumentation/efis/inputs/sta</property>
     </enable>
     <state type="string">!tuned</state>
     <width type="float">16</width>
@@ -143,7 +145,7 @@ Configure the nav-display symbology
 <symbol>
     <type type="string">fix</type>
     <enable>
-        <property>instrumentation/EFIS/inputs/wpt</property>
+        <property>instrumentation/efis/inputs/sta</property>
     </enable>
     <width type="float">16</width>
     <texture-size  type="int">512</texture-size>
@@ -164,8 +166,10 @@ Configure the nav-display symbology
 
 <symbol>
     <type type="string">ai-aircraft</type>
+    <enable>
+        <property>instrumentation/efis/inputs/tfc</property>
+    </enable>
     <state type="string">tcas</state>
-    
     <width type="float">16</width>
     <texture-size  type="int">512</texture-size>
     <u0 type="float">64</u0>
@@ -180,5 +184,3 @@ Configure the nav-display symbology
 </symbol>
 
 </PropertyList>
-
-

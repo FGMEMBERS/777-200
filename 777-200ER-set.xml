@@ -617,7 +617,7 @@ Service Ceiling: 43,100ft
                 <abs-altitude type="bool" archive="y">false</abs-altitude>
             </display-controls>
             <serviceable type="bool">true</serviceable>
-            <range type="int" archive="y">10</range>
+            <range n="0" alias="/instrumentation/efis/inputs/range"/>
             <reference-range-nm type="double" archive="y">640</reference-range-nm>
             <mode type="string" archive="y">WX</mode>
             <font>
@@ -719,8 +719,15 @@ Service Ceiling: 43,100ft
                 <volume type="double"> 1 </volume>          <!-- Volume at reference distance -->
             </speaker>
         </tcas>
-
         <efis>
+            <inputs>
+                <tfc  type="bool">true</tfc>
+                <sta  type="bool">true</sta>
+                <arpt type="bool">true</arpt>
+                <wpt  type="bool">true</wpt>
+                <wxr  type="bool">true</wxr>
+                <range type="int">10</range>
+            </inputs>
             <eicas>
                 <msg n="0">
                     <text>TESTING TESTING</text>
@@ -819,7 +826,7 @@ Service Ceiling: 43,100ft
                 <line-spacing type="float">0.01</line-spacing>
             </font>
             <serviceable type="bool">true</serviceable>
-            <range type="int" archive="y">10</range>
+            <range n="0" alias="/instrumentation/efis/inputs/range"/>
             <aircraft-heading-up type="bool">true</aircraft-heading-up>
             <heading-up-deg type="float">0.01</heading-up-deg>
             <x-center type="float">0.5</x-center>

@@ -39,7 +39,7 @@
 
         <layer>
             <condition>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
+                <property>instrumentation/efis/inputs/nd-centered</property>
             </condition>
             <name>radarfull</name>
             <w>220</w>
