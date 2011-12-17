@@ -172,7 +172,9 @@
 		<enable>
 			<condition>
 				<and>
-					<property>/instrumentation/afds/inputs/AP</property>
+					<not>
+						<property>autopilot/locks/passive-mode</property>
+					</not>
 			 		<equals>
 						<property>instrumentation/afds/ap-modes/roll-mode</property>
 						<value>ROLLOUT</value>
@@ -214,7 +216,7 @@
 			<property>/autopilot/internal/target-roll-deg</property>
 		</reference>
 		<output>
-			<property>/controls/flight/aileron-trim-filter</property>
+			<property>/controls/flight/aileron-filter</property>
 		</output>
 		<config>
 			<Kp>0.08</Kp>
@@ -276,10 +278,35 @@
 			<honor-passive>true</honor-passive>
 		</enable>
 		<input>
-			<property>/controls/flight/aileron-trim-filter</property>
+			<property>/controls/flight/aileron-filter</property>
 		</input>
 		<output>/controls/flight/aileron</output>
 	</filter>
+
+	<pi-simple-controller>
+		<name>Rudder Control</name>
+		<debug>false</debug>
+		<enable>
+		    <condition>
+				<not><property>gear/gear[1]/wow</property></not>
+		    </condition>
+		</enable>
+		<input>
+			<property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
+		</input>
+		<reference>
+			<value>0.0</value>
+		</reference>
+		<output>
+			<property>/controls/flight/rudder</property>
+		</output>
+		<config>
+			<Kp>-0.5</Kp>
+			<Ki>0.0</Ki>
+			<u_min>-0.5</u_min>
+			<u_max>0.5</u_max>
+		</config>
+	</pi-simple-controller>
 
  <!-- =============================================================== -->
  <!-- Pitch Axis Modes                                                -->

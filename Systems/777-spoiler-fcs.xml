@@ -9,10 +9,6 @@
 		<enable>
 		    <condition>
 				<and>
-					<equals>
-						<property>sim/model/start-idling</property>
-					    <value>1</value>
-					</equals>
 					<not><property>autopilot/autobrake/throttles-at-idle</property></not>
 				    <property>gear/gear[1]/wow</property>
 		    		<property>gear/gear[2]/wow</property>
@@ -35,14 +31,6 @@
 	<name>Auto Speedbrake Engage logic</name>
 	<debug>false</debug>
 	<type>RS</type>
-	<enable>
-	    <condition>
-		<equals>
-			<property>sim/model/start-idling</property>
-		    <value>1</value>
-		</equals>
-	    </condition>
-	</enable>
 	<S>
 		<and>
 			<equals>

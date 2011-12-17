@@ -79,6 +79,7 @@ var AFDS = {
 		m.pitch_min = m.AFDS_settings.initNode("pitch-min",-10);
 		m.pitch_max = m.AFDS_settings.initNode("pitch-max",15);
 		m.vnav_alt = m.AFDS_settings.initNode("vnav-alt",35000);
+		m.auto_popup = m.AFDS_settings.initNode("auto-pop-up",0,"BOOL");
 
 		m.AP_roll_mode = m.AFDS_apmodes.initNode("roll-mode","TO/GA");
 		m.AP_roll_arm = m.AFDS_apmodes.initNode("roll-mode-arm"," ");
@@ -280,6 +281,7 @@ var AFDS = {
 					{
 						btn = 0;
 					}
+					me.auto_popup.setValue(1);
 				}
 				elsif((current_alt
 						- getprop("autopilot/internal/airport-height")) < 400)
@@ -313,10 +315,54 @@ var AFDS = {
 					{
 						me.rollout_armed.setValue(0);
 						me.flare_armed.setValue(0);
-						me.lateral_mode.setValue(2);		# HDG HOLD
-						me.vertical_mode.setValue(1);		# ALT
 						me.loc_armed.setValue(0);			# Disarm
 						me.gs_armed.setValue(0);			# Disarm
+						if(!me.FD.getValue())
+						{
+							me.lateral_mode.setValue(0);		# NO MODE
+							me.vertical_mode.setValue(0);		# NO MODE
+						}
+						else
+						{
+							me.lateral_mode.setValue(2);		# HDG HOLD
+							me.vertical_mode.setValue(1);		# ALT
+						}
+					}
+					else
+					{
+						if(!me.FD.getValue())
+						{
+							current_bank = getprop("orientation/roll-deg");
+							if(current_bank > 5)
+							{
+								setprop("autopilot/internal/target-roll-deg", current_bank);
+								me.lateral_mode.setValue(8);		# ATT
+							}
+							else
+							{
+								# set target to current magnetic heading
+								tgtHdg = int(getprop("orientation/heading-magnetic-deg") + 0.50);
+								if (tgtHdg==0) tgtHdg=360;
+								me.hdg_setting.setValue(tgtHdg);
+								me.lateral_mode.setValue(2);		# HDG HOLD
+							}
+						}
+						# hold current vertical speed
+						var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
+						vs = int(vs/100)*100;
+						if (vs<-8000) vs = -8000;
+						if (vs>6000) vs = 6000;
+						me.vs_setting.setValue(vs);
+						if(vs == 0)
+						{
+							me.target_alt.setValue(current_alt);
+						}
+						else
+						{
+							me.target_alt.setValue(me.alt_setting.getValue());
+						}
+						me.vertical_mode.setValue(2);		# V/S
+						me.autothrottle_mode.setValue(5);	# A/T SPD
 					}
 				}
 				else
@@ -535,8 +581,8 @@ var AFDS = {
 			}
 			me.AP_roll_arm.setValue(msg);
 
-		}elsif(me.step==2){ ### check lateral modes  ###
-			var idx=me.lateral_mode.getValue();
+		}elsif(me.step == 2){ ### check lateral modes  ###
+			var idx = me.lateral_mode.getValue();
 			if ((idx == 1) or (idx == 2))
 			{
 				if(getprop("position/gear-agl-ft") > 50)
@@ -557,9 +603,24 @@ var AFDS = {
 					idx = 5;	# ROLLOUT
 				}
 			}
+			elsif(idx == 5)									# ROLLOUT
+			{
+				if(getprop("velocities/groundspeed-kt") < 5)
+				{
+					me.AP.setValue(0);				# Autopilot off
+					if(!me.FD.getValue())
+					{
+						idx = 0;	# NO MODE
+					}
+					else
+					{
+						idx = 1; 	# HDG SEL
+					}
+				}
+			}
 			me.lateral_mode.setValue(idx);
 			me.AP_roll_mode.setValue(me.roll_list[idx]);
-			me.AP_roll_engaged.setBoolValue(idx>0);
+			me.AP_roll_engaged.setBoolValue(idx > 0);
 
 		}elsif(me.step==3){ ### check vertical modes  ###
 			if(getprop("instrumentation/airspeed-indicator/indicated-speed-kt") < 100)
@@ -697,20 +758,31 @@ var AFDS = {
 					me.flare_armed.setValue(0);
 					idx = 7;
 				}
-				elsif(getprop("position/gear-agl-ft") < 1500)
+				elsif(me.AP.getValue() and (getprop("position/gear-agl-ft") < 1500))
 				{
 					me.rollout_armed.setValue(1);		# ROLLOUT
 					me.flare_armed.setValue(1);			# FLARE
 					setprop("autopilot/settings/flare-speed-fps", 0);
 				}
 			}
-			elsif(idx == 7)
+			elsif(idx == 7)								# FLARE
 			{
 				if(me.autothrottle_mode.getValue())
 				{
 					if(getprop("position/gear-agl-ft") < 25)
 					{
 						me.autothrottle_mode.setValue(4);	# A/T IDLE
+					}
+				}
+				if(getprop("velocities/groundspeed-kt") < 5)
+				{
+					if(!me.FD.getValue())
+					{
+						idx = 0;	# NO MODE
+					}
+					else
+					{
+						idx = 1; 	# ALT
 					}
 				}
 			}
@@ -861,7 +933,12 @@ var AFDS = {
 					}
 				}
 			}
-		}elsif(me.step==6){
+		}elsif(me.step==6)
+		{
+			if(getprop("/controls/flight/flaps") == 0)
+			{
+				me.auto_popup.setValue(0);
+			}
 			ma_spd=getprop("/instrumentation/airspeed-indicator/indicated-mach");
 			banklimit=getprop("/instrumentation/afds/inputs/bank-limit-switch");
 			if(banklimit==0)

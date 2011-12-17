@@ -7,7 +7,7 @@
         <aircraft-version>20111215</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200ER</aero>
-        <fuel-fraction>0.7</fuel-fraction>
+        <fuel-fraction>0.2</fuel-fraction>
         <startup>
             <splash-texture>Aircraft/777-200/splash.png</splash-texture>
         </startup>
@@ -511,13 +511,7 @@ Service Ceiling: 43,100ft
 				<desc>A/P ~ Passive</desc>
 				<binding>
 					<command>property-toggle</command>
-					<property>instrumentation/afds/inputs/AP</property>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>
-						b777.afds.input(3,3);
-					</script>
+					<property>autopilot/locks/passive-mode</property>
 				</binding>
 			</key>
             <key n="16">

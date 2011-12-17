@@ -85,7 +85,10 @@ Syd Adams
         <object-name>FDroll</object-name>
         <object-name>FDpitch</object-name>
         <condition>
-                <property>instrumentation/afds/inputs/FD</property>
+			<or>
+				<property>instrumentation/afds/inputs/FD</property>
+				<property>instrumentation/afds/settings/auto-pop-up</property>
+			</or>
         </condition>
     </animation>
 
