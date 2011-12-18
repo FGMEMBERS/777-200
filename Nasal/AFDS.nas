@@ -305,8 +305,11 @@ var AFDS = {
 					}
 					else
 					{
-						me.lateral_mode.setValue(0);		# Clear
-						me.vertical_mode.setValue(0);		# Clear
+						if(!me.AP.getValue())
+						{
+							me.lateral_mode.setValue(0);		# Clear
+							me.vertical_mode.setValue(0);		# Clear
+						}
 					}
 				}
 				elsif(btn == 3)	# AP button toggle
@@ -330,7 +333,9 @@ var AFDS = {
 					}
 					else
 					{
-						if(!me.FD.getValue())
+						if(!me.FD.getValue()
+							and !me.lnav_armed.getValue()
+							and (me.lateral_mode.getValue() != 3))
 						{
 							current_bank = getprop("orientation/roll-deg");
 							if(current_bank > 5)
@@ -347,22 +352,25 @@ var AFDS = {
 								me.lateral_mode.setValue(2);		# HDG HOLD
 							}
 						}
-						# hold current vertical speed
-						var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
-						vs = int(vs/100)*100;
-						if (vs<-8000) vs = -8000;
-						if (vs>6000) vs = 6000;
-						me.vs_setting.setValue(vs);
-						if(vs == 0)
+						if(!me.vnav_armed.getValue()
+							and (me.vertical_mode.getValue() == 0))
 						{
-							me.target_alt.setValue(current_alt);
+							# hold current vertical speed
+							var vs = getprop("instrumentation/inst-vertical-speed-indicator/indicated-speed-fpm");
+							vs = int(vs/100)*100;
+							if (vs<-8000) vs = -8000;
+							if (vs>6000) vs = 6000;
+							me.vs_setting.setValue(vs);
+							if(vs == 0)
+							{
+								me.target_alt.setValue(current_alt);
+							}
+							else
+							{
+								me.target_alt.setValue(me.alt_setting.getValue());
+							}
+							me.vertical_mode.setValue(2);		# V/S
 						}
-						else
-						{
-							me.target_alt.setValue(me.alt_setting.getValue());
-						}
-						me.vertical_mode.setValue(2);		# V/S
-						me.autothrottle_mode.setValue(5);	# A/T SPD
 					}
 				}
 				else
@@ -504,10 +512,10 @@ var AFDS = {
 		tmp = abs(me.fpa_setting.getValue());
 		me.fpa_display.setValue(tmp);
 		msg="";
-		var hdgoffset = me.hdg_setting.getValue()-getprop("orientation/heading-magnetic-deg");
-		if(hdgoffset < -180) hdgoffset +=360;
-		if(hdgoffset > 180) hdgoffset +=-360;
-		setprop("autopilot/internal/fdm-heading-bug-error-deg",hdgoffset);
+#		var hdgoffset = me.hdg_setting.getValue()-getprop("orientation/heading-magnetic-deg");
+#		if(hdgoffset < -180) hdgoffset +=360;
+#		if(hdgoffset > 180) hdgoffset +=-360;
+#		setprop("autopilot/internal/fdm-heading-bug-error-deg",hdgoffset);
 
 		if(me.step==0){ ### glideslope armed ?###
 			msg="";
@@ -869,7 +877,7 @@ var AFDS = {
 				and (getprop("engines/engine[0]/n1") < 30)		# #1Thrust is actual flight idle
 				and (getprop("engines/engine[1]/n1") < 30))		# #2Thrust is actual flight idle
 			{
-				me.autothrottle_mode.setValue(3);				# HOLD
+			#	me.autothrottle_mode.setValue(3);				# HOLD
 			}
 			# Take off mode and above baro 400 ft
 			elsif((current_alt - getprop("autopilot/internal/airport-height")) > 400)
@@ -887,7 +895,7 @@ var AFDS = {
 					setprop("/controls/engines/engine[0]/throttle", thrust_lmt);
 					setprop("/controls/engines/engine[1]/throttle", thrust_lmt);
 				}
-				elsif((me.vertical_mode.getValue() == 0)		# not set
+				elsif((me.vertical_mode.getValue() == 10)		# TO/GA
 					or ((me.autothrottle_mode.getValue() == 3)	# HOLD
 					and (me.vertical_mode.getValue() != 8)))
 				{
