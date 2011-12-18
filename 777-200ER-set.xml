@@ -7,7 +7,7 @@
         <aircraft-version>20111215</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-200ER</aero>
-        <fuel-fraction>0.2</fuel-fraction>
+        <fuel-fraction>0.7</fuel-fraction>
         <startup>
             <splash-texture>Aircraft/777-200/splash.png</splash-texture>
         </startup>
