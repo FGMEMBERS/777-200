@@ -288,7 +288,10 @@
 		<debug>false</debug>
 		<enable>
 		    <condition>
-				<not><property>gear/gear[1]/wow</property></not>
+				<and>
+					<not><property>autopilot/locks/passive-mode</property></not>
+					<not><property>gear/gear[1]/wow</property></not>
+				</and>
 		    </condition>
 		</enable>
 		<input>
