@@ -839,6 +839,11 @@ Service Ceiling: 43,100ft
         <flight>
             <speedbrake-lever type="int">0</speedbrake-lever>
         </flight>
+        <engines>
+            <autostart-button type="bool">0</autostart-button>
+            <autostart-knob type="int" n="0">0</autostart-knob>
+            <autostart-knob type="int" n="1">0</autostart-knob>
+        </engines>
     </controls>
 
     <autopilot>

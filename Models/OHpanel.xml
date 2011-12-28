@@ -285,8 +285,130 @@ Syd Adams
         </axis>
     </animation>
 
+    <animation>
+        <type>rotate</type>
+        <object-name>Autostart.knob1</object-name>
+        <property>controls/engines/autostart-knob[0]</property>
+        <factor>40</factor>
+        <center>
+            <x-m>0.033</x-m>
+            <y-m>0.050</y-m>
+            <z-m>0.018</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Autostart.knob2</object-name>
+        <property>controls/engines/autostart-knob[1]</property>
+        <factor>40</factor>
+        <center>
+            <x-m>0.033</x-m>
+            <y-m>0.140</y-m>
+            <z-m>0.018</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
 <!-- OSG hotspots -->
+
+    <animation>
+        <type>pick</type>
+        <object-name>Autostart.knob1</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/engines/autostart-knob[0]</property>
+                <step>1</step>
+                <min>-1</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Autostart.knob1</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/engines/autostart-knob[0]</property>
+                <step>-1</step>
+                <min>-1</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Autostart.knob2</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/engines/autostart-knob[1]</property>
+                <step>1</step>
+                <min>-1</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Autostart.knob2</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/engines/autostart-knob[1]</property>
+                <step>-1</step>
+                <min>-1</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>autostart.btn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>controls/engines/autostart-button</property>
+                <value>true</value>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/engines/autostart-button</property>
+                    <value>false</value>
+                </binding>
+            </mod-up>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
