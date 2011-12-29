@@ -442,27 +442,6 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>autostart.btn</object-name>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-assign</command>
-                <property>controls/engines/autostart-button</property>
-                <value>true</value>
-            </binding>
-            <mod-up>
-                <binding>
-                    <command>property-assign</command>
-                    <property>controls/engines/autostart-button</property>
-                    <value>false</value>
-                </binding>
-            </mod-up>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
         <object-name>BCN.btn</object-name>
         <action>
             <button>0</button>
@@ -836,7 +815,7 @@ Syd Adams
 
     <animation>
         <type>pick</type>
-        <object-name>AUTOSTART</object-name>
+        <object-name>autostart.btn</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
