@@ -36,6 +36,130 @@ Configure the nav-display symbology
 <symbol>
     <type type="string">runway</type>
     <state type="string">departure</state>
+    <enable>
+        <less-than>
+            <property>instrumentation/efis/inputs/range</property>
+            <value>41.0</value>
+        </less-than>
+    </enable>
+    
+    <x0 type="float">-12</x0>
+    <y0 type="float">-20</y0>
+    <x1 type="float">12</x1>
+    <y1 type="float">4</y1>
+    <y2 type="float">-4</y2>
+    <y3 type="float">20</y3>
+    
+    <rotate-to-heading type="bool">true</rotate-to-heading>
+    <stretch-symbol type="bool">true</stretch-symbol>
+    
+    <texture-size type="int">512</texture-size>
+    <u0 type="float">12</u0>
+    <v0 type="float">322</v0>
+    <u1 type="float">54</u1>
+    <v1 type="float">378</v1>
+    <v2 type="float">420</v2>
+    <v3 type="float">490</v3>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">runway</type>
+    <state type="string">arrival</state>
+    <enable>
+        <less-than>
+            <property>instrumentation/efis/inputs/range</property>
+            <value>41.0</value>
+        </less-than>
+    </enable>
+    
+    <x0 type="float">-12</x0>
+    <y0 type="float">-20</y0>
+    <x1 type="float">12</x1>
+    <y1 type="float">4</y1>
+    <y2 type="float">-4</y2>
+    <y3 type="float">20</y3>
+    
+    <rotate-to-heading type="bool">true</rotate-to-heading>
+    <stretch-symbol type="bool">true</stretch-symbol>
+    
+    <texture-size type="int">512</texture-size>
+    <u0 type="float">12</u0>
+    <v0 type="float">322</v0>
+    <u1 type="float">54</u1>
+    <v1 type="float">378</v1>
+    <v2 type="float">420</v2>
+    <v3 type="float">490</v3>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">runway</type>
+    <state type="string">departure</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/inputs/range</property>
+            <value>40.0</value>
+        </greater-than>
+    </enable>
+    
+    <x0 type="float">-12</x0>
+    <y0 type="float">-12</y0>
+    <x1 type="float">12</x1>
+    <y1 type="float">24</y1>
+    
+    <rotate-to-heading type="bool">true</rotate-to-heading>
+    <texture-size type="int">512</texture-size>
+    <u0 type="float">195</u0>
+    <v0 type="float">260</v0>
+    <u1 type="float">241</u1>
+    <v1 type="float">328</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">runway</type>
+    <state type="string">arrival</state>
+    <enable>
+        <greater-than>
+            <property>instrumentation/efis/inputs/range</property>
+            <value>40.0</value>
+        </greater-than>
+    </enable>
+    
+    <x0 type="float">-12</x0>
+    <y0 type="float">-12</y0>
+    <x1 type="float">12</x1>
+    <y1 type="float">24</y1>
+    
+    <rotate-to-heading type="bool">true</rotate-to-heading>
+    <texture-size type="int">512</texture-size>
+    <u0 type="float">195</u0>
+    <v0 type="float">260</v0>
+    <u1 type="float">241</u1>
+    <v1 type="float">328</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
+</symbol>
+
+<symbol>
+    <type type="string">runway</type>
+    <state type="string">arrival</state>
     <width type="float">16</width>
     <rotate-to-heading type="bool">true</rotate-to-heading>
     <texture-size type="int">512</texture-size>
